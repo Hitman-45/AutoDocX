@@ -1,0 +1,23 @@
+{
+    "root": {
+        "sample.cpp": [
+            {
+                "name": "int",
+                "body": "int main() {\n    cout << \"Hello, C++!\" << endl;\n    return 0;\n}"
+            }
+        ],
+        "sample.cob": [],
+        "AccessManager.java": [
+            {
+                "name": "\n",
+                "body": "public AccessManager() {\n    dbAccess = new DbAccess();\n  }"
+            }
+        ],
+        "sample.py": [
+            {
+                "name": "main",
+                "body": "def main():\n    print(\"Hello, Python!\")\n\nif __name__ == \"__main__\":\n    main()"
+            }
+        ]
+    }
+}
