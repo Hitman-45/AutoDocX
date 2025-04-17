@@ -1,0 +1,717 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"technical_analyst_agent\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Sophisticated technical analysis system that combines multiple trading strategies for multiple tickers:\\n1. Trend Following\\n2. Mean Reversion\\n3. Momentum\\n4. Volatility Analysis\\n5. Statistical Arbitrage Signals\""
+            },
+            {
+              "name": "body: \"def technical_analyst_agent(state: AgentState):\\n    \\\"\\\"\\\"\\n    Sophisticated technical analysis system that combines multiple trading strategies for multiple tickers:\\n    1. Trend Following\\n    2. Mean Reversion\\n    3. Momentum\\n    4. Volatility Analysis\\n    5. Statistical Arbitrage Signals\\n    \\\"\\\"\\\"\\n    data = state[\\\"data\\\"]\\n    start_date = data[\\\"start_date\\\"]\\n    end_date = data[\\\"end_date\\\"]\\n    tickers = data[\\\"tickers\\\"]\\n\\n    # Initialize analysis for each ticker\\n    technical_analysis = {}\\n\\n    for ticker in tickers:\\n        progress.update_status(\\\"technical_analyst_agent\\\", ticker, \\\"Analyzing price data\\\")\\n\\n        # Get the historical price data\\n        prices = get_prices(\\n            ticker=ticker,\\n            start_date=start_date,\\n            end_date=end_date,\\n        )\\n\\n        if not prices:\\n            progress.update_status(\\\"technical_analyst_agent\\\", ticker, \\\"Failed: No price data found\\\")\\n            continue\\n\\n        # Convert prices to a DataFrame\\n        prices_df = prices_to_df(prices)\\n\\n        progress.update_status(\\\"technical_analyst_agent\\\", ticker, \\\"Calculating trend signals\\\")\\n        trend_signals = calculate_trend_signals(prices_df)\\n\\n        progress.update_status(\\\"technical_analyst_agent\\\", ticker, \\\"Calculating mean reversion\\\")\\n        mean_reversion_signals = calculate_mean_reversion_signals(prices_df)\\n\\n        progress.update_status(\\\"technical_analyst_agent\\\", ticker, \\\"Calculating momentum\\\")\\n        momentum_signals = calculate_momentum_signals(prices_df)\\n\\n        progress.update_status(\\\"technical_analyst_agent\\\", ticker, \\\"Analyzing volatility\\\")\\n        volatility_signals = calculate_volatility_signals(prices_df)\\n\\n        progress.update_status(\\\"technical_analyst_agent\\\", ticker, \\\"Statistical analysis\\\")\\n        stat_arb_signals = calculate_stat_arb_signals(prices_df)\\n\\n        # Combine all signals using a weighted ensemble approach\\n        strategy_weights = {\\n            \\\"trend\\\": 0.25,\\n            \\\"mean_reversion\\\": 0.20,\\n            \\\"momentum\\\": 0.25,\\n            \\\"volatility\\\": 0.15,\\n            \\\"stat_arb\\\": 0.15,\\n        }\\n\\n        progress.update_status(\\\"technical_analyst_agent\\\", ticker, \\\"Combining signals\\\")\\n        combined_signal = weighted_signal_combination(\\n            {\\n                \\\"trend\\\": trend_signals,\\n                \\\"mean_reversion\\\": mean_reversion_signals,\\n                \\\"momentum\\\": momentum_signals,\\n                \\\"volatility\\\": volatility_signals,\\n                \\\"stat_arb\\\": stat_arb_signals,\\n            },\\n            strategy_weights,\\n        )\\n\\n        # Generate detailed analysis report for this ticker\\n        technical_analysis[ticker] = {\\n            \\\"signal\\\": combined_signal[\\\"signal\\\"],\\n            \\\"confidence\\\": round(combined_signal[\\\"confidence\\\"] * 100),\\n            \\\"strategy_signals\\\": {\\n                \\\"trend_following\\\": {\\n                    \\\"signal\\\": trend_signals[\\\"signal\\\"],\\n                    \\\"confidence\\\": round(trend_signals[\\\"confidence\\\"] * 100),\\n                    \\\"metrics\\\": normalize_pandas(trend_signals[\\\"metrics\\\"]),\\n                },\\n                \\\"mean_reversion\\\": {\\n                    \\\"signal\\\": mean_reversion_signals[\\\"signal\\\"],\\n                    \\\"confidence\\\": round(mean_reversion_signals[\\\"confidence\\\"] * 100),\\n                    \\\"metrics\\\": normalize_pandas(mean_reversion_signals[\\\"metrics\\\"]),\\n                },\\n                \\\"momentum\\\": {\\n                    \\\"signal\\\": momentum_signals[\\\"signal\\\"],\\n                    \\\"confidence\\\": round(momentum_signals[\\\"confidence\\\"] * 100),\\n                    \\\"metrics\\\": normalize_pandas(momentum_signals[\\\"metrics\\\"]),\\n                },\\n                \\\"volatility\\\": {\\n                    \\\"signal\\\": volatility_signals[\\\"signal\\\"],\\n                    \\\"confidence\\\": round(volatility_signals[\\\"confidence\\\"] * 100),\\n                    \\\"metrics\\\": normalize_pandas(volatility_signals[\\\"metrics\\\"]),\\n                },\\n                \\\"statistical_arbitrage\\\": {\\n                    \\\"signal\\\": stat_arb_signals[\\\"signal\\\"],\\n                    \\\"confidence\\\": round(stat_arb_signals[\\\"confidence\\\"] * 100),\\n                    \\\"metrics\\\": normalize_pandas(stat_arb_signals[\\\"metrics\\\"]),\\n                },\\n            },\\n        }\\n        progress.update_status(\\\"technical_analyst_agent\\\", ticker, \\\"Done\\\")\\n\\n    # Create the technical analyst message\\n    message = HumanMessage(\\n        content=json.dumps(technical_analysis),\\n        name=\\\"technical_analyst_agent\\\",\\n    )\\n\\n    if state[\\\"metadata\\\"][\\\"show_reasoning\\\"]:\\n        show_agent_reasoning(technical_analysis, \\\"Technical Analyst\\\")\\n\\n    # Add the signal to the analyst_signals list\\n    state[\\\"data\\\"][\\\"analyst_signals\\\"][\\\"technical_analyst_agent\\\"] = technical_analysis\\n\\n    return {\\n        \\\"messages\\\": state[\\\"messages\\\"] + [message],\\n        \\\"data\\\": data,\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 16"
+            },
+            {
+              "name": "end_line: 135"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"technicals.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"calculate_trend_signals\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Advanced trend following strategy using multiple timeframes and indicators\""
+            },
+            {
+              "name": "body: \"def calculate_trend_signals(prices_df):\\n    \\\"\\\"\\\"\\n    Advanced trend following strategy using multiple timeframes and indicators\\n    \\\"\\\"\\\"\\n    # Calculate EMAs for multiple timeframes\\n    ema_8 = calculate_ema(prices_df, 8)\\n    ema_21 = calculate_ema(prices_df, 21)\\n    ema_55 = calculate_ema(prices_df, 55)\\n\\n    # Calculate ADX for trend strength\\n    adx = calculate_adx(prices_df, 14)\\n\\n    # Determine trend direction and strength\\n    short_trend = ema_8 > ema_21\\n    medium_trend = ema_21 > ema_55\\n\\n    # Combine signals with confidence weighting\\n    trend_strength = adx[\\\"adx\\\"].iloc[-1] / 100.0\\n\\n    if short_trend.iloc[-1] and medium_trend.iloc[-1]:\\n        signal = \\\"bullish\\\"\\n        confidence = trend_strength\\n    elif not short_trend.iloc[-1] and not medium_trend.iloc[-1]:\\n        signal = \\\"bearish\\\"\\n        confidence = trend_strength\\n    else:\\n        signal = \\\"neutral\\\"\\n        confidence = 0.5\\n\\n    return {\\n        \\\"signal\\\": signal,\\n        \\\"confidence\\\": confidence,\\n        \\\"metrics\\\": {\\n            \\\"adx\\\": float(adx[\\\"adx\\\"].iloc[-1]),\\n            \\\"trend_strength\\\": float(trend_strength),\\n        },\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 138"
+            },
+            {
+              "name": "end_line: 174"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"technicals.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"calculate_mean_reversion_signals\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Mean reversion strategy using statistical measures and Bollinger Bands\""
+            },
+            {
+              "name": "body: \"def calculate_mean_reversion_signals(prices_df):\\n    \\\"\\\"\\\"\\n    Mean reversion strategy using statistical measures and Bollinger Bands\\n    \\\"\\\"\\\"\\n    # Calculate z-score of price relative to moving average\\n    ma_50 = prices_df[\\\"close\\\"].rolling(window=50).mean()\\n    std_50 = prices_df[\\\"close\\\"].rolling(window=50).std()\\n    z_score = (prices_df[\\\"close\\\"] - ma_50) / std_50\\n\\n    # Calculate Bollinger Bands\\n    bb_upper, bb_lower = calculate_bollinger_bands(prices_df)\\n\\n    # Calculate RSI with multiple timeframes\\n    rsi_14 = calculate_rsi(prices_df, 14)\\n    rsi_28 = calculate_rsi(prices_df, 28)\\n\\n    # Mean reversion signals\\n    price_vs_bb = (prices_df[\\\"close\\\"].iloc[-1] - bb_lower.iloc[-1]) / (bb_upper.iloc[-1] - bb_lower.iloc[-1])\\n\\n    # Combine signals\\n    if z_score.iloc[-1] < -2 and price_vs_bb < 0.2:\\n        signal = \\\"bullish\\\"\\n        confidence = min(abs(z_score.iloc[-1]) / 4, 1.0)\\n    elif z_score.iloc[-1] > 2 and price_vs_bb > 0.8:\\n        signal = \\\"bearish\\\"\\n        confidence = min(abs(z_score.iloc[-1]) / 4, 1.0)\\n    else:\\n        signal = \\\"neutral\\\"\\n        confidence = 0.5\\n\\n    return {\\n        \\\"signal\\\": signal,\\n        \\\"confidence\\\": confidence,\\n        \\\"metrics\\\": {\\n            \\\"z_score\\\": float(z_score.iloc[-1]),\\n            \\\"price_vs_bb\\\": float(price_vs_bb),\\n            \\\"rsi_14\\\": float(rsi_14.iloc[-1]),\\n            \\\"rsi_28\\\": float(rsi_28.iloc[-1]),\\n        },\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 177"
+            },
+            {
+              "name": "end_line: 216"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"technicals.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"calculate_momentum_signals\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Multi-factor momentum strategy\""
+            },
+            {
+              "name": "body: \"def calculate_momentum_signals(prices_df):\\n    \\\"\\\"\\\"\\n    Multi-factor momentum strategy\\n    \\\"\\\"\\\"\\n    # Price momentum\\n    returns = prices_df[\\\"close\\\"].pct_change()\\n    mom_1m = returns.rolling(21).sum()\\n    mom_3m = returns.rolling(63).sum()\\n    mom_6m = returns.rolling(126).sum()\\n\\n    # Volume momentum\\n    volume_ma = prices_df[\\\"volume\\\"].rolling(21).mean()\\n    volume_momentum = prices_df[\\\"volume\\\"] / volume_ma\\n\\n    # Relative strength\\n    # (would compare to market/sector in real implementation)\\n\\n    # Calculate momentum score\\n    momentum_score = (0.4 * mom_1m + 0.3 * mom_3m + 0.3 * mom_6m).iloc[-1]\\n\\n    # Volume confirmation\\n    volume_confirmation = volume_momentum.iloc[-1] > 1.0\\n\\n    if momentum_score > 0.05 and volume_confirmation:\\n        signal = \\\"bullish\\\"\\n        confidence = min(abs(momentum_score) * 5, 1.0)\\n    elif momentum_score < -0.05 and volume_confirmation:\\n        signal = \\\"bearish\\\"\\n        confidence = min(abs(momentum_score) * 5, 1.0)\\n    else:\\n        signal = \\\"neutral\\\"\\n        confidence = 0.5\\n\\n    return {\\n        \\\"signal\\\": signal,\\n        \\\"confidence\\\": confidence,\\n        \\\"metrics\\\": {\\n            \\\"momentum_1m\\\": float(mom_1m.iloc[-1]),\\n            \\\"momentum_3m\\\": float(mom_3m.iloc[-1]),\\n            \\\"momentum_6m\\\": float(mom_6m.iloc[-1]),\\n            \\\"volume_momentum\\\": float(volume_momentum.iloc[-1]),\\n        },\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 219"
+            },
+            {
+              "name": "end_line: 261"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"technicals.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"calculate_volatility_signals\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Volatility-based trading strategy\""
+            },
+            {
+              "name": "body: \"def calculate_volatility_signals(prices_df):\\n    \\\"\\\"\\\"\\n    Volatility-based trading strategy\\n    \\\"\\\"\\\"\\n    # Calculate various volatility metrics\\n    returns = prices_df[\\\"close\\\"].pct_change()\\n\\n    # Historical volatility\\n    hist_vol = returns.rolling(21).std() * math.sqrt(252)\\n\\n    # Volatility regime detection\\n    vol_ma = hist_vol.rolling(63).mean()\\n    vol_regime = hist_vol / vol_ma\\n\\n    # Volatility mean reversion\\n    vol_z_score = (hist_vol - vol_ma) / hist_vol.rolling(63).std()\\n\\n    # ATR ratio\\n    atr = calculate_atr(prices_df)\\n    atr_ratio = atr / prices_df[\\\"close\\\"]\\n\\n    # Generate signal based on volatility regime\\n    current_vol_regime = vol_regime.iloc[-1]\\n    vol_z = vol_z_score.iloc[-1]\\n\\n    if current_vol_regime < 0.8 and vol_z < -1:\\n        signal = \\\"bullish\\\"  # Low vol regime, potential for expansion\\n        confidence = min(abs(vol_z) / 3, 1.0)\\n    elif current_vol_regime > 1.2 and vol_z > 1:\\n        signal = \\\"bearish\\\"  # High vol regime, potential for contraction\\n        confidence = min(abs(vol_z) / 3, 1.0)\\n    else:\\n        signal = \\\"neutral\\\"\\n        confidence = 0.5\\n\\n    return {\\n        \\\"signal\\\": signal,\\n        \\\"confidence\\\": confidence,\\n        \\\"metrics\\\": {\\n            \\\"historical_volatility\\\": float(hist_vol.iloc[-1]),\\n            \\\"volatility_regime\\\": float(current_vol_regime),\\n            \\\"volatility_z_score\\\": float(vol_z),\\n            \\\"atr_ratio\\\": float(atr_ratio.iloc[-1]),\\n        },\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 264"
+            },
+            {
+              "name": "end_line: 308"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"technicals.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"calculate_stat_arb_signals\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Statistical arbitrage signals based on price action analysis\""
+            },
+            {
+              "name": "body: \"def calculate_stat_arb_signals(prices_df):\\n    \\\"\\\"\\\"\\n    Statistical arbitrage signals based on price action analysis\\n    \\\"\\\"\\\"\\n    # Calculate price distribution statistics\\n    returns = prices_df[\\\"close\\\"].pct_change()\\n\\n    # Skewness and kurtosis\\n    skew = returns.rolling(63).skew()\\n    kurt = returns.rolling(63).kurt()\\n\\n    # Test for mean reversion using Hurst exponent\\n    hurst = calculate_hurst_exponent(prices_df[\\\"close\\\"])\\n\\n    # Correlation analysis\\n    # (would include correlation with related securities in real implementation)\\n\\n    # Generate signal based on statistical properties\\n    if hurst < 0.4 and skew.iloc[-1] > 1:\\n        signal = \\\"bullish\\\"\\n        confidence = (0.5 - hurst) * 2\\n    elif hurst < 0.4 and skew.iloc[-1] < -1:\\n        signal = \\\"bearish\\\"\\n        confidence = (0.5 - hurst) * 2\\n    else:\\n        signal = \\\"neutral\\\"\\n        confidence = 0.5\\n\\n    return {\\n        \\\"signal\\\": signal,\\n        \\\"confidence\\\": confidence,\\n        \\\"metrics\\\": {\\n            \\\"hurst_exponent\\\": float(hurst),\\n            \\\"skewness\\\": float(skew.iloc[-1]),\\n            \\\"kurtosis\\\": float(kurt.iloc[-1]),\\n        },\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 311"
+            },
+            {
+              "name": "end_line: 347"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"technicals.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"weighted_signal_combination\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Combines multiple trading signals using a weighted approach\""
+            },
+            {
+              "name": "body: \"def weighted_signal_combination(signals, weights):\\n    \\\"\\\"\\\"\\n    Combines multiple trading signals using a weighted approach\\n    \\\"\\\"\\\"\\n    # Convert signals to numeric values\\n    signal_values = {\\\"bullish\\\": 1, \\\"neutral\\\": 0, \\\"bearish\\\": -1}\\n\\n    weighted_sum = 0\\n    total_confidence = 0\\n\\n    for strategy, signal in signals.items():\\n        numeric_signal = signal_values[signal[\\\"signal\\\"]]\\n        weight = weights[strategy]\\n        confidence = signal[\\\"confidence\\\"]\\n\\n        weighted_sum += numeric_signal * weight * confidence\\n        total_confidence += weight * confidence\\n\\n    # Normalize the weighted sum\\n    if total_confidence > 0:\\n        final_score = weighted_sum / total_confidence\\n    else:\\n        final_score = 0\\n\\n    # Convert back to signal\\n    if final_score > 0.2:\\n        signal = \\\"bullish\\\"\\n    elif final_score < -0.2:\\n        signal = \\\"bearish\\\"\\n    else:\\n        signal = \\\"neutral\\\"\\n\\n    return {\\\"signal\\\": signal, \\\"confidence\\\": abs(final_score)}\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 350"
+            },
+            {
+              "name": "end_line: 382"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"technicals.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"normalize_pandas\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Convert pandas Series/DataFrames to primitive Python types\""
+            },
+            {
+              "name": "body: \"def normalize_pandas(obj):\\n    \\\"\\\"\\\"Convert pandas Series/DataFrames to primitive Python types\\\"\\\"\\\"\\n    if isinstance(obj, pd.Series):\\n        return obj.tolist()\\n    elif isinstance(obj, pd.DataFrame):\\n        return obj.to_dict(\\\"records\\\")\\n    elif isinstance(obj, dict):\\n        return {k: normalize_pandas(v) for k, v in obj.items()}\\n    elif isinstance(obj, (list, tuple)):\\n        return [normalize_pandas(item) for item in obj]\\n    return obj\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 385"
+            },
+            {
+              "name": "end_line: 395"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"technicals.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[8]",
+          "children": [
+            {
+              "name": "function_name: \"calculate_rsi\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def calculate_rsi(prices_df: pd.DataFrame, period: int = 14) -> pd.Series:\\n    delta = prices_df[\\\"close\\\"].diff()\\n    gain = (delta.where(delta > 0, 0)).fillna(0)\\n    loss = (-delta.where(delta < 0, 0)).fillna(0)\\n    avg_gain = gain.rolling(window=period).mean()\\n    avg_loss = loss.rolling(window=period).mean()\\n    rs = avg_gain / avg_loss\\n    rsi = 100 - (100 / (1 + rs))\\n    return rsi\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 398"
+            },
+            {
+              "name": "end_line: 406"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"technicals.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[9]",
+          "children": [
+            {
+              "name": "function_name: \"calculate_bollinger_bands\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def calculate_bollinger_bands(prices_df: pd.DataFrame, window: int = 20) -> tuple[pd.Series, pd.Series]:\\n    sma = prices_df[\\\"close\\\"].rolling(window).mean()\\n    std_dev = prices_df[\\\"close\\\"].rolling(window).std()\\n    upper_band = sma + (std_dev * 2)\\n    lower_band = sma - (std_dev * 2)\\n    return upper_band, lower_band\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 409"
+            },
+            {
+              "name": "end_line: 414"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"technicals.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[10]",
+          "children": [
+            {
+              "name": "function_name: \"calculate_ema\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Calculate Exponential Moving Average\\n\\nArgs:\\n    df: DataFrame with price data\\n    window: EMA period\\n\\nReturns:\\n    pd.Series: EMA values\""
+            },
+            {
+              "name": "body: \"def calculate_ema(df: pd.DataFrame, window: int) -> pd.Series:\\n    \\\"\\\"\\\"\\n    Calculate Exponential Moving Average\\n\\n    Args:\\n        df: DataFrame with price data\\n        window: EMA period\\n\\n    Returns:\\n        pd.Series: EMA values\\n    \\\"\\\"\\\"\\n    return df[\\\"close\\\"].ewm(span=window, adjust=False).mean()\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 417"
+            },
+            {
+              "name": "end_line: 428"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"technicals.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[11]",
+          "children": [
+            {
+              "name": "function_name: \"calculate_adx\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Calculate Average Directional Index (ADX)\\n\\nArgs:\\n    df: DataFrame with OHLC data\\n    period: Period for calculations\\n\\nReturns:\\n    DataFrame with ADX values\""
+            },
+            {
+              "name": "body: \"def calculate_adx(df: pd.DataFrame, period: int = 14) -> pd.DataFrame:\\n    \\\"\\\"\\\"\\n    Calculate Average Directional Index (ADX)\\n\\n    Args:\\n        df: DataFrame with OHLC data\\n        period: Period for calculations\\n\\n    Returns:\\n        DataFrame with ADX values\\n    \\\"\\\"\\\"\\n    # Calculate True Range\\n    df[\\\"high_low\\\"] = df[\\\"high\\\"] - df[\\\"low\\\"]\\n    df[\\\"high_close\\\"] = abs(df[\\\"high\\\"] - df[\\\"close\\\"].shift())\\n    df[\\\"low_close\\\"] = abs(df[\\\"low\\\"] - df[\\\"close\\\"].shift())\\n    df[\\\"tr\\\"] = df[[\\\"high_low\\\", \\\"high_close\\\", \\\"low_close\\\"]].max(axis=1)\\n\\n    # Calculate Directional Movement\\n    df[\\\"up_move\\\"] = df[\\\"high\\\"] - df[\\\"high\\\"].shift()\\n    df[\\\"down_move\\\"] = df[\\\"low\\\"].shift() - df[\\\"low\\\"]\\n\\n    df[\\\"plus_dm\\\"] = np.where((df[\\\"up_move\\\"] > df[\\\"down_move\\\"]) & (df[\\\"up_move\\\"] > 0), df[\\\"up_move\\\"], 0)\\n    df[\\\"minus_dm\\\"] = np.where((df[\\\"down_move\\\"] > df[\\\"up_move\\\"]) & (df[\\\"down_move\\\"] > 0), df[\\\"down_move\\\"], 0)\\n\\n    # Calculate ADX\\n    df[\\\"+di\\\"] = 100 * (df[\\\"plus_dm\\\"].ewm(span=period).mean() / df[\\\"tr\\\"].ewm(span=period).mean())\\n    df[\\\"-di\\\"] = 100 * (df[\\\"minus_dm\\\"].ewm(span=period).mean() / df[\\\"tr\\\"].ewm(span=period).mean())\\n    df[\\\"dx\\\"] = 100 * abs(df[\\\"+di\\\"] - df[\\\"-di\\\"]) / (df[\\\"+di\\\"] + df[\\\"-di\\\"])\\n    df[\\\"adx\\\"] = df[\\\"dx\\\"].ewm(span=period).mean()\\n\\n    return df[[\\\"adx\\\", \\\"+di\\\", \\\"-di\\\"]]\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 431"
+            },
+            {
+              "name": "end_line: 461"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"technicals.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[12]",
+          "children": [
+            {
+              "name": "function_name: \"calculate_atr\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Calculate Average True Range\\n\\nArgs:\\n    df: DataFrame with OHLC data\\n    period: Period for ATR calculation\\n\\nReturns:\\n    pd.Series: ATR values\""
+            },
+            {
+              "name": "body: \"def calculate_atr(df: pd.DataFrame, period: int = 14) -> pd.Series:\\n    \\\"\\\"\\\"\\n    Calculate Average True Range\\n\\n    Args:\\n        df: DataFrame with OHLC data\\n        period: Period for ATR calculation\\n\\n    Returns:\\n        pd.Series: ATR values\\n    \\\"\\\"\\\"\\n    high_low = df[\\\"high\\\"] - df[\\\"low\\\"]\\n    high_close = abs(df[\\\"high\\\"] - df[\\\"close\\\"].shift())\\n    low_close = abs(df[\\\"low\\\"] - df[\\\"close\\\"].shift())\\n\\n    ranges = pd.concat([high_low, high_close, low_close], axis=1)\\n    true_range = ranges.max(axis=1)\\n\\n    return true_range.rolling(period).mean()\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 464"
+            },
+            {
+              "name": "end_line: 482"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"technicals.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[13]",
+          "children": [
+            {
+              "name": "function_name: \"calculate_hurst_exponent\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Calculate Hurst Exponent to determine long-term memory of time series\\nH < 0.5: Mean reverting series\\nH = 0.5: Random walk\\nH > 0.5: Trending series\\n\\nArgs:\\n    price_series: Array-like price data\\n    max_lag: Maximum lag for R/S calculation\\n\\nReturns:\\n    float: Hurst exponent\""
+            },
+            {
+              "name": "body: \"def calculate_hurst_exponent(price_series: pd.Series, max_lag: int = 20) -> float:\\n    \\\"\\\"\\\"\\n    Calculate Hurst Exponent to determine long-term memory of time series\\n    H < 0.5: Mean reverting series\\n    H = 0.5: Random walk\\n    H > 0.5: Trending series\\n\\n    Args:\\n        price_series: Array-like price data\\n        max_lag: Maximum lag for R/S calculation\\n\\n    Returns:\\n        float: Hurst exponent\\n    \\\"\\\"\\\"\\n    lags = range(2, max_lag)\\n    # Add small epsilon to avoid log(0)\\n    tau = [max(1e-8, np.sqrt(np.std(np.subtract(price_series[lag:], price_series[:-lag])))) for lag in lags]\\n\\n    # Return the Hurst exponent from linear fit\\n    try:\\n        reg = np.polyfit(np.log(lags), np.log(tau), 1)\\n        return reg[0]  # Hurst exponent is the slope\\n    except (ValueError, RuntimeWarning):\\n        # Return 0.5 (random walk) if calculation fails\\n        return 0.5\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 485"
+            },
+            {
+              "name": "end_line: 509"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"technicals.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

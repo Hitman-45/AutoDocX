@@ -1,0 +1,415 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"GetValue\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "class_name: \"Base\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    virtual int GetValue() const\\n    {\\n        return 0;\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 28"
+            },
+            {
+              "name": "end_line: 31"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer_test.cpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"GetValue\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "class_name: \"Derived\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    int GetValue() const override \\n    {\\n        return m_value;\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 38"
+            },
+            {
+              "name": "end_line: 41"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer_test.cpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"main\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"int main(void)\\n{\\n    SharedPointerGetPointerTest();\\n    SharedPointerDestructorsTest();\\n    SharedPointerInheritanceTest();\\n    SharedPointerDereferencingTest();\\n    SharedPointerCopyAssignmentTest();\\n    SharedPointerCopyConstructorTest();\\n    std::cout << \\\"All test passed\\\" << std::endl;\\n    return (0);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 55"
+            },
+            {
+              "name": "end_line: 65"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer_test.cpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"SharedPointerGetPointerTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void SharedPointerGetPointerTest(void)\\n{\\n    int value = 42;\\n    SharedPointer<int> ptr(new int(value));\\n    SharedPointer<int> ptr1(ptr);\\n    TestEqual(ptr.GetPointer(), ptr.GetPointer(), \\\"Should be equal\\\");\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 67"
+            },
+            {
+              "name": "end_line: 73"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer_test.cpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"SharedPointerDestructorsTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void SharedPointerDestructorsTest(void)\\n{\\n    {    \\n        int value = 42;\\n        SharedPointer<int> ptr(new int(value));\\n    }\\n\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 75"
+            },
+            {
+              "name": "end_line: 82"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer_test.cpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"SharedPointerCopyConstructorTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void SharedPointerCopyConstructorTest(void)\\n{\\n    int value = 42;\\n    SharedPointer<int> originalPtr(new int(value));\\n    SharedPointer<int> copiedPtr(originalPtr);\\n    TestEqual(copiedPtr.GetPointer(), copiedPtr.GetPointer(), \\\"Should be equal\\\");\\n    TestEqual(*copiedPtr, value, \\\"Should be equal\\\");\\n    TestEqual(*originalPtr, value, \\\"Should be equal\\\");\\n    TestEqual(*originalPtr, *copiedPtr, \\\"Should be equal\\\");\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 84"
+            },
+            {
+              "name": "end_line: 93"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer_test.cpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"SharedPointerDereferencingTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void SharedPointerDereferencingTest(void)\\n{\\n    int value = 42;\\n    SharedPointer<int> originalPtr(new int(value));\\n    SharedPointer<int> copiedPtr = originalPtr;\\n    TestEqual(originalPtr.operator->(), copiedPtr.operator->(), \\\"Should be equal\\\");\\n    TestEqual(originalPtr.operator*(), copiedPtr.operator*(), \\\"Should be equal\\\");\\n\\n    struct stru\\n    {\\n        int val;\\n    };\\n\\n    SharedPointer<stru> s(new stru());\\n    s->val = 1;\\n\\n    TestEqual(s->val, 1, \\\"Should be equal\\\");\\n    TestEqual(s->val, (*s).val, \\\"Should be equal\\\");\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 95"
+            },
+            {
+              "name": "end_line: 113"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer_test.cpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"SharedPointerCopyAssignmentTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void SharedPointerCopyAssignmentTest(void)\\n{\\n    int value = 42;\\n    SharedPointer<int> originalPtr(new int(value));\\n    SharedPointer<int> copiedPtr = originalPtr;\\n    TestEqual(copiedPtr.GetPointer(), copiedPtr.GetPointer(), \\\"Should be equal\\\");\\n    TestEqual(*copiedPtr, value, \\\"Should be equal\\\");\\n    TestEqual(*originalPtr, value, \\\"Should be equal\\\");\\n    TestEqual(*originalPtr, *copiedPtr, \\\"Should be equal\\\");\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 115"
+            },
+            {
+              "name": "end_line: 124"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer_test.cpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[8]",
+          "children": [
+            {
+              "name": "function_name: \"SharedPointerInheritanceTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void SharedPointerInheritanceTest(void)\\n{\\n    SharedPointer<Base> basePtr(new Base);\\n    TestEqual(basePtr->GetValue(), 0, \\\"Should be equal\\\");\\n\\n    SharedPointer<Base> derivedPtr(new Derived(42));\\n    TestEqual(derivedPtr->GetValue(), 42, \\\"Should be equal\\\");\\n\\n    SharedPointer<Base> copiedPtr = derivedPtr;\\n    SharedPointer<Base> assignedPtr(new Base);\\n    assignedPtr = derivedPtr;\\n    TestEqual(copiedPtr->GetValue(), 42, \\\"Should be equal\\\");\\n    TestEqual(assignedPtr->GetValue(), 42, \\\"Should be equal\\\");\\n\\n    SharedPointer<Derived> polymorphicPtr(new Derived(84));\\n    SharedPointer<Base> baseFromDerived = polymorphicPtr;\\n    TestEqual(baseFromDerived->GetValue(), 84, \\\"Should be equal\\\");\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 126"
+            },
+            {
+              "name": "end_line: 143"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer_test.cpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

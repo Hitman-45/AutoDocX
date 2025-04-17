@@ -1,0 +1,56 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"doPost\""
+            },
+            {
+              "name": "parameters: \"(HttpServletRequestrequest,HttpServletResponseresponse)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 25"
+            },
+            {
+              "name": "end_line: 107"
+            },
+            {
+              "name": "body_start: 26"
+            },
+            {
+              "name": "body_end: 107"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n\\n     String   certificato   =   request . getParameter ( \\\"certificato\\\" ) ; \\n     String   surname   =   request . getParameter ( \\\"surname\\\" ) . toUpperCase ( ) ; \\n     String   name   =   request . getParameter ( \\\"name\\\" ) . toUpperCase ( ) ; \\n     String   sesso   =   request . getParameter ( \\\"sesso\\\" ) . toUpperCase ( ) ; \\n     String   nascita   =   request . getParameter ( \\\"nascita\\\" ) . toUpperCase ( ) ; \\n     String   provincia   =   request . getParameter ( \\\"provincia\\\" ) . toUpperCase ( ) ; \\n     String   residence   =   request . getParameter ( \\\"residence\\\" ) . toUpperCase ( ) ; \\n     String   prov_res   =   request . getParameter ( \\\"prov_res\\\" ) . toUpperCase ( ) ; \\n     String   data   =   request . getParameter ( \\\"data\\\" ) ; \\n     String   streetAddress   =   request . getParameter ( \\\"streetAddress\\\" ) . toUpperCase ( ) ; \\n     String   dichiara_x   =   request . getParameter ( \\\"dichiara\\\" ) . toUpperCase ( ) ; \\n\\n     response . setContentType ( \\\"application/pdf\\\" ) ; \\n     //PrintWriter out = response.getWriter(); \\n\\n     try   { \\n       Document   document   =   new   Document ( ) ; \\n       PdfWriter . getInstance ( document ,   response . getOutputStream ( ) ) ; \\n       document . open ( ) ; \\n\\n       Paragraph   par   =   new   Paragraph ( \\\"\\\\nDichiarazione sostitutiva della\\\" , \\n           new   Font ( Font . HELVETICA ,   16 ,   Font . BOLD ) ) ; \\n       par . setAlignment ( Element . ALIGN_CENTER ) ; \\n       document . add ( par ) ; \\n\\n       Paragraph   titolo   =   new   Paragraph ( \\\"CERTIFICAZIONE DI \\\"   +   certificato , \\n           new   Font ( Font . HELVETICA ,   22 ,   Font . BOLD ) ) ; \\n       titolo . setAlignment ( Element . ALIGN_CENTER ) ; \\n       document . add ( titolo ) ; \\n\\n       Paragraph   dpr   =   new   Paragraph ( \\n           \\\"(Art. 46 - lettera a - D.P.R. 28 dicembre 2000, n. 445)\\\\n\\\\n\\\\n\\\\n\\\\n\\\" , \\n           new   Font ( Font . HELVETICA ,   10 ,   Font . BOLD ) ) ; \\n       dpr . setAlignment ( Element . ALIGN_CENTER ) ; \\n       document . add ( dpr ) ; \\n\\n       Paragraph   testo   =   new   Paragraph ( \\n           \\\"Il Sottoscritto/a \\\"   +   surname   +   \\\" \\\"   +   name   +   \\\" nato/a in \\\"   +   nascita   +   \\\" il \\\"   +   data \\n               +   \\\" residente \\\"   +   \\\"in \\\"   +   residence   +   \\\" provincia di \\\"   +   provincia   +   \\\" in street \\\" \\n               +   streetAddress   +   \\\", consapevole che chiunque rilascia dichiarazioni mendaci \\\" \\n               +   \\\"� punito ai sensi del codice penale e delle leggi speciali in materia, ai sensi e per\\\" \\n               +   \\\" gli effetti dell'art. 76 D.P.R. n. 445/2000\\\\n\\\\n\\\\n\\\" , \\n           new   Font ( Font . HELVETICA ,   14 ,   Font . NORMAL ) ) ; \\n       dpr . setAlignment ( Element . ALIGN_CENTER ) ; \\n       document . add ( testo ) ; \\n\\n       Paragraph   dichiara   =   new   Paragraph ( \\\"DICHIARA\\\\n\\\" ,   new   Font ( Font . HELVETICA ,   18 ,   Font . BOLD ) ) ; \\n       dichiara . setAlignment ( Element . ALIGN_CENTER ) ; \\n       document . add ( dichiara ) ; \\n\\n       Paragraph   cosa_dichiara   =   new   Paragraph ( \\\"di essere \\\"   +   dichiara_x   +   \\\"\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\" , \\n           new   Font ( Font . HELVETICA ,   16 ,   Font . NORMAL ) ) ; \\n       cosa_dichiara . setAlignment ( Element . ALIGN_CENTER ) ; \\n       document . add ( cosa_dichiara ) ; \\n\\n       Paragraph   info   =   new   Paragraph ( \\\"Esente da imposta di bollo ai sensi dell'art. \\\" \\n           +   \\\"37 D.P.R. 28 dicembre 2000, n. 455\\\\n\\\\n\\\\n\\\\n\\\" , \\n           new   Font ( Font . HELVETICA ,   10 ,   Font . NORMAL ) ) ; \\n       info . setAlignment ( Element . ALIGN_CENTER ) ; \\n       document . add ( info ) ; \\n\\n       GregorianCalendar   gc   =   new   GregorianCalendar ( ) ; \\n       int   gg   =   gc . get ( GregorianCalendar . DATE ) ; \\n       int   mm   =   gc . get ( GregorianCalendar . MONTH )   +   1 ; \\n       int   year   =   gc . get ( GregorianCalendar . YEAR ) ; \\n       Paragraph   sdata   =   new   Paragraph ( \\\"Data: \\\"   +   gg   +   \\\"/\\\"   +   mm   +   \\\"/\\\"   +   year , \\n           new   Font ( Font . HELVETICA ,   14 ,   Font . NORMAL ) ) ; \\n       sdata . setAlignment ( Element . ALIGN_LEFT ) ; \\n       document . add ( sdata ) ; \\n\\n       Paragraph   firma   =   new   Paragraph ( \\\"___________________\\\\nFirma del dichiarante\\\" , \\n           new   Font ( Font . HELVETICA ,   14 ,   Font . NORMAL ) ) ; \\n       firma . setAlignment ( Element . ALIGN_RIGHT ) ; \\n       document . add ( firma ) ; \\n\\n       document . close ( ) ; \\n     }   catch   ( DocumentException   e )   { \\n       e . printStackTrace ( ) ; \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletCreaPdfCertificati.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

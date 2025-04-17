@@ -1,0 +1,335 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: complex/complex.cpp
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="complex_complex_cpp.ast.json" />
+
+## `SetReal()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 33  
+      **End Line:** 36  
+      
+      
+      
+      ```c++
+          void Complex::SetReal(double num)
+    {
+        m_real = num;
+    }
+
+      ```
+      
+## `GetReal()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** double  
+      **Language:** C++  
+      **Start Line:** 38  
+      **End Line:** 41  
+      
+      
+      
+      ```c++
+          double Complex::GetReal() const
+    {
+        return (m_real);
+    }
+
+      ```
+      
+## `SetImaginary()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 43  
+      **End Line:** 46  
+      
+      
+      
+      ```c++
+          void Complex::SetImaginary(double num)
+    {
+        m_imaginary = num;
+    }
+
+      ```
+      
+## `GetImaginary()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** double  
+      **Language:** C++  
+      **Start Line:** 48  
+      **End Line:** 51  
+      
+      
+      
+      ```c++
+          double Complex::GetImaginary() const
+    {
+        return (m_imaginary);
+    }
+
+      ```
+      
+## `operator+=()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** Complex &  
+      **Language:** C++  
+      **Start Line:** 53  
+      **End Line:** 58  
+      
+      
+      
+      ```c++
+          Complex& Complex::operator+=(const Complex &num)
+    {
+        m_imaginary += num.GetImaginary();
+        m_real += num.GetReal();
+        return (*this);
+    }
+
+      ```
+      
+## `operator-=()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** Complex &  
+      **Language:** C++  
+      **Start Line:** 60  
+      **End Line:** 65  
+      
+      
+      
+      ```c++
+          Complex& Complex::operator-=(const Complex &num)
+    {
+        m_imaginary -= num.GetImaginary();
+        m_real -= num.GetReal();
+        return (*this);
+    }
+
+      ```
+      
+## `operator*=()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** Complex &  
+      **Language:** C++  
+      **Start Line:** 67  
+      **End Line:** 74  
+      
+      
+      
+      ```c++
+          Complex& Complex::operator*=(const Complex &num)
+    {
+        double real = m_real;
+        m_real = (m_real * num.m_real) - (m_imaginary * num.m_imaginary);
+        m_imaginary = (real * num.m_imaginary) + (m_imaginary * num.m_real);
+        
+        return (*this);
+    }
+
+      ```
+      
+## `operator/=()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** Complex &  
+      **Language:** C++  
+      **Start Line:** 76  
+      **End Line:** 88  
+      
+      
+      
+      ```c++
+          Complex& Complex::operator/=(const Complex &num)
+    {
+        double real = m_real;
+        double denominator = pow(num.m_real, 2) + pow(num.m_imaginary, 2);
+    
+        m_real = ((m_real * num.m_real) + \
+                 (m_imaginary * num.m_imaginary)) / denominator;
+    
+        m_imaginary = ((m_imaginary * num.m_real) - \
+                      (real * num.m_imaginary)) / denominator;
+    
+        return (*this);
+    }
+
+      ```
+      
+## `operator&lt;&lt;()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** std::ostream &  
+      **Language:** C++  
+      **Start Line:** 90  
+      **End Line:** 94  
+      
+      
+      
+      ```c++
+          std::ostream &operator&lt;&lt;(std::ostream &stream, const Complex &num)
+    {
+        stream &lt;&lt; "(" &lt;&lt; num.GetReal() &lt;&lt; ") + i(" &lt;&lt; num.GetImaginary() &lt;&lt; ")";
+        return (stream);
+    }
+
+      ```
+      
+## `operator&gt;&gt;()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** std::istream &  
+      **Language:** C++  
+      **Start Line:** 96  
+      **End Line:** 102  
+      
+      
+      
+      ```c++
+          std::istream &operator&gt;&gt;(std::istream &stream, Complex &num)
+    {
+        double real, imaginary;
+        stream &gt;&gt; real &gt;&gt; imaginary;
+        num = Complex(real, imaginary);
+        return (stream);
+    }
+
+      ```
+      
+## `operator==()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** bool  
+      **Language:** C++  
+      **Start Line:** 104  
+      **End Line:** 109  
+      
+      
+      
+      ```c++
+          bool operator==(const Complex &lhs, const Complex &rhs)
+    {
+        bool reCmp = std::fabs(lhs.GetReal() - rhs.GetReal()) &lt; 1e-5;
+        bool imCmp = std::fabs(lhs.GetImaginary() - rhs.GetImaginary()) &lt; 1e-5;
+        return (imCmp && reCmp);
+    }
+
+      ```
+      
+## `operator!=()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** bool  
+      **Language:** C++  
+      **Start Line:** 111  
+      **End Line:** 114  
+      
+      
+      
+      ```c++
+          bool operator!=(const Complex &lhs, const Complex &rhs)
+    {
+        return (!(lhs == rhs));
+    }
+
+      ```
+      
+## `operator+()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** const Complex  
+      **Language:** C++  
+      **Start Line:** 116  
+      **End Line:** 119  
+      
+      
+      
+      ```c++
+          const Complex operator+(const Complex &lhs, const Complex &rhs)
+    {
+        return (Complex(lhs) += rhs);
+    }
+
+      ```
+      
+## `operator-()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** const Complex  
+      **Language:** C++  
+      **Start Line:** 121  
+      **End Line:** 124  
+      
+      
+      
+      ```c++
+          const Complex operator-(const Complex &lhs, const Complex &rhs)
+    {
+        return (Complex(lhs) -= rhs);
+    }
+
+      ```
+      
+## `operator*()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** const Complex  
+      **Language:** C++  
+      **Start Line:** 126  
+      **End Line:** 129  
+      
+      
+      
+      ```c++
+          const Complex operator*(const Complex &lhs, const Complex &rhs)
+    {
+        return (Complex(lhs) *= rhs);
+    }
+
+      ```
+      
+## `operator/()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** const Complex  
+      **Language:** C++  
+      **Start Line:** 131  
+      **End Line:** 134  
+      
+      
+      
+      ```c++
+          const Complex operator/(const Complex &lhs, const Complex &rhs)
+    {
+        return (Complex(lhs) /= rhs);
+    }
+
+      ```
+      

@@ -1,0 +1,225 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: string/string.cpp
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="string_string_cpp.ast.json" />
+
+## `operator=()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** String &  
+      **Language:** C++  
+      **Start Line:** 36  
+      **End Line:** 45  
+      
+      
+      
+      ```c++
+          String& String::operator=(const String& other_)
+    {
+        if(this != &other_)
+        {
+            StrDestroy();
+            StrSet(other_.Cstr());
+        }
+
+        return (*this);
+    }
+
+      ```
+      
+## `Length()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** std::size_t  
+      **Language:** C++  
+      **Start Line:** 52  
+      **End Line:** 55  
+      
+      
+      
+      ```c++
+          std::size_t String::Length() const
+    {
+        return (length);
+    }
+
+      ```
+      
+## `Cstr()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** const char *  
+      **Language:** C++  
+      **Start Line:** 57  
+      **End Line:** 60  
+      
+      
+      
+      ```c++
+          const char *String::Cstr() const
+    {
+        return (isDynamic ? data.dynamicBuffer : data.ssoBuffer);
+    }
+
+      ```
+      
+## `StrSet()`
+
+      **Class:** None  
+      **Access:** private  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 62  
+      **End Line:** 75  
+      
+      
+      
+      ```c++
+          void String::StrSet(const char *str)
+    {
+        length = std::strlen(str);
+        if(length &lt; ssoLength)
+        {
+            std::memcpy(data.ssoBuffer, str, length + 1);
+            isDynamic = false;
+            return;
+        }
+
+        data.dynamicBuffer = new char[length + 1];
+        std::memcpy(data.dynamicBuffer, str, length + 1);
+        isDynamic = true;
+    }
+
+      ```
+      
+## `StrDestroy()`
+
+      **Class:** None  
+      **Access:** private  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 77  
+      **End Line:** 87  
+      
+      
+      
+      ```c++
+          void String::StrDestroy(void)
+    {
+        if(isDynamic)
+        {
+            delete[] (data.dynamicBuffer);
+        }
+
+        data.dynamicBuffer = NULL;
+        isDynamic = false;
+        length = 0;
+    }
+
+      ```
+      
+## `operator&lt;&lt;()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** std::ostream &  
+      **Language:** C++  
+      **Start Line:** 89  
+      **End Line:** 92  
+      
+      
+      
+      ```c++
+          std::ostream &operator&lt;&lt;(std::ostream &stream, const String &str)
+    {
+        return (stream &lt;&lt; str.Cstr());
+    }
+
+      ```
+      
+## `operator&gt;&gt;()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** std::istream &  
+      **Language:** C++  
+      **Start Line:** 94  
+      **End Line:** 101  
+      
+      
+      
+      ```c++
+          std::istream &operator&gt;&gt;(std::istream &stream, String &str)
+    {
+        const std::size_t bufferSize = 4096;
+        char buffer[bufferSize] = {0};
+        stream.getline(buffer, bufferSize);
+        str = buffer;
+        return (stream);
+    }
+
+      ```
+      
+## `operator&gt;()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** bool  
+      **Language:** C++  
+      **Start Line:** 103  
+      **End Line:** 106  
+      
+      
+      
+      ```c++
+          bool operator&gt;(const String &str1 ,const String &str2)
+    {
+        return (0 &lt; strcmp(str1.Cstr(), str2.Cstr()));
+    }
+
+      ```
+      
+## `operator&lt;()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** bool  
+      **Language:** C++  
+      **Start Line:** 108  
+      **End Line:** 111  
+      
+      
+      
+      ```c++
+          bool operator&lt;(const String &str1 ,const String &str2)
+    {
+        return (0 &gt; strcmp(str1.Cstr(), str2.Cstr()));
+    }
+
+      ```
+      
+## `operator==()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** bool  
+      **Language:** C++  
+      **Start Line:** 113  
+      **End Line:** 116  
+      
+      
+      
+      ```c++
+          bool operator==(const String &str1 ,const String &str2)
+    {
+        return (0 == strcmp(str1.Cstr(), str2.Cstr()));
+    }
+
+      ```
+      

@@ -1,0 +1,1393 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"id\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 130"
+            },
+            {
+              "name": "end_line: 132"
+            },
+            {
+              "name": "body_start: 130"
+            },
+            {
+              "name": "body_end: 132"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   idCitizen ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"setNumber\""
+            },
+            {
+              "name": "parameters: \"(Stringcode)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 134"
+            },
+            {
+              "name": "end_line: 136"
+            },
+            {
+              "name": "body_start: 134"
+            },
+            {
+              "name": "body_end: 136"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Number   =   code ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"getNumber\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 138"
+            },
+            {
+              "name": "end_line: 140"
+            },
+            {
+              "name": "body_start: 138"
+            },
+            {
+              "name": "body_end: 140"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   Number ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"setCitizenship\""
+            },
+            {
+              "name": "parameters: \"(Stringcitya)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 142"
+            },
+            {
+              "name": "end_line: 144"
+            },
+            {
+              "name": "body_start: 142"
+            },
+            {
+              "name": "body_end: 144"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Citizenship   =   citya ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"getCitizenship\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 146"
+            },
+            {
+              "name": "end_line: 148"
+            },
+            {
+              "name": "body_start: 146"
+            },
+            {
+              "name": "body_end: 148"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   Citizenship ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"getResidence\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 150"
+            },
+            {
+              "name": "end_line: 152"
+            },
+            {
+              "name": "body_start: 150"
+            },
+            {
+              "name": "body_end: 152"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   Residence ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"setResidence\""
+            },
+            {
+              "name": "parameters: \"(Stringres)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 154"
+            },
+            {
+              "name": "end_line: 156"
+            },
+            {
+              "name": "body_start: 154"
+            },
+            {
+              "name": "body_end: 156"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Residence   =   res ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"setStreet\""
+            },
+            {
+              "name": "parameters: \"(Stringlist)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 158"
+            },
+            {
+              "name": "end_line: 160"
+            },
+            {
+              "name": "body_start: 158"
+            },
+            {
+              "name": "body_end: 160"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Street   =   list ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[8]",
+          "children": [
+            {
+              "name": "function_name: \"getStreet\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 162"
+            },
+            {
+              "name": "end_line: 164"
+            },
+            {
+              "name": "body_start: 162"
+            },
+            {
+              "name": "body_end: 164"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   Street ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[9]",
+          "children": [
+            {
+              "name": "function_name: \"getCivicNumber\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 166"
+            },
+            {
+              "name": "end_line: 168"
+            },
+            {
+              "name": "body_start: 166"
+            },
+            {
+              "name": "body_end: 168"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   civicNumber ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[10]",
+          "children": [
+            {
+              "name": "function_name: \"setCivicNumber\""
+            },
+            {
+              "name": "parameters: \"(intn)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 170"
+            },
+            {
+              "name": "end_line: 172"
+            },
+            {
+              "name": "body_start: 170"
+            },
+            {
+              "name": "body_end: 172"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     civicNumber   =   n ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[11]",
+          "children": [
+            {
+              "name": "function_name: \"setMaritalStatus\""
+            },
+            {
+              "name": "parameters: \"(Stringstat)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 174"
+            },
+            {
+              "name": "end_line: 176"
+            },
+            {
+              "name": "body_start: 174"
+            },
+            {
+              "name": "body_end: 176"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     MaritalStatus   =   stat ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[12]",
+          "children": [
+            {
+              "name": "function_name: \"getMaritalStatus\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 178"
+            },
+            {
+              "name": "end_line: 180"
+            },
+            {
+              "name": "body_start: 178"
+            },
+            {
+              "name": "body_end: 180"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   MaritalStatus ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[13]",
+          "children": [
+            {
+              "name": "function_name: \"setProfession\""
+            },
+            {
+              "name": "parameters: \"(Stringprof)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 182"
+            },
+            {
+              "name": "end_line: 184"
+            },
+            {
+              "name": "body_start: 182"
+            },
+            {
+              "name": "body_end: 184"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Profession   =   prof ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[14]",
+          "children": [
+            {
+              "name": "function_name: \"getProfession\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 186"
+            },
+            {
+              "name": "end_line: 188"
+            },
+            {
+              "name": "body_start: 186"
+            },
+            {
+              "name": "body_end: 188"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   Profession ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[15]",
+          "children": [
+            {
+              "name": "function_name: \"setHeight\""
+            },
+            {
+              "name": "parameters: \"(doublestat)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 190"
+            },
+            {
+              "name": "end_line: 192"
+            },
+            {
+              "name": "body_start: 190"
+            },
+            {
+              "name": "body_end: 192"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Height   =   stat ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[16]",
+          "children": [
+            {
+              "name": "function_name: \"getHeight\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"double\""
+            },
+            {
+              "name": "start_line: 194"
+            },
+            {
+              "name": "end_line: 196"
+            },
+            {
+              "name": "body_start: 194"
+            },
+            {
+              "name": "body_end: 196"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   Height ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[17]",
+          "children": [
+            {
+              "name": "function_name: \"setHair\""
+            },
+            {
+              "name": "parameters: \"(Stringhair)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 198"
+            },
+            {
+              "name": "end_line: 200"
+            },
+            {
+              "name": "body_start: 198"
+            },
+            {
+              "name": "body_end: 200"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Hair   =   hair ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[18]",
+          "children": [
+            {
+              "name": "function_name: \"getHair\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 202"
+            },
+            {
+              "name": "end_line: 204"
+            },
+            {
+              "name": "body_start: 202"
+            },
+            {
+              "name": "body_end: 204"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   Hair ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[19]",
+          "children": [
+            {
+              "name": "function_name: \"setEyes\""
+            },
+            {
+              "name": "parameters: \"(Stringeyes)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 206"
+            },
+            {
+              "name": "end_line: 208"
+            },
+            {
+              "name": "body_start: 206"
+            },
+            {
+              "name": "body_end: 208"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Eyes   =   eyes ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[20]",
+          "children": [
+            {
+              "name": "function_name: \"getEyes\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 210"
+            },
+            {
+              "name": "end_line: 212"
+            },
+            {
+              "name": "body_start: 210"
+            },
+            {
+              "name": "body_end: 212"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   Eyes ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[21]",
+          "children": [
+            {
+              "name": "function_name: \"getParticularSigns\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 214"
+            },
+            {
+              "name": "end_line: 216"
+            },
+            {
+              "name": "body_start: 214"
+            },
+            {
+              "name": "body_end: 216"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   ParticularSigns ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[22]",
+          "children": [
+            {
+              "name": "function_name: \"setParticularSigns\""
+            },
+            {
+              "name": "parameters: \"(StringlistSp)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 218"
+            },
+            {
+              "name": "end_line: 220"
+            },
+            {
+              "name": "body_start: 218"
+            },
+            {
+              "name": "body_end: 220"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     ParticularSigns   =   listSp ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[23]",
+          "children": [
+            {
+              "name": "function_name: \"setReleaseDate\""
+            },
+            {
+              "name": "parameters: \"(Datedata)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 222"
+            },
+            {
+              "name": "end_line: 224"
+            },
+            {
+              "name": "body_start: 222"
+            },
+            {
+              "name": "body_end: 224"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     ReleaseDate   =   data ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[24]",
+          "children": [
+            {
+              "name": "function_name: \"getReleaseDate\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"Date\""
+            },
+            {
+              "name": "start_line: 226"
+            },
+            {
+              "name": "end_line: 228"
+            },
+            {
+              "name": "body_start: 226"
+            },
+            {
+              "name": "body_end: 228"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   ReleaseDate ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[25]",
+          "children": [
+            {
+              "name": "function_name: \"setExpiryDate\""
+            },
+            {
+              "name": "parameters: \"(Datedatas)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 230"
+            },
+            {
+              "name": "end_line: 232"
+            },
+            {
+              "name": "body_start: 230"
+            },
+            {
+              "name": "body_end: 232"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     ExpiryDate   =   datas ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[26]",
+          "children": [
+            {
+              "name": "function_name: \"getExpiryDate\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"Date\""
+            },
+            {
+              "name": "start_line: 234"
+            },
+            {
+              "name": "end_line: 236"
+            },
+            {
+              "name": "body_start: 234"
+            },
+            {
+              "name": "body_end: 236"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   ExpiryDate ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[27]",
+          "children": [
+            {
+              "name": "function_name: \"setValidityExpatriation\""
+            },
+            {
+              "name": "parameters: \"(booleanval)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 238"
+            },
+            {
+              "name": "end_line: 240"
+            },
+            {
+              "name": "body_start: 238"
+            },
+            {
+              "name": "body_end: 240"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     ValidExpatriation   =   val ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[28]",
+          "children": [
+            {
+              "name": "function_name: \"isValidExpatriation\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 242"
+            },
+            {
+              "name": "end_line: 244"
+            },
+            {
+              "name": "body_start: 242"
+            },
+            {
+              "name": "body_end: 244"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   ValidExpatriation ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[29]",
+          "children": [
+            {
+              "name": "function_name: \"toString\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 247"
+            },
+            {
+              "name": "end_line: 263"
+            },
+            {
+              "name": "body_start: 247"
+            },
+            {
+              "name": "body_end: 263"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                },
+                {
+                  "name": "modifiers[1]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n\\n     int   month2   =   0 ; \\n     month2   =   getReleaseDate ( ) . getMonth ( ) ; \\n     int   month3   =   0 ; \\n     month3   =   getExpiryDate ( ) . getMonth ( ) ; \\n     return    //I have to recover my surname, first name, and date of birth from class db \\n\\n         \\\"Citizenship:\\\"   +   getCitizenship ( )   +   \\\"\\\\n\\\"   +   \\\"Residence:\\\"   +   getResidence ( )   +   \\\"\\\\n\\\"   +   \\\"Street:\\\" \\n             +   getStreet ( )   +   \\\"\\\\n\\\"   +   \\\"Civic Number:\\\"   +   getCivicNumber ( )   +   \\\"\\\\n\\\"   +   \\\"Marital Status:\\\" \\n             +   getMaritalStatus ( )   +   \\\"\\\\n\\\"   +   \\\"Profession:\\\"   +   getProfession ( )   +   \\\"\\\\n\\\" \\n             +   \\\"\\\\nCONNOTATIONS AND HIGHLIGHTS \\\\n \\\\n\\\"   +   \\\"Height:\\\"   +   getHeight ( )   +   \\\"\\\\n\\\"   +   \\\"Hair:\\\" \\n             +   getHair ( )   +   \\\"\\\\n\\\"   +   \\\"Eyes:\\\"   +   getEyes ( )   +   \\\"\\\\n\\\"   +   \\\"Particular Signs:\\\" \\n             +   getParticularSigns ( ) . ToString ( )   +   \\\"\\\\n\\\"   +   \\\"li:\\\"   +   getReleaseDate ( ) . getDate ( )   +   \\\"/\\\" \\n             +   month2   +   1   +   \\\"/\\\"   +   getReleaseDate ( ) . getYear ( )   +   \\\"\\\\n\\\"   +   \\\"Expiry Date:\\\" \\n             +   getExpiryDate ( ) . GetDate ( )   +   \\\"/\\\"   +   month3   +   1   +   \\\"/\\\"   +   getExpiryDate ( ) . GetYear ( )   +   \\\"\\\\n\\\" ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

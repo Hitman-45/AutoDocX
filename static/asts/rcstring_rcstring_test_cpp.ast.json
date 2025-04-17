@@ -1,0 +1,235 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"main\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"int main(void)\\n{\\n    // Remove this comments and check valgrined for 3 total \\n    // allocations \\n\\n    //RCString S(\\\"HI\\\");\\n    //RCString S1(S);\\n    //RCString S2(S);\\n    //RCString S3(S);\\n    //RCString S4(S);\\n    //RCString S5(S);\\n    //RCString S6(S);\\n    //RCString S7(S);\\n    //RCString S8(S);\\n    //RCString S9(S);\\n    //RCString S10(S);\\n    //RCString S11(S);\\n    //RCString S12(S);\\n    //RCString S13(S);\\n    //RCString S14 = S;\\n    //RCString S15 = S;\\n    //RCString S16 = S;\\n    //RCString S17 = S;\\n    //RCString S18 = S;\\n    //RCString S19 = S;\\n    //RCString S20 = S;\\n    //RCString S21 = S;\\n    //RCString S22 = S;\\n    //RCString S23 = S;\\n    //RCString S24 = S;\\n    //RCString S25 = S;\\n    //RCString S26 = S;\\n\\n    RCStringOperatorTest();\\n    RCStringTest();\\n    RCStringInstancesTest();\\n    RCStringAccessTest();\\n    std::cout << \\\"Passed.\\\" << std::endl;\\n    return (0);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 22"
+            },
+            {
+              "name": "end_line: 61"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring_test.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"RCStringTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void RCStringTest(void)\\n{\\n    RCString str;\\n    assert(0 == str.Length());\\n    RCString str1(\\\"Tal has created a RCString\\\");\\n    assert(strlen(\\\"Tal has created a RCString\\\") == str1.Length());\\n    RCString str2(str1);\\n    assert(strlen(\\\"Tal has created a RCString\\\") == str2.Length());\\n    str = str2;\\n    assert(strlen(\\\"Tal has created a RCString\\\") == str.Length());\\n    assert(0 == strcmp(str1.ToCstr(), str.ToCstr()));\\n    RCString str3(\\\"Habana\\\");\\n    str1 = str3;\\n    assert(0 != strcmp(str1.ToCstr(), str.ToCstr()));\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 63"
+            },
+            {
+              "name": "end_line: 77"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring_test.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"RCStringOperatorTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void RCStringOperatorTest(void)\\n{\\n    RCString str1(\\\"abc\\\");\\n    RCString str2(\\\"abc\\\");\\n    assert(str1 == str2);\\n    assert(str2 == str1);\\n    assert(\\\"abc\\\" == str2);\\n    assert(!(str1 == \\\"abd\\\"));\\n    assert(!(\\\"abd\\\" == str1));\\n    RCString str3(\\\"abd\\\");\\n    assert(!(str1 == str3));\\n    assert(str3 > str1);\\n    assert(str1 < str3);\\n    assert(\\\"aaa\\\" < str3);\\n    assert(str1 < \\\"mmm\\\");\\n    assert(\\\"mmm\\\" > str3);\\n    assert(\\\"mmm\\\" > \\\"aaa\\\");\\n\\n    // Remove comment if you want to test input output.\\n    //RCString input;\\n    //RCString output(\\\"Please enter a RCString: \\\");\\n    //std::cout << output << std::endl;\\n    //std::cin >> input;\\n    //std::cout << input << std::endl;\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 79"
+            },
+            {
+              "name": "end_line: 103"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring_test.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"RCStringInstancesTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void RCStringInstancesTest(void)\\n{\\n    RCString s1(\\\"hello\\\");\\n    assert(false == s1.IsShared());\\n\\n    RCString s2(s1);\\n    assert(true == s1.IsShared());\\n\\n    RCString s3(s1);\\n    assert(true == s1.IsShared());\\n\\n    RCString s4(s1);\\n    assert(true == s1.IsShared());\\n\\n    RCString s5(\\\"world\\\");\\n\\n    assert(true == s4.IsShared());\\n    s4 = s5;\\n    assert(true == s1.IsShared());\\n\\n    assert(true == s3.IsShared());\\n    s3 = s5;\\n    assert(true == s1.IsShared());\\n\\n    assert(true == s2.IsShared());\\n    s2 = s5;\\n    assert(false == s1.IsShared());\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 105"
+            },
+            {
+              "name": "end_line: 132"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring_test.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"RCStringAccessTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void RCStringAccessTest(void)\\n{\\n    char buffer[6] = \\\"Hello\\\";\\n    RCString s(\\\"Hello\\\");\\n    for(size_t i = 0; i < s.Length(); ++i)\\n    {\\n        assert(buffer[i] ==  s[i]);\\n    }\\n\\n    char buffer1[8] = \\\"bbbbbbb\\\";\\n    RCString s1(\\\"aaaaaaa\\\");\\n    for(size_t i = 0; i < s.Length(); ++i)\\n    {\\n        s1[i] = 'b';\\n        assert(buffer1[i] ==  s1[i]);\\n    }\\n\\n    for(size_t i = 0; i < s.Length(); ++i)\\n    {\\n        s1[i] = 'k';\\n    }\\n\\n    for(size_t i = 0; i < s.Length(); ++i)\\n    {\\n        assert('k' ==  s1[i]);\\n    }\\n\\n    RCString s2(\\\"aa\\\");\\n    assert(false == s2.IsShared());\\n    RCString s3(s2);\\n    assert(true == s2.IsShared());\\n    assert(true == s3.IsShared());\\n    RCString s4(\\\"bb\\\");\\n    s4 = s2;\\n    assert(true == s2.IsShared());\\n    assert(true == s3.IsShared());\\n    assert(true == s4.IsShared());\\n    s2[0] = 'k';\\n    assert(false == s2.IsShared());\\n    assert(true == s3.IsShared());\\n    assert(true == s4.IsShared());\\n    assert('k' == s2[0] && 'a' == s2[1]);\\n    assert('a' == s3[0] && 'a' == s3[1]);\\n    assert('a' == s4[0] && 'a' == s4[1]);\\n    s3[0] = 'l';\\n    assert(false == s2.IsShared());\\n    assert(false == s3.IsShared());\\n    assert(false == s4.IsShared());\\n    assert('l' == s3[0] && 'a' == s3[1]);\\n    assert('a' == s4[0] && 'a' == s4[1]);\\n    RCString s5 = s4;\\n    assert(true == s4.IsShared());\\n    assert(true == s5.IsShared());\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 134"
+            },
+            {
+              "name": "end_line: 187"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring_test.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"parse_hedge_fund_response\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Parses a JSON string and returns a dictionary.\""
+            },
+            {
+              "name": "body: \"def parse_hedge_fund_response(response):\\n    \\\"\\\"\\\"Parses a JSON string and returns a dictionary.\\\"\\\"\\\"\\n    try:\\n        return json.loads(response)\\n    except json.JSONDecodeError as e:\\n        print(f\\\"JSON decoding error: {e}\\\\nResponse: {repr(response)}\\\")\\n        return None\\n    except TypeError as e:\\n        print(f\\\"Invalid response type (expected string, got {type(response).__name__}): {e}\\\")\\n        return None\\n    except Exception as e:\\n        print(f\\\"Unexpected error while parsing response: {e}\\\\nResponse: {repr(response)}\\\")\\n        return None\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 29"
+            },
+            {
+              "name": "end_line: 41"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"main.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"run_hedge_fund\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                },
+                {
+                  "name": "parameters[3]"
+                },
+                {
+                  "name": "parameters[4]"
+                },
+                {
+                  "name": "parameters[5]"
+                },
+                {
+                  "name": "parameters[6]"
+                },
+                {
+                  "name": "parameters[7]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def run_hedge_fund(\\n    tickers: list[str],\\n    start_date: str,\\n    end_date: str,\\n    portfolio: dict,\\n    show_reasoning: bool = False,\\n    selected_analysts: list[str] = [],\\n    model_name: str = \\\"gpt-4o\\\",\\n    model_provider: str = \\\"OpenAI\\\",\\n):\\n    # Start progress tracking\\n    progress.start()\\n\\n    try:\\n        # Create a new workflow if analysts are customized\\n        if selected_analysts:\\n            workflow = create_workflow(selected_analysts)\\n            agent = workflow.compile()\\n        else:\\n            agent = app\\n\\n        final_state = agent.invoke(\\n            {\\n                \\\"messages\\\": [\\n                    HumanMessage(\\n                        content=\\\"Make trading decisions based on the provided data.\\\",\\n                    )\\n                ],\\n                \\\"data\\\": {\\n                    \\\"tickers\\\": tickers,\\n                    \\\"portfolio\\\": portfolio,\\n                    \\\"start_date\\\": start_date,\\n                    \\\"end_date\\\": end_date,\\n                    \\\"analyst_signals\\\": {},\\n                },\\n                \\\"metadata\\\": {\\n                    \\\"show_reasoning\\\": show_reasoning,\\n                    \\\"model_name\\\": model_name,\\n                    \\\"model_provider\\\": model_provider,\\n                },\\n            },\\n        )\\n\\n        return {\\n            \\\"decisions\\\": parse_hedge_fund_response(final_state[\\\"messages\\\"][-1].content),\\n            \\\"analyst_signals\\\": final_state[\\\"data\\\"][\\\"analyst_signals\\\"],\\n        }\\n    finally:\\n        # Stop progress tracking\\n        progress.stop()\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 46"
+            },
+            {
+              "name": "end_line: 95"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"main.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"start\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Initialize the workflow with the input message.\""
+            },
+            {
+              "name": "body: \"def start(state: AgentState):\\n    \\\"\\\"\\\"Initialize the workflow with the input message.\\\"\\\"\\\"\\n    return state\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 98"
+            },
+            {
+              "name": "end_line: 100"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"main.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"create_workflow\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Create the workflow with selected analysts.\""
+            },
+            {
+              "name": "body: \"def create_workflow(selected_analysts=None):\\n    \\\"\\\"\\\"Create the workflow with selected analysts.\\\"\\\"\\\"\\n    workflow = StateGraph(AgentState)\\n    workflow.add_node(\\\"start_node\\\", start)\\n\\n    # Get analyst nodes from the configuration\\n    analyst_nodes = get_analyst_nodes()\\n\\n    # Default to all analysts if none selected\\n    if selected_analysts is None:\\n        selected_analysts = list(analyst_nodes.keys())\\n    # Add selected analyst nodes\\n    for analyst_key in selected_analysts:\\n        node_name, node_func = analyst_nodes[analyst_key]\\n        workflow.add_node(node_name, node_func)\\n        workflow.add_edge(\\\"start_node\\\", node_name)\\n\\n    # Always add risk and portfolio management\\n    workflow.add_node(\\\"risk_management_agent\\\", risk_management_agent)\\n    workflow.add_node(\\\"portfolio_management_agent\\\", portfolio_management_agent)\\n\\n    # Connect selected analysts to risk management\\n    for analyst_key in selected_analysts:\\n        node_name = analyst_nodes[analyst_key][0]\\n        workflow.add_edge(node_name, \\\"risk_management_agent\\\")\\n\\n    workflow.add_edge(\\\"risk_management_agent\\\", \\\"portfolio_management_agent\\\")\\n    workflow.add_edge(\\\"portfolio_management_agent\\\", END)\\n\\n    workflow.set_entry_point(\\\"start_node\\\")\\n    return workflow\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 103"
+            },
+            {
+              "name": "end_line: 133"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"main.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

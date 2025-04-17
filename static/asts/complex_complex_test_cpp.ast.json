@@ -1,0 +1,685 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"main\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"int main(void)\\n{\\n    ComplexEqualOperatorTest();\\n    ComplexInputOperatorTest();\\n    ComplexOutputOperatorTest();\\n    ComplexAdditionOperatorTest();\\n    ComplexNotEqualOperatorTest();\\n    ComplexDivisionOperatorTest();\\n    ComplexBasicFunctionalityTest();\\n    ComplexSubtractionOperatorTest();\\n    ComplexMultiplicationOperatorTest();\\n    ComplexAssignmentAddingOperatorTest();\\n    ComplexAssignmentDivisionOperatorTest();\\n    ComplexAssignmentSubtractionOperatorTest();\\n    ComplexAssignmentMultiplicationOperatorTest();\\n\\n    BenchMarkTest();\\n\\n    std::cout << \\\"All test pass.\\\" << std::endl;\\n    return (0);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 34"
+            },
+            {
+              "name": "end_line: 54"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex_test.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"ComplexEqualOperatorTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void ComplexEqualOperatorTest(void)\\n{\\n    Complex complex1;\\n    Complex complex2;\\n    assert(complex1 == complex2);\\n    assert(complex2 == complex1);\\n\\n    assert(0 == complex2);\\n    assert(0 == complex1);\\n\\n    assert(complex2 == 0);\\n    assert(complex1 == 0);\\n\\n    Complex complex3(1);\\n    Complex complex4(1);\\n\\n    assert(complex3 == complex4);\\n    assert(complex4 == complex3);\\n\\n    assert(1 == complex3);\\n    assert(1 == complex4);\\n\\n    assert(complex4 == 1);\\n    assert(complex3 == 1);\\n\\n    Complex complex5(1.2, 1.2);\\n    Complex complex6(1.2, 1.2);\\n\\n    assert(complex5 == complex6);\\n    assert(complex6 == complex5);\\n\\n    assert(Complex() == Complex());\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 56"
+            },
+            {
+              "name": "end_line: 88"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex_test.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"ComplexOutputOperatorTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void ComplexOutputOperatorTest(void)\\n{\\n    Complex complex(-10, 5);\\n    Complex complex1(5, -20);\\n    std::cout << complex << std::endl;\\n    std::cout << complex1 << std::endl;\\n    std::cout << Complex() << std::endl;\\n    std::cout << Complex(1) << std::endl;\\n    std::cout << Complex(1, 1) << std::endl;\\n    std::cout << Complex(1, 1) + 1 << std::endl;\\n    std::cout << (complex /= Complex(1, 1)) << std::endl;\\n    std::cout << (complex *= Complex(1, 1)) << std::endl;\\n    std::cout << (complex += Complex(1, 1)) << std::endl;\\n    std::cout << (complex -= Complex(1, 1)) << std::endl;\\n    std::cout << Complex(1, 1) + Complex(1, 1) << std::endl;\\n    std::cout << Complex(1, 2) * Complex(1, 2) << std::endl;\\n    std::cout << Complex(1, 3) / Complex(1, -1) << std::endl;\\n    std::cout << Complex(1, 1) - Complex(1, 1) << std::endl;\\n    std::cout << (Complex(1, 1) == Complex(1, 1)) << std::endl;\\n    std::cout << (Complex(1, 1) != Complex(1, 1)) << std::endl;\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 90"
+            },
+            {
+              "name": "end_line: 110"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex_test.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"ComplexInputOperatorTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void ComplexInputOperatorTest(void)\\n{\\n    Complex complex;\\n    std::cin >> complex;\\n    std::cout << complex << std::endl;\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 112"
+            },
+            {
+              "name": "end_line: 117"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex_test.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"ComplexAdditionOperatorTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void ComplexAdditionOperatorTest(void)\\n{\\n    Complex result;\\n    Complex complex1(1, 2);\\n    Complex complex2(1, 2);\\n    Complex complexTset(2, 4);\\n    result = complex1 + complex2;\\n\\n    assert(complexTset == result);\\n\\n    Complex complex3(-1, -2);\\n    Complex complex4(-1, -2);\\n    Complex complexTset1(-2, -4);\\n    result = complex3 + complex4;\\n\\n    assert(complexTset1 == result);\\n\\n    Complex complex5(1, 1);\\n    Complex complexTset2(2, 1);\\n    result = complex5 + 1.0;\\n\\n    assert(complexTset2 == result);\\n\\n    Complex complex6(1, 1);\\n    Complex complexTset3(2, 2);\\n    result = complex6 + Complex(1, 1);\\n\\n    assert(complexTset3 == result);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 119"
+            },
+            {
+              "name": "end_line: 147"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex_test.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"ComplexNotEqualOperatorTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void ComplexNotEqualOperatorTest(void)\\n{\\n    Complex complex1;\\n    Complex complex2(1, 1.001);\\n    assert(complex1 != complex2);\\n    assert(complex2 != complex1);\\n\\n    assert(Complex(0, 0.001) != complex2);\\n    assert(Complex(0, 0.001) != complex1);\\n\\n    Complex complex3;\\n    assert(1 != complex3);\\n    assert(Complex(0) != Complex(0, 2));\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 149"
+            },
+            {
+              "name": "end_line: 162"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex_test.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"ComplexDivisionOperatorTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void ComplexDivisionOperatorTest(void)\\n{\\n    Complex result;\\n    Complex complex1(1, 2);\\n    Complex complex2(1, 2);\\n    Complex complexTset(1);\\n    result = complex1 / complex2;\\n\\n    assert(complexTset == result);\\n\\n    Complex complex3(6, -2);\\n    Complex complex4(-1, 2);\\n    Complex complexTset1(-2, -2);\\n    result = complex3 /complex4;\\n\\n    assert(complexTset1 == result);\\n\\n    Complex complex5(1, 1);\\n    result = complex5 / Complex(1, 1);\\n\\n    assert(1 == result);\\n\\n    Complex complex6(1, 1);\\n    result = complex6 / 2;\\n\\n    assert(Complex(0.5, 0.5) == result);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 164"
+            },
+            {
+              "name": "end_line: 190"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex_test.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"ComplexBasicFunctionalityTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void ComplexBasicFunctionalityTest(void)\\n{\\n    Complex complex;\\n    assert(std::fabs(complex.GetImaginary() - 0.0) < epsilon);\\n    assert((complex.GetReal() - 0.0) < epsilon);\\n\\n    Complex complex1(5.5);\\n    assert((complex.GetImaginary() - 0.0) < epsilon);\\n    assert((complex.GetReal() - 5.5) < epsilon);\\n\\n    Complex complex2(5.5, 5.5);\\n    assert((complex2.GetImaginary() - 5.5) < epsilon);\\n    assert((complex2.GetReal() - 5.5) < epsilon);\\n\\n    Complex complex3(0.0, 0.0);\\n    assert((complex3.GetImaginary() - 0.0) < epsilon);\\n    assert((complex3.GetReal() - 0.0) < epsilon);\\n\\n    Complex complex4(complex2);\\n    assert((complex4.GetImaginary() - complex2.GetImaginary()) < epsilon);\\n    assert((complex4.GetReal() - complex2.GetReal()) < epsilon);\\n\\n    Complex complex5 = complex4;\\n    assert((complex5.GetImaginary() - complex4.GetImaginary()) < epsilon);\\n    assert((complex5.GetReal() - complex4.GetReal()) < epsilon);\\n\\n    Complex complex6(0.0, 5.5);\\n    assert((complex6.GetImaginary() - 5.5) < epsilon);\\n    assert((complex6.GetReal() - 0.0) < epsilon);\\n\\n    Complex complex7 = Complex(1.1, 1.1);\\n    assert((complex7.GetImaginary() - 1.1) < epsilon);\\n    assert((complex7.GetReal() - 1.1) < epsilon);\\n\\n    Complex complex8 = Complex();\\n\\n    assert(std::fabs(complex8.GetImaginary() - 0.0) < epsilon);\\n    assert((complex8.GetReal() - 0.0) < epsilon);\\n\\n    complex8.SetImaginary(-1.1);\\n    complex8.SetReal(-1.1);\\n\\n    assert((complex8.GetImaginary() + 1.1) < epsilon);\\n    assert((complex8.GetReal() + 1.1) < epsilon);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 192"
+            },
+            {
+              "name": "end_line: 236"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex_test.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[8]",
+          "children": [
+            {
+              "name": "function_name: \"ComplexSubtractionOperatorTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void ComplexSubtractionOperatorTest(void)\\n{\\n    Complex result;\\n    Complex complex1(1, 2);\\n    Complex complex2(1, 2);\\n    Complex complexTset(0, 0);\\n    result = complex1 - complex2;\\n\\n    assert(complexTset == result);\\n\\n    Complex complex3(-1, 2);\\n    Complex complex4(-1, -2);\\n    Complex complexTset1(0, 4);\\n    result = complex3 - complex4;\\n\\n    assert(complexTset1 == result);\\n\\n    Complex complex5(1, 1);\\n    Complex complexTset2(0, 1);\\n    result = complex5 - 1.0;\\n\\n    assert(complexTset2 == result);\\n\\n    Complex complex6(1, 1);\\n    Complex complexTset3(0, 0);\\n    result = complex6 - Complex(1, 1);\\n\\n    assert(complexTset3 == result);\\n\\n    Complex complex7(-1, -2);\\n    Complex complex8(-1, -2);\\n    Complex complexTset4(0.0, 0.0);\\n\\n    result = complex7 - complex8;\\n\\n    assert(complexTset4 == result);\\n\\n    Complex complex9(10, 5);\\n    Complex complex10(5, 20);\\n    Complex complexTset5(5, -15);\\n    result = complex9 - complex10;\\n\\n    assert(complexTset5 == result);\\n\\n    Complex complex11(10, 5);\\n    Complex complex12(5, 20);\\n    Complex complexTset6(5, -15);\\n    result = complex11 - complex12;\\n\\n    assert(complexTset6 == result);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 238"
+            },
+            {
+              "name": "end_line: 288"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex_test.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[9]",
+          "children": [
+            {
+              "name": "function_name: \"ComplexMultiplicationOperatorTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void ComplexMultiplicationOperatorTest(void)\\n{\\n    Complex result;\\n    Complex complex1(1, 2);\\n    Complex complex2(1, 2);\\n    Complex complexTset(-3, 4);\\n    result = complex1 * complex2;\\n\\n    assert(complexTset == result);\\n\\n    Complex complex3(6, -2);\\n    Complex complex4(-1, 2);\\n    Complex complexTset1(-2, 14);\\n    result = complex3 * complex4;\\n\\n    assert(complexTset1 == result);\\n\\n    Complex complex5(1, 1);\\n    Complex complexTset2(0, 2);\\n    result = complex5 * Complex(1, 1);\\n\\n    assert(complexTset2 == result);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 290"
+            },
+            {
+              "name": "end_line: 312"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex_test.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[10]",
+          "children": [
+            {
+              "name": "function_name: \"ComplexAssignmentAddingOperatorTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void ComplexAssignmentAddingOperatorTest(void)\\n{\\n    Complex complex1(1, 2);\\n    Complex complex2(1, 2);\\n    Complex complexTset(2, 4);\\n    complex1 += complex2;\\n\\n    assert(complexTset == complex1);\\n\\n    Complex complex3(-1, -2);\\n    Complex complex4(-1, -2);\\n    Complex complexTset1(-2, -4);\\n    complex3 += complex4;\\n\\n    assert(complexTset1 == complex3);\\n\\n    Complex complex5(1, 1);\\n    Complex complexTset2(2, 1);\\n    complex5 += 1.0;\\n\\n    assert(complexTset2 == complex5);\\n\\n    Complex complex6(1, 1);\\n    Complex complexTset3(2, 2);\\n    complex6 += Complex(1, 1);\\n\\n    assert(complexTset3 == complex6);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 314"
+            },
+            {
+              "name": "end_line: 341"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex_test.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[11]",
+          "children": [
+            {
+              "name": "function_name: \"ComplexAssignmentDivisionOperatorTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void ComplexAssignmentDivisionOperatorTest(void)\\n{\\n    Complex complex1(1, 2);\\n    Complex complex2(1, 2);\\n    Complex complexTset(1);\\n    complex1 /= complex2;\\n\\n    assert(complexTset == complex1);\\n\\n    Complex complex3(6, -2);\\n    Complex complex4(-1, 2);\\n    Complex complexTset1(-2, -2);\\n    complex3 /= complex4;\\n\\n    assert(complexTset1 == complex3);\\n\\n    Complex complex5(1, 1);\\n    complex5 /= Complex(1, 1);\\n\\n    assert(1 == complex5);\\n\\n    Complex complex6(1, 1);\\n    complex6 /= 2;\\n\\n    assert(Complex(0.5, 0.5) == complex6);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 343"
+            },
+            {
+              "name": "end_line: 368"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex_test.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[12]",
+          "children": [
+            {
+              "name": "function_name: \"ComplexAssignmentSubtractionOperatorTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void ComplexAssignmentSubtractionOperatorTest(void)\\n{\\n    Complex complex1(1, 2);\\n    Complex complex2(1, 2);\\n    Complex complexTset(0, 0);\\n    complex1 -= complex2;\\n\\n    assert(complexTset == complex1);\\n\\n    Complex complex3(-1, 2);\\n    Complex complex4(-1, -2);\\n    Complex complexTset1(0, 4);\\n    complex3 -= complex4;\\n\\n    assert(complexTset1 == complex3);\\n\\n    Complex complex5(1, 1);\\n    Complex complexTset2(0, 1);\\n    complex5 -= 1.0;\\n\\n    assert(complexTset2 == complex5);\\n\\n    Complex complex6(1, 1);\\n    Complex complexTset3(0, 0);\\n    complex6 -= Complex(1, 1);\\n\\n    assert(complexTset3 == complex6);\\n\\n    Complex complex7(-1, -2);\\n    Complex complex8(-1, -2);\\n    Complex complexTset4(0.0, 0.0);\\n\\n    complex7 -= complex8;\\n\\n    assert(complexTset4 == complex7);\\n\\n    Complex complex9(10, 5);\\n    Complex complex10(5, 20);\\n    Complex complexTset5(5, -15);\\n    complex9 -= complex10;\\n\\n    assert(complexTset5 == complex9);\\n\\n    Complex complex11(10, 5);\\n    Complex complex12(5, 20);\\n    Complex complexTset6(5, -15);\\n    complex11 -= complex12;\\n\\n    assert(complexTset6 == complex11);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 370"
+            },
+            {
+              "name": "end_line: 419"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex_test.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[13]",
+          "children": [
+            {
+              "name": "function_name: \"ComplexAssignmentMultiplicationOperatorTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void ComplexAssignmentMultiplicationOperatorTest(void)\\n{\\n    Complex complex1(1, 2);\\n    Complex complex2(1, 2);\\n    Complex complexTset(-3, 4);\\n    complex1 *= complex2;\\n\\n    assert(complexTset == complex1);\\n\\n    Complex complex3(6, -2);\\n    Complex complex4(-1, 2);\\n    Complex complexTset1(-2, 14);\\n    complex3 *= complex4;\\n\\n    assert(complexTset1 == complex3);\\n\\n    Complex complex5(1, 1);\\n    Complex complexTset2(0, 2);\\n    complex5 *= Complex(1, 1);\\n\\n    assert(complexTset2 == complex5);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 421"
+            },
+            {
+              "name": "end_line: 442"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex_test.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[14]",
+          "children": [
+            {
+              "name": "function_name: \"BenchMarkTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void BenchMarkTest(void)\\n{\\n    Complex complex1;\\n    Complex complex2(1, 1);\\n    clock_t start = clock();\\n    for(size_t i = 0; i < 100000000; ++i)\\n    {\\n        complex1 = complex1 + complex2;\\n    }\\n    clock_t end = clock();\\n    double timeTaken = static_cast<double>(end - start) / static_cast<double>(CLOCKS_PER_SEC) * 1000;\\n    std::cout << \\\"Time taken: \\\" << timeTaken << \\\" milliseconds\\\" << std::endl;\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 444"
+            },
+            {
+              "name": "end_line: 456"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex_test.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

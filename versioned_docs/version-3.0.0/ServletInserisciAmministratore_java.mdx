@@ -1,0 +1,71 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: ServletInserisciAmministratore.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="ServletInserisciAmministratore_java.ast.json" />
+
+## `doPost()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** void  
+      **Language:** Java  
+      **Start Line:** 34  
+      **End Line:** 83  
+      
+      
+      
+      ```java
+      { 
+     HttpSession   session   =   request . getSession ( ) ; 
+
+     if   ( session 
+         !=   null )   {    //Se la sessione + nulla effettua il redirect alla pagina di autenticazione 
+       ServletContext   sc   =   getServletContext ( ) ; 
+       RequestDispatcher   rd   =   null ; 
+       String   ris ; 
+       try   { 
+         name   =   request . getParameter ( "name" ) ; 
+         surname   =   request . getParameter ( "surname" ) ; 
+         email   =   request . getParameter ( "email" ) ; 
+         number   =   request . getParameter ( "number" ) ; 
+         login   =   request . getParameter ( "login" ) ; 
+         password   =   request . getParameter ( "password" ) ; 
+         type   =   request . getParameter ( "type" ) ; 
+
+         AccessManager   AM   =   new   AccessManager ( ) ; 
+         AdminManager   AdM   =   new   AdminManager ( ) ; 
+
+         Access   ac   =   new   Access ( login ,   password ,   type ) ; 
+         Administrator   am   =   new   Administrator ( name ,   surname ,   number ,   email ,   login ) ; 
+
+         rd   =   null ; 
+         sc   =   getServletContext ( ) ; 
+
+         if   ( AM . enterAccess ( ac )   &&   AdM . enterAdmin ( 
+             am ) )   {   //inserisco idati relativi all'access e all'administrator 
+           //controllando l'esito positivo 
+           ris   =   "ok" ; 
+           request . setAttribute ( "ris" ,   ris ) ; 
+           rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=operazione&page=riuscita" ) ; 
+         }   else   { 
+           ris   =   "fallita" ; 
+           request . setAttribute ( "ris" ,   ris ) ; 
+           rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=operazione&page=fallita" ) ; 
+         } 
+         rd . forward ( request ,   response ) ; 
+       }   catch   ( DbException   e )   { 
+         ris   =   e . getMessage ( ) ; 
+         request . setAttribute ( "ris" ,   ris ) ; 
+         rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=operazione&page=fallita" ) ; 
+         rd . forward ( request ,   response ) ; 
+       } 
+     }   else   { 
+       String   url   =   "/myDoc/workers/Access.jsp" ; 
+       response . sendRedirect ( url ) ; 
+     } 
+   }
+      ```
+      

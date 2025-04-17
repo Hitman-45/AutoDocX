@@ -1,0 +1,59 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"fundamentals_agent\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Analyzes fundamental data and generates trading signals for multiple tickers.\""
+            },
+            {
+              "name": "body: \"def fundamentals_agent(state: AgentState):\\n    \\\"\\\"\\\"Analyzes fundamental data and generates trading signals for multiple tickers.\\\"\\\"\\\"\\n    data = state[\\\"data\\\"]\\n    end_date = data[\\\"end_date\\\"]\\n    tickers = data[\\\"tickers\\\"]\\n\\n    # Initialize fundamental analysis for each ticker\\n    fundamental_analysis = {}\\n\\n    for ticker in tickers:\\n        progress.update_status(\\\"fundamentals_agent\\\", ticker, \\\"Fetching financial metrics\\\")\\n\\n        # Get the financial metrics\\n        financial_metrics = get_financial_metrics(\\n            ticker=ticker,\\n            end_date=end_date,\\n            period=\\\"ttm\\\",\\n            limit=10,\\n        )\\n\\n        if not financial_metrics:\\n            progress.update_status(\\\"fundamentals_agent\\\", ticker, \\\"Failed: No financial metrics found\\\")\\n            continue\\n\\n        # Pull the most recent financial metrics\\n        metrics = financial_metrics[0]\\n\\n        # Initialize signals list for different fundamental aspects\\n        signals = []\\n        reasoning = {}\\n\\n        progress.update_status(\\\"fundamentals_agent\\\", ticker, \\\"Analyzing profitability\\\")\\n        # 1. Profitability Analysis\\n        return_on_equity = metrics.return_on_equity\\n        net_margin = metrics.net_margin\\n        operating_margin = metrics.operating_margin\\n\\n        thresholds = [\\n            (return_on_equity, 0.15),  # Strong ROE above 15%\\n            (net_margin, 0.20),  # Healthy profit margins\\n            (operating_margin, 0.15),  # Strong operating efficiency\\n        ]\\n        profitability_score = sum(metric is not None and metric > threshold for metric, threshold in thresholds)\\n\\n        signals.append(\\\"bullish\\\" if profitability_score >= 2 else \\\"bearish\\\" if profitability_score == 0 else \\\"neutral\\\")\\n        reasoning[\\\"profitability_signal\\\"] = {\\n            \\\"signal\\\": signals[0],\\n            \\\"details\\\": (f\\\"ROE: {return_on_equity:.2%}\\\" if return_on_equity else \\\"ROE: N/A\\\") + \\\", \\\" + (f\\\"Net Margin: {net_margin:.2%}\\\" if net_margin else \\\"Net Margin: N/A\\\") + \\\", \\\" + (f\\\"Op Margin: {operating_margin:.2%}\\\" if operating_margin else \\\"Op Margin: N/A\\\"),\\n        }\\n\\n        progress.update_status(\\\"fundamentals_agent\\\", ticker, \\\"Analyzing growth\\\")\\n        # 2. Growth Analysis\\n        revenue_growth = metrics.revenue_growth\\n        earnings_growth = metrics.earnings_growth\\n        book_value_growth = metrics.book_value_growth\\n\\n        thresholds = [\\n            (revenue_growth, 0.10),  # 10% revenue growth\\n            (earnings_growth, 0.10),  # 10% earnings growth\\n            (book_value_growth, 0.10),  # 10% book value growth\\n        ]\\n        growth_score = sum(metric is not None and metric > threshold for metric, threshold in thresholds)\\n\\n        signals.append(\\\"bullish\\\" if growth_score >= 2 else \\\"bearish\\\" if growth_score == 0 else \\\"neutral\\\")\\n        reasoning[\\\"growth_signal\\\"] = {\\n            \\\"signal\\\": signals[1],\\n            \\\"details\\\": (f\\\"Revenue Growth: {revenue_growth:.2%}\\\" if revenue_growth else \\\"Revenue Growth: N/A\\\") + \\\", \\\" + (f\\\"Earnings Growth: {earnings_growth:.2%}\\\" if earnings_growth else \\\"Earnings Growth: N/A\\\"),\\n        }\\n\\n        progress.update_status(\\\"fundamentals_agent\\\", ticker, \\\"Analyzing financial health\\\")\\n        # 3. Financial Health\\n        current_ratio = metrics.current_ratio\\n        debt_to_equity = metrics.debt_to_equity\\n        free_cash_flow_per_share = metrics.free_cash_flow_per_share\\n        earnings_per_share = metrics.earnings_per_share\\n\\n        health_score = 0\\n        if current_ratio and current_ratio > 1.5:  # Strong liquidity\\n            health_score += 1\\n        if debt_to_equity and debt_to_equity < 0.5:  # Conservative debt levels\\n            health_score += 1\\n        if free_cash_flow_per_share and earnings_per_share and free_cash_flow_per_share > earnings_per_share * 0.8:  # Strong FCF conversion\\n            health_score += 1\\n\\n        signals.append(\\\"bullish\\\" if health_score >= 2 else \\\"bearish\\\" if health_score == 0 else \\\"neutral\\\")\\n        reasoning[\\\"financial_health_signal\\\"] = {\\n            \\\"signal\\\": signals[2],\\n            \\\"details\\\": (f\\\"Current Ratio: {current_ratio:.2f}\\\" if current_ratio else \\\"Current Ratio: N/A\\\") + \\\", \\\" + (f\\\"D/E: {debt_to_equity:.2f}\\\" if debt_to_equity else \\\"D/E: N/A\\\"),\\n        }\\n\\n        progress.update_status(\\\"fundamentals_agent\\\", ticker, \\\"Analyzing valuation ratios\\\")\\n        # 4. Price to X ratios\\n        pe_ratio = metrics.price_to_earnings_ratio\\n        pb_ratio = metrics.price_to_book_ratio\\n        ps_ratio = metrics.price_to_sales_ratio\\n\\n        thresholds = [\\n            (pe_ratio, 25),  # Reasonable P/E ratio\\n            (pb_ratio, 3),  # Reasonable P/B ratio\\n            (ps_ratio, 5),  # Reasonable P/S ratio\\n        ]\\n        price_ratio_score = sum(metric is not None and metric > threshold for metric, threshold in thresholds)\\n\\n        signals.append(\\\"bearish\\\" if price_ratio_score >= 2 else \\\"bullish\\\" if price_ratio_score == 0 else \\\"neutral\\\")\\n        reasoning[\\\"price_ratios_signal\\\"] = {\\n            \\\"signal\\\": signals[3],\\n            \\\"details\\\": (f\\\"P/E: {pe_ratio:.2f}\\\" if pe_ratio else \\\"P/E: N/A\\\") + \\\", \\\" + (f\\\"P/B: {pb_ratio:.2f}\\\" if pb_ratio else \\\"P/B: N/A\\\") + \\\", \\\" + (f\\\"P/S: {ps_ratio:.2f}\\\" if ps_ratio else \\\"P/S: N/A\\\"),\\n        }\\n\\n        progress.update_status(\\\"fundamentals_agent\\\", ticker, \\\"Calculating final signal\\\")\\n        # Determine overall signal\\n        bullish_signals = signals.count(\\\"bullish\\\")\\n        bearish_signals = signals.count(\\\"bearish\\\")\\n\\n        if bullish_signals > bearish_signals:\\n            overall_signal = \\\"bullish\\\"\\n        elif bearish_signals > bullish_signals:\\n            overall_signal = \\\"bearish\\\"\\n        else:\\n            overall_signal = \\\"neutral\\\"\\n\\n        # Calculate confidence level\\n        total_signals = len(signals)\\n        confidence = round(max(bullish_signals, bearish_signals) / total_signals, 2) * 100\\n\\n        fundamental_analysis[ticker] = {\\n            \\\"signal\\\": overall_signal,\\n            \\\"confidence\\\": confidence,\\n            \\\"reasoning\\\": reasoning,\\n        }\\n\\n        progress.update_status(\\\"fundamentals_agent\\\", ticker, \\\"Done\\\")\\n\\n    # Create the fundamental analysis message\\n    message = HumanMessage(\\n        content=json.dumps(fundamental_analysis),\\n        name=\\\"fundamentals_agent\\\",\\n    )\\n\\n    # Print the reasoning if the flag is set\\n    if state[\\\"metadata\\\"][\\\"show_reasoning\\\"]:\\n        show_agent_reasoning(fundamental_analysis, \\\"Fundamental Analysis Agent\\\")\\n\\n    # Add the signal to the analyst_signals list\\n    state[\\\"data\\\"][\\\"analyst_signals\\\"][\\\"fundamentals_agent\\\"] = fundamental_analysis\\n\\n    return {\\n        \\\"messages\\\": [message],\\n        \\\"data\\\": data,\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 10"
+            },
+            {
+              "name": "end_line: 159"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"fundamentals.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

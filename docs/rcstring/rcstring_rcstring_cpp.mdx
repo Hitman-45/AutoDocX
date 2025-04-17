@@ -1,0 +1,342 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: rcstring/rcstring.cpp
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="rcstring_rcstring_cpp.ast.json" />
+
+## `operator=()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** RCString &  
+      **Language:** C++  
+      **Start Line:** 45  
+      **End Line:** 55  
+      
+      
+      
+      ```c++
+      RCString& RCString::operator=(const RCString& other_)
+{
+    if(this != &other_)
+    {
+        ReleaseData();
+        m_data = other_.m_data;
+        ++(m_data-&gt;counter);
+    }
+
+    return (*this);
+}
+
+      ```
+      
+## `Length()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** size_t  
+      **Language:** C++  
+      **Start Line:** 62  
+      **End Line:** 65  
+      
+      
+      
+      ```c++
+      size_t RCString::Length() const
+{
+    return (std::strlen(m_data-&gt;str));
+}
+
+      ```
+      
+## `IsShared()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** bool  
+      **Language:** C++  
+      **Start Line:** 67  
+      **End Line:** 70  
+      
+      
+      
+      ```c++
+      bool RCString::IsShared() const
+{
+    return (m_data-&gt;counter &gt; 1);
+}
+
+      ```
+      
+## `ToCstr()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** const char *  
+      **Language:** C++  
+      **Start Line:** 72  
+      **End Line:** 75  
+      
+      
+      
+      ```c++
+      const char *RCString::ToCstr() const
+{
+    return (m_data-&gt;str);
+}
+
+      ```
+      
+## `SetData()`
+
+      **Class:** None  
+      **Access:** private  
+      **Return:** Data_t *  
+      **Language:** C++  
+      **Start Line:** 77  
+      **End Line:** 95  
+      
+      
+      
+      ```c++
+      Data_t *RCString::SetData(const char *str)
+{
+    std::size_t size = sizeof(Data_t) + std::strlen(str) + 1;
+
+    try
+    {
+        m_data = reinterpret_cast&lt;Data_t *&gt;(new char[size]);
+        m_data-&gt;str = reinterpret_cast&lt;char *&gt;(m_data + 1);
+        std::strcpy(m_data-&gt;str, str);
+        m_data-&gt;counter = 1;
+    }
+    catch(std::bad_alloc& alloc_err)
+    {
+        DeAllocate();
+        throw(alloc_err);
+    }
+
+    return m_data;
+}
+
+      ```
+      
+## `DeAllocate()`
+
+      **Class:** None  
+      **Access:** private  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 97  
+      **End Line:** 101  
+      
+      
+      
+      ```c++
+      void RCString::DeAllocate(void)
+{
+    delete[] (m_data);
+    m_data = NULL;
+}
+
+      ```
+      
+## `DetachData()`
+
+      **Class:** None  
+      **Access:** private  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 103  
+      **End Line:** 107  
+      
+      
+      
+      ```c++
+      void RCString::DetachData(void)
+{
+    if(IsShared() && --(m_data-&gt;counter))
+        SetData(this-&gt;ToCstr());
+}
+
+      ```
+      
+## `ReleaseData()`
+
+      **Class:** None  
+      **Access:** private  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 109  
+      **End Line:** 113  
+      
+      
+      
+      ```c++
+      void RCString::ReleaseData(void)
+{
+    if(0 == --(m_data-&gt;counter))
+        DeAllocate();
+}
+
+      ```
+      
+## `operator[]()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** char &  
+      **Language:** C++  
+      **Start Line:** 115  
+      **End Line:** 119  
+      
+      
+      
+      ```c++
+      char& RCString::operator[](size_t index) throw(std::bad_alloc)
+{
+    DetachData();
+    return (m_data-&gt;str[index]);
+}
+
+      ```
+      
+## `operator[]()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** char  
+      **Language:** C++  
+      **Start Line:** 121  
+      **End Line:** 124  
+      
+      
+      
+      ```c++
+      char RCString::operator[](size_t index) const
+{
+    return (m_data-&gt;str[index]);
+}
+
+      ```
+      
+## `operator&lt;&lt;()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** std::ostream &  
+      **Language:** C++  
+      **Start Line:** 126  
+      **End Line:** 129  
+      
+      
+      
+      ```c++
+      std::ostream &operator&lt;&lt;(std::ostream &stream, const RCString &str)
+{
+    return (stream &lt;&lt; str.ToCstr());
+}
+
+      ```
+      
+## `operator&gt;&gt;()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** std::istream &  
+      **Language:** C++  
+      **Start Line:** 131  
+      **End Line:** 138  
+      
+      
+      
+      ```c++
+      std::istream &operator&gt;&gt;(std::istream &stream, RCString &str)
+{
+    const size_t bufSiz = 1024;
+    char buffer[bufSiz] = {0};
+    stream.getline(buffer, bufSiz);
+    str = buffer;
+    return (stream);
+}
+
+      ```
+      
+## `operator&gt;()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** bool  
+      **Language:** C++  
+      **Start Line:** 140  
+      **End Line:** 143  
+      
+      
+      
+      ```c++
+      bool operator&gt;(const RCString &str1 ,const RCString &str2)
+{
+    return (0 &lt; std::strcmp(str1.ToCstr(), str2.ToCstr()));
+}
+
+      ```
+      
+## `operator&lt;()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** bool  
+      **Language:** C++  
+      **Start Line:** 145  
+      **End Line:** 148  
+      
+      
+      
+      ```c++
+      bool operator&lt;(const RCString &str1 ,const RCString &str2)
+{
+    return (0 &gt; std::strcmp(str1.ToCstr(), str2.ToCstr()));
+}
+
+      ```
+      
+## `operator==()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** bool  
+      **Language:** C++  
+      **Start Line:** 150  
+      **End Line:** 153  
+      
+      
+      
+      ```c++
+      bool operator==(const RCString &str1 ,const RCString &str2)
+{
+    return (0 == std::strcmp(str1.ToCstr(), str2.ToCstr()));
+}
+
+      ```
+      
+## `operator!=()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** bool  
+      **Language:** C++  
+      **Start Line:** 155  
+      **End Line:** 158  
+      
+      
+      
+      ```c++
+      bool operator!=(const RCString &lhs ,const RCString &rhs)
+{
+    return !(lhs == rhs);
+}
+
+      ```
+      

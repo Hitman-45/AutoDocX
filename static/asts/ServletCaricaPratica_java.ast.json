@@ -1,0 +1,56 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"doGet\""
+            },
+            {
+              "name": "parameters: \"(HttpServletRequestrequest,HttpServletResponseresponse)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 22"
+            },
+            {
+              "name": "end_line: 37"
+            },
+            {
+              "name": "body_start: 23"
+            },
+            {
+              "name": "body_end: 37"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     int   user_id   =   Integer . parseInt ( request . getParameter ( \\\"user_id\\\" ) ) ; \\n\\n     CitizenManager   cm   =   new   CitizenManager ( ) ; \\n     Citizen   citizen   =   cm . getCitizenById ( user_id ) ; \\n     HttpSession   session   =   request . getSession ( ) ; \\n     CIManager   cim   =   new   CIManager ( ) ; \\n     IdentityCard   ci   =   cim . getCardByIdCStri ( user_id ) ; \\n\\n     session . setAttribute ( \\\"c\\\" ,   citizen ) ; \\n     session . setAttribute ( \\\"ci\\\" ,   ci ) ; \\n\\n     String   url   =   \\\"/myDoc/workers/index.jsp?func=pra&page=modulone\\\" ; \\n     response . sendRedirect ( url ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletCaricaPratica.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

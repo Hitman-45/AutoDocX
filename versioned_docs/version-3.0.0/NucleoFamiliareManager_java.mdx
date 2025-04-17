@@ -1,0 +1,129 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: NucleoFamiliareManager.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="NucleoFamiliareManager_java.ast.json" />
+
+## `insertNucleo()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** int  
+      **Language:** Java  
+      **Start Line:** 32  
+      **End Line:** 34  
+      
+      
+      
+      ```java
+      { 
+     return   coreF . insertFamily ( nf ) ; 
+   }
+      ```
+      
+## `checkFamilyId()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** boolean  
+      **Language:** Java  
+      **Start Line:** 45  
+      **End Line:** 47  
+      
+      
+      
+      ```java
+      { 
+     return   coreF . checkFamilyId ( id ) ; 
+   }
+      ```
+      
+## `getNCoreComponents()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** int  
+      **Language:** Java  
+      **Start Line:** 58  
+      **End Line:** 60  
+      
+      
+      
+      ```java
+      { 
+     return   coreF . getFamilyById ( id ) . getNComponents ( ) ; 
+   }
+      ```
+      
+## `setHeadOfFamily()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** boolean  
+      **Language:** Java  
+      **Start Line:** 72  
+      **End Line:** 74  
+      
+      
+      
+      ```java
+      { 
+     return   coreF . setHeadOfFamily ( id ,   IdCitt ) ; 
+   }
+      ```
+      
+## `incrementComponents()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** boolean  
+      **Language:** Java  
+      **Start Line:** 84  
+      **End Line:** 87  
+      
+      
+      
+      ```java
+      { 
+     int   n   =   getNCoreComponents ( id )   +   1 ; 
+     return   coreF . setNComponents ( id ,   n ) ; 
+   }
+      ```
+      
+## `decrementComponents()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** boolean  
+      **Language:** Java  
+      **Start Line:** 97  
+      **End Line:** 100  
+      
+      
+      
+      ```java
+      { 
+     int   n   =   getNCoreComponents ( id )   -   1 ; 
+     return   coreF . setNComponents ( id ,   n ) ; 
+   }
+      ```
+      
+## `getNucleo()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** Family  
+      **Language:** Java  
+      **Start Line:** 102  
+      **End Line:** 104  
+      
+      
+      
+      ```java
+      { 
+     return   coreF . getFamilyById ( id ) ; 
+   }
+      ```
+      

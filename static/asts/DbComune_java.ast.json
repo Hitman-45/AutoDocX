@@ -1,0 +1,148 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"insertMunicipality\""
+            },
+            {
+              "name": "parameters: \"(Municipalityc)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 38"
+            },
+            {
+              "name": "end_line: 59"
+            },
+            {
+              "name": "body_start: 38"
+            },
+            {
+              "name": "body_end: 59"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     int   ret   =   0 ; \\n     PreparedStatement   statement   =   null ; \\n     String   name   =   c . getName ( ) ; \\n     String   streetAddress   =   c . getIndirizzoId ( ) ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"INSERT INTO municipality VALUES (?, ?)\\\" ) ; \\n       statement . setString ( 1 ,   name ) ; \\n       statement . setString ( 2 ,   streetAddress ) ; \\n       ret   =   statement . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: Common entry failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: Common entry failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbComune.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"deleteMunicipality\""
+            },
+            {
+              "name": "parameters: \"(Stringname)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 70"
+            },
+            {
+              "name": "end_line: 88"
+            },
+            {
+              "name": "body_start: 70"
+            },
+            {
+              "name": "body_end: 88"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     int   ret   =   0 ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"DELETE FROM municipality WHERE name = ?\\\" ) ; \\n       statement . setString ( 1 ,   name ) ; \\n       ret   =   statement . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: Common delete failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: Common delete failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbComune.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"getMunicipalityByName\""
+            },
+            {
+              "name": "parameters: \"(Stringname)\""
+            },
+            {
+              "name": "return_type: \"Municipality\""
+            },
+            {
+              "name": "start_line: 99"
+            },
+            {
+              "name": "end_line: 125"
+            },
+            {
+              "name": "body_start: 99"
+            },
+            {
+              "name": "body_end: 125"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     Municipality   ret   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"SELECT* FROM municipality WHERE name = ?\\\" ) ; \\n       statement . setString ( 1 ,   name ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       if   ( ! rs . next ( ) ) \\n         return   ret ; \\n       String   nameC   =   rs . getString ( \\\"name\\\" ) ; \\n       String   streetAddress   =   rs . getString ( \\\"IPAddress\\\" ) ; \\n       ret   =   new   Municipality ( nameC ,   streetAddress ) ; \\n       return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: Search of municipality by name failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: Search of municipality by name failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbComune.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,332 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"enterAdministrator\""
+            },
+            {
+              "name": "parameters: \"(Administratora)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 37"
+            },
+            {
+              "name": "end_line: 64"
+            },
+            {
+              "name": "body_start: 37"
+            },
+            {
+              "name": "body_end: 64"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     String   matr   =   a . getNumber ( ) ; \\n     String   name   =   a . getName ( ) ; \\n     String   surname   =   a . getSurname ( ) ; \\n     String   email   =   a . getEmail ( ) ; \\n     String   login   =   a . getLogin ( ) ; \\n     int   ret   =   0 ; \\n     PreparedStatement   statement   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"INSERT INTO administrator VALUES (? ,? ,?,?,?)\\\" ) ; \\n       statement . setString ( 1 ,   matr ) ; \\n       statement . setString ( 2 ,   name ) ; \\n       statement . setString ( 3 ,   surname ) ; \\n       statement . setString ( 4 ,   email ) ; \\n       statement . setString ( 5 ,   login ) ; \\n       ret   =   statement . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: administrator insertion failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: administrator insertion failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbAmministratore.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"deleteAdministrator\""
+            },
+            {
+              "name": "parameters: \"(Stringmatr)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 75"
+            },
+            {
+              "name": "end_line: 93"
+            },
+            {
+              "name": "body_start: 75"
+            },
+            {
+              "name": "body_end: 93"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     int   ret   =   0 ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"DELETE FROM administrator WHERE number =?\\\" ) ; \\n       statement . setString ( 1 ,   matr ) ; \\n       ret   =   statement . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: administrator deletion failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: administrator deletion failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbAmministratore.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"getAdministratorByName\""
+            },
+            {
+              "name": "parameters: \"(StringnameAmm,StringsurnameAmm)\""
+            },
+            {
+              "name": "return_type: \"Collection<Administrator>\""
+            },
+            {
+              "name": "start_line: 106"
+            },
+            {
+              "name": "end_line: 141"
+            },
+            {
+              "name": "body_start: 107"
+            },
+            {
+              "name": "body_end: 141"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     ArrayList < Administrator >   ret   =   new   ArrayList < Administrator > ( ) ; \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\n           \\\"SELECT * FROM administrator WHERE name =? and surname =?\\\" ) ; \\n       statement . setString ( 1 ,   nameAmm ) ; \\n       statement . setString ( 2 ,   surnameAmm ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       while   ( rs . next ( ) )   { \\n         String   matr   =   rs . getString ( \\\"number\\\" ) ; \\n         String   name   =   rs . getString ( \\\"name\\\" ) ; \\n         String   surname   =   rs . getString ( \\\"surname\\\" ) ; \\n         String   eMail   =   rs . getString ( \\\"eMail\\\" ) ; \\n         String   login   =   rs . getString ( \\\"login\\\" ) ; \\n         ret . add ( new   Administrator ( name ,   surname ,   matr ,   eMail ,   login ) ) ; \\n       } \\n       if   ( ret . isEmpty ( ) ) \\n         return   null ; \\n       else \\n         return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: search administrator via name and surname failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: search administrator via name and surname failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbAmministratore.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"getAdministratorByNumber\""
+            },
+            {
+              "name": "parameters: \"(StringmatrAmm)\""
+            },
+            {
+              "name": "return_type: \"Administrator\""
+            },
+            {
+              "name": "start_line: 152"
+            },
+            {
+              "name": "end_line: 181"
+            },
+            {
+              "name": "body_start: 152"
+            },
+            {
+              "name": "body_end: 181"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     Administrator   ret   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"SELECT * FROM administrator WHERE number =?\\\" ) ; \\n       statement . setString ( 1 ,   matrAmm ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       if   ( ! rs . next ( ) ) \\n         return   ret ; \\n       String   matr   =   rs . getString ( \\\"number\\\" ) ; \\n       String   name   =   rs . getString ( \\\"name\\\" ) ; \\n       String   surname   =   rs . getString ( \\\"surname\\\" ) ; \\n       String   eMail   =   rs . getString ( \\\"eMail\\\" ) ; \\n       String   login   =   rs . getString ( \\\"login\\\" ) ; \\n       ret   =   new   Administrator ( name ,   surname ,   matr ,   eMail ,   login ) ; \\n       return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: search administrator via number failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: search administrator via number failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbAmministratore.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"getAdministrators\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"Collection<Administrator>\""
+            },
+            {
+              "name": "start_line: 190"
+            },
+            {
+              "name": "end_line: 221"
+            },
+            {
+              "name": "body_start: 190"
+            },
+            {
+              "name": "body_end: 221"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     ArrayList < Administrator >   ret   =   new   ArrayList < Administrator > ( ) ; \\n     Statement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     try   { \\n       statement   =   connection . createStatement ( ) ; \\n       rs   =   statement . executeQuery ( \\\"SELECT * FROM administrator\\\" ) ; \\n       while   ( rs . next ( ) )   { \\n         String   matr   =   rs . getString ( \\\"number\\\" ) ; \\n         String   name   =   rs . getString ( \\\"name\\\" ) ; \\n         String   surname   =   rs . getString ( \\\"surname\\\" ) ; \\n         String   eMail   =   rs . getString ( \\\"eMail\\\" ) ; \\n         String   login   =   rs . getString ( \\\"login\\\" ) ; \\n         ret . add ( new   Administrator ( name ,   surname ,   matr ,   eMail ,   login ) ) ; \\n       } \\n       if   ( ret . isEmpty ( ) ) \\n         return   null ; \\n       else \\n         return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: search administrators failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: search administrators failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbAmministratore.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"getAdministratorByLogin\""
+            },
+            {
+              "name": "parameters: \"(Stringlog)\""
+            },
+            {
+              "name": "return_type: \"Administrator\""
+            },
+            {
+              "name": "start_line: 232"
+            },
+            {
+              "name": "end_line: 261"
+            },
+            {
+              "name": "body_start: 232"
+            },
+            {
+              "name": "body_end: 261"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     Administrator   ret   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"SELECT * FROM administrator WHERE login =?\\\" ) ; \\n       statement . setString ( 1 ,   log ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       if   ( ! rs . next ( ) ) \\n         return   ret ; \\n       String   matr   =   rs . getString ( \\\"number\\\" ) ; \\n       String   name   =   rs . getString ( \\\"name\\\" ) ; \\n       String   surname   =   rs . getString ( \\\"surname\\\" ) ; \\n       String   eMail   =   rs . getString ( \\\"eMail\\\" ) ; \\n       String   login   =   rs . getString ( \\\"login\\\" ) ; \\n       ret   =   new   Administrator ( name ,   surname ,   matr ,   eMail ,   login ) ; \\n       return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: search administrator via login failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: search administrator via login failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbAmministratore.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"editAdministrator\""
+            },
+            {
+              "name": "parameters: \"(Stringmatr,Administratora)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 273"
+            },
+            {
+              "name": "end_line: 302"
+            },
+            {
+              "name": "body_start: 273"
+            },
+            {
+              "name": "body_end: 302"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     String   number   =   a . getNumber ( ) ; \\n     String   name   =   a . getName ( ) ; \\n     String   surname   =   a . getSurname ( ) ; \\n     String   email   =   a . getEmail ( ) ; \\n     String   login   =   a . getLogin ( ) ; \\n     int   ret   =   0 ; \\n     PreparedStatement   statement   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\n           \\\"UPDATE administrator SET number = ?,name = ?, surname = ?, email = ?, login = ? WHERE number = ?\\\" ) ; \\n       statement . setString ( 1 ,   number ) ; \\n       statement . setString ( 2 ,   name ) ; \\n       statement . setString ( 3 ,   surname ) ; \\n       statement . setString ( 4 ,   email ) ; \\n       statement . setString ( 5 ,   login ) ; \\n       statement . setString ( 6 ,   matr ) ; \\n       ret   =   statement . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: modify administrator failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: modify administrator failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbAmministratore.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

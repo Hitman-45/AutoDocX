@@ -1,0 +1,382 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"is_ollama_installed\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Check if Ollama is installed on the system.\""
+            },
+            {
+              "name": "body: \"def is_ollama_installed() -> bool:\\n    \\\"\\\"\\\"Check if Ollama is installed on the system.\\\"\\\"\\\"\\n    system = platform.system().lower()\\n    \\n    if system == \\\"darwin\\\" or system == \\\"linux\\\":  # macOS or Linux\\n        try:\\n            result = subprocess.run([\\\"which\\\", \\\"ollama\\\"], \\n                                   stdout=subprocess.PIPE, \\n                                   stderr=subprocess.PIPE, \\n                                   text=True)\\n            return result.returncode == 0\\n        except Exception:\\n            return False\\n    elif system == \\\"windows\\\":  # Windows\\n        try:\\n            result = subprocess.run([\\\"where\\\", \\\"ollama\\\"], \\n                                   stdout=subprocess.PIPE, \\n                                   stderr=subprocess.PIPE, \\n                                   text=True,\\n                                   shell=True)\\n            return result.returncode == 0\\n        except Exception:\\n            return False\\n    else:\\n        return False\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 26"
+            },
+            {
+              "name": "end_line: 50"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"utils/ollama.py\""
+            },
+            {
+              "name": "folder: \"utils\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"is_ollama_server_running\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Check if the Ollama server is running.\""
+            },
+            {
+              "name": "body: \"def is_ollama_server_running() -> bool:\\n    \\\"\\\"\\\"Check if the Ollama server is running.\\\"\\\"\\\"\\n    try:\\n        response = requests.get(OLLAMA_API_MODELS_ENDPOINT, timeout=2)\\n        return response.status_code == 200\\n    except requests.RequestException:\\n        return False\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 53"
+            },
+            {
+              "name": "end_line: 59"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"utils/ollama.py\""
+            },
+            {
+              "name": "folder: \"utils\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"get_locally_available_models\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Get a list of models that are already downloaded locally.\""
+            },
+            {
+              "name": "body: \"def get_locally_available_models() -> List[str]:\\n    \\\"\\\"\\\"Get a list of models that are already downloaded locally.\\\"\\\"\\\"\\n    if not is_ollama_server_running():\\n        return []\\n    \\n    try:\\n        response = requests.get(OLLAMA_API_MODELS_ENDPOINT, timeout=5)\\n        if response.status_code == 200:\\n            data = response.json()\\n            return [model['name'] for model in data['models']] if 'models' in data else []\\n        return []\\n    except requests.RequestException:\\n        return []\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 62"
+            },
+            {
+              "name": "end_line: 74"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"utils/ollama.py\""
+            },
+            {
+              "name": "folder: \"utils\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"start_ollama_server\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Start the Ollama server if it's not already running.\""
+            },
+            {
+              "name": "body: \"def start_ollama_server() -> bool:\\n    \\\"\\\"\\\"Start the Ollama server if it's not already running.\\\"\\\"\\\"\\n    if is_ollama_server_running():\\n        print(f\\\"{Fore.GREEN}Ollama server is already running.{Style.RESET_ALL}\\\")\\n        return True\\n    \\n    system = platform.system().lower()\\n    \\n    try:\\n        if system == \\\"darwin\\\" or system == \\\"linux\\\":  # macOS or Linux\\n            subprocess.Popen([\\\"ollama\\\", \\\"serve\\\"], \\n                           stdout=subprocess.PIPE, \\n                           stderr=subprocess.PIPE)\\n        elif system == \\\"windows\\\":  # Windows\\n            subprocess.Popen([\\\"ollama\\\", \\\"serve\\\"], \\n                           stdout=subprocess.PIPE, \\n                           stderr=subprocess.PIPE,\\n                           shell=True)\\n        else:\\n            print(f\\\"{Fore.RED}Unsupported operating system: {system}{Style.RESET_ALL}\\\")\\n            return False\\n        \\n        # Wait for server to start\\n        for _ in range(10):  # Try for 10 seconds\\n            if is_ollama_server_running():\\n                print(f\\\"{Fore.GREEN}Ollama server started successfully.{Style.RESET_ALL}\\\")\\n                return True\\n            time.sleep(1)\\n        \\n        print(f\\\"{Fore.RED}Failed to start Ollama server. Timed out waiting for server to become available.{Style.RESET_ALL}\\\")\\n        return False\\n    except Exception as e:\\n        print(f\\\"{Fore.RED}Error starting Ollama server: {e}{Style.RESET_ALL}\\\")\\n        return False\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 77"
+            },
+            {
+              "name": "end_line: 110"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"utils/ollama.py\""
+            },
+            {
+              "name": "folder: \"utils\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"install_ollama\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Install Ollama on the system.\""
+            },
+            {
+              "name": "body: \"def install_ollama() -> bool:\\n    \\\"\\\"\\\"Install Ollama on the system.\\\"\\\"\\\"\\n    system = platform.system().lower()\\n    if system not in OLLAMA_DOWNLOAD_URL:\\n        print(f\\\"{Fore.RED}Unsupported operating system for automatic installation: {system}{Style.RESET_ALL}\\\")\\n        print(f\\\"Please visit https://ollama.com/download to install Ollama manually.\\\")\\n        return False\\n    \\n    if system == \\\"darwin\\\":  # macOS\\n        print(f\\\"{Fore.YELLOW}Ollama for Mac is available as an application download.{Style.RESET_ALL}\\\")\\n        \\n        # Default to offering the app download first for macOS users\\n        if questionary.confirm(\\\"Would you like to download the Ollama application?\\\", default=True).ask():\\n            try:\\n                import webbrowser\\n                webbrowser.open(OLLAMA_DOWNLOAD_URL[\\\"darwin\\\"])\\n                print(f\\\"{Fore.YELLOW}Please download and install the application, then restart this program.{Style.RESET_ALL}\\\")\\n                print(f\\\"{Fore.CYAN}After installation, you may need to open the Ollama app once before continuing.{Style.RESET_ALL}\\\")\\n                \\n                # Ask if they want to try continuing after installation\\n                if questionary.confirm(\\\"Have you installed the Ollama app and opened it at least once?\\\", default=False).ask():\\n                    # Check if it's now installed\\n                    if is_ollama_installed() and start_ollama_server():\\n                        print(f\\\"{Fore.GREEN}Ollama is now properly installed and running!{Style.RESET_ALL}\\\")\\n                        return True\\n                    else:\\n                        print(f\\\"{Fore.RED}Ollama installation not detected. Please restart this application after installing Ollama.{Style.RESET_ALL}\\\")\\n                        return False\\n                return False\\n            except Exception as e:\\n                print(f\\\"{Fore.RED}Failed to open browser: {e}{Style.RESET_ALL}\\\")\\n                return False\\n        else:\\n            # Only offer command-line installation as a fallback for advanced users\\n            if questionary.confirm(\\\"Would you like to try the command-line installation instead? (For advanced users)\\\", default=False).ask():\\n                print(f\\\"{Fore.YELLOW}Attempting command-line installation...{Style.RESET_ALL}\\\")\\n                try:\\n                    install_process = subprocess.run(\\n                        [\\\"bash\\\", \\\"-c\\\", \\\"curl -fsSL https://ollama.com/install.sh | sh\\\"],\\n                        stdout=subprocess.PIPE, \\n                        stderr=subprocess.PIPE, \\n                        text=True\\n                    )\\n                    \\n                    if install_process.returncode == 0:\\n                        print(f\\\"{Fore.GREEN}Ollama installed successfully via command line.{Style.RESET_ALL}\\\")\\n                        return True\\n                    else:\\n                        print(f\\\"{Fore.RED}Command-line installation failed. Please use the app download method instead.{Style.RESET_ALL}\\\")\\n                        return False\\n                except Exception as e:\\n                    print(f\\\"{Fore.RED}Error during command-line installation: {e}{Style.RESET_ALL}\\\")\\n                    return False\\n            return False\\n    elif system == \\\"linux\\\":  # Linux\\n        print(f\\\"{Fore.YELLOW}Installing Ollama...{Style.RESET_ALL}\\\")\\n        try:\\n            # Run the installation command as a single command\\n            install_process = subprocess.run(\\n                [\\\"bash\\\", \\\"-c\\\", \\\"curl -fsSL https://ollama.com/install.sh | sh\\\"],\\n                stdout=subprocess.PIPE, \\n                stderr=subprocess.PIPE, \\n                text=True\\n            )\\n            \\n            if install_process.returncode == 0:\\n                print(f\\\"{Fore.GREEN}Ollama installed successfully.{Style.RESET_ALL}\\\")\\n                return True\\n            else:\\n                print(f\\\"{Fore.RED}Failed to install Ollama. Error: {install_process.stderr}{Style.RESET_ALL}\\\")\\n                return False\\n        except Exception as e:\\n            print(f\\\"{Fore.RED}Error during Ollama installation: {e}{Style.RESET_ALL}\\\")\\n            return False\\n    elif system == \\\"windows\\\":  # Windows\\n        print(f\\\"{Fore.YELLOW}Automatic installation on Windows is not supported.{Style.RESET_ALL}\\\")\\n        print(f\\\"Please download and install Ollama from: {OLLAMA_DOWNLOAD_URL['windows']}\\\")\\n        \\n        # Ask if they want to open the download page\\n        if questionary.confirm(\\\"Do you want to open the Ollama download page in your browser?\\\").ask():\\n            try:\\n                import webbrowser\\n                webbrowser.open(OLLAMA_DOWNLOAD_URL['windows'])\\n                print(f\\\"{Fore.YELLOW}After installation, please restart this application.{Style.RESET_ALL}\\\")\\n                \\n                # Ask if they want to try continuing after installation\\n                if questionary.confirm(\\\"Have you installed Ollama?\\\", default=False).ask():\\n                    # Check if it's now installed\\n                    if is_ollama_installed() and start_ollama_server():\\n                        print(f\\\"{Fore.GREEN}Ollama is now properly installed and running!{Style.RESET_ALL}\\\")\\n                        return True\\n                    else:\\n                        print(f\\\"{Fore.RED}Ollama installation not detected. Please restart this application after installing Ollama.{Style.RESET_ALL}\\\")\\n                        return False\\n            except Exception as e:\\n                print(f\\\"{Fore.RED}Failed to open browser: {e}{Style.RESET_ALL}\\\")\\n        return False\\n    \\n    return False\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 113"
+            },
+            {
+              "name": "end_line: 211"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"utils/ollama.py\""
+            },
+            {
+              "name": "folder: \"utils\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"download_model\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Download an Ollama model.\""
+            },
+            {
+              "name": "body: \"def download_model(model_name: str) -> bool:\\n    \\\"\\\"\\\"Download an Ollama model.\\\"\\\"\\\"\\n    if not is_ollama_server_running():\\n        if not start_ollama_server():\\n            return False\\n    \\n    print(f\\\"{Fore.YELLOW}Downloading model {model_name}...{Style.RESET_ALL}\\\")\\n    print(f\\\"{Fore.CYAN}This may take a while depending on your internet speed and the model size.{Style.RESET_ALL}\\\")\\n    print(f\\\"{Fore.CYAN}The download is happening in the background. Please be patient...{Style.RESET_ALL}\\\")\\n    \\n    try:\\n        # Use the Ollama CLI to download the model\\n        process = subprocess.Popen(\\n            [\\\"ollama\\\", \\\"pull\\\", model_name],\\n            stdout=subprocess.PIPE, \\n            stderr=subprocess.STDOUT,  # Redirect stderr to stdout to capture all output\\n            text=True,\\n            bufsize=1,  # Line buffered\\n            universal_newlines=True\\n        )\\n        \\n        # Show some progress to the user\\n        print(f\\\"{Fore.CYAN}Download progress:{Style.RESET_ALL}\\\")\\n        \\n        # For tracking progress\\n        last_percentage = 0\\n        last_phase = \\\"\\\"\\n        bar_length = 40\\n        \\n        while True:\\n            output = process.stdout.readline()\\n            if output == '' and process.poll() is not None:\\n                break\\n            if output:\\n                output = output.strip()\\n                # Try to extract percentage information using a more lenient approach\\n                percentage = None\\n                current_phase = None\\n                \\n                # Example patterns in Ollama output:\\n                # \\\"downloading: 23.45 MB / 42.19 MB [================>-------------] 55.59%\\\"\\n                # \\\"downloading model: 76%\\\"\\n                # \\\"pulling manifest: 100%\\\"\\n                \\n                # Check for percentage in the output\\n                import re\\n                percentage_match = re.search(r'(\\\\d+(\\\\.\\\\d+)?)%', output)\\n                if percentage_match:\\n                    try:\\n                        percentage = float(percentage_match.group(1))\\n                    except ValueError:\\n                        percentage = None\\n                \\n                # Try to determine the current phase (downloading, extracting, etc.)\\n                phase_match = re.search(r'^([a-zA-Z\\\\s]+):', output)\\n                if phase_match:\\n                    current_phase = phase_match.group(1).strip()\\n                \\n                # If we found a percentage, display a progress bar\\n                if percentage is not None:\\n                    # Only update if there's a significant change (avoid flickering)\\n                    if abs(percentage - last_percentage) >= 1 or (current_phase and current_phase != last_phase):\\n                        last_percentage = percentage\\n                        if current_phase:\\n                            last_phase = current_phase\\n                        \\n                        # Create a progress bar\\n                        filled_length = int(bar_length * percentage / 100)\\n                        bar = '█' * filled_length + '░' * (bar_length - filled_length)\\n                        \\n                        # Build the status line with the phase if available\\n                        phase_display = f\\\"{Fore.CYAN}{last_phase.capitalize()}{Style.RESET_ALL}: \\\" if last_phase else \\\"\\\"\\n                        status_line = f\\\"\\\\r{phase_display}{Fore.GREEN}{bar}{Style.RESET_ALL} {Fore.YELLOW}{percentage:.1f}%{Style.RESET_ALL}\\\"\\n                        \\n                        # Print the status line without a newline to update in place\\n                        print(status_line, end='', flush=True)\\n                else:\\n                    # If we couldn't extract a percentage but have identifiable output\\n                    if \\\"download\\\" in output.lower() or \\\"extract\\\" in output.lower() or \\\"pulling\\\" in output.lower():\\n                        # Don't print a newline for percentage updates\\n                        if \\\"%\\\" in output:\\n                            print(f\\\"\\\\r{Fore.GREEN}{output}{Style.RESET_ALL}\\\", end='', flush=True)\\n                        else:\\n                            print(f\\\"{Fore.GREEN}{output}{Style.RESET_ALL}\\\")\\n        \\n        # Wait for the process to finish\\n        return_code = process.wait()\\n        \\n        # Ensure we print a newline after the progress bar\\n        print()\\n        \\n        if return_code == 0:\\n            print(f\\\"{Fore.GREEN}Model {model_name} downloaded successfully!{Style.RESET_ALL}\\\")\\n            return True\\n        else:\\n            print(f\\\"{Fore.RED}Failed to download model {model_name}. Check your internet connection and try again.{Style.RESET_ALL}\\\")\\n            return False\\n    except Exception as e:\\n        print(f\\\"\\\\n{Fore.RED}Error downloading model {model_name}: {e}{Style.RESET_ALL}\\\")\\n        return False\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 214"
+            },
+            {
+              "name": "end_line: 313"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"utils/ollama.py\""
+            },
+            {
+              "name": "folder: \"utils\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"ensure_ollama_and_model\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Ensure Ollama is installed, running, and the requested model is available.\""
+            },
+            {
+              "name": "body: \"def ensure_ollama_and_model(model_name: str) -> bool:\\n    \\\"\\\"\\\"Ensure Ollama is installed, running, and the requested model is available.\\\"\\\"\\\"\\n    # Check if Ollama is installed\\n    if not is_ollama_installed():\\n        print(f\\\"{Fore.YELLOW}Ollama is not installed on your system.{Style.RESET_ALL}\\\")\\n        \\n        # Ask if they want to install it\\n        if questionary.confirm(\\\"Do you want to install Ollama?\\\").ask():\\n            if not install_ollama():\\n                return False\\n        else:\\n            print(f\\\"{Fore.RED}Ollama is required to use local models.{Style.RESET_ALL}\\\")\\n            return False\\n    \\n    # Make sure the server is running\\n    if not is_ollama_server_running():\\n        print(f\\\"{Fore.YELLOW}Starting Ollama server...{Style.RESET_ALL}\\\")\\n        if not start_ollama_server():\\n            return False\\n    \\n    # Check if the model is already downloaded\\n    available_models = get_locally_available_models()\\n    if model_name not in available_models:\\n        print(f\\\"{Fore.YELLOW}Model {model_name} is not available locally.{Style.RESET_ALL}\\\")\\n        \\n        # Ask if they want to download it\\n        model_size_info = \\\"\\\"\\n        if \\\"70b\\\" in model_name:\\n            model_size_info = \\\" This is a large model (up to several GB) and may take a while to download.\\\"\\n        elif \\\"34b\\\" in model_name or \\\"8x7b\\\" in model_name:\\n            model_size_info = \\\" This is a medium-sized model (1-2 GB) and may take a few minutes to download.\\\"\\n        \\n        if questionary.confirm(f\\\"Do you want to download the {model_name} model?{model_size_info} The download will happen in the background.\\\").ask():\\n            return download_model(model_name)\\n        else:\\n            print(f\\\"{Fore.RED}The model is required to proceed.{Style.RESET_ALL}\\\")\\n            return False\\n    \\n    return True\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 316"
+            },
+            {
+              "name": "end_line: 354"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"utils/ollama.py\""
+            },
+            {
+              "name": "folder: \"utils\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"delete_model\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Delete a locally downloaded Ollama model.\""
+            },
+            {
+              "name": "body: \"def delete_model(model_name: str) -> bool:\\n    \\\"\\\"\\\"Delete a locally downloaded Ollama model.\\\"\\\"\\\"\\n    if not is_ollama_server_running():\\n        if not start_ollama_server():\\n            return False\\n    \\n    print(f\\\"{Fore.YELLOW}Deleting model {model_name}...{Style.RESET_ALL}\\\")\\n    \\n    try:\\n        # Use the Ollama CLI to delete the model\\n        process = subprocess.run(\\n            [\\\"ollama\\\", \\\"rm\\\", model_name],\\n            stdout=subprocess.PIPE, \\n            stderr=subprocess.PIPE, \\n            text=True\\n        )\\n        \\n        if process.returncode == 0:\\n            print(f\\\"{Fore.GREEN}Model {model_name} deleted successfully.{Style.RESET_ALL}\\\")\\n            return True\\n        else:\\n            print(f\\\"{Fore.RED}Failed to delete model {model_name}. Error: {process.stderr}{Style.RESET_ALL}\\\")\\n            return False\\n    except Exception as e:\\n        print(f\\\"{Fore.RED}Error deleting model {model_name}: {e}{Style.RESET_ALL}\\\")\\n        return False\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 357"
+            },
+            {
+              "name": "end_line: 382"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"utils/ollama.py\""
+            },
+            {
+              "name": "folder: \"utils\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

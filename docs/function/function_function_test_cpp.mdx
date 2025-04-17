@@ -1,0 +1,226 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: function/function_test.cpp
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="function_function_test_cpp.ast.json" />
+
+## `FreeFunctionInt()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** int  
+      **Language:** C++  
+      **Start Line:** 14  
+      **End Line:** 17  
+      
+      
+      
+      ```c++
+      int FreeFunctionInt(int x)
+{
+    return (x * 2);
+}
+
+      ```
+      
+## `FreeFunctionChar()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** char  
+      **Language:** C++  
+      **Start Line:** 19  
+      **End Line:** 22  
+      
+      
+      
+      ```c++
+      char FreeFunctionChar(char x)
+{
+    return (x + 1);
+}
+
+      ```
+      
+## `FreeFunctionVoid()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 24  
+      **End Line:** 27  
+      
+      
+      
+      ```c++
+      void FreeFunctionVoid(int *x)
+{
+    (*x + 1);
+}
+
+      ```
+      
+## `FreeFunctionDouble()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** double  
+      **Language:** C++  
+      **Start Line:** 30  
+      **End Line:** 33  
+      
+      
+      
+      ```c++
+      double FreeFunctionDouble(double x)
+{
+    return (x + 3.14);
+}
+
+      ```
+      
+## `MemberFunction()`
+
+      **Class:** Object  
+      **Access:** public  
+      **Return:** int  
+      **Language:** C++  
+      **Start Line:** 43  
+      **End Line:** 46  
+      
+      
+      
+      ```c++
+          int MemberFunction(int x)
+    {
+        return (m_value + x);
+    }
+
+      ```
+      
+## `MemberFunction()`
+
+      **Class:** Object1  
+      **Access:** public  
+      **Return:** int  
+      **Language:** C++  
+      **Start Line:** 66  
+      **End Line:** 69  
+      
+      
+      
+      ```c++
+          int MemberFunction(int x)
+    {
+        return (*m_ptr + x);
+    }
+
+      ```
+      
+## `FreeFunctionObject()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** int  
+      **Language:** C++  
+      **Start Line:** 76  
+      **End Line:** 79  
+      
+      
+      
+      ```c++
+      int FreeFunctionObject(Object x)
+{
+    return (x.MemberFunction(5));
+}
+
+      ```
+      
+## `main()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** int  
+      **Language:** C++  
+      **Start Line:** 85  
+      **End Line:** 91  
+      
+      
+      
+      ```c++
+      int main(void)
+{
+    TestFreeFunction();
+    TestObjectMemberFunctions();
+    std::cout &lt;&lt; "All tests passed" &lt;&lt; std::endl;
+    return (0);
+}
+
+      ```
+      
+## `TestFreeFunction()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 93  
+      **End Line:** 111  
+      
+      
+      
+      ```c++
+      void TestFreeFunction(void)
+{
+    int i = 5;
+    int *y = &i;
+    char x = '0';
+    Object obj(1);
+    Function&lt;int(void)&gt; func1(FreeFunctionInt, 5);
+    Function&lt;char(void)&gt; func3(FreeFunctionChar, x);
+    Function&lt;void(void)&gt; func4(FreeFunctionVoid, y);
+    Function&lt;int(void)&gt; func(FreeFunctionObject, obj);
+    Function&lt;double(void)&gt; func2(FreeFunctionDouble, 2.0);
+
+    func4();
+    assert(6 == func());
+    assert(6 == *y);
+    assert(func1() == 10);
+    assert('1' == func3());
+    assert(std::abs(func2() - 5.14) &lt; 1e-6);
+}
+
+      ```
+      
+## `TestObjectMemberFunctions()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 113  
+      **End Line:** 126  
+      
+      
+      
+      ```c++
+      void TestObjectMemberFunctions(void)
+{
+    Object obj2(7);
+    Object obj1(10);
+    Object1 obj3(130);
+
+    Function&lt;int(void)&gt; func1(&Object::MemberFunction, &obj1, 5);
+    Function&lt;int(void)&gt; func2(&Object::MemberFunction, &obj2, 3);
+    Function&lt;int(void)&gt; func3(&Object1::MemberFunction, &obj3, 70);
+
+    assert(15 == func1());
+    assert(10 == func2());
+    assert(200 == func3());
+}
+
+      ```
+      

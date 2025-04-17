@@ -1,0 +1,56 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"doPost\""
+            },
+            {
+              "name": "parameters: \"(HttpServletRequestrequest,HttpServletResponseresponse)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 27"
+            },
+            {
+              "name": "end_line: 102"
+            },
+            {
+              "name": "body_start: 28"
+            },
+            {
+              "name": "body_end: 102"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     HttpSession   session   =   request . getSession ( ) ; \\n     if   ( session \\n         !=   null )   {   //Se la sessione � nulla effettua il redirect alla pagina di autenticazione \\n       ServletContext   sc   =   getServletContext ( ) ; \\n       RequestDispatcher   rd   =   null ; \\n       String   ris ; \\n       try   { \\n         //Se gli attributi di sessione amm e acc sono nulli devo effettuare la search \\n         if   ( session . getAttribute ( \\\"amm\\\" )   ==   null   &&   session . getAttribute ( \\\"acc\\\" )   ==   null )   { \\n           String   number   =   request . getParameter ( \\\"number\\\" ) ; \\n           AdminManager   AdM   =   new   AdminManager ( ) ; \\n           Administrator   am   =   AdM . searchAdminByNumber ( number ) ; \\n           if   ( am   !=   null )   { \\n             session . setAttribute ( \\\"amm\\\" ,   am ) ; \\n\\n             AccessManager   AM   =   new   AccessManager ( ) ; \\n             Access   ac   =   AM . getAccess ( am . getLogin ( ) ) ; \\n             session . setAttribute ( \\\"acc\\\" ,   ac ) ; \\n\\n             rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=delete&page=administrator\\\" ) ; \\n             rd . forward ( request ,   response ) ; \\n           }   else   { \\n             ris   =   \\\"La number non corrisponde ad un administrator\\\" ; \\n             request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n             rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n             rd . forward ( request ,   response ) ; \\n           } \\n         }   else   {    //Se gli attributi sono presenti procedo con la deletezione \\n\\n           AccessManager   AM   =   new   AccessManager ( ) ; \\n           AdminManager   AdM   =   new   AdminManager ( ) ; \\n\\n           Access   ac   =   ( Access )   session . getAttribute ( \\\"acc\\\" ) ; \\n           Administrator   am   =   ( Administrator )   session . getAttribute ( \\\"amm\\\" ) ; \\n\\n           String   number   =   am . getNumber ( ) ; \\n           String   login   =   ac . getLogin ( ) ; \\n\\n           String   risCanc   =   AdM . deleteAdministrator ( number ) ;    //provo ad effettuare la deletezione \\n\\n           if   ( risCanc . equals ( \\n               \\\"ok\\\" ) )   {   // controllo che l'administrator non � unique ed � state deleteto \\n             if   ( AM . deleteAccess ( login ) )   {   //delete l'access corrspondente \\n               ris   =   \\\"ok\\\" ; \\n               request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n               rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=riuscita\\\" ) ; \\n             }   else   { \\n               ris   =   \\\"fallita\\\" ; \\n               request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n               rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n             } \\n           }   else   { \\n             if   ( risCanc . equals ( \\\"unique\\\" ) )   //se l'administrator � unique non � state deleteto \\n               ris   =   \\\"Non si pu� deletere l'ultimo administrator\\\" ; \\n             else \\n               ris   =   \\\"fallita\\\" ; \\n             request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n             rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n           } \\n           rd . forward ( request ,   response ) ; \\n           session . removeAttribute ( \\\"amm\\\" ) ; \\n           session . removeAttribute ( \\\"acc\\\" ) ; \\n         } \\n       }   catch   ( DbException   e )   { \\n         ris   =   e . getMessage ( ) ; \\n         request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n         rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n         rd . forward ( request ,   response ) ; \\n       } \\n     }   else   { \\n       String   url   =   \\\"/myDoc/workers/Access.jsp\\\" ; \\n       response . sendRedirect ( url ) ; \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletEliminaAmministratore.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

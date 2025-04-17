@@ -1,0 +1,59 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: data_preprocessor.py
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="data_preprocessor_py.ast.json" />
+
+## `clean_data()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** Python  
+      **Start Line:** 1  
+      **End Line:** 2  
+      
+      
+      
+      ```python
+      def clean_data(data):
+    return [item.strip().lower() for item in data if isinstance(item, str)]
+      ```
+      
+## `compute_average()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** Python  
+      **Start Line:** 4  
+      **End Line:** 7  
+      
+      
+      
+      ```python
+      def compute_average(numbers):
+    if not numbers:
+        return 0
+    return sum(numbers) / len(numbers)
+      ```
+      
+## `filter_outliers()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** Python  
+      **Start Line:** 9  
+      **End Line:** 11  
+      
+      
+      
+      ```python
+      def filter_outliers(data, threshold=2):
+    mean = compute_average(data)
+    return [x for x in data if abs(x - mean) &lt; threshold]
+      ```
+      

@@ -1,0 +1,76 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: ServletLogin.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="ServletLogin_java.ast.json" />
+
+## `doPost()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** void  
+      **Language:** Java  
+      **Start Line:** 30  
+      **End Line:** 84  
+      
+      
+      
+      ```java
+      { 
+     int   flag   =   - 1 ; 
+     String   login   =   request . getParameter ( "login" ) ; 
+     String   password   =   request . getParameter ( "password" ) ; 
+     String   type   =   request . getParameter ( "type" ) ; 
+
+     HttpSession   session   =   request . getSession ( true ) ; 
+     try   { 
+       AccessManager   AM   =   new   AccessManager ( ) ; 
+       String   url ; 
+
+       Access   ac   =   AM . getAccess ( login ) ; 
+
+       if   ( type   !=   null )   {    //Se type � diverso da null la servlet � stata invocata dal lato citizen 
+         flag   =   0 ; 
+         if   ( AM . checkAccess ( login ,   password )   &&   ac . getType ( ) . equals ( "Citizen" ) )   { 
+
+           CitizenManager   CM   =   new   CitizenManager ( ) ; 
+           Citizen   c   =   CM . getCitizenByLogin ( login ) ; 
+           CIManager   ciM   =   new   CIManager ( ) ; 
+           IdentityCard   ci   =   ciM . getCardByIdCStri ( c . getIdCitizen ( ) ) ; 
+           session . setAttribute ( "c" ,   c ) ; 
+           session . setAttribute ( "ci" ,   ci ) ; 
+           url   =   "/myDoc/user/home.jsp" ; 
+         }   else 
+           url   =   "/myDoc/user/home.jsp?error=e" ; 
+       }   else   {    //Se type � null la servlet � stata invocata dal lato administrator/employee 
+         flag   =   1 ; 
+         if   ( AM . checkAccess ( login ,   password )   &&   ! ac . getType ( ) . equals ( "Citizen" ) )   { 
+           session . setAttribute ( "login" ,   ac . getLogin ( ) ) ; 
+           session . setAttribute ( "type" ,   ac . getType ( ) ) ; 
+           if   ( ac . getType ( ) . equals ( "Employee" ) )   { 
+             EmployeeManager   IM   =   new   EmployeeManager ( ) ; 
+             Employee   imp   =   IM . getEmployeeByLogin ( login ) ; 
+             session . setAttribute ( "imp" ,   imp ) ; 
+           }   else   if   ( ac . getType ( ) . equals ( "Administrator" ) )   { 
+             AdminManager   AdM   =   new   AdminManager ( ) ; 
+             Administrator   am   =   AdM . getAdministratorByLogin ( login ) ; 
+             session . setAttribute ( "am" ,   am ) ; 
+           } 
+           url   =   "/myDoc/workers/index.jsp" ; 
+         }   else 
+           url   =   "/myDoc/workers/Access.jsp?error=e" ; 
+       } 
+       response . sendRedirect ( url ) ; 
+     }   catch   ( DbException   e )   { 
+       String   url ; 
+       if   ( flag   ==   1 ) 
+         url   =   "/myDoc/workers/Access.jsp?error="   +   e . getMessage ( ) ; 
+       else 
+         url   =   "/myDoc/user/home.jsp?error="   +   e . getMessage ( ) ; 
+       response . sendRedirect ( url ) ; 
+     } 
+   }
+      ```
+      

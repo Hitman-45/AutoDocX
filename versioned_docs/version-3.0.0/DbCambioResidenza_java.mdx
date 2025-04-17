@@ -1,0 +1,45 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: DbCambioResidenza.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="DbCambioResidenza_java.ast.json" />
+
+## `changeResidence()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** boolean  
+      **Language:** Java  
+      **Start Line:** 37  
+      **End Line:** 39  
+      
+      
+      
+      ```java
+      { 
+     return   new   DbIdentityCard ( ) . deleteIdentityCard ( cod ) ; 
+   }
+      ```
+      
+## `changeResidenceIn()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** IdentityCard  
+      **Language:** Java  
+      **Start Line:** 56  
+      **End Line:** 61  
+      
+      
+      
+      ```java
+      { 
+     if   ( new   DbIdentityCard ( ) . modifyResidenceIdentityCard ( cod ,   v ,   nc ) ) 
+       return   new   DbIdentityCard ( ) . searchIdentityCardByNumber ( cod ) ; 
+     else 
+       return   null ; 
+   }
+      ```
+      

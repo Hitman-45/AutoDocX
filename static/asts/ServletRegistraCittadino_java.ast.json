@@ -1,0 +1,56 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"doPost\""
+            },
+            {
+              "name": "parameters: \"(HttpServletRequestrequest,HttpServletResponseresponse)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 35"
+            },
+            {
+              "name": "end_line: 93"
+            },
+            {
+              "name": "body_start: 36"
+            },
+            {
+              "name": "body_end: 93"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     RequestDispatcher   rd   =   null ; \\n     ServletContext   sc   =   getServletContext ( ) ; \\n     String   ris ; \\n     try   { \\n       name   =   request . getParameter ( \\\"name\\\" ) ; \\n       surname   =   request . getParameter ( \\\"surname\\\" ) ; \\n       email   =   request . getParameter ( \\\"email\\\" ) ; \\n       ci   =   request . getParameter ( \\\"ci\\\" ) ; \\n       cf   =   request . getParameter ( \\\"cf\\\" ) . toUpperCase ( ) ; \\n       login   =   request . getParameter ( \\\"login\\\" ) ; \\n       password   =   request . getParameter ( \\\"password\\\" ) ; \\n       type   =   \\\"Citizen\\\" ; \\n\\n       CitizenManager   CM   =   new   CitizenManager ( ) ; \\n       CIManager   CIM   =   new   CIManager ( ) ; \\n       AccessManager   AM   =   new   AccessManager ( ) ; \\n       IdentityCard   CI   =   CIM . getCardByNumber ( ci ) ; \\n\\n       if   ( CI   !=   null )   { \\n         if   ( ! AM . checkLogin ( login ) )   { \\n           Access   ac   =   new   Access ( login ,   password ,   type ) ; \\n           Citizen   c   =   CM . getCitizenById ( CI . id ( ) ) ; \\n           if   ( c . getFiscalCode ( ) . equals ( cf )   &&   c . getSurname ( ) . equals ( surname )   &&   c . getName ( ) \\n               . equals ( name ) )   { \\n             if   ( AM . enterAccess ( ac )   &&   CM . modifyLogin ( c . getIdCitizen ( ) ,   login )   &&   CM . modifyEmail ( \\n                 c . getIdCitizen ( ) ,   email ) )   { \\n               ris   =   \\\"ok\\\" ; \\n               request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n               rd   =   sc . getRequestDispatcher ( \\\"/user/home.jsp?func=operazione&page=riuscita\\\" ) ; \\n             }   else   { \\n               ris   =   \\\"fallita\\\" ; \\n               request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n               rd   =   sc . getRequestDispatcher ( \\\"/user/home.jsp?func=operazione&page=fallita\\\" ) ; \\n             } \\n           }   else   { \\n             ris   =   \\\"I dati inseriti non corrispondono\\\" ; \\n             request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n             rd   =   sc . getRequestDispatcher ( \\\"/user/home.jsp?func=operazione&page=fallita\\\" ) ; \\n           } \\n         }   else   { \\n           ris   =   \\\"Siamo spiacenti, la login � gi� presente\\\" ; \\n           request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n           rd   =   sc . getRequestDispatcher ( \\\"/user/home.jsp?func=operazione&page=fallita\\\" ) ; \\n         } \\n       }   else   { \\n         ris   =   \\\"Siamo spiacenti, il codice della carta d'identit� non� presente nel database\\\" ; \\n         request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n         rd   =   sc . getRequestDispatcher ( \\\"/user/home.jsp?func=operazione&page=fallita\\\" ) ; \\n       } \\n       rd . forward ( request ,   response ) ; \\n     }   catch   ( DbException   e )   { \\n       ris   =   e . getMessage ( ) ; \\n       request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n       rd   =   sc . getRequestDispatcher ( \\\"/user/home.jsp?func=operazione&page=fallita\\\" ) ; \\n       rd . forward ( request ,   response ) ; \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletRegistraCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

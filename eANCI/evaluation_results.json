@@ -1,0 +1,165 @@
+{
+    "results": [
+        {
+            "file_name": "EA1.txt",
+            "expected_classes": [
+                "AccessManager.java",
+                "Accesso.java",
+                "AdminManager.java",
+                "Amministratore.java",
+                "DbAccesso.java",
+                "DbAmministratore.java",
+                "DbConnection.java",
+                "DbException.java",
+                "ServletAnnulla.java",
+                "ServletLogin.java",
+                "ServletMostraAccesso.java"
+            ],
+            "llm_classes": [
+                "AccessManager.java",
+                "Accesso.java",
+                "AdminManager.java",
+                "Amministratore.java",
+                "DbAccesso.java",
+                "DbAmministratore.java",
+                "ServletInserisciAmministratore.java",
+                "ServletLogin.java",
+                "ServletModificaAmministratore.java",
+                "ServletMostraAccesso.java",
+                "ServletMostraAccessoA.java"
+            ]
+        },
+        {
+            "file_name": "EA2.txt",
+            "expected_classes": [
+                "AccessManager.java",
+                "Accesso.java",
+                "AdminManager.java",
+                "CIManager.java",
+                "CartaIdentita.java",
+                "Cittadino.java",
+                "CittadinoManager.java",
+                "DbAccesso.java",
+                "DbCartaIdentita.java",
+                "DbCittadino.java",
+                "DbComune.java",
+                "DbConnection.java",
+                "ServletAnnulla.java",
+                "ServletLogin.java",
+                "ServletMostraAccessoA.java"
+            ],
+            "llm_classes": [
+                "AccessManager.java",
+                "Accesso.java",
+                "CIManager.java",
+                "CittadinoManager.java",
+                "DbCambioResidenza.java",
+                "DbCittadino.java",
+                "ServletLogin.java",
+                "ServletLogout.java",
+                "ServletMostraAccessoA.java",
+                "ServletRecuperoPassword.java",
+                "ServletRegistraCittadino.java"
+            ]
+        },
+        {
+            "file_name": "EA3.txt",
+            "expected_classes": [
+                "AccessManager.java",
+                "Accesso.java",
+                "AdminManager.java",
+                "DbAccesso.java",
+                "DbImpiegato.java",
+                "Impiegato.java",
+                "ImpiegatoManager.java",
+                "ServletAnnulla.java",
+                "ServletLogin.java",
+                "ServletMostraAccesso.java"
+            ],
+            "llm_classes": [
+                "AccessManager.java",
+                "Accesso.java",
+                "Amministratore.java",
+                "CittadinoManager.java",
+                "DbAccesso.java",
+                "DbAmministratore.java",
+                "DbImpiegato.java",
+                "ImpiegatoManager.java",
+                "ServletLogin.java",
+                "ServletLogout.java",
+                "ServletMostraAccesso.java"
+            ]
+        },
+        {
+            "file_name": "EA4.txt",
+            "expected_classes": [
+                "AccessManager.java",
+                "Accesso.java",
+                "CIManager.java",
+                "CartaIdentita.java",
+                "Cittadino.java",
+                "CittadinoManager.java",
+                "DbAccesso.java",
+                "DbCartaIdentita.java",
+                "DbCittadino.java",
+                "DbConnection.java",
+                "DbException.java",
+                "DbNucleoFamiliare.java",
+                "NucleoFamiliare.java",
+                "NucleoFamiliareManager.java",
+                "ServletAnnulla.java",
+                "ServletEliminaCittadino.java",
+                "ServletModificaCittadino.java",
+                "ServletRicercaCittadino.java",
+                "ServletStatoDiFamiglia.java"
+            ],
+            "llm_classes": [
+                "CartaIdentita.java",
+                "Cittadino.java",
+                "Comune.java",
+                "DbCambioResidenza.java",
+                "DbCartaIdentita.java",
+                "DbCittadino.java",
+                "DbComune.java",
+                "NucleoFamiliare.java",
+                "ServletAnnulla.java",
+                "ServletEliminaCittadino.java",
+                "ServletModificaCittadino.java"
+            ]
+        },
+        {
+            "file_name": "EA5.txt",
+            "expected_classes": [
+                "AccessManager.java",
+                "Accesso.java",
+                "AdminManager.java",
+                "DbAccesso.java",
+                "DbConnection.java",
+                "DbException.java",
+                "DbImpiegato.java",
+                "Impiegato.java",
+                "ImpiegatoManager.java",
+                "ServletAnnulla.java",
+                "ServletEliminaImpiegato.java"
+            ],
+            "llm_classes": [
+                "AccessManager.java",
+                "AdminManager.java",
+                "Amministratore.java",
+                "DbAmministratore.java",
+                "DbCambioResidenza.java",
+                "DbImpiegato.java",
+                "Impiegato.java",
+                "ImpiegatoManager.java",
+                "ServletEliminaAmministratore.java",
+                "ServletEliminaCittadino.java",
+                "ServletEliminaImpiegato.java"
+            ]
+        }
+    ],
+    "scores": {
+        "precision": 0.6545454545454545,
+        "recall": 0.5454545454545454,
+        "f1": 0.5950413223140496
+    }
+}

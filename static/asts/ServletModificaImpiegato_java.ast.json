@@ -1,0 +1,56 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"doPost\""
+            },
+            {
+              "name": "parameters: \"(HttpServletRequestrequest,HttpServletResponseresponse)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 35"
+            },
+            {
+              "name": "end_line: 106"
+            },
+            {
+              "name": "body_start: 36"
+            },
+            {
+              "name": "body_end: 106"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     HttpSession   session   =   request . getSession ( ) ; \\n     if   ( session \\n         !=   null )   {    //Se la sessione� nulla effettua il redirect alla pagina di autenticazione \\n       ServletContext   sc   =   getServletContext ( ) ; \\n       RequestDispatcher   rd   =   null ; \\n       String   ris ; \\n       try   { \\n         //Se gli attributi di sessione amm e acc sono nulli devo effettuare la search \\n         if   ( session . getAttribute ( \\\"amm\\\" )   ==   null   &&   session . getAttribute ( \\\"acc\\\" )   ==   null )   { \\n           number   =   request . getParameter ( \\\"number\\\" ) ; \\n           EmployeeManager   IM   =   new   EmployeeManager ( ) ; \\n           Employee   imp   =   IM . searchEmployeeByNumber ( number ) ; \\n           if   ( imp   !=   null )   { \\n             session . setAttribute ( \\\"amm\\\" ,   imp ) ; \\n\\n             AccessManager   AM   =   new   AccessManager ( ) ; \\n             Access   ac   =   AM . getAccess ( imp . getLogin ( ) ) ; \\n             session . setAttribute ( \\\"acc\\\" ,   ac ) ; \\n\\n             rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=modify&page=employee\\\" ) ; \\n             rd . forward ( request ,   response ) ; \\n           }   else   { \\n             ris   =   \\\"La number non corrisponde ad un employee\\\" ; \\n             request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n             rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n             rd . forward ( request ,   response ) ; \\n           } \\n         }   else   { \\n           name   =   request . getParameter ( \\\"name\\\" ) ; \\n           surname   =   request . getParameter ( \\\"surname\\\" ) ; \\n           email   =   request . getParameter ( \\\"email\\\" ) ; \\n           number   =   request . getParameter ( \\\"number\\\" ) ; \\n           login   =   request . getParameter ( \\\"login\\\" ) ; \\n           password   =   request . getParameter ( \\\"password\\\" ) ; \\n           type   =   request . getParameter ( \\\"type\\\" ) ; \\n\\n           AccessManager   AM   =   new   AccessManager ( ) ; \\n           EmployeeManager   IM   =   new   EmployeeManager ( ) ; \\n\\n           Access   ac   =   new   Access ( login ,   password ,   type ) ; \\n           Employee   imp   =   new   Employee ( name ,   surname ,   number ,   email ,   login ) ; \\n           Employee   impOld   =   ( Employee )   session . getAttribute ( \\\"amm\\\" ) ; \\n\\n           if   ( AM . editAccess ( impOld . getLogin ( ) ,   ac )   &&   IM . modifyEmployee ( impOld . getNumber ( ) , \\n               imp ) )   {    //procedo con la modify dei dati \\n             //controllando l'esito \\n             ris   =   \\\"ok\\\" ; \\n             request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n             rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=riuscita\\\" ) ; \\n\\n           }   else   { \\n             ris   =   \\\"fallita\\\" ; \\n             request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n             rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n           } \\n           rd . forward ( request ,   response ) ; \\n           session . removeAttribute ( \\\"amm\\\" ) ; \\n           session . removeAttribute ( \\\"acc\\\" ) ; \\n         } \\n       }   catch   ( DbException   e )   { \\n         ris   =   e . getMessage ( ) ; \\n         request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n         rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n         rd . forward ( request ,   response ) ; \\n       } \\n     }   else   { \\n       String   url   =   \\\"/myDoc/workers/Access.jsp\\\" ; \\n       response . sendRedirect ( url ) ; \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletModificaImpiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,470 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"searchIdentityCardByNumber\""
+            },
+            {
+              "name": "parameters: \"(Stringcod)\""
+            },
+            {
+              "name": "return_type: \"IdentityCard\""
+            },
+            {
+              "name": "start_line: 35"
+            },
+            {
+              "name": "end_line: 80"
+            },
+            {
+              "name": "body_start: 35"
+            },
+            {
+              "name": "body_end: 80"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     IdentityCard   res   =   null ; \\n     ResultSet   rs   =   null ; \\n     PreparedStatement   stmt   =   null ; \\n     boolean   e ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\\"SELECT * FROM identitycard WHERE number = ?\\\" ) ; \\n       stmt . setString ( 1 ,   cod ) ; \\n       rs   =   stmt . executeQuery ( ) ; \\n       if   ( rs . next ( )   ==   true )   { \\n         String   num   =   rs . getString ( \\\"number\\\" ) ; \\n         int   city   =   rs . getInt ( \\\"citizen\\\" ) ; \\n         String   citizenship   =   rs . getString ( \\\"citizenship\\\" ) ; \\n         String   residence   =   rs . getString ( \\\"residence\\\" ) ; \\n         String   street   =   rs . getString ( \\\"street\\\" ) ; \\n         int   numciv   =   rs . getInt ( \\\"civicNumber \\\" ) ; \\n         String   maritalStatus   =   rs . getString ( \\\"maritalStatus\\\" ) ; \\n         String   profession   =   rs . getString ( \\\"profession\\\" ) ; \\n         double   height   =   rs . getDouble ( \\\"height\\\" ) ; \\n         String   hair   =   rs . getString ( \\\"hair\\\" ) ; \\n         String   eyes   =   rs . getString ( \\\"eyes\\\" ) ; \\n         String   particularSigns   =   rs . getString ( \\\"particularSigns\\\" ) ; \\n         java . util . Date   releaseDate   =   rs . getDate ( \\\"releaseDate\\\" ) ; \\n         java . util . Date   expiryDate   =   rs . getDate ( \\\"expiryDate\\\" ) ; \\n         int   esp   =   rs . getInt ( \\\"validExpatriation\\\" ) ; \\n         if   ( esp   ==   1 ) \\n           e   =   true ; \\n         else \\n           e   =   false ; \\n         res   =   new   IdentityCard ( num ,   city ,   citizenship ,   residence ,   street ,   numciv ,   maritalStatus , \\n             profession ,   height ,   hair ,   eyes ,   particularSigns ,   releaseDate ,   expiryDate ,   e ) ; \\n       } \\n       return   res ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Error searching for an identity card by its number\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e1 )   { \\n         throw   new   DbException ( \\\"Error searching for an identity card by its number\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"deleteIdentityCard\""
+            },
+            {
+              "name": "parameters: \"(Stringcod)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 90"
+            },
+            {
+              "name": "end_line: 107"
+            },
+            {
+              "name": "body_start: 90"
+            },
+            {
+              "name": "body_end: 107"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   stmt   =   null ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\\"DELETE FROM identitycard WHERE number = ?\\\" ) ; \\n       stmt . setString ( 1 ,   cod ) ; \\n       int   ret   =   stmt . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Identity card deletion error\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Identity card deletion error\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"registerIdentityCard\""
+            },
+            {
+              "name": "parameters: \"(IdentityCardc)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 117"
+            },
+            {
+              "name": "end_line: 172"
+            },
+            {
+              "name": "body_start: 117"
+            },
+            {
+              "name": "body_end: 172"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     int   esp ; \\n     String   num   =   c . getNumber ( ) ; \\n     int   city   =   c . id ( ) ; \\n     String   citizenship   =   c . getCitizenship ( ) ; \\n     String   residence   =   c . getResidence ( ) ; \\n     String   street   =   c . getStreet ( ) ; \\n     int   numCiv   =   c . getCivicNumber ( ) ; \\n     String   stateCiv   =   c . getMaritalStatus ( ) ; \\n     String   profession   =   c . getProfession ( ) ; \\n     double   height   =   c . getHeight ( ) ; \\n     String   hair   =   c . getHair ( ) ; \\n     String   eyes   =   c . getEyes ( ) ; \\n     String   particularSigns   =   c . getParticularSigns ( ) ; \\n     java . util . Date   releaseDate   =   c . getReleaseDate ( ) ; \\n     java . util . Date   expiryDate   =   c . getExpiryDate ( ) ; \\n     if   ( c . isValidExpatriation ( ) ) \\n       esp   =   1 ; \\n     else \\n       esp   =   0 ; \\n\\n     PreparedStatement   stmt   =   null ; \\n\\n     try   { \\n       stmt   =   connection . prepareStatement ( \\n           \\\"INSERT INTO identitycard VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\\\" ) ; \\n       stmt . setString ( 1 ,   num ) ; \\n       stmt . setInt ( 2 ,   city ) ; \\n       stmt . setString ( 3 ,   citizenship ) ; \\n       stmt . setString ( 4 ,   residence ) ; \\n       stmt . setString ( 5 ,   street ) ; \\n       stmt . setInt ( 6 ,   numCiv ) ; \\n       stmt . setString ( 7 ,   stateCiv ) ; \\n       stmt . setString ( 8 ,   profession ) ; \\n       stmt . setDouble ( 9 ,   height ) ; \\n       stmt . setString ( 10 ,   hair ) ; \\n       stmt . setString ( 11 ,   eyes ) ; \\n       stmt . setString ( 12 ,   particularSigns ) ; \\n       stmt . setDate ( 13 ,   new   java . sql . Date ( releaseDate . getYear ( )   -   1900 ,   releaseDate . getMonth ( )   -   1 , \\n           releaseDate . getDate ( ) ) ) ; \\n       stmt . setDate ( 14 ,   new   java . sql . Date ( expiryDate . getYear ( )   -   1900 ,   expiryDate . getMonth ( )   -   1 , \\n           expiryDate . getDate ( ) ) ) ; \\n       stmt . setInt ( 15 ,   esp ) ; \\n\\n       return   ( stmt . executeUpdate ( )   ==   1 ) ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"ID card insertion error� \\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e1 )   { \\n         throw   new   DbException ( \\\"Error searching for an identity card by its number\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"modifyStreetIdentityCard\""
+            },
+            {
+              "name": "parameters: \"(Stringcod,Stringv)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 184"
+            },
+            {
+              "name": "end_line: 202"
+            },
+            {
+              "name": "body_start: 184"
+            },
+            {
+              "name": "body_end: 202"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   stmt   =   null ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\\"UPDATE identitycard SET street = ? WHERE number = ?\\\" ) ; \\n       stmt . setString ( 1 ,   v ) ; \\n       stmt . setString ( 2 ,   cod ) ; \\n       int   ret   =   stmt . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Error modify street ID card\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error modify street ID card\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"modifyCivicNumberIdentityCard\""
+            },
+            {
+              "name": "parameters: \"(Stringcod,intnc)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 215"
+            },
+            {
+              "name": "end_line: 234"
+            },
+            {
+              "name": "body_start: 215"
+            },
+            {
+              "name": "body_end: 234"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   stmt   =   null ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\n           \\\"UPDATE identitycard SET civicNumber  = ? WHERE number = ?\\\" ) ; \\n       stmt . setInt ( 1 ,   nc ) ; \\n       stmt . setString ( 2 ,   cod ) ; \\n       int   ret   =   stmt . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Error modify civic number identity card\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error modify civic number identity card\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"modifyResidenceIdentityCard\""
+            },
+            {
+              "name": "parameters: \"(Stringcod,Stringstreet,intnc)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 247"
+            },
+            {
+              "name": "end_line: 267"
+            },
+            {
+              "name": "body_start: 247"
+            },
+            {
+              "name": "body_end: 267"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   stmt   =   null ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\n           \\\"UPDATE identitycard SET street = ?, civicNumber  = ? WHERE number = ?\\\" ) ; \\n       stmt . setString ( 1 ,   street ) ; \\n       stmt . setInt ( 2 ,   nc ) ; \\n       stmt . setString ( 3 ,   cod ) ; \\n       int   ret   =   stmt . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Error modify residence identity card� \\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error modify residence identity card� \\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"modifyReleaseDateIdentityCard\""
+            },
+            {
+              "name": "parameters: \"(Stringcod,java.util.Dated)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 280"
+            },
+            {
+              "name": "end_line: 299"
+            },
+            {
+              "name": "body_start: 280"
+            },
+            {
+              "name": "body_end: 299"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   stmt   =   null ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\n           \\\"UPDATE identitycard SET releaseDate = ? WHERE number = ?\\\" ) ; \\n       stmt . setString ( 2 ,   cod ) ; \\n       stmt . setDate ( 1 ,   new   java . sql . Date ( d . getYear ( )   -   1900 ,   d . getMonth ( )   -   1 ,   d . getDate ( ) ) ) ; \\n       int   ret   =   stmt . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Error modify identity card release date \\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error modify identity card release date \\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"modifyExpiryDateIdentityCard\""
+            },
+            {
+              "name": "parameters: \"(Stringcod,java.util.Dated)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 313"
+            },
+            {
+              "name": "end_line: 331"
+            },
+            {
+              "name": "body_start: 313"
+            },
+            {
+              "name": "body_end: 331"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   stmt   =   null ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\\"UPDATE identitycard SET expiryDate = ? WHERE number = ?\\\" ) ; \\n       stmt . setString ( 2 ,   cod ) ; \\n       stmt . setDate ( 1 ,   new   java . sql . Date ( d . getYear ( )   -   1900 ,   d . getMonth ( )   -   1 ,   d . getDate ( ) ) ) ; \\n       int   ret   =   stmt . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Error modify identity card expiration date\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error modify identity card expiration date\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[8]",
+          "children": [
+            {
+              "name": "function_name: \"modifyValidExpatriation\""
+            },
+            {
+              "name": "parameters: \"(Stringcod,booleanesp)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 345"
+            },
+            {
+              "name": "end_line: 369"
+            },
+            {
+              "name": "body_start: 345"
+            },
+            {
+              "name": "body_end: 369"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   stmt   =   null ; \\n     int   e ; \\n     if   ( esp   ==   true ) \\n       e   =   1 ; \\n     else \\n       e   =   0 ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\n           \\\"UPDATE identitycard SET validExpatriation = ? WHERE number = ?\\\" ) ; \\n       stmt . setString ( 2 ,   cod ) ; \\n       stmt . setInt ( 1 ,   e ) ; \\n       int   ret   =   stmt . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Error modify expatriation identity card validity\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e1 )   { \\n         throw   new   DbException ( \\\"Error modify expatriation identity card validity\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[9]",
+          "children": [
+            {
+              "name": "function_name: \"searchIdentityCardByOwner\""
+            },
+            {
+              "name": "parameters: \"(intidC)\""
+            },
+            {
+              "name": "return_type: \"IdentityCard\""
+            },
+            {
+              "name": "start_line: 377"
+            },
+            {
+              "name": "end_line: 422"
+            },
+            {
+              "name": "body_start: 377"
+            },
+            {
+              "name": "body_end: 422"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     IdentityCard   res   =   null ; \\n     ResultSet   rs   =   null ; \\n     PreparedStatement   stmt   =   null ; \\n     boolean   e ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\\"SELECT * FROM identitycard WHERE citizen = ?\\\" ) ; \\n       stmt . setInt ( 1 ,   idC ) ; \\n       rs   =   stmt . executeQuery ( ) ; \\n       if   ( rs . next ( )   ==   true )   { \\n         String   num   =   rs . getString ( \\\"number\\\" ) ; \\n         int   city   =   rs . getInt ( \\\"citizen\\\" ) ; \\n         String   citizenship   =   rs . getString ( \\\"citizenship\\\" ) ; \\n         String   residence   =   rs . getString ( \\\"residence\\\" ) ; \\n         String   street   =   rs . getString ( \\\"street\\\" ) ; \\n         int   numciv   =   rs . getInt ( \\\"civicNumber \\\" ) ; \\n         String   maritalStatus   =   rs . getString ( \\\"maritalStatus\\\" ) ; \\n         String   profession   =   rs . getString ( \\\"profession\\\" ) ; \\n         double   height   =   rs . getDouble ( \\\"height\\\" ) ; \\n         String   hair   =   rs . getString ( \\\"hair\\\" ) ; \\n         String   eyes   =   rs . getString ( \\\"eyes\\\" ) ; \\n         String   particularSigns   =   rs . getString ( \\\"particularSigns\\\" ) ; \\n         java . util . Date   releaseDate   =   rs . getDate ( \\\"releaseDate\\\" ) ; \\n         java . util . Date   expiryDate   =   rs . getDate ( \\\"expiryDate\\\" ) ; \\n         int   esp   =   rs . getInt ( \\\"validExpatriation\\\" ) ; \\n         if   ( esp   ==   1 ) \\n           e   =   true ; \\n         else \\n           e   =   false ; \\n         res   =   new   IdentityCard ( num ,   city ,   citizenship ,   residence ,   street ,   numciv ,   maritalStatus , \\n             profession ,   height ,   hair ,   eyes ,   particularSigns ,   releaseDate ,   expiryDate ,   e ) ; \\n       } \\n       return   res ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"ID card search error via citizen id\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e1 )   { \\n         throw   new   DbException ( \\\"ID card search error via citizen id\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCartaIdentita.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

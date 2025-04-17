@@ -1,0 +1,700 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"registraCitizen\""
+            },
+            {
+              "name": "parameters: \"(Citizencity)\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 34"
+            },
+            {
+              "name": "end_line: 78"
+            },
+            {
+              "name": "body_start: 34"
+            },
+            {
+              "name": "body_end: 78"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   stmt   =   null ; \\n     int   a ; \\n     String   login   =   city . getLogin ( ) ; \\n     String   surname   =   city . getSurname ( ) ; \\n     String   name   =   city . getName ( ) ; \\n     java . util . Date   d   =   city . getDateOfBirth ( ) ; \\n     String   placeN   =   city . getPlaceOfBirth ( ) ; \\n     String   codF   =   city . getFiscalCode ( ) ; \\n     String   email   =   city . getEmail ( ) ; \\n     boolean   adv   =   city . isAdvertise ( ) ; \\n     int   nuclF   =   city . getFamily ( ) ; \\n     if   ( adv   ==   true ) \\n       a   =   1 ; \\n     else \\n       a   =   0 ; \\n     try   { \\n\\n       stmt   =   connection . prepareStatement ( \\\"INSERT INTO citizen VALUES (?,?,?,?,?,?,?,?,?,?)\\\" ) ; \\n       stmt . setInt ( 1 ,   0 ) ; \\n       stmt . setString ( 2 ,   codF ) ; \\n       stmt . setString ( 3 ,   surname ) ; \\n       stmt . setString ( 4 ,   name ) ; \\n       stmt . setDate ( 5 ,   new   java . sql . Date ( d . getYear ( )   -   1900 ,   d . getMonth ( )   -   1 ,   d . getDate ( ) ) ) ; \\n       stmt . setString ( 6 ,   placeN ) ; \\n       stmt . setString ( 7 ,   email ) ; \\n       stmt . setInt ( 8 ,   a ) ; \\n       if   ( nuclF   !=   0 ) \\n         stmt . setInt ( 9 ,   nuclF ) ; \\n       else \\n         stmt . setNull ( 9 ,   java . sql . Types . NULL ) ; \\n       stmt . setString ( 10 ,   login ) ; \\n       stmt . executeUpdate ( ) ; \\n       return   maxID ( ) ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Error inserting new citizen\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error inserting new citizen\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"modifyNameCitizen\""
+            },
+            {
+              "name": "parameters: \"(intidCitt,Stringnewname)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 90"
+            },
+            {
+              "name": "end_line: 107"
+            },
+            {
+              "name": "body_start: 90"
+            },
+            {
+              "name": "body_end: 107"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   stmt   =   null ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\\"UPDATE citizen SET name = ? WHERE idCitizen = ?\\\" ) ; \\n       stmt . setInt ( 2 ,   idCitt ) ; \\n       stmt . setString ( 1 ,   newname ) ; \\n       return   ( stmt . executeUpdate ( )   ==   1 ) ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Error modify citizen name \\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error modify citizen name \\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"modifySurnameCitizen\""
+            },
+            {
+              "name": "parameters: \"(intidCitt,Stringnewsurname)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 119"
+            },
+            {
+              "name": "end_line: 136"
+            },
+            {
+              "name": "body_start: 119"
+            },
+            {
+              "name": "body_end: 136"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   stmt   =   null ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\\"UPDATE citizen SET surname = ? WHERE idCitizen = ?\\\" ) ; \\n       stmt . setInt ( 2 ,   idCitt ) ; \\n       stmt . setString ( 1 ,   newsurname ) ; \\n       return   ( stmt . executeUpdate ( )   ==   1 ) ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Modify citizen surname error\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Modify citizen surname error\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"modifyFiscalCodeCitizen\""
+            },
+            {
+              "name": "parameters: \"(intidCitt,Stringnewcf)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 148"
+            },
+            {
+              "name": "end_line: 166"
+            },
+            {
+              "name": "body_start: 148"
+            },
+            {
+              "name": "body_end: 166"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   stmt   =   null ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\n           \\\"UPDATE citizen SET codicefiscale = ? WHERE idCitizen = ?\\\" ) ; \\n       stmt . setInt ( 2 ,   idCitt ) ; \\n       stmt . setString ( 1 ,   newcf ) ; \\n       return   ( stmt . executeUpdate ( )   ==   1 ) ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Modify citizen fiscal code error\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Modify citizen fiscal code error\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"modifyEmailCitizen\""
+            },
+            {
+              "name": "parameters: \"(intidCitt,Stringnewmail)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 178"
+            },
+            {
+              "name": "end_line: 195"
+            },
+            {
+              "name": "body_start: 178"
+            },
+            {
+              "name": "body_end: 195"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   stmt   =   null ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\\"UPDATE citizen SET eMail = ? WHERE idCitizen = ?\\\" ) ; \\n       stmt . setInt ( 2 ,   idCitt ) ; \\n       stmt . setString ( 1 ,   newmail ) ; \\n       return   ( stmt . executeUpdate ( )   ==   1 ) ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Modify citizen mail error\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Modify citizen mail error\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"modifyAdvertise\""
+            },
+            {
+              "name": "parameters: \"(intidCitt)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 205"
+            },
+            {
+              "name": "end_line: 236"
+            },
+            {
+              "name": "body_start: 205"
+            },
+            {
+              "name": "body_end: 236"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   stmt   =   null ; \\n     ResultSet   rs   =   null ; \\n     int   ret ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\\"SELECT advertise FROM citizen WHERE idCitizen = ?\\\" ) ; \\n       Statement   statement   =   connection . createStatement ( ) ; \\n       stmt . setInt ( 1 ,   idCitt ) ; \\n       rs   =   stmt . executeQuery ( ) ; \\n       rs . next ( ) ; \\n       int   adv   =   rs . getInt ( \\\"advertise\\\" ) ; \\n       if   ( adv   ==   0 ) \\n         ret   =   statement . executeUpdate ( \\n             \\\"UPDATE citizen SET advertise = 1 WHERE idCitizen = \\\"   +   idCitt ) ; \\n       else \\n         ret   =   statement . executeUpdate ( \\n             \\\"UPDATE citizen SET advertise = 0 WHERE idCitizen =\\\"   +   idCitt ) ; \\n\\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Modify citizen advertise error\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Modify citizen advertise error\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"deleteCitizen\""
+            },
+            {
+              "name": "parameters: \"(intidCitt)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 246"
+            },
+            {
+              "name": "end_line: 262"
+            },
+            {
+              "name": "body_start: 246"
+            },
+            {
+              "name": "body_end: 262"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   stmt   =   null ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\\"DELETE FROM citizen WHERE idCitizen = ?\\\" ) ; \\n       stmt . setInt ( 1 ,   idCitt ) ; \\n       return   ( stmt . executeUpdate ( )   ==   1 ) ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Delete citizen error\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Delete citizen error\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"getCitizenByCodice\""
+            },
+            {
+              "name": "parameters: \"(intidCitt)\""
+            },
+            {
+              "name": "return_type: \"Citizen\""
+            },
+            {
+              "name": "start_line: 273"
+            },
+            {
+              "name": "end_line: 313"
+            },
+            {
+              "name": "body_start: 273"
+            },
+            {
+              "name": "body_end: 313"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Citizen   res   =   null ; \\n     PreparedStatement   stmt   =   null ; \\n     ResultSet   rs   =   null ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\\"SELECT * FROM citizen WHERE idCitizen = ?\\\" ) ; \\n       stmt . setInt ( 1 ,   idCitt ) ; \\n       rs   =   stmt . executeQuery ( ) ; \\n       if   ( rs . next ( )   ==   true )   { \\n         boolean   adv ; \\n         int   idCitizen   =   rs . getInt ( \\\"idCitizen\\\" ) ; \\n         String   fiscalCode   =   rs . getString ( \\\"fiscalCode\\\" ) ; \\n         String   surname   =   rs . getString ( \\\"surname\\\" ) ; \\n         String   name   =   rs . getString ( \\\"name\\\" ) ; \\n         java . util . Date   dateOfBirth   =   rs . getDate ( \\\"dateOfBirth\\\" ) ; \\n         String   placeN   =   rs . getString ( \\\"placeOfBirth\\\" ) ; \\n         String   eMail   =   rs . getString ( \\\"eMail\\\" ) ; \\n         int   advertise   =   rs . getInt ( \\\"advertise\\\" ) ; \\n         int   family   =   rs . getInt ( \\\"family\\\" ) ; \\n         String   login   =   rs . getString ( \\\"login\\\" ) ; \\n         if   ( advertise   ==   1 ) \\n           adv   =   true ; \\n         else \\n           adv   =   false ; \\n         res   =   new   Citizen ( idCitizen ,   fiscalCode ,   surname ,   name ,   dateOfBirth ,   placeN ,   eMail ,   adv , \\n             family ,   login ) ; \\n       } \\n       return   res ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Search citizen by code error\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Search citizen by code error\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[8]",
+          "children": [
+            {
+              "name": "function_name: \"getCitizenByName\""
+            },
+            {
+              "name": "parameters: \"(Stringname,Stringsurname)\""
+            },
+            {
+              "name": "return_type: \"Collection<Citizen>\""
+            },
+            {
+              "name": "start_line: 325"
+            },
+            {
+              "name": "end_line: 367"
+            },
+            {
+              "name": "body_start: 325"
+            },
+            {
+              "name": "body_end: 367"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n\\n     Collection < Citizen >   res   =   new   ArrayList < Citizen > ( ) ; \\n     PreparedStatement   stmt   =   null ; \\n     ResultSet   rs   =   null ; \\n     boolean   adv ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\\"SELECT * FROM citizen WHERE name = ? AND surname = ?\\\" ) ; \\n       stmt . setString ( 1 ,   name ) ; \\n       stmt . setString ( 2 ,   surname ) ; \\n       rs   =   stmt . executeQuery ( ) ; \\n       while   ( rs . next ( ) )   { \\n         int   idCitizen   =   rs . getInt ( \\\"idCitizen\\\" ) ; \\n         String   fiscalCode   =   rs . getString ( \\\"fiscalCode\\\" ) ; \\n         String   surname   =   rs . getString ( \\\"surname\\\" ) ; \\n         String   name   =   rs . getString ( \\\"name\\\" ) ; \\n         java . util . Date   dateOfBirth   =   rs . getDate ( \\\"dateOfBirth\\\" ) ; \\n         String   placeN   =   rs . getString ( \\\"placeOfBirth\\\" ) ; \\n         String   eMail   =   rs . getString ( \\\"eMail\\\" ) ; \\n         int   advertise   =   rs . getInt ( \\\"advertise\\\" ) ; \\n         int   family   =   rs . getInt ( \\\"family\\\" ) ; \\n         String   login   =   rs . getString ( \\\"login\\\" ) ; \\n         if   ( advertise   ==   1 ) \\n           adv   =   true ; \\n         else \\n           adv   =   false ; \\n         res . add ( new   Citizen ( idCitizen ,   fiscalCode ,   surname ,   name ,   dateOfBirth ,   placeN ,   eMail ,   adv , \\n             family ,   login ) ) ; \\n       } \\n       return   res ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Error search citizens by name and surname\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error search citizens by name and surname\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[9]",
+          "children": [
+            {
+              "name": "function_name: \"modifyLogin\""
+            },
+            {
+              "name": "parameters: \"(intidC,StringnewLogin)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 378"
+            },
+            {
+              "name": "end_line: 407"
+            },
+            {
+              "name": "body_start: 378"
+            },
+            {
+              "name": "body_end: 407"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   stmt   =   null ; \\n     ResultSet   rs   =   null ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\\"UPDATE citizen SET login = ? WHERE idCitizen = ?\\\" ) ; \\n       stmt . setString ( 1 ,   newLogin ) ; \\n       stmt . setInt ( 2 ,   idC ) ; \\n       //rs = stmt.executeQuery(); \\n\\t\\t\\t /*if(rs.next())\\n\\t\\t\\t\\t{\\n\\t\\t\\t\\tString l = rs.getString(\\\"login\\\");\\n\\t\\t\\t\\tstmt = connection.prepareStatement(\\\"UPDATE access SET login = ? WHERE login = ?\\\");\\n\\t\\t\\t\\tstmt.setString(1, newLogin);\\n\\t\\t\\t\\tstmt.setString(2, l);*/ \\n       return   ( stmt . executeUpdate ( )   ==   1 ) ; \\n       //} \\n       //return false; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Modify login error\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Modify login error\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[10]",
+          "children": [
+            {
+              "name": "function_name: \"getCitizenByLogin\""
+            },
+            {
+              "name": "parameters: \"(Stringlog)\""
+            },
+            {
+              "name": "return_type: \"Citizen\""
+            },
+            {
+              "name": "start_line: 417"
+            },
+            {
+              "name": "end_line: 457"
+            },
+            {
+              "name": "body_start: 417"
+            },
+            {
+              "name": "body_end: 457"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Citizen   res   =   null ; \\n     PreparedStatement   stmt   =   null ; \\n     ResultSet   rs   =   null ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\\"SELECT * FROM citizen WHERE login = ?\\\" ) ; \\n       stmt . setString ( 1 ,   log ) ; \\n       rs   =   stmt . executeQuery ( ) ; \\n       if   ( rs . next ( )   ==   true )   { \\n         boolean   adv ; \\n         int   idCitizen   =   rs . getInt ( \\\"idCitizen\\\" ) ; \\n         String   fiscalCode   =   rs . getString ( \\\"fiscalCode\\\" ) ; \\n         String   surname   =   rs . getString ( \\\"surname\\\" ) ; \\n         String   name   =   rs . getString ( \\\"name\\\" ) ; \\n         java . util . Date   dateOfBirth   =   rs . getDate ( \\\"dateOfBirth\\\" ) ; \\n         String   placeN   =   rs . getString ( \\\"placeOfBirth\\\" ) ; \\n         String   eMail   =   rs . getString ( \\\"eMail\\\" ) ; \\n         int   advertise   =   rs . getInt ( \\\"advertise\\\" ) ; \\n         int   family   =   rs . getInt ( \\\"family\\\" ) ; \\n         String   login   =   rs . getString ( \\\"login\\\" ) ; \\n         if   ( advertise   ==   1 ) \\n           adv   =   true ; \\n         else \\n           adv   =   false ; \\n         res   =   new   Citizen ( idCitizen ,   fiscalCode ,   surname ,   name ,   dateOfBirth ,   placeN ,   eMail ,   adv , \\n             family ,   login ) ; \\n       } \\n       return   res ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Search citizen by login error\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Search citizen by login error\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[11]",
+          "children": [
+            {
+              "name": "function_name: \"maxID\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 465"
+            },
+            {
+              "name": "end_line: 486"
+            },
+            {
+              "name": "body_start: 465"
+            },
+            {
+              "name": "body_end: 486"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Statement   stmt   =   null ; \\n     ResultSet   rs   =   null ; \\n     try   { \\n       stmt   =   connection . createStatement ( ) ; \\n       rs   =   stmt . executeQuery ( \\\"SELECT max(idCitizen) as m FROM citizen;\\\" ) ; \\n       if   ( rs . next ( ) ) \\n         return   rs . getInt ( \\\"m\\\" ) ; \\n       throw   new   DbException ( \\\"MaxID execution error\\\" ) ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"MaxID execution error\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"MaxID execution error\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[12]",
+          "children": [
+            {
+              "name": "function_name: \"findIdCitizen\""
+            },
+            {
+              "name": "parameters: \"(Stringcf,Stringsurname,Stringname)\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 500"
+            },
+            {
+              "name": "end_line: 525"
+            },
+            {
+              "name": "body_start: 500"
+            },
+            {
+              "name": "body_end: 525"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   stmt   =   null ; \\n     ResultSet   rs   =   null ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\n           \\\"SELECT idCitizen AS id FROM citizen WHERE fiscalCode = ? AND name = ? AND surname = ?\\\" ) ; \\n       stmt . setString ( 1 ,   cf ) ; \\n       stmt . setString ( 2 ,   name ) ; \\n       stmt . setString ( 3 ,   surname ) ; \\n       rs   =   stmt . executeQuery ( ) ; \\n       if   ( rs . next ( ) ) \\n         return   rs . getInt ( \\\"id\\\" ) ; \\n       return   - 1 ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Citizen search id error via cf / name / surname\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Citizen search id error via cf / name / surname\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[13]",
+          "children": [
+            {
+              "name": "function_name: \"findFiscalCode\""
+            },
+            {
+              "name": "parameters: \"(intid)\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 534"
+            },
+            {
+              "name": "end_line: 558"
+            },
+            {
+              "name": "body_start: 534"
+            },
+            {
+              "name": "body_end: 558"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   stmt   =   null ; \\n     ResultSet   rs   =   null ; \\n     String   res   =   null ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\n           \\\"SELECT fiscalCode as cf FROM citizen WHERE idCitizen = ?\\\" ) ; \\n       stmt . setInt ( 1 ,   id ) ; \\n       rs   =   stmt . executeQuery ( ) ; \\n       if   ( rs . next ( ) ) \\n         res   =   rs . getString ( \\\"cf\\\" ) ; \\n       return   res ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Fiscal code search error by ID\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Fiscal code search error by ID\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[14]",
+          "children": [
+            {
+              "name": "function_name: \"modifyFamilyCitizen\""
+            },
+            {
+              "name": "parameters: \"(intidCitt,intnewnucleo)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 570"
+            },
+            {
+              "name": "end_line: 588"
+            },
+            {
+              "name": "body_start: 570"
+            },
+            {
+              "name": "body_end: 588"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   stmt   =   null ; \\n     try   { \\n       stmt   =   connection . prepareStatement ( \\\"UPDATE citizen SET family = ? WHERE idCitizen = ?\\\" ) ; \\n       stmt . setInt ( 2 ,   idCitt ) ; \\n       stmt . setInt ( 1 ,   newnucleo ) ; \\n       int   ret   =   stmt . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   exc )   { \\n       throw   new   DbException ( \\\"Error modify household citizen\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( stmt   !=   null ) \\n           stmt . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error modify household citizen\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

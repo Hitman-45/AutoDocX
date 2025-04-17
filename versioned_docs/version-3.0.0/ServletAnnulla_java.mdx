@@ -1,0 +1,34 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: ServletAnnulla.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="ServletAnnulla_java.ast.json" />
+
+## `doGet()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** void  
+      **Language:** Java  
+      **Start Line:** 18  
+      **End Line:** 30  
+      
+      
+      
+      ```java
+      { 
+     HttpSession   session   =   request . getSession ( ) ; 
+
+     session . removeAttribute ( "amm" ) ; 
+     session . removeAttribute ( "acc" ) ; 
+     session . removeAttribute ( "c" ) ; 
+     session . removeAttribute ( "newCapo" ) ; 
+     session . removeAttribute ( "city" ) ; 
+
+     String   url   =   "/myDoc/workers/index.jsp" ; 
+     response . sendRedirect ( url ) ; 
+   }
+      ```
+      

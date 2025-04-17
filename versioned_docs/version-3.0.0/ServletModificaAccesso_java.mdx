@@ -1,0 +1,74 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: ServletModificaAccesso.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="ServletModificaAccesso_java.ast.json" />
+
+## `doPost()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** void  
+      **Language:** Java  
+      **Start Line:** 30  
+      **End Line:** 82  
+      
+      
+      
+      ```java
+      { 
+     HttpSession   session   =   request . getSession ( ) ; 
+
+     if   ( session 
+         !=   null )   {    //Se la sessione � nulla effettua il redirect alla pagina di autenticazione 
+       ServletContext   sc   =   getServletContext ( ) ; 
+       RequestDispatcher   rd   =   null ; 
+       String   ris ; 
+       try   { 
+         login   =   request . getParameter ( "login" ) ; 
+         password   =   request . getParameter ( "password" ) ; 
+         cpassword   =   request . getParameter ( "cpassword" ) ; 
+         type   =   request . getParameter ( "type" ) ; 
+
+         AccessManager   AM   =   new   AccessManager ( ) ; 
+         Access   ac   =   new   Access ( login ,   password ,   type ) ; 
+
+         if   ( AM . editAccess ( login , 
+             ac ) )   {    //modifico i dati relativi all'access controllando che l'esito sia positivo 
+           ris   =   "ok" ; 
+           request . setAttribute ( "ris" ,   ris ) ; 
+           if   ( ac . getType ( ) . equals ( "Citizen" ) ) 
+             rd   =   sc . getRequestDispatcher ( "/user/home.jsp?func=operazione&page=riuscita" ) ; 
+           else 
+             rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=operazione&page=riuscita" ) ; 
+         }   else   { 
+           ris   =   "fallita" ; 
+           request . setAttribute ( "ris" ,   ris ) ; 
+           if   ( ac . getType ( ) . equals ( "Citizen" ) ) 
+             rd   =   sc . getRequestDispatcher ( "/user/home.jsp?func=operazione&page=fallita" ) ; 
+           else 
+             rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=operazione&page=fallita" ) ; 
+         } 
+         rd . forward ( request ,   response ) ; 
+       }   catch   ( DbException   e )   { 
+         ris   =   e . getMessage ( ) ; 
+         request . setAttribute ( "ris" ,   ris ) ; 
+         rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=operazione&page=fallita" ) ; 
+         rd . forward ( request ,   response ) ; 
+       } 
+     }   else   {    //questa servlet viene invocata sia dal lato citizen sia da amm/imp 
+       //quindi effettuo un controllo da quale url proviene la request 
+       //cosi posso effettuare il redirect alla pagina corretta 
+       String   from   =   request . getRequestURL ( ) . toString ( ) ; 
+       String   url ; 
+       if   ( from . contains ( "user" ) ) 
+         url   =   "/myDoc/user/home.jsp" ; 
+       else 
+         url   =   "/myDoc/workers/Access.jsp" ; 
+       response . sendRedirect ( url ) ; 
+     } 
+   }
+      ```
+      

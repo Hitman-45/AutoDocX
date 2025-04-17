@@ -1,0 +1,102 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"changeResidence\""
+            },
+            {
+              "name": "parameters: \"(Stringcod)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 37"
+            },
+            {
+              "name": "end_line: 39"
+            },
+            {
+              "name": "body_start: 37"
+            },
+            {
+              "name": "body_end: 39"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   new   DbIdentityCard ( ) . deleteIdentityCard ( cod ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCambioResidenza.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"changeResidenceIn\""
+            },
+            {
+              "name": "parameters: \"(Stringcod,Stringv,intnc)\""
+            },
+            {
+              "name": "return_type: \"IdentityCard\""
+            },
+            {
+              "name": "start_line: 56"
+            },
+            {
+              "name": "end_line: 61"
+            },
+            {
+              "name": "body_start: 56"
+            },
+            {
+              "name": "body_end: 61"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     if   ( new   DbIdentityCard ( ) . modifyResidenceIdentityCard ( cod ,   v ,   nc ) ) \\n       return   new   DbIdentityCard ( ) . searchIdentityCardByNumber ( cod ) ; \\n     else \\n       return   null ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbCambioResidenza.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

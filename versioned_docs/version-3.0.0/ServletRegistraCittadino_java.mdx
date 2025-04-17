@@ -1,0 +1,80 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: ServletRegistraCittadino.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="ServletRegistraCittadino_java.ast.json" />
+
+## `doPost()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** void  
+      **Language:** Java  
+      **Start Line:** 35  
+      **End Line:** 93  
+      
+      
+      
+      ```java
+      { 
+     RequestDispatcher   rd   =   null ; 
+     ServletContext   sc   =   getServletContext ( ) ; 
+     String   ris ; 
+     try   { 
+       name   =   request . getParameter ( "name" ) ; 
+       surname   =   request . getParameter ( "surname" ) ; 
+       email   =   request . getParameter ( "email" ) ; 
+       ci   =   request . getParameter ( "ci" ) ; 
+       cf   =   request . getParameter ( "cf" ) . toUpperCase ( ) ; 
+       login   =   request . getParameter ( "login" ) ; 
+       password   =   request . getParameter ( "password" ) ; 
+       type   =   "Citizen" ; 
+
+       CitizenManager   CM   =   new   CitizenManager ( ) ; 
+       CIManager   CIM   =   new   CIManager ( ) ; 
+       AccessManager   AM   =   new   AccessManager ( ) ; 
+       IdentityCard   CI   =   CIM . getCardByNumber ( ci ) ; 
+
+       if   ( CI   !=   null )   { 
+         if   ( ! AM . checkLogin ( login ) )   { 
+           Access   ac   =   new   Access ( login ,   password ,   type ) ; 
+           Citizen   c   =   CM . getCitizenById ( CI . id ( ) ) ; 
+           if   ( c . getFiscalCode ( ) . equals ( cf )   &&   c . getSurname ( ) . equals ( surname )   &&   c . getName ( ) 
+               . equals ( name ) )   { 
+             if   ( AM . enterAccess ( ac )   &&   CM . modifyLogin ( c . getIdCitizen ( ) ,   login )   &&   CM . modifyEmail ( 
+                 c . getIdCitizen ( ) ,   email ) )   { 
+               ris   =   "ok" ; 
+               request . setAttribute ( "ris" ,   ris ) ; 
+               rd   =   sc . getRequestDispatcher ( "/user/home.jsp?func=operazione&page=riuscita" ) ; 
+             }   else   { 
+               ris   =   "fallita" ; 
+               request . setAttribute ( "ris" ,   ris ) ; 
+               rd   =   sc . getRequestDispatcher ( "/user/home.jsp?func=operazione&page=fallita" ) ; 
+             } 
+           }   else   { 
+             ris   =   "I dati inseriti non corrispondono" ; 
+             request . setAttribute ( "ris" ,   ris ) ; 
+             rd   =   sc . getRequestDispatcher ( "/user/home.jsp?func=operazione&page=fallita" ) ; 
+           } 
+         }   else   { 
+           ris   =   "Siamo spiacenti, la login � gi� presente" ; 
+           request . setAttribute ( "ris" ,   ris ) ; 
+           rd   =   sc . getRequestDispatcher ( "/user/home.jsp?func=operazione&page=fallita" ) ; 
+         } 
+       }   else   { 
+         ris   =   "Siamo spiacenti, il codice della carta d'identit� non� presente nel database" ; 
+         request . setAttribute ( "ris" ,   ris ) ; 
+         rd   =   sc . getRequestDispatcher ( "/user/home.jsp?func=operazione&page=fallita" ) ; 
+       } 
+       rd . forward ( request ,   response ) ; 
+     }   catch   ( DbException   e )   { 
+       ris   =   e . getMessage ( ) ; 
+       request . setAttribute ( "ris" ,   ris ) ; 
+       rd   =   sc . getRequestDispatcher ( "/user/home.jsp?func=operazione&page=fallita" ) ; 
+       rd . forward ( request ,   response ) ; 
+     } 
+   }
+      ```
+      

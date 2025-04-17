@@ -1,0 +1,35 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: ServletLogout.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="ServletLogout_java.ast.json" />
+
+## `doGet()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** void  
+      **Language:** Java  
+      **Start Line:** 20  
+      **End Line:** 33  
+      
+      
+      
+      ```java
+      { 
+     HttpSession   session   =   request . getSession ( ) ; 
+     String   url ; 
+     Citizen   c   =   ( Citizen )   session . getAttribute ( "c" ) ; 
+
+     if   ( c   !=   null ) 
+       url   =   "/myDoc/user/home.jsp" ; 
+     else 
+       url   =   "/myDoc/workers/Access.jsp" ; 
+
+     session . invalidate ( ) ; 
+     response . sendRedirect ( url ) ; 
+   }
+      ```
+      

@@ -1,0 +1,234 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: shared_pointer/shared_pointer_test.cpp
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="shared_pointer_shared_pointer_test_cpp.ast.json" />
+
+## `GetValue()`
+
+      **Class:** Base  
+      **Access:** public  
+      **Return:** int  
+      **Language:** C++  
+      **Start Line:** 28  
+      **End Line:** 31  
+      
+      
+      
+      ```c++
+          virtual int GetValue() const
+    {
+        return 0;
+    }
+
+      ```
+      
+## `GetValue()`
+
+      **Class:** Derived  
+      **Access:** public  
+      **Return:** int  
+      **Language:** C++  
+      **Start Line:** 38  
+      **End Line:** 41  
+      
+      
+      
+      ```c++
+          int GetValue() const override 
+    {
+        return m_value;
+    }
+
+      ```
+      
+## `main()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** int  
+      **Language:** C++  
+      **Start Line:** 55  
+      **End Line:** 65  
+      
+      
+      
+      ```c++
+      int main(void)
+{
+    SharedPointerGetPointerTest();
+    SharedPointerDestructorsTest();
+    SharedPointerInheritanceTest();
+    SharedPointerDereferencingTest();
+    SharedPointerCopyAssignmentTest();
+    SharedPointerCopyConstructorTest();
+    std::cout &lt;&lt; "All test passed" &lt;&lt; std::endl;
+    return (0);
+}
+
+      ```
+      
+## `SharedPointerGetPointerTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 67  
+      **End Line:** 73  
+      
+      
+      
+      ```c++
+      void SharedPointerGetPointerTest(void)
+{
+    int value = 42;
+    SharedPointer&lt;int&gt; ptr(new int(value));
+    SharedPointer&lt;int&gt; ptr1(ptr);
+    TestEqual(ptr.GetPointer(), ptr.GetPointer(), "Should be equal");
+}
+
+      ```
+      
+## `SharedPointerDestructorsTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 75  
+      **End Line:** 82  
+      
+      
+      
+      ```c++
+      void SharedPointerDestructorsTest(void)
+{
+    {    
+        int value = 42;
+        SharedPointer&lt;int&gt; ptr(new int(value));
+    }
+
+}
+
+      ```
+      
+## `SharedPointerCopyConstructorTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 84  
+      **End Line:** 93  
+      
+      
+      
+      ```c++
+      void SharedPointerCopyConstructorTest(void)
+{
+    int value = 42;
+    SharedPointer&lt;int&gt; originalPtr(new int(value));
+    SharedPointer&lt;int&gt; copiedPtr(originalPtr);
+    TestEqual(copiedPtr.GetPointer(), copiedPtr.GetPointer(), "Should be equal");
+    TestEqual(*copiedPtr, value, "Should be equal");
+    TestEqual(*originalPtr, value, "Should be equal");
+    TestEqual(*originalPtr, *copiedPtr, "Should be equal");
+}
+
+      ```
+      
+## `SharedPointerDereferencingTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 95  
+      **End Line:** 113  
+      
+      
+      
+      ```c++
+      void SharedPointerDereferencingTest(void)
+{
+    int value = 42;
+    SharedPointer&lt;int&gt; originalPtr(new int(value));
+    SharedPointer&lt;int&gt; copiedPtr = originalPtr;
+    TestEqual(originalPtr.operator-&gt;(), copiedPtr.operator-&gt;(), "Should be equal");
+    TestEqual(originalPtr.operator*(), copiedPtr.operator*(), "Should be equal");
+
+    struct stru
+    {
+        int val;
+    };
+
+    SharedPointer&lt;stru&gt; s(new stru());
+    s-&gt;val = 1;
+
+    TestEqual(s-&gt;val, 1, "Should be equal");
+    TestEqual(s-&gt;val, (*s).val, "Should be equal");
+}
+
+      ```
+      
+## `SharedPointerCopyAssignmentTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 115  
+      **End Line:** 124  
+      
+      
+      
+      ```c++
+      void SharedPointerCopyAssignmentTest(void)
+{
+    int value = 42;
+    SharedPointer&lt;int&gt; originalPtr(new int(value));
+    SharedPointer&lt;int&gt; copiedPtr = originalPtr;
+    TestEqual(copiedPtr.GetPointer(), copiedPtr.GetPointer(), "Should be equal");
+    TestEqual(*copiedPtr, value, "Should be equal");
+    TestEqual(*originalPtr, value, "Should be equal");
+    TestEqual(*originalPtr, *copiedPtr, "Should be equal");
+}
+
+      ```
+      
+## `SharedPointerInheritanceTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 126  
+      **End Line:** 143  
+      
+      
+      
+      ```c++
+      void SharedPointerInheritanceTest(void)
+{
+    SharedPointer&lt;Base&gt; basePtr(new Base);
+    TestEqual(basePtr-&gt;GetValue(), 0, "Should be equal");
+
+    SharedPointer&lt;Base&gt; derivedPtr(new Derived(42));
+    TestEqual(derivedPtr-&gt;GetValue(), 42, "Should be equal");
+
+    SharedPointer&lt;Base&gt; copiedPtr = derivedPtr;
+    SharedPointer&lt;Base&gt; assignedPtr(new Base);
+    assignedPtr = derivedPtr;
+    TestEqual(copiedPtr-&gt;GetValue(), 42, "Should be equal");
+    TestEqual(assignedPtr-&gt;GetValue(), 42, "Should be equal");
+
+    SharedPointer&lt;Derived&gt; polymorphicPtr(new Derived(84));
+    SharedPointer&lt;Base&gt; baseFromDerived = polymorphicPtr;
+    TestEqual(baseFromDerived-&gt;GetValue(), 84, "Should be equal");
+}
+
+      ```
+      

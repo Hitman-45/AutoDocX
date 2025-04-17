@@ -1,0 +1,642 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: complex/complex_test.cpp
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="complex_complex_test_cpp.ast.json" />
+
+## `main()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** int  
+      **Language:** C++  
+      **Start Line:** 34  
+      **End Line:** 54  
+      
+      
+      
+      ```c++
+      int main(void)
+{
+    ComplexEqualOperatorTest();
+    ComplexInputOperatorTest();
+    ComplexOutputOperatorTest();
+    ComplexAdditionOperatorTest();
+    ComplexNotEqualOperatorTest();
+    ComplexDivisionOperatorTest();
+    ComplexBasicFunctionalityTest();
+    ComplexSubtractionOperatorTest();
+    ComplexMultiplicationOperatorTest();
+    ComplexAssignmentAddingOperatorTest();
+    ComplexAssignmentDivisionOperatorTest();
+    ComplexAssignmentSubtractionOperatorTest();
+    ComplexAssignmentMultiplicationOperatorTest();
+
+    BenchMarkTest();
+
+    std::cout &lt;&lt; "All test pass." &lt;&lt; std::endl;
+    return (0);
+}
+
+      ```
+      
+## `ComplexEqualOperatorTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 56  
+      **End Line:** 88  
+      
+      
+      
+      ```c++
+      void ComplexEqualOperatorTest(void)
+{
+    Complex complex1;
+    Complex complex2;
+    assert(complex1 == complex2);
+    assert(complex2 == complex1);
+
+    assert(0 == complex2);
+    assert(0 == complex1);
+
+    assert(complex2 == 0);
+    assert(complex1 == 0);
+
+    Complex complex3(1);
+    Complex complex4(1);
+
+    assert(complex3 == complex4);
+    assert(complex4 == complex3);
+
+    assert(1 == complex3);
+    assert(1 == complex4);
+
+    assert(complex4 == 1);
+    assert(complex3 == 1);
+
+    Complex complex5(1.2, 1.2);
+    Complex complex6(1.2, 1.2);
+
+    assert(complex5 == complex6);
+    assert(complex6 == complex5);
+
+    assert(Complex() == Complex());
+}
+
+      ```
+      
+## `ComplexOutputOperatorTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 90  
+      **End Line:** 110  
+      
+      
+      
+      ```c++
+      void ComplexOutputOperatorTest(void)
+{
+    Complex complex(-10, 5);
+    Complex complex1(5, -20);
+    std::cout &lt;&lt; complex &lt;&lt; std::endl;
+    std::cout &lt;&lt; complex1 &lt;&lt; std::endl;
+    std::cout &lt;&lt; Complex() &lt;&lt; std::endl;
+    std::cout &lt;&lt; Complex(1) &lt;&lt; std::endl;
+    std::cout &lt;&lt; Complex(1, 1) &lt;&lt; std::endl;
+    std::cout &lt;&lt; Complex(1, 1) + 1 &lt;&lt; std::endl;
+    std::cout &lt;&lt; (complex /= Complex(1, 1)) &lt;&lt; std::endl;
+    std::cout &lt;&lt; (complex *= Complex(1, 1)) &lt;&lt; std::endl;
+    std::cout &lt;&lt; (complex += Complex(1, 1)) &lt;&lt; std::endl;
+    std::cout &lt;&lt; (complex -= Complex(1, 1)) &lt;&lt; std::endl;
+    std::cout &lt;&lt; Complex(1, 1) + Complex(1, 1) &lt;&lt; std::endl;
+    std::cout &lt;&lt; Complex(1, 2) * Complex(1, 2) &lt;&lt; std::endl;
+    std::cout &lt;&lt; Complex(1, 3) / Complex(1, -1) &lt;&lt; std::endl;
+    std::cout &lt;&lt; Complex(1, 1) - Complex(1, 1) &lt;&lt; std::endl;
+    std::cout &lt;&lt; (Complex(1, 1) == Complex(1, 1)) &lt;&lt; std::endl;
+    std::cout &lt;&lt; (Complex(1, 1) != Complex(1, 1)) &lt;&lt; std::endl;
+}
+
+      ```
+      
+## `ComplexInputOperatorTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 112  
+      **End Line:** 117  
+      
+      
+      
+      ```c++
+      void ComplexInputOperatorTest(void)
+{
+    Complex complex;
+    std::cin &gt;&gt; complex;
+    std::cout &lt;&lt; complex &lt;&lt; std::endl;
+}
+
+      ```
+      
+## `ComplexAdditionOperatorTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 119  
+      **End Line:** 147  
+      
+      
+      
+      ```c++
+      void ComplexAdditionOperatorTest(void)
+{
+    Complex result;
+    Complex complex1(1, 2);
+    Complex complex2(1, 2);
+    Complex complexTset(2, 4);
+    result = complex1 + complex2;
+
+    assert(complexTset == result);
+
+    Complex complex3(-1, -2);
+    Complex complex4(-1, -2);
+    Complex complexTset1(-2, -4);
+    result = complex3 + complex4;
+
+    assert(complexTset1 == result);
+
+    Complex complex5(1, 1);
+    Complex complexTset2(2, 1);
+    result = complex5 + 1.0;
+
+    assert(complexTset2 == result);
+
+    Complex complex6(1, 1);
+    Complex complexTset3(2, 2);
+    result = complex6 + Complex(1, 1);
+
+    assert(complexTset3 == result);
+}
+
+      ```
+      
+## `ComplexNotEqualOperatorTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 149  
+      **End Line:** 162  
+      
+      
+      
+      ```c++
+      void ComplexNotEqualOperatorTest(void)
+{
+    Complex complex1;
+    Complex complex2(1, 1.001);
+    assert(complex1 != complex2);
+    assert(complex2 != complex1);
+
+    assert(Complex(0, 0.001) != complex2);
+    assert(Complex(0, 0.001) != complex1);
+
+    Complex complex3;
+    assert(1 != complex3);
+    assert(Complex(0) != Complex(0, 2));
+}
+
+      ```
+      
+## `ComplexDivisionOperatorTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 164  
+      **End Line:** 190  
+      
+      
+      
+      ```c++
+      void ComplexDivisionOperatorTest(void)
+{
+    Complex result;
+    Complex complex1(1, 2);
+    Complex complex2(1, 2);
+    Complex complexTset(1);
+    result = complex1 / complex2;
+
+    assert(complexTset == result);
+
+    Complex complex3(6, -2);
+    Complex complex4(-1, 2);
+    Complex complexTset1(-2, -2);
+    result = complex3 /complex4;
+
+    assert(complexTset1 == result);
+
+    Complex complex5(1, 1);
+    result = complex5 / Complex(1, 1);
+
+    assert(1 == result);
+
+    Complex complex6(1, 1);
+    result = complex6 / 2;
+
+    assert(Complex(0.5, 0.5) == result);
+}
+
+      ```
+      
+## `ComplexBasicFunctionalityTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 192  
+      **End Line:** 236  
+      
+      
+      
+      ```c++
+      void ComplexBasicFunctionalityTest(void)
+{
+    Complex complex;
+    assert(std::fabs(complex.GetImaginary() - 0.0) &lt; epsilon);
+    assert((complex.GetReal() - 0.0) &lt; epsilon);
+
+    Complex complex1(5.5);
+    assert((complex.GetImaginary() - 0.0) &lt; epsilon);
+    assert((complex.GetReal() - 5.5) &lt; epsilon);
+
+    Complex complex2(5.5, 5.5);
+    assert((complex2.GetImaginary() - 5.5) &lt; epsilon);
+    assert((complex2.GetReal() - 5.5) &lt; epsilon);
+
+    Complex complex3(0.0, 0.0);
+    assert((complex3.GetImaginary() - 0.0) &lt; epsilon);
+    assert((complex3.GetReal() - 0.0) &lt; epsilon);
+
+    Complex complex4(complex2);
+    assert((complex4.GetImaginary() - complex2.GetImaginary()) &lt; epsilon);
+    assert((complex4.GetReal() - complex2.GetReal()) &lt; epsilon);
+
+    Complex complex5 = complex4;
+    assert((complex5.GetImaginary() - complex4.GetImaginary()) &lt; epsilon);
+    assert((complex5.GetReal() - complex4.GetReal()) &lt; epsilon);
+
+    Complex complex6(0.0, 5.5);
+    assert((complex6.GetImaginary() - 5.5) &lt; epsilon);
+    assert((complex6.GetReal() - 0.0) &lt; epsilon);
+
+    Complex complex7 = Complex(1.1, 1.1);
+    assert((complex7.GetImaginary() - 1.1) &lt; epsilon);
+    assert((complex7.GetReal() - 1.1) &lt; epsilon);
+
+    Complex complex8 = Complex();
+
+    assert(std::fabs(complex8.GetImaginary() - 0.0) &lt; epsilon);
+    assert((complex8.GetReal() - 0.0) &lt; epsilon);
+
+    complex8.SetImaginary(-1.1);
+    complex8.SetReal(-1.1);
+
+    assert((complex8.GetImaginary() + 1.1) &lt; epsilon);
+    assert((complex8.GetReal() + 1.1) &lt; epsilon);
+}
+
+      ```
+      
+## `ComplexSubtractionOperatorTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 238  
+      **End Line:** 288  
+      
+      
+      
+      ```c++
+      void ComplexSubtractionOperatorTest(void)
+{
+    Complex result;
+    Complex complex1(1, 2);
+    Complex complex2(1, 2);
+    Complex complexTset(0, 0);
+    result = complex1 - complex2;
+
+    assert(complexTset == result);
+
+    Complex complex3(-1, 2);
+    Complex complex4(-1, -2);
+    Complex complexTset1(0, 4);
+    result = complex3 - complex4;
+
+    assert(complexTset1 == result);
+
+    Complex complex5(1, 1);
+    Complex complexTset2(0, 1);
+    result = complex5 - 1.0;
+
+    assert(complexTset2 == result);
+
+    Complex complex6(1, 1);
+    Complex complexTset3(0, 0);
+    result = complex6 - Complex(1, 1);
+
+    assert(complexTset3 == result);
+
+    Complex complex7(-1, -2);
+    Complex complex8(-1, -2);
+    Complex complexTset4(0.0, 0.0);
+
+    result = complex7 - complex8;
+
+    assert(complexTset4 == result);
+
+    Complex complex9(10, 5);
+    Complex complex10(5, 20);
+    Complex complexTset5(5, -15);
+    result = complex9 - complex10;
+
+    assert(complexTset5 == result);
+
+    Complex complex11(10, 5);
+    Complex complex12(5, 20);
+    Complex complexTset6(5, -15);
+    result = complex11 - complex12;
+
+    assert(complexTset6 == result);
+}
+
+      ```
+      
+## `ComplexMultiplicationOperatorTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 290  
+      **End Line:** 312  
+      
+      
+      
+      ```c++
+      void ComplexMultiplicationOperatorTest(void)
+{
+    Complex result;
+    Complex complex1(1, 2);
+    Complex complex2(1, 2);
+    Complex complexTset(-3, 4);
+    result = complex1 * complex2;
+
+    assert(complexTset == result);
+
+    Complex complex3(6, -2);
+    Complex complex4(-1, 2);
+    Complex complexTset1(-2, 14);
+    result = complex3 * complex4;
+
+    assert(complexTset1 == result);
+
+    Complex complex5(1, 1);
+    Complex complexTset2(0, 2);
+    result = complex5 * Complex(1, 1);
+
+    assert(complexTset2 == result);
+}
+
+      ```
+      
+## `ComplexAssignmentAddingOperatorTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 314  
+      **End Line:** 341  
+      
+      
+      
+      ```c++
+      void ComplexAssignmentAddingOperatorTest(void)
+{
+    Complex complex1(1, 2);
+    Complex complex2(1, 2);
+    Complex complexTset(2, 4);
+    complex1 += complex2;
+
+    assert(complexTset == complex1);
+
+    Complex complex3(-1, -2);
+    Complex complex4(-1, -2);
+    Complex complexTset1(-2, -4);
+    complex3 += complex4;
+
+    assert(complexTset1 == complex3);
+
+    Complex complex5(1, 1);
+    Complex complexTset2(2, 1);
+    complex5 += 1.0;
+
+    assert(complexTset2 == complex5);
+
+    Complex complex6(1, 1);
+    Complex complexTset3(2, 2);
+    complex6 += Complex(1, 1);
+
+    assert(complexTset3 == complex6);
+}
+
+      ```
+      
+## `ComplexAssignmentDivisionOperatorTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 343  
+      **End Line:** 368  
+      
+      
+      
+      ```c++
+      void ComplexAssignmentDivisionOperatorTest(void)
+{
+    Complex complex1(1, 2);
+    Complex complex2(1, 2);
+    Complex complexTset(1);
+    complex1 /= complex2;
+
+    assert(complexTset == complex1);
+
+    Complex complex3(6, -2);
+    Complex complex4(-1, 2);
+    Complex complexTset1(-2, -2);
+    complex3 /= complex4;
+
+    assert(complexTset1 == complex3);
+
+    Complex complex5(1, 1);
+    complex5 /= Complex(1, 1);
+
+    assert(1 == complex5);
+
+    Complex complex6(1, 1);
+    complex6 /= 2;
+
+    assert(Complex(0.5, 0.5) == complex6);
+}
+
+      ```
+      
+## `ComplexAssignmentSubtractionOperatorTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 370  
+      **End Line:** 419  
+      
+      
+      
+      ```c++
+      void ComplexAssignmentSubtractionOperatorTest(void)
+{
+    Complex complex1(1, 2);
+    Complex complex2(1, 2);
+    Complex complexTset(0, 0);
+    complex1 -= complex2;
+
+    assert(complexTset == complex1);
+
+    Complex complex3(-1, 2);
+    Complex complex4(-1, -2);
+    Complex complexTset1(0, 4);
+    complex3 -= complex4;
+
+    assert(complexTset1 == complex3);
+
+    Complex complex5(1, 1);
+    Complex complexTset2(0, 1);
+    complex5 -= 1.0;
+
+    assert(complexTset2 == complex5);
+
+    Complex complex6(1, 1);
+    Complex complexTset3(0, 0);
+    complex6 -= Complex(1, 1);
+
+    assert(complexTset3 == complex6);
+
+    Complex complex7(-1, -2);
+    Complex complex8(-1, -2);
+    Complex complexTset4(0.0, 0.0);
+
+    complex7 -= complex8;
+
+    assert(complexTset4 == complex7);
+
+    Complex complex9(10, 5);
+    Complex complex10(5, 20);
+    Complex complexTset5(5, -15);
+    complex9 -= complex10;
+
+    assert(complexTset5 == complex9);
+
+    Complex complex11(10, 5);
+    Complex complex12(5, 20);
+    Complex complexTset6(5, -15);
+    complex11 -= complex12;
+
+    assert(complexTset6 == complex11);
+}
+
+      ```
+      
+## `ComplexAssignmentMultiplicationOperatorTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 421  
+      **End Line:** 442  
+      
+      
+      
+      ```c++
+      void ComplexAssignmentMultiplicationOperatorTest(void)
+{
+    Complex complex1(1, 2);
+    Complex complex2(1, 2);
+    Complex complexTset(-3, 4);
+    complex1 *= complex2;
+
+    assert(complexTset == complex1);
+
+    Complex complex3(6, -2);
+    Complex complex4(-1, 2);
+    Complex complexTset1(-2, 14);
+    complex3 *= complex4;
+
+    assert(complexTset1 == complex3);
+
+    Complex complex5(1, 1);
+    Complex complexTset2(0, 2);
+    complex5 *= Complex(1, 1);
+
+    assert(complexTset2 == complex5);
+}
+
+      ```
+      
+## `BenchMarkTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 444  
+      **End Line:** 456  
+      
+      
+      
+      ```c++
+      void BenchMarkTest(void)
+{
+    Complex complex1;
+    Complex complex2(1, 1);
+    clock_t start = clock();
+    for(size_t i = 0; i &lt; 100000000; ++i)
+    {
+        complex1 = complex1 + complex2;
+    }
+    clock_t end = clock();
+    double timeTaken = static_cast&lt;double&gt;(end - start) / static_cast&lt;double&gt;(CLOCKS_PER_SEC) * 1000;
+    std::cout &lt;&lt; "Time taken: " &lt;&lt; timeTaken &lt;&lt; " milliseconds" &lt;&lt; std::endl;
+}
+
+      ```
+      

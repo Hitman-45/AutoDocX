@@ -1,0 +1,56 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"doGet\""
+            },
+            {
+              "name": "parameters: \"(HttpServletRequestrequest,HttpServletResponseresponse)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 18"
+            },
+            {
+              "name": "end_line: 30"
+            },
+            {
+              "name": "body_start: 19"
+            },
+            {
+              "name": "body_end: 30"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     HttpSession   session   =   request . getSession ( ) ; \\n\\n     session . removeAttribute ( \\\"amm\\\" ) ; \\n     session . removeAttribute ( \\\"acc\\\" ) ; \\n     session . removeAttribute ( \\\"c\\\" ) ; \\n     session . removeAttribute ( \\\"newCapo\\\" ) ; \\n     session . removeAttribute ( \\\"city\\\" ) ; \\n\\n     String   url   =   \\\"/myDoc/workers/index.jsp\\\" ; \\n     response . sendRedirect ( url ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletAnnulla.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

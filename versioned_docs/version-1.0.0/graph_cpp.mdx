@@ -1,0 +1,71 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: graph.cpp
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="graph_cpp.ast.json" />
+
+## `addEdge()`
+
+      **Class:** Graph  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 11  
+      **End Line:** 13  
+      
+      
+      
+      ```c++
+          void addEdge(int u, int v) {
+        adjList[u].push_back(v);
+    }
+
+      ```
+      
+## `printGraph()`
+
+      **Class:** Graph  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 15  
+      **End Line:** 22  
+      
+      
+      
+      ```c++
+          void printGraph() {
+        for (auto& [u, neighbors] : adjList) {
+            cout &lt;&lt; u &lt;&lt; ": ";
+            for (int v : neighbors)
+                cout &lt;&lt; v &lt;&lt; " ";
+            cout &lt;&lt; endl;
+        }
+    }
+
+      ```
+      
+## `hasEdge()`
+
+      **Class:** Graph  
+      **Access:** public  
+      **Return:** bool  
+      **Language:** C++  
+      **Start Line:** 24  
+      **End Line:** 30  
+      
+      
+      
+      ```c++
+          bool hasEdge(int u, int v) {
+        for (int neighbor : adjList[u]) {
+            if (neighbor == v)
+                return true;
+        }
+        return false;
+    }
+
+      ```
+      

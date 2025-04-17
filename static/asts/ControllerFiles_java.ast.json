@@ -1,0 +1,56 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"doPost\""
+            },
+            {
+              "name": "parameters: \"(HttpServletRequestrequest,HttpServletResponseresponse)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 17"
+            },
+            {
+              "name": "end_line: 58"
+            },
+            {
+              "name": "body_start: 18"
+            },
+            {
+              "name": "body_end: 58"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     // instantiate the variables \\n     // The ServletContext sevir� to get the MIME type of the uploaded file \\n     ServletContext   context   =   getServletContext ( ) ; \\n     String   forward   =   null ; \\n     try   { \\n       // We establish the maximum size of the file we want to upload \\n       int   maxUploadFile   =   500000000 ; \\n       MultipartRequest   multi   =   new   MultipartRequest ( request ,   \\\".\\\" ,   MaxUploadFile ) ; \\n       String   description   =   multi . getParameter ( \\\"text\\\" ) ; \\n       File   myFile   =   multi . getFile ( \\\"myFile\\\" ) ; \\n       String   filePath   =   multi . getOriginalFileName ( \\\"myFile\\\" ) ; \\n       String   path   =   \\\"C: \\\\\\\\ RequestsCambiResidence \\\\\\\\\\\" ; \\n       try   { \\n         // recast the file data using an InputStream \\n         FileInputStream   inStream   =   new   FileInputStream ( myFile ) ; \\n         // we decide where the file will go \\n         FileOutputStream   outStream   =   new   FileOutputStream ( path   +   myFile . getName ( ) ) ; \\n         // salstreetmo the file to the specified path \\n         while   ( inStream . available ( )   >   0 )   { \\n           outStream . write ( inStream . read ( ) ) ; \\n         } \\n         // close the streams \\n         inStream . close ( ) ; \\n         outStream . close ( ) ; \\n       }   catch   ( FileNotFoundException   e )   { \\n         e . printStackTrace ( ) ; \\n       }   catch   ( IOException   e )   { \\n         e . printStackTrace ( ) ; \\n       } \\n       forward   =   \\\"/workers/index.jsp?func=upload&page=done\\\" ; \\n       // we put the data in the request so that we can get it from the jsp \\n       request . setAttribute ( \\\"contentType\\\" ,   context . getMimeType ( path   +   myFile . getName ( ) ) ) ; \\n       request . setAttribute ( \\\"text\\\" ,   description ) ; \\n       request . setAttribute ( \\\"path\\\" ,   path   +   myFile . getName ( ) ) ; \\n       RequestDispatcher   rd   =   request . getRequestDispatcher ( forward ) ; \\n       rd . forward ( request ,   response ) ; \\n     }   catch   ( Exception   e )   { \\n       e . printStackTrace ( ) ; \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ControllerFiles.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

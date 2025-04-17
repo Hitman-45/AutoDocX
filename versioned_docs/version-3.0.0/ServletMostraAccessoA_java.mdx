@@ -1,0 +1,53 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: ServletMostraAccessoA.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="ServletMostraAccessoA_java.ast.json" />
+
+## `doGet()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** void  
+      **Language:** Java  
+      **Start Line:** 24  
+      **End Line:** 55  
+      
+      
+      
+      ```java
+      { 
+     HttpSession   session   =   request . getSession ( ) ; 
+
+     if   ( session   !=   null )   { 
+       ServletContext   sc   =   getServletContext ( ) ; 
+       RequestDispatcher   rd   =   null ; 
+       String   ris ; 
+       try   { 
+         Access   ac   =   null ; 
+         AccessManager   AM   =   new   AccessManager ( ) ; 
+         String   login ; 
+         if   ( session . getAttribute ( "c" )   !=   null )   { 
+           Citizen   c   =   ( Citizen )   session . getAttribute ( "c" ) ; 
+           login   =   c . getLogin ( ) ; 
+           ac   =   AM . getAccess ( login ) ; 
+           rd   =   sc . getRequestDispatcher ( "/user/home.jsp?func=mostra&page=access" ) ; 
+         } 
+         request . setAttribute ( "access" ,   ac ) ; 
+         rd . forward ( request ,   response ) ; 
+       }   catch   ( DbException   e )   { 
+         ris   =   e . getMessage ( ) ; 
+         request . setAttribute ( "ris" ,   ris ) ; 
+         rd   =   sc . getRequestDispatcher ( "/user/home.jsp?func=operazione&page=fallita" ) ; 
+         rd . forward ( request ,   response ) ; 
+       } 
+     }   else   { 
+       String   url ; 
+       url   =   "/myDoc/user/home.jsp" ; 
+       response . sendRedirect ( url ) ; 
+     } 
+   }
+      ```
+      

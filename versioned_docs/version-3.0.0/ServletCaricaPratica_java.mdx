@@ -1,0 +1,37 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: ServletCaricaPratica.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="ServletCaricaPratica_java.ast.json" />
+
+## `doGet()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** void  
+      **Language:** Java  
+      **Start Line:** 22  
+      **End Line:** 37  
+      
+      
+      
+      ```java
+      { 
+     int   user_id   =   Integer . parseInt ( request . getParameter ( "user_id" ) ) ; 
+
+     CitizenManager   cm   =   new   CitizenManager ( ) ; 
+     Citizen   citizen   =   cm . getCitizenById ( user_id ) ; 
+     HttpSession   session   =   request . getSession ( ) ; 
+     CIManager   cim   =   new   CIManager ( ) ; 
+     IdentityCard   ci   =   cim . getCardByIdCStri ( user_id ) ; 
+
+     session . setAttribute ( "c" ,   citizen ) ; 
+     session . setAttribute ( "ci" ,   ci ) ; 
+
+     String   url   =   "/myDoc/workers/index.jsp?func=pra&page=modulone" ; 
+     response . sendRedirect ( url ) ; 
+   }
+      ```
+      

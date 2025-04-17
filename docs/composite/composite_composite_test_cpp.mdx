@@ -1,0 +1,142 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: composite/composite_test.cpp
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="composite_composite_test_cpp.ast.json" />
+
+## `main()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** int  
+      **Language:** C++  
+      **Start Line:** 19  
+      **End Line:** 26  
+      
+      
+      
+      ```c++
+      int main(void)
+{
+    AddFilesAndPrintTest();
+    AddFilesAndCloneTest();
+    AddFilesAndRemoveTest();
+    std::cout &lt;&lt; "Passed" &lt;&lt; std::endl;
+    return (0);
+}
+
+      ```
+      
+## `AddFilesAndPrintTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 28  
+      **End Line:** 44  
+      
+      
+      
+      ```c++
+      void AddFilesAndPrintTest(void)
+{
+    std::cout &lt;&lt; "==== AddFilesAndPrintTest ====\n" &lt;&lt; std::endl;
+    
+    File file1("file1.txt");
+    File file2("file2.txt");
+    Dir dir1("dir1");
+    Dir dir2("dir2");
+
+    dir1.AddIEntry(file1);
+    dir1.AddIEntry(file2);
+
+    dir2.AddIEntry(file1);
+    dir2.AddIEntry(dir1);
+
+    dir2.Print();
+}
+
+      ```
+      
+## `AddFilesAndRemoveTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 46  
+      **End Line:** 71  
+      
+      
+      
+      ```c++
+      void AddFilesAndRemoveTest(void)
+{
+    std::cout &lt;&lt; "\n======= AddFilesAndRemoveTest ========\n" &lt;&lt; std::endl;
+
+    File file1("file1.txt");
+    File file2("file2.txt");
+    Dir dir1("dir1");
+    Dir dir2("dir2");
+
+    dir1.AddIEntry(file1);
+    dir1.AddIEntry(file2);
+
+    dir2.AddIEntry(file1);
+    dir2.AddIEntry(dir1);
+
+    dir2.Print();
+
+    std::cout &lt;&lt; "\n---- Removing file1.txt from dir2 ----\n" &lt;&lt; std::endl;
+    dir2.RemoveIEntry("file1.txt");
+    dir2.Print();
+    std::cout &lt;&lt; "\n------- Removing dir1 from dir2 ------\n" &lt;&lt; std::endl;
+    dir2.RemoveIEntry("dir1");
+    dir2.Print();
+    std::cout &lt;&lt; "\n======================================\n" &lt;&lt; std::endl;
+
+}
+
+      ```
+      
+## `AddFilesAndCloneTest()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 73  
+      **End Line:** 95  
+      
+      
+      
+      ```c++
+      void AddFilesAndCloneTest(void)
+{
+    std::cout &lt;&lt; "\n======= Clone dirs and files test =====\n" &lt;&lt; std::endl;
+    File file1("file1.txt");
+    File file2("file2.txt");
+    Dir dir1("dir1");
+    Dir dir2("dir2");
+
+    dir1.AddIEntry(file1);
+    dir1.AddIEntry(file2);
+
+    dir2.AddIEntry(file1);
+    dir2.AddIEntry(dir1);
+
+    std::cout &lt;&lt; "Original directory:" &lt;&lt; std::endl;
+    dir2.Print();
+
+    Dir* clonedDir = dir2.clone();
+
+    std::cout &lt;&lt; "\nCloned directory:" &lt;&lt; std::endl;
+    clonedDir-&gt;Print();
+    delete clonedDir;
+}
+
+      ```
+      

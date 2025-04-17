@@ -1,0 +1,68 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: ServletInserisciImpiegato.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="ServletInserisciImpiegato_java.ast.json" />
+
+## `doPost()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** void  
+      **Language:** Java  
+      **Start Line:** 34  
+      **End Line:** 80  
+      
+      
+      
+      ```java
+      { 
+     HttpSession   session   =   request . getSession ( ) ; 
+     ServletContext   sc   =   getServletContext ( ) ; 
+     RequestDispatcher   rd   =   null ; 
+     String   ris ; 
+     if   ( session 
+         !=   null )   {    //Se la sessione � nulla effettua il redirect alla pagina di autenticazione 
+       try   { 
+         name   =   request . getParameter ( "name" ) ; 
+         surname   =   request . getParameter ( "surname" ) ; 
+         email   =   request . getParameter ( "email" ) ; 
+         number   =   request . getParameter ( "number" ) ; 
+         login   =   request . getParameter ( "login" ) ; 
+         password   =   request . getParameter ( "password" ) ; 
+         type   =   request . getParameter ( "type" ) ; 
+
+         AccessManager   AM   =   new   AccessManager ( ) ; 
+         EmployeeManager   IdM   =   new   EmployeeManager ( ) ; 
+
+         Access   ac   =   new   Access ( login ,   password ,   type ) ; 
+         Employee   am   =   new   Employee ( name ,   surname ,   number ,   email ,   login ) ; 
+
+         if   ( AM . enterAccess ( ac )   &&   IdM . insertEmployee ( 
+             am ) )   {    //inserisco idati relativi all'access e all'employee 
+           //controllando l'esito positivo 
+           ris   =   "ok" ; 
+           request . setAttribute ( "ris" ,   ris ) ; 
+           rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=operazione&page=riuscita" ) ; 
+
+         }   else   { 
+           ris   =   "fallita" ; 
+           request . setAttribute ( "ris" ,   ris ) ; 
+           rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=operazione&page=fallita" ) ; 
+         } 
+         rd . forward ( request ,   response ) ; 
+       }   catch   ( DbException   e )   { 
+         ris   =   e . getMessage ( ) ; 
+         request . setAttribute ( "ris" ,   ris ) ; 
+         rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=operazione&page=fallita" ) ; 
+         rd . forward ( request ,   response ) ; 
+       } 
+     }   else   { 
+       String   url   =   "/myDoc/workers/Access.jsp" ; 
+       response . sendRedirect ( url ) ; 
+     } 
+   }
+      ```
+      

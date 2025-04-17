@@ -1,0 +1,456 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"warren_buffett_agent\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Analyzes stocks using Buffett's principles and LLM reasoning.\""
+            },
+            {
+              "name": "body: \"def warren_buffett_agent(state: AgentState):\\n    \\\"\\\"\\\"Analyzes stocks using Buffett's principles and LLM reasoning.\\\"\\\"\\\"\\n    data = state[\\\"data\\\"]\\n    end_date = data[\\\"end_date\\\"]\\n    tickers = data[\\\"tickers\\\"]\\n\\n    # Collect all analysis for LLM reasoning\\n    analysis_data = {}\\n    buffett_analysis = {}\\n\\n    for ticker in tickers:\\n        progress.update_status(\\\"warren_buffett_agent\\\", ticker, \\\"Fetching financial metrics\\\")\\n        # Fetch required data\\n        metrics = get_financial_metrics(ticker, end_date, period=\\\"ttm\\\", limit=5)\\n\\n        progress.update_status(\\\"warren_buffett_agent\\\", ticker, \\\"Gathering financial line items\\\")\\n        financial_line_items = search_line_items(\\n            ticker,\\n            [\\n                \\\"capital_expenditure\\\",\\n                \\\"depreciation_and_amortization\\\",\\n                \\\"net_income\\\",\\n                \\\"outstanding_shares\\\",\\n                \\\"total_assets\\\",\\n                \\\"total_liabilities\\\",\\n                \\\"dividends_and_other_cash_distributions\\\",\\n                \\\"issuance_or_purchase_of_equity_shares\\\",\\n            ],\\n            end_date,\\n        )\\n\\n        progress.update_status(\\\"warren_buffett_agent\\\", ticker, \\\"Getting market cap\\\")\\n        # Get current market cap\\n        market_cap = get_market_cap(ticker, end_date)\\n\\n        progress.update_status(\\\"warren_buffett_agent\\\", ticker, \\\"Analyzing fundamentals\\\")\\n        # Analyze fundamentals\\n        fundamental_analysis = analyze_fundamentals(metrics)\\n\\n        progress.update_status(\\\"warren_buffett_agent\\\", ticker, \\\"Analyzing consistency\\\")\\n        consistency_analysis = analyze_consistency(financial_line_items)\\n\\n        progress.update_status(\\\"warren_buffett_agent\\\", ticker, \\\"Analyzing moat\\\")\\n        moat_analysis = analyze_moat(metrics)\\n\\n        progress.update_status(\\\"warren_buffett_agent\\\", ticker, \\\"Analyzing management quality\\\")\\n        mgmt_analysis = analyze_management_quality(financial_line_items)\\n\\n        progress.update_status(\\\"warren_buffett_agent\\\", ticker, \\\"Calculating intrinsic value\\\")\\n        intrinsic_value_analysis = calculate_intrinsic_value(financial_line_items)\\n\\n        # Calculate total score\\n        total_score = fundamental_analysis[\\\"score\\\"] + consistency_analysis[\\\"score\\\"] + moat_analysis[\\\"score\\\"] + mgmt_analysis[\\\"score\\\"]\\n        max_possible_score = 10 + moat_analysis[\\\"max_score\\\"] + mgmt_analysis[\\\"max_score\\\"]\\n        # fundamental_analysis + consistency combined were up to 10 points total\\n        # moat can add up to 3, mgmt can add up to 2, for example\\n\\n        # Add margin of safety analysis if we have both intrinsic value and current price\\n        margin_of_safety = None\\n        intrinsic_value = intrinsic_value_analysis[\\\"intrinsic_value\\\"]\\n        if intrinsic_value and market_cap:\\n            margin_of_safety = (intrinsic_value - market_cap) / market_cap\\n\\n        # Generate trading signal using a stricter margin-of-safety requirement\\n        # if fundamentals+moat+management are strong but margin_of_safety < 0.3, it's neutral\\n        # if fundamentals are very weak or margin_of_safety is severely negative -> bearish\\n        # else bullish\\n        if (total_score >= 0.7 * max_possible_score) and margin_of_safety and (margin_of_safety >= 0.3):\\n            signal = \\\"bullish\\\"\\n        elif total_score <= 0.3 * max_possible_score or (margin_of_safety is not None and margin_of_safety < -0.3):\\n            # negative margin of safety beyond -30% could be overpriced -> bearish\\n            signal = \\\"bearish\\\"\\n        else:\\n            signal = \\\"neutral\\\"\\n\\n        # Combine all analysis results\\n        analysis_data[ticker] = {\\n            \\\"signal\\\": signal,\\n            \\\"score\\\": total_score,\\n            \\\"max_score\\\": max_possible_score,\\n            \\\"fundamental_analysis\\\": fundamental_analysis,\\n            \\\"consistency_analysis\\\": consistency_analysis,\\n            \\\"moat_analysis\\\": moat_analysis,\\n            \\\"management_analysis\\\": mgmt_analysis,\\n            \\\"intrinsic_value_analysis\\\": intrinsic_value_analysis,\\n            \\\"market_cap\\\": market_cap,\\n            \\\"margin_of_safety\\\": margin_of_safety,\\n        }\\n\\n        progress.update_status(\\\"warren_buffett_agent\\\", ticker, \\\"Generating Warren Buffett analysis\\\")\\n        buffett_output = generate_buffett_output(\\n            ticker=ticker,\\n            analysis_data=analysis_data,\\n            model_name=state[\\\"metadata\\\"][\\\"model_name\\\"],\\n            model_provider=state[\\\"metadata\\\"][\\\"model_provider\\\"],\\n        )\\n\\n        # Store analysis in consistent format with other agents\\n        buffett_analysis[ticker] = {\\n            \\\"signal\\\": buffett_output.signal,\\n            \\\"confidence\\\": buffett_output.confidence, # Normalize between 0 to 100\\n            \\\"reasoning\\\": buffett_output.reasoning,\\n        }\\n\\n        progress.update_status(\\\"warren_buffett_agent\\\", ticker, \\\"Done\\\")\\n\\n    # Create the message\\n    message = HumanMessage(content=json.dumps(buffett_analysis), name=\\\"warren_buffett_agent\\\")\\n\\n    # Show reasoning if requested\\n    if state[\\\"metadata\\\"][\\\"show_reasoning\\\"]:\\n        show_agent_reasoning(buffett_analysis, \\\"Warren Buffett Agent\\\")\\n\\n    # Add the signal to the analyst_signals list\\n    state[\\\"data\\\"][\\\"analyst_signals\\\"][\\\"warren_buffett_agent\\\"] = buffett_analysis\\n\\n    return {\\\"messages\\\": [message], \\\"data\\\": state[\\\"data\\\"]}\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 18"
+            },
+            {
+              "name": "end_line: 134"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"warren_buffett.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"analyze_fundamentals\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Analyze company fundamentals based on Buffett's criteria.\""
+            },
+            {
+              "name": "body: \"def analyze_fundamentals(metrics: list) -> dict[str, any]:\\n    \\\"\\\"\\\"Analyze company fundamentals based on Buffett's criteria.\\\"\\\"\\\"\\n    if not metrics:\\n        return {\\\"score\\\": 0, \\\"details\\\": \\\"Insufficient fundamental data\\\"}\\n\\n    latest_metrics = metrics[0]\\n\\n    score = 0\\n    reasoning = []\\n\\n    # Check ROE (Return on Equity)\\n    if latest_metrics.return_on_equity and latest_metrics.return_on_equity > 0.15:  # 15% ROE threshold\\n        score += 2\\n        reasoning.append(f\\\"Strong ROE of {latest_metrics.return_on_equity:.1%}\\\")\\n    elif latest_metrics.return_on_equity:\\n        reasoning.append(f\\\"Weak ROE of {latest_metrics.return_on_equity:.1%}\\\")\\n    else:\\n        reasoning.append(\\\"ROE data not available\\\")\\n\\n    # Check Debt to Equity\\n    if latest_metrics.debt_to_equity and latest_metrics.debt_to_equity < 0.5:\\n        score += 2\\n        reasoning.append(\\\"Conservative debt levels\\\")\\n    elif latest_metrics.debt_to_equity:\\n        reasoning.append(f\\\"High debt to equity ratio of {latest_metrics.debt_to_equity:.1f}\\\")\\n    else:\\n        reasoning.append(\\\"Debt to equity data not available\\\")\\n\\n    # Check Operating Margin\\n    if latest_metrics.operating_margin and latest_metrics.operating_margin > 0.15:\\n        score += 2\\n        reasoning.append(\\\"Strong operating margins\\\")\\n    elif latest_metrics.operating_margin:\\n        reasoning.append(f\\\"Weak operating margin of {latest_metrics.operating_margin:.1%}\\\")\\n    else:\\n        reasoning.append(\\\"Operating margin data not available\\\")\\n\\n    # Check Current Ratio\\n    if latest_metrics.current_ratio and latest_metrics.current_ratio > 1.5:\\n        score += 1\\n        reasoning.append(\\\"Good liquidity position\\\")\\n    elif latest_metrics.current_ratio:\\n        reasoning.append(f\\\"Weak liquidity with current ratio of {latest_metrics.current_ratio:.1f}\\\")\\n    else:\\n        reasoning.append(\\\"Current ratio data not available\\\")\\n\\n    return {\\\"score\\\": score, \\\"details\\\": \\\"; \\\".join(reasoning), \\\"metrics\\\": latest_metrics.model_dump()}\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 137"
+            },
+            {
+              "name": "end_line: 183"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"warren_buffett.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"analyze_consistency\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Analyze earnings consistency and growth.\""
+            },
+            {
+              "name": "body: \"def analyze_consistency(financial_line_items: list) -> dict[str, any]:\\n    \\\"\\\"\\\"Analyze earnings consistency and growth.\\\"\\\"\\\"\\n    if len(financial_line_items) < 4:  # Need at least 4 periods for trend analysis\\n        return {\\\"score\\\": 0, \\\"details\\\": \\\"Insufficient historical data\\\"}\\n\\n    score = 0\\n    reasoning = []\\n\\n    # Check earnings growth trend\\n    earnings_values = [item.net_income for item in financial_line_items if item.net_income]\\n    if len(earnings_values) >= 4:\\n        # Simple check: is each period's earnings bigger than the next?\\n        earnings_growth = all(earnings_values[i] > earnings_values[i + 1] for i in range(len(earnings_values) - 1))\\n\\n        if earnings_growth:\\n            score += 3\\n            reasoning.append(\\\"Consistent earnings growth over past periods\\\")\\n        else:\\n            reasoning.append(\\\"Inconsistent earnings growth pattern\\\")\\n\\n        # Calculate total growth rate from oldest to latest\\n        if len(earnings_values) >= 2 and earnings_values[-1] != 0:\\n            growth_rate = (earnings_values[0] - earnings_values[-1]) / abs(earnings_values[-1])\\n            reasoning.append(f\\\"Total earnings growth of {growth_rate:.1%} over past {len(earnings_values)} periods\\\")\\n    else:\\n        reasoning.append(\\\"Insufficient earnings data for trend analysis\\\")\\n\\n    return {\\n        \\\"score\\\": score,\\n        \\\"details\\\": \\\"; \\\".join(reasoning),\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 186"
+            },
+            {
+              "name": "end_line: 216"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"warren_buffett.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"analyze_moat\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Evaluate whether the company likely has a durable competitive advantage (moat).\\nFor simplicity, we look at stability of ROE/operating margins over multiple periods\\nor high margin over the last few years. Higher stability => higher moat score.\""
+            },
+            {
+              "name": "body: \"def analyze_moat(metrics: list) -> dict[str, any]:\\n    \\\"\\\"\\\"\\n    Evaluate whether the company likely has a durable competitive advantage (moat).\\n    For simplicity, we look at stability of ROE/operating margins over multiple periods\\n    or high margin over the last few years. Higher stability => higher moat score.\\n    \\\"\\\"\\\"\\n    if not metrics or len(metrics) < 3:\\n        return {\\\"score\\\": 0, \\\"max_score\\\": 3, \\\"details\\\": \\\"Insufficient data for moat analysis\\\"}\\n\\n    reasoning = []\\n    moat_score = 0\\n    historical_roes = []\\n    historical_margins = []\\n\\n    for m in metrics:\\n        if m.return_on_equity is not None:\\n            historical_roes.append(m.return_on_equity)\\n        if m.operating_margin is not None:\\n            historical_margins.append(m.operating_margin)\\n\\n    # Check for stable or improving ROE\\n    if len(historical_roes) >= 3:\\n        stable_roe = all(r > 0.15 for r in historical_roes)\\n        if stable_roe:\\n            moat_score += 1\\n            reasoning.append(\\\"Stable ROE above 15% across periods (suggests moat)\\\")\\n        else:\\n            reasoning.append(\\\"ROE not consistently above 15%\\\")\\n\\n    # Check for stable or improving operating margin\\n    if len(historical_margins) >= 3:\\n        stable_margin = all(m > 0.15 for m in historical_margins)\\n        if stable_margin:\\n            moat_score += 1\\n            reasoning.append(\\\"Stable operating margins above 15% (moat indicator)\\\")\\n        else:\\n            reasoning.append(\\\"Operating margin not consistently above 15%\\\")\\n\\n    # If both are stable/improving, add an extra point\\n    if moat_score == 2:\\n        moat_score += 1\\n        reasoning.append(\\\"Both ROE and margin stability indicate a solid moat\\\")\\n\\n    return {\\n        \\\"score\\\": moat_score,\\n        \\\"max_score\\\": 3,\\n        \\\"details\\\": \\\"; \\\".join(reasoning),\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 219"
+            },
+            {
+              "name": "end_line: 266"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"warren_buffett.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"analyze_management_quality\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Checks for share dilution or consistent buybacks, and some dividend track record.\\nA simplified approach:\\n  - if there's net share repurchase or stable share count, it suggests management\\n    might be shareholder-friendly.\\n  - if there's a big new issuance, it might be a negative sign (dilution).\""
+            },
+            {
+              "name": "body: \"def analyze_management_quality(financial_line_items: list) -> dict[str, any]:\\n    \\\"\\\"\\\"\\n    Checks for share dilution or consistent buybacks, and some dividend track record.\\n    A simplified approach:\\n      - if there's net share repurchase or stable share count, it suggests management\\n        might be shareholder-friendly.\\n      - if there's a big new issuance, it might be a negative sign (dilution).\\n    \\\"\\\"\\\"\\n    if not financial_line_items:\\n        return {\\\"score\\\": 0, \\\"max_score\\\": 2, \\\"details\\\": \\\"Insufficient data for management analysis\\\"}\\n\\n    reasoning = []\\n    mgmt_score = 0\\n\\n    latest = financial_line_items[0]\\n    if hasattr(latest, \\\"issuance_or_purchase_of_equity_shares\\\") and latest.issuance_or_purchase_of_equity_shares and latest.issuance_or_purchase_of_equity_shares < 0:\\n        # Negative means the company spent money on buybacks\\n        mgmt_score += 1\\n        reasoning.append(\\\"Company has been repurchasing shares (shareholder-friendly)\\\")\\n\\n    if hasattr(latest, \\\"issuance_or_purchase_of_equity_shares\\\") and latest.issuance_or_purchase_of_equity_shares and latest.issuance_or_purchase_of_equity_shares > 0:\\n        # Positive issuance means new shares => possible dilution\\n        reasoning.append(\\\"Recent common stock issuance (potential dilution)\\\")\\n    else:\\n        reasoning.append(\\\"No significant new stock issuance detected\\\")\\n\\n    # Check for any dividends\\n    if hasattr(latest, \\\"dividends_and_other_cash_distributions\\\") and latest.dividends_and_other_cash_distributions and latest.dividends_and_other_cash_distributions < 0:\\n        mgmt_score += 1\\n        reasoning.append(\\\"Company has a track record of paying dividends\\\")\\n    else:\\n        reasoning.append(\\\"No or minimal dividends paid\\\")\\n\\n    return {\\n        \\\"score\\\": mgmt_score,\\n        \\\"max_score\\\": 2,\\n        \\\"details\\\": \\\"; \\\".join(reasoning),\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 269"
+            },
+            {
+              "name": "end_line: 306"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"warren_buffett.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"calculate_owner_earnings\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Calculate owner earnings (Buffett's preferred measure of true earnings power).\\nOwner Earnings = Net Income + Depreciation - Maintenance CapEx\""
+            },
+            {
+              "name": "body: \"def calculate_owner_earnings(financial_line_items: list) -> dict[str, any]:\\n    \\\"\\\"\\\"Calculate owner earnings (Buffett's preferred measure of true earnings power).\\n    Owner Earnings = Net Income + Depreciation - Maintenance CapEx\\\"\\\"\\\"\\n    if not financial_line_items or len(financial_line_items) < 1:\\n        return {\\\"owner_earnings\\\": None, \\\"details\\\": [\\\"Insufficient data for owner earnings calculation\\\"]}\\n\\n    latest = financial_line_items[0]\\n\\n    net_income = latest.net_income\\n    depreciation = latest.depreciation_and_amortization\\n    capex = latest.capital_expenditure\\n\\n    if not all([net_income, depreciation, capex]):\\n        return {\\\"owner_earnings\\\": None, \\\"details\\\": [\\\"Missing components for owner earnings calculation\\\"]}\\n\\n    # Estimate maintenance capex (typically 70-80% of total capex)\\n    maintenance_capex = capex * 0.75\\n    owner_earnings = net_income + depreciation - maintenance_capex\\n\\n    return {\\n        \\\"owner_earnings\\\": owner_earnings,\\n        \\\"components\\\": {\\\"net_income\\\": net_income, \\\"depreciation\\\": depreciation, \\\"maintenance_capex\\\": maintenance_capex},\\n        \\\"details\\\": [\\\"Owner earnings calculated successfully\\\"],\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 309"
+            },
+            {
+              "name": "end_line: 332"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"warren_buffett.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"calculate_intrinsic_value\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Calculate intrinsic value using DCF with owner earnings.\""
+            },
+            {
+              "name": "body: \"def calculate_intrinsic_value(financial_line_items: list) -> dict[str, any]:\\n    \\\"\\\"\\\"Calculate intrinsic value using DCF with owner earnings.\\\"\\\"\\\"\\n    if not financial_line_items:\\n        return {\\\"intrinsic_value\\\": None, \\\"details\\\": [\\\"Insufficient data for valuation\\\"]}\\n\\n    # Calculate owner earnings\\n    earnings_data = calculate_owner_earnings(financial_line_items)\\n    if not earnings_data[\\\"owner_earnings\\\"]:\\n        return {\\\"intrinsic_value\\\": None, \\\"details\\\": earnings_data[\\\"details\\\"]}\\n\\n    owner_earnings = earnings_data[\\\"owner_earnings\\\"]\\n\\n    # Get current market data\\n    latest_financial_line_items = financial_line_items[0]\\n    shares_outstanding = latest_financial_line_items.outstanding_shares\\n\\n    if not shares_outstanding:\\n        return {\\\"intrinsic_value\\\": None, \\\"details\\\": [\\\"Missing shares outstanding data\\\"]}\\n\\n    # Buffett's DCF assumptions (conservative approach)\\n    growth_rate = 0.05  # Conservative 5% growth\\n    discount_rate = 0.09  # Typical ~9% discount rate\\n    terminal_multiple = 12\\n    projection_years = 10\\n\\n    # Sum of discounted future owner earnings\\n    future_value = 0\\n    for year in range(1, projection_years + 1):\\n        future_earnings = owner_earnings * (1 + growth_rate) ** year\\n        present_value = future_earnings / (1 + discount_rate) ** year\\n        future_value += present_value\\n\\n    # Terminal value\\n    terminal_value = (owner_earnings * (1 + growth_rate) ** projection_years * terminal_multiple) / ((1 + discount_rate) ** projection_years)\\n\\n    intrinsic_value = future_value + terminal_value\\n\\n    return {\\n        \\\"intrinsic_value\\\": intrinsic_value,\\n        \\\"owner_earnings\\\": owner_earnings,\\n        \\\"assumptions\\\": {\\n            \\\"growth_rate\\\": growth_rate,\\n            \\\"discount_rate\\\": discount_rate,\\n            \\\"terminal_multiple\\\": terminal_multiple,\\n            \\\"projection_years\\\": projection_years,\\n        },\\n        \\\"details\\\": [\\\"Intrinsic value calculated using DCF model with owner earnings\\\"],\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 335"
+            },
+            {
+              "name": "end_line: 382"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"warren_buffett.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"generate_buffett_output\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                },
+                {
+                  "name": "parameters[3]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Get investment decision from LLM with Buffett's principles\""
+            },
+            {
+              "name": "body: \"def generate_buffett_output(\\n    ticker: str,\\n    analysis_data: dict[str, any],\\n    model_name: str,\\n    model_provider: str,\\n) -> WarrenBuffettSignal:\\n    \\\"\\\"\\\"Get investment decision from LLM with Buffett's principles\\\"\\\"\\\"\\n    template = ChatPromptTemplate.from_messages(\\n        [\\n            (\\n                \\\"system\\\",\\n                \\\"\\\"\\\"You are a Warren Buffett AI agent. Decide on investment signals based on Warren Buffett's principles:\\n                - Circle of Competence: Only invest in businesses you understand\\n                - Margin of Safety (> 30%): Buy at a significant discount to intrinsic value\\n                - Economic Moat: Look for durable competitive advantages\\n                - Quality Management: Seek conservative, shareholder-oriented teams\\n                - Financial Strength: Favor low debt, strong returns on equity\\n                - Long-term Horizon: Invest in businesses, not just stocks\\n                - Sell only if fundamentals deteriorate or valuation far exceeds intrinsic value\\n\\n                When providing your reasoning, be thorough and specific by:\\n                1. Explaining the key factors that influenced your decision the most (both positive and negative)\\n                2. Highlighting how the company aligns with or violates specific Buffett principles\\n                3. Providing quantitative evidence where relevant (e.g., specific margins, ROE values, debt levels)\\n                4. Concluding with a Buffett-style assessment of the investment opportunity\\n                5. Using Warren Buffett's voice and conversational style in your explanation\\n\\n                For example, if bullish: \\\"I'm particularly impressed with [specific strength], reminiscent of our early investment in See's Candies where we saw [similar attribute]...\\\"\\n                For example, if bearish: \\\"The declining returns on capital remind me of the textile operations at Berkshire that we eventually exited because...\\\"\\n\\n                Follow these guidelines strictly.\\n                \\\"\\\"\\\",\\n            ),\\n            (\\n                \\\"human\\\",\\n                \\\"\\\"\\\"Based on the following data, create the investment signal as Warren Buffett would:\\n\\n                Analysis Data for {ticker}:\\n                {analysis_data}\\n\\n                Return the trading signal in the following JSON format exactly:\\n                {{\\n                  \\\"signal\\\": \\\"bullish\\\" | \\\"bearish\\\" | \\\"neutral\\\",\\n                  \\\"confidence\\\": float between 0 and 100,\\n                  \\\"reasoning\\\": \\\"string\\\"\\n                }}\\n                \\\"\\\"\\\",\\n            ),\\n        ]\\n    )\\n\\n    prompt = template.invoke({\\\"analysis_data\\\": json.dumps(analysis_data, indent=2), \\\"ticker\\\": ticker})\\n\\n    # Default fallback signal in case parsing fails\\n    def create_default_warren_buffett_signal():\\n        return WarrenBuffettSignal(signal=\\\"neutral\\\", confidence=0.0, reasoning=\\\"Error in analysis, defaulting to neutral\\\")\\n\\n    return call_llm(\\n        prompt=prompt,\\n        model_name=model_name,\\n        model_provider=model_provider,\\n        pydantic_model=WarrenBuffettSignal,\\n        agent_name=\\\"warren_buffett_agent\\\",\\n        default_factory=create_default_warren_buffett_signal,\\n    )\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 385"
+            },
+            {
+              "name": "end_line: 449"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"warren_buffett.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[8]",
+          "children": [
+            {
+              "name": "function_name: \"create_default_warren_buffett_signal\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def create_default_warren_buffett_signal():\\n        return WarrenBuffettSignal(signal=\\\"neutral\\\", confidence=0.0, reasoning=\\\"Error in analysis, defaulting to neutral\\\")\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 439"
+            },
+            {
+              "name": "end_line: 440"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"warren_buffett.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

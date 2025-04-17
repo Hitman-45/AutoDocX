@@ -1,0 +1,456 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"get_prices\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Fetch price data from cache or API.\""
+            },
+            {
+              "name": "body: \"def get_prices(ticker: str, start_date: str, end_date: str) -> list[Price]:\\n    \\\"\\\"\\\"Fetch price data from cache or API.\\\"\\\"\\\"\\n    # Check cache first\\n    if cached_data := _cache.get_prices(ticker):\\n        # Filter cached data by date range and convert to Price objects\\n        filtered_data = [Price(**price) for price in cached_data if start_date <= price[\\\"time\\\"] <= end_date]\\n        if filtered_data:\\n            return filtered_data\\n\\n    # If not in cache or no data in range, fetch from API\\n    headers = {}\\n    if api_key := os.environ.get(\\\"FINANCIAL_DATASETS_API_KEY\\\"):\\n        headers[\\\"X-API-KEY\\\"] = api_key\\n\\n    url = f\\\"https://api.financialdatasets.ai/prices/?ticker={ticker}&interval=day&interval_multiplier=1&start_date={start_date}&end_date={end_date}\\\"\\n    response = requests.get(url, headers=headers)\\n    if response.status_code != 200:\\n        raise Exception(f\\\"Error fetching data: {ticker} - {response.status_code} - {response.text}\\\")\\n\\n    # Parse response with Pydantic model\\n    price_response = PriceResponse(**response.json())\\n    prices = price_response.prices\\n\\n    if not prices:\\n        return []\\n\\n    # Cache the results as dicts\\n    _cache.set_prices(ticker, [p.model_dump() for p in prices])\\n    return prices\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 23"
+            },
+            {
+              "name": "end_line: 51"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"api.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"get_financial_metrics\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                },
+                {
+                  "name": "parameters[3]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Fetch financial metrics from cache or API.\""
+            },
+            {
+              "name": "body: \"def get_financial_metrics(\\n    ticker: str,\\n    end_date: str,\\n    period: str = \\\"ttm\\\",\\n    limit: int = 10,\\n) -> list[FinancialMetrics]:\\n    \\\"\\\"\\\"Fetch financial metrics from cache or API.\\\"\\\"\\\"\\n    # Check cache first\\n    if cached_data := _cache.get_financial_metrics(ticker):\\n        # Filter cached data by date and limit\\n        filtered_data = [FinancialMetrics(**metric) for metric in cached_data if metric[\\\"report_period\\\"] <= end_date]\\n        filtered_data.sort(key=lambda x: x.report_period, reverse=True)\\n        if filtered_data:\\n            return filtered_data[:limit]\\n\\n    # If not in cache or insufficient data, fetch from API\\n    headers = {}\\n    if api_key := os.environ.get(\\\"FINANCIAL_DATASETS_API_KEY\\\"):\\n        headers[\\\"X-API-KEY\\\"] = api_key\\n\\n    url = f\\\"https://api.financialdatasets.ai/financial-metrics/?ticker={ticker}&report_period_lte={end_date}&limit={limit}&period={period}\\\"\\n    response = requests.get(url, headers=headers)\\n    if response.status_code != 200:\\n        raise Exception(f\\\"Error fetching data: {ticker} - {response.status_code} - {response.text}\\\")\\n\\n    # Parse response with Pydantic model\\n    metrics_response = FinancialMetricsResponse(**response.json())\\n    # Return the FinancialMetrics objects directly instead of converting to dict\\n    financial_metrics = metrics_response.financial_metrics\\n\\n    if not financial_metrics:\\n        return []\\n\\n    # Cache the results as dicts\\n    _cache.set_financial_metrics(ticker, [m.model_dump() for m in financial_metrics])\\n    return financial_metrics\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 54"
+            },
+            {
+              "name": "end_line: 89"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"api.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"search_line_items\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                },
+                {
+                  "name": "parameters[3]"
+                },
+                {
+                  "name": "parameters[4]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Fetch line items from API.\""
+            },
+            {
+              "name": "body: \"def search_line_items(\\n    ticker: str,\\n    line_items: list[str],\\n    end_date: str,\\n    period: str = \\\"ttm\\\",\\n    limit: int = 10,\\n) -> list[LineItem]:\\n    \\\"\\\"\\\"Fetch line items from API.\\\"\\\"\\\"\\n    # If not in cache or insufficient data, fetch from API\\n    headers = {}\\n    if api_key := os.environ.get(\\\"FINANCIAL_DATASETS_API_KEY\\\"):\\n        headers[\\\"X-API-KEY\\\"] = api_key\\n\\n    url = \\\"https://api.financialdatasets.ai/financials/search/line-items\\\"\\n\\n    body = {\\n        \\\"tickers\\\": [ticker],\\n        \\\"line_items\\\": line_items,\\n        \\\"end_date\\\": end_date,\\n        \\\"period\\\": period,\\n        \\\"limit\\\": limit,\\n    }\\n    response = requests.post(url, headers=headers, json=body)\\n    if response.status_code != 200:\\n        raise Exception(f\\\"Error fetching data: {ticker} - {response.status_code} - {response.text}\\\")\\n    data = response.json()\\n    response_model = LineItemResponse(**data)\\n    search_results = response_model.search_results\\n    if not search_results:\\n        return []\\n\\n    # Cache the results\\n    return search_results[:limit]\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 92"
+            },
+            {
+              "name": "end_line: 124"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"api.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"get_insider_trades\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                },
+                {
+                  "name": "parameters[3]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Fetch insider trades from cache or API.\""
+            },
+            {
+              "name": "body: \"def get_insider_trades(\\n    ticker: str,\\n    end_date: str,\\n    start_date: str | None = None,\\n    limit: int = 1000,\\n) -> list[InsiderTrade]:\\n    \\\"\\\"\\\"Fetch insider trades from cache or API.\\\"\\\"\\\"\\n    # Check cache first\\n    if cached_data := _cache.get_insider_trades(ticker):\\n        # Filter cached data by date range\\n        filtered_data = [InsiderTrade(**trade) for trade in cached_data \\n                        if (start_date is None or (trade.get(\\\"transaction_date\\\") or trade[\\\"filing_date\\\"]) >= start_date)\\n                        and (trade.get(\\\"transaction_date\\\") or trade[\\\"filing_date\\\"]) <= end_date]\\n        filtered_data.sort(key=lambda x: x.transaction_date or x.filing_date, reverse=True)\\n        if filtered_data:\\n            return filtered_data\\n\\n    # If not in cache or insufficient data, fetch from API\\n    headers = {}\\n    if api_key := os.environ.get(\\\"FINANCIAL_DATASETS_API_KEY\\\"):\\n        headers[\\\"X-API-KEY\\\"] = api_key\\n\\n    all_trades = []\\n    current_end_date = end_date\\n    \\n    while True:\\n        url = f\\\"https://api.financialdatasets.ai/insider-trades/?ticker={ticker}&filing_date_lte={current_end_date}\\\"\\n        if start_date:\\n            url += f\\\"&filing_date_gte={start_date}\\\"\\n        url += f\\\"&limit={limit}\\\"\\n        \\n        response = requests.get(url, headers=headers)\\n        if response.status_code != 200:\\n            raise Exception(f\\\"Error fetching data: {ticker} - {response.status_code} - {response.text}\\\")\\n        \\n        data = response.json()\\n        response_model = InsiderTradeResponse(**data)\\n        insider_trades = response_model.insider_trades\\n        \\n        if not insider_trades:\\n            break\\n            \\n        all_trades.extend(insider_trades)\\n        \\n        # Only continue pagination if we have a start_date and got a full page\\n        if not start_date or len(insider_trades) < limit:\\n            break\\n            \\n        # Update end_date to the oldest filing date from current batch for next iteration\\n        current_end_date = min(trade.filing_date for trade in insider_trades).split('T')[0]\\n        \\n        # If we've reached or passed the start_date, we can stop\\n        if current_end_date <= start_date:\\n            break\\n\\n    if not all_trades:\\n        return []\\n\\n    # Cache the results\\n    _cache.set_insider_trades(ticker, [trade.model_dump() for trade in all_trades])\\n    return all_trades\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 127"
+            },
+            {
+              "name": "end_line: 187"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"api.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"get_company_news\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                },
+                {
+                  "name": "parameters[3]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Fetch company news from cache or API.\""
+            },
+            {
+              "name": "body: \"def get_company_news(\\n    ticker: str,\\n    end_date: str,\\n    start_date: str | None = None,\\n    limit: int = 1000,\\n) -> list[CompanyNews]:\\n    \\\"\\\"\\\"Fetch company news from cache or API.\\\"\\\"\\\"\\n    # Check cache first\\n    if cached_data := _cache.get_company_news(ticker):\\n        # Filter cached data by date range\\n        filtered_data = [CompanyNews(**news) for news in cached_data \\n                        if (start_date is None or news[\\\"date\\\"] >= start_date)\\n                        and news[\\\"date\\\"] <= end_date]\\n        filtered_data.sort(key=lambda x: x.date, reverse=True)\\n        if filtered_data:\\n            return filtered_data\\n\\n    # If not in cache or insufficient data, fetch from API\\n    headers = {}\\n    if api_key := os.environ.get(\\\"FINANCIAL_DATASETS_API_KEY\\\"):\\n        headers[\\\"X-API-KEY\\\"] = api_key\\n\\n    all_news = []\\n    current_end_date = end_date\\n    \\n    while True:\\n        url = f\\\"https://api.financialdatasets.ai/news/?ticker={ticker}&end_date={current_end_date}\\\"\\n        if start_date:\\n            url += f\\\"&start_date={start_date}\\\"\\n        url += f\\\"&limit={limit}\\\"\\n        \\n        response = requests.get(url, headers=headers)\\n        if response.status_code != 200:\\n            raise Exception(f\\\"Error fetching data: {ticker} - {response.status_code} - {response.text}\\\")\\n        \\n        data = response.json()\\n        response_model = CompanyNewsResponse(**data)\\n        company_news = response_model.news\\n        \\n        if not company_news:\\n            break\\n            \\n        all_news.extend(company_news)\\n        \\n        # Only continue pagination if we have a start_date and got a full page\\n        if not start_date or len(company_news) < limit:\\n            break\\n            \\n        # Update end_date to the oldest date from current batch for next iteration\\n        current_end_date = min(news.date for news in company_news).split('T')[0]\\n        \\n        # If we've reached or passed the start_date, we can stop\\n        if current_end_date <= start_date:\\n            break\\n\\n    if not all_news:\\n        return []\\n\\n    # Cache the results\\n    _cache.set_company_news(ticker, [news.model_dump() for news in all_news])\\n    return all_news\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 190"
+            },
+            {
+              "name": "end_line: 250"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"api.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"get_market_cap\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Fetch market cap from the API.\""
+            },
+            {
+              "name": "body: \"def get_market_cap(\\n    ticker: str,\\n    end_date: str,\\n) -> float | None:\\n    \\\"\\\"\\\"Fetch market cap from the API.\\\"\\\"\\\"\\n    financial_metrics = get_financial_metrics(ticker, end_date)\\n    market_cap = financial_metrics[0].market_cap\\n    if not market_cap:\\n        return None\\n\\n    return market_cap\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 254"
+            },
+            {
+              "name": "end_line: 264"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"api.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"prices_to_df\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Convert prices to a DataFrame.\""
+            },
+            {
+              "name": "body: \"def prices_to_df(prices: list[Price]) -> pd.DataFrame:\\n    \\\"\\\"\\\"Convert prices to a DataFrame.\\\"\\\"\\\"\\n    df = pd.DataFrame([p.model_dump() for p in prices])\\n    df[\\\"Date\\\"] = pd.to_datetime(df[\\\"time\\\"])\\n    df.set_index(\\\"Date\\\", inplace=True)\\n    numeric_cols = [\\\"open\\\", \\\"close\\\", \\\"high\\\", \\\"low\\\", \\\"volume\\\"]\\n    for col in numeric_cols:\\n        df[col] = pd.to_numeric(df[col], errors=\\\"coerce\\\")\\n    df.sort_index(inplace=True)\\n    return df\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 267"
+            },
+            {
+              "name": "end_line: 276"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"api.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"get_price_data\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def get_price_data(ticker: str, start_date: str, end_date: str) -> pd.DataFrame:\\n    prices = get_prices(ticker, start_date, end_date)\\n    return prices_to_df(prices)\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 280"
+            },
+            {
+              "name": "end_line: 282"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"api.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

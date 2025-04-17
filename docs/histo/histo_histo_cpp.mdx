@@ -1,0 +1,62 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: histo/histo.cpp
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="histo_histo_cpp.ast.json" />
+
+## `In()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 6  
+      **End Line:** 13  
+      
+      
+      
+      ```c++
+      void Histo::In(void) noexcept
+{
+    while(std::getline(std::cin, line), "." != line)
+    {
+        container.push_back(line);
+        ++m_map[line];
+    }
+}
+
+      ```
+      
+## `Out()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 15  
+      **End Line:** 30  
+      
+      
+      
+      ```c++
+      void Histo::Out(void) noexcept
+{
+    for(std::size_t i = 0; i &lt; container.size(); ++i)
+    {
+        const std::string& item = container[i];
+        if(m_map[item] &gt; 1)
+        {
+            std::cout &lt;&lt; m_map[item] &lt;&lt; " x " &lt;&lt; item &lt;&lt; std::endl;
+            m_map[item] = 0;
+        }
+        else if(m_map[item] == 1)
+        {
+            std::cout &lt;&lt; item &lt;&lt; std::endl;
+        }
+    }
+}
+
+      ```
+      

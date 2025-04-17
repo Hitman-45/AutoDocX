@@ -1,0 +1,332 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"insertNucleo\""
+            },
+            {
+              "name": "parameters: \"(Familynf)\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 32"
+            },
+            {
+              "name": "end_line: 34"
+            },
+            {
+              "name": "body_start: 32"
+            },
+            {
+              "name": "body_end: 34"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   coreF . insertFamily ( nf ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"NucleoFamiliareManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"checkFamilyId\""
+            },
+            {
+              "name": "parameters: \"(intid)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 45"
+            },
+            {
+              "name": "end_line: 47"
+            },
+            {
+              "name": "body_start: 45"
+            },
+            {
+              "name": "body_end: 47"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   coreF . checkFamilyId ( id ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"NucleoFamiliareManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"getNCoreComponents\""
+            },
+            {
+              "name": "parameters: \"(intid)\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 58"
+            },
+            {
+              "name": "end_line: 60"
+            },
+            {
+              "name": "body_start: 58"
+            },
+            {
+              "name": "body_end: 60"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   coreF . getFamilyById ( id ) . getNComponents ( ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"NucleoFamiliareManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"setHeadOfFamily\""
+            },
+            {
+              "name": "parameters: \"(intid,intIdCitt)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 72"
+            },
+            {
+              "name": "end_line: 74"
+            },
+            {
+              "name": "body_start: 72"
+            },
+            {
+              "name": "body_end: 74"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   coreF . setHeadOfFamily ( id ,   IdCitt ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"NucleoFamiliareManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"incrementComponents\""
+            },
+            {
+              "name": "parameters: \"(intid)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 84"
+            },
+            {
+              "name": "end_line: 87"
+            },
+            {
+              "name": "body_start: 84"
+            },
+            {
+              "name": "body_end: 87"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     int   n   =   getNCoreComponents ( id )   +   1 ; \\n     return   coreF . setNComponents ( id ,   n ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"NucleoFamiliareManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"decrementComponents\""
+            },
+            {
+              "name": "parameters: \"(intid)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 97"
+            },
+            {
+              "name": "end_line: 100"
+            },
+            {
+              "name": "body_start: 97"
+            },
+            {
+              "name": "body_end: 100"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     int   n   =   getNCoreComponents ( id )   -   1 ; \\n     return   coreF . setNComponents ( id ,   n ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"NucleoFamiliareManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"getNucleo\""
+            },
+            {
+              "name": "parameters: \"(intid)\""
+            },
+            {
+              "name": "return_type: \"Family\""
+            },
+            {
+              "name": "start_line: 102"
+            },
+            {
+              "name": "end_line: 104"
+            },
+            {
+              "name": "body_start: 102"
+            },
+            {
+              "name": "body_end: 104"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   coreF . getFamilyById ( id ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"NucleoFamiliareManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

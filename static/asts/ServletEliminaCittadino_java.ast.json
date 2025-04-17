@@ -1,0 +1,56 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"doPost\""
+            },
+            {
+              "name": "parameters: \"(HttpServletRequestrequest,HttpServletResponseresponse)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 30"
+            },
+            {
+              "name": "end_line: 137"
+            },
+            {
+              "name": "body_start: 31"
+            },
+            {
+              "name": "body_end: 137"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     HttpSession   session   =   request . getSession ( ) ; \\n     if   ( session \\n         !=   null )   {    //Se la sessione � nulla effettua il redirect alla pagina di autenticazione \\n       ServletContext   sc   =   getServletContext ( ) ; \\n       RequestDispatcher   rd   =   null ; \\n       String   ris ; \\n       try   { \\n         //Se gli attributi di sessione c e acc sono nulli devo effettuare la search \\n         if   ( session . getAttribute ( \\\"c\\\" )   ==   null   &&   session . getAttribute ( \\\"acc\\\" )   ==   null )   { \\n           String   cod   =   request . getParameter ( \\\"ci\\\" ) . toUpperCase ( ) ; \\n           CIManager   CIM   =   new   CIManager ( ) ; \\n           CitizenManager   CM   =   new   CitizenManager ( ) ; \\n           IdentityCard   CI   =   CIM . getCardByNumber ( cod ) ; \\n\\n           if   ( CI   !=   null )   { \\n             Citizen   c   =   CM . getCitizenById ( CI . id ( ) ) ; \\n             session . setAttribute ( \\\"c\\\" ,   c ) ; \\n\\n             AccessManager   AM   =   new   AccessManager ( ) ; \\n             Access   ac   =   AM . getAccess ( c . getLogin ( ) ) ; \\n             session . setAttribute ( \\\"acc\\\" ,   ac ) ; \\n\\n             FamilyManager   NFM   =   new   FamilyManager ( ) ; \\n             int   componenti   =   NFM . getNCoreComponents ( c . getFamily ( ) ) ; \\n             Family   nf   =   NFM . getNucleo ( c . getFamily ( ) ) ; \\n             if   ( componenti   >   1   &&   nf . getCapoFamiglia ( )   ==   c . getIdCitizen ( ) )   { \\n               String   nc   =   \\\"si\\\" ; \\n               session . setAttribute ( \\\"newCapo\\\" ,   nc ) ; \\n             } \\n\\n             sc   =   getServletContext ( ) ; \\n             rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=delete&page=citizen\\\" ) ; \\n             rd . forward ( request ,   response ) ; \\n           }   else   { \\n             ris   =   \\\"Siamo spiacenti, il codice della carta d'identit� non � presente nel database\\\" ; \\n             request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n             rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n           } \\n         }   else   { //Se gli attributi sono presenti procedo con la deletezione \\n           AccessManager   AM   =   new   AccessManager ( ) ; \\n           CitizenManager   CM   =   new   CitizenManager ( ) ; \\n\\n           Access   ac   =   ( Access )   session . getAttribute ( \\\"acc\\\" ) ; \\n           Citizen   c   =   ( Citizen )   session . getAttribute ( \\\"c\\\" ) ; \\n\\n           String   login   =   ac . getLogin ( ) ; \\n\\n           if   ( request . getParameter ( \\\"ci\\\" ) \\n               . equals ( \\\"\\\" ) )   {    //Se non c'� il codice della carta d'identit� \\n             //il citizen da deletere � solo nel nucleo familiare \\n             if   ( AM . deleteAccess ( login )   &&   CM . deleteCitizen ( \\n                 c . getIdCitizen ( ) ) )   {    //delete il citizen e l'access \\n               //controllando che l'esito sia positivo \\n               FamilyManager   NFM   =   new   FamilyManager ( ) ; \\n               NFM . getNCoreComponents ( c . getFamily ( ) ) ; \\n               ris   =   \\\"ok\\\" ; \\n               request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n               rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=riuscita\\\" ) ; \\n             }   else   { \\n               ris   =   \\\"fallita\\\" ; \\n               request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n               rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n             } \\n           }   else   {    //Se � presente un codice devo sostituire il capo famiglia \\n             FamilyManager   NFM   =   new   FamilyManager ( ) ; \\n             CIManager   CIM   =   new   CIManager ( ) ; \\n             IdentityCard   CI   =   CIM . getCardByNumber ( request . getParameter ( \\\"ci\\\" ) ) ; \\n             if   ( CI   !=   null )   {    //Controllo che il nuovo capo famiglia esiste nel db \\n               Citizen   newCapo   =   CM . getCitizenById ( CI . id ( ) ) ; \\n               NFM . setHeadOfFamily ( c . getFamily ( ) , \\n                   newCapo . getIdCitizen ( ) ) ;   //modifico il capo famiglia del nucleo \\n               if   ( CM . deleteCitizen ( c . getIdCitizen ( ) ) )   { //delete il citizen e l'access \\n                 //controllando che l'esito sia positivo \\n                 NFM . decrementaComponenti ( \\n                     c . getFamily ( ) ) ;    // Decremento il number di componenti del nucleo \\n                 AM . deleteAccess ( login ) ; \\n                 ris   =   \\\"ok\\\" ; \\n                 request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n                 rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=riuscita\\\" ) ; \\n               }   else   { \\n                 ris   =   \\\"fallita\\\" ; \\n                 request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n                 rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n               } \\n             }   else   { \\n               ris   =   \\\"Siamo spiacenti, il codice della carta d'identit� del nuovo capo famiglia non � presente nel database\\\" ; \\n               request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n               rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n             } \\n           } \\n           rd . forward ( request ,   response ) ; \\n           session . removeAttribute ( \\\"c\\\" ) ; \\n           session . removeAttribute ( \\\"acc\\\" ) ; \\n           session . removeAttribute ( \\\"newCapo\\\" ) ; \\n         } \\n       }   catch   ( DbException   e )   { \\n         ris   =   e . getMessage ( ) ; \\n         request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n         rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n         rd . forward ( request ,   response ) ; \\n       } \\n     }   else   { \\n       String   url   =   \\\"/myDoc/workers/Access.jsp\\\" ; \\n       response . sendRedirect ( url ) ; \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletEliminaCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

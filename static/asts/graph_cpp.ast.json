@@ -1,0 +1,159 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"addEdge\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name: \"Graph\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    void addEdge(int u, int v) {\\n        adjList[u].push_back(v);\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 11"
+            },
+            {
+              "name": "end_line: 13"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"graph.cpp\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"printGraph\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name: \"Graph\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    void printGraph() {\\n        for (auto& [u, neighbors] : adjList) {\\n            cout << u << \\\": \\\";\\n            for (int v : neighbors)\\n                cout << v << \\\" \\\";\\n            cout << endl;\\n        }\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 15"
+            },
+            {
+              "name": "end_line: 22"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"graph.cpp\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"hasEdge\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"bool\""
+            },
+            {
+              "name": "class_name: \"Graph\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    bool hasEdge(int u, int v) {\\n        for (int neighbor : adjList[u]) {\\n            if (neighbor == v)\\n                return true;\\n        }\\n        return false;\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 24"
+            },
+            {
+              "name": "end_line: 30"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"graph.cpp\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

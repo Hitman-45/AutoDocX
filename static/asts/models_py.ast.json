@@ -1,0 +1,356 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"get_model_info\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Get model information by model_name\""
+            },
+            {
+              "name": "body: \"def get_model_info(model_name: str) -> LLMModel | None:\\n    \\\"\\\"\\\"Get model information by model_name\\\"\\\"\\\"\\n    all_models = AVAILABLE_MODELS + OLLAMA_MODELS\\n    return next((model for model in all_models if model.model_name == model_name), None)\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 175"
+            },
+            {
+              "name": "end_line: 178"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"models.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"get_model\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def get_model(model_name: str, model_provider: ModelProvider) -> ChatOpenAI | ChatGroq | ChatOllama | None:\\n    if model_provider == ModelProvider.GROQ:\\n        api_key = os.getenv(\\\"GROQ_API_KEY\\\")\\n        if not api_key:\\n            # Print error to console\\n            print(f\\\"API Key Error: Please make sure GROQ_API_KEY is set in your .env file.\\\")\\n            raise ValueError(\\\"Groq API key not found.  Please make sure GROQ_API_KEY is set in your .env file.\\\")\\n        return ChatGroq(model=model_name, api_key=api_key)\\n    elif model_provider == ModelProvider.OPENAI:\\n        # Get and validate API key\\n        api_key = os.getenv(\\\"OPENAI_API_KEY\\\")\\n        if not api_key:\\n            # Print error to console\\n            print(f\\\"API Key Error: Please make sure OPENAI_API_KEY is set in your .env file.\\\")\\n            raise ValueError(\\\"OpenAI API key not found.  Please make sure OPENAI_API_KEY is set in your .env file.\\\")\\n        return ChatOpenAI(model=model_name, api_key=api_key)\\n    elif model_provider == ModelProvider.ANTHROPIC:\\n        api_key = os.getenv(\\\"ANTHROPIC_API_KEY\\\")\\n        if not api_key:\\n            print(f\\\"API Key Error: Please make sure ANTHROPIC_API_KEY is set in your .env file.\\\")\\n            raise ValueError(\\\"Anthropic API key not found.  Please make sure ANTHROPIC_API_KEY is set in your .env file.\\\")\\n        return ChatAnthropic(model=model_name, api_key=api_key)\\n    elif model_provider == ModelProvider.DEEPSEEK:\\n        api_key = os.getenv(\\\"DEEPSEEK_API_KEY\\\")\\n        if not api_key:\\n            print(f\\\"API Key Error: Please make sure DEEPSEEK_API_KEY is set in your .env file.\\\")\\n            raise ValueError(\\\"DeepSeek API key not found.  Please make sure DEEPSEEK_API_KEY is set in your .env file.\\\")\\n        return ChatDeepSeek(model=model_name, api_key=api_key)\\n    elif model_provider == ModelProvider.GEMINI:\\n        api_key = os.getenv(\\\"GOOGLE_API_KEY\\\")\\n        if not api_key:\\n            print(f\\\"API Key Error: Please make sure GOOGLE_API_KEY is set in your .env file.\\\")\\n            raise ValueError(\\\"Google API key not found.  Please make sure GOOGLE_API_KEY is set in your .env file.\\\")\\n        return ChatGoogleGenerativeAI(model=model_name, api_key=api_key)\\n    elif model_provider == ModelProvider.OLLAMA:\\n        # For Ollama, we use a base URL instead of an API key\\n        base_url = os.getenv(\\\"OLLAMA_BASE_URL\\\", \\\"http://localhost:11434\\\")\\n        return ChatOllama(\\n            model=model_name, \\n            base_url=base_url,\\n        )\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 180"
+            },
+            {
+              "name": "end_line: 220"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"models.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"to_choice_tuple\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"LLMModel\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Convert to format needed for questionary choices\""
+            },
+            {
+              "name": "body: \"def to_choice_tuple(self) -> Tuple[str, str, str]:\\n        \\\"\\\"\\\"Convert to format needed for questionary choices\\\"\\\"\\\"\\n        return (self.display_name, self.model_name, self.provider.value)\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 30"
+            },
+            {
+              "name": "end_line: 32"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"models.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"has_json_mode\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"LLMModel\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Check if the model supports JSON mode\""
+            },
+            {
+              "name": "body: \"def has_json_mode(self) -> bool:\\n        \\\"\\\"\\\"Check if the model supports JSON mode\\\"\\\"\\\"\\n        if self.is_deepseek() or self.is_gemini():\\n            return False\\n        # Only certain Ollama models support JSON mode\\n        if self.is_ollama():\\n            return \\\"llama3\\\" in self.model_name or \\\"neural-chat\\\" in self.model_name\\n        return True\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 34"
+            },
+            {
+              "name": "end_line: 41"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"models.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"is_deepseek\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"LLMModel\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Check if the model is a DeepSeek model\""
+            },
+            {
+              "name": "body: \"def is_deepseek(self) -> bool:\\n        \\\"\\\"\\\"Check if the model is a DeepSeek model\\\"\\\"\\\"\\n        return self.model_name.startswith(\\\"deepseek\\\")\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 43"
+            },
+            {
+              "name": "end_line: 45"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"models.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"is_gemini\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"LLMModel\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Check if the model is a Gemini model\""
+            },
+            {
+              "name": "body: \"def is_gemini(self) -> bool:\\n        \\\"\\\"\\\"Check if the model is a Gemini model\\\"\\\"\\\"\\n        return self.model_name.startswith(\\\"gemini\\\")\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 47"
+            },
+            {
+              "name": "end_line: 49"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"models.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"is_ollama\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"LLMModel\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Check if the model is an Ollama model\""
+            },
+            {
+              "name": "body: \"def is_ollama(self) -> bool:\\n        \\\"\\\"\\\"Check if the model is an Ollama model\\\"\\\"\\\"\\n        return self.provider == ModelProvider.OLLAMA\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 51"
+            },
+            {
+              "name": "end_line: 53"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"models.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

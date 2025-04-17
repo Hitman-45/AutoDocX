@@ -1,0 +1,70 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: function/function.hpp
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="function_function_hpp.ast.json" />
+
+## `operator()()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** RET  
+      **Language:** C++  
+      **Start Line:** 89  
+      **End Line:** 93  
+      
+      
+      
+      ```c++
+      template &lt;typename RET&gt;
+RET Function&lt;RET(void)&gt;::operator()() const
+{
+    return (*m_fun)();
+}
+
+      ```
+      
+## `operator()()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** RET  
+      **Language:** C++  
+      **Start Line:** 110  
+      **End Line:** 115  
+      
+      
+      
+      ```c++
+      template &lt;typename RET&gt;
+template &lt;typename ARG&gt;
+RET Function&lt;RET(void)&gt;::FreeFunction&lt;ARG&gt;::operator()() const
+{
+    return (m_fun(m_arg));
+}
+
+      ```
+      
+## `operator()()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** RET  
+      **Language:** C++  
+      **Start Line:** 134  
+      **End Line:** 139  
+      
+      
+      
+      ```c++
+      template &lt;typename RET&gt;
+template &lt;typename OBJ, typename ARG&gt;
+RET Function&lt;RET(void)&gt;::ObjectFunction&lt;OBJ, ARG&gt;::operator()() const
+{
+    return ((m_obj-&gt;*m_fun)(m_arg));
+}
+
+      ```
+      

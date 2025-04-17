@@ -1,0 +1,810 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"SetReal\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    void Complex::SetReal(double num)\\n    {\\n        m_real = num;\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 33"
+            },
+            {
+              "name": "end_line: 36"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"GetReal\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"double\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    double Complex::GetReal() const\\n    {\\n        return (m_real);\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 38"
+            },
+            {
+              "name": "end_line: 41"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"SetImaginary\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    void Complex::SetImaginary(double num)\\n    {\\n        m_imaginary = num;\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 43"
+            },
+            {
+              "name": "end_line: 46"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"GetImaginary\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"double\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    double Complex::GetImaginary() const\\n    {\\n        return (m_imaginary);\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 48"
+            },
+            {
+              "name": "end_line: 51"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"operator+=\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"Complex &\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    Complex& Complex::operator+=(const Complex &num)\\n    {\\n        m_imaginary += num.GetImaginary();\\n        m_real += num.GetReal();\\n        return (*this);\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 53"
+            },
+            {
+              "name": "end_line: 58"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"operator-=\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"Complex &\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    Complex& Complex::operator-=(const Complex &num)\\n    {\\n        m_imaginary -= num.GetImaginary();\\n        m_real -= num.GetReal();\\n        return (*this);\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 60"
+            },
+            {
+              "name": "end_line: 65"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"operator*=\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"Complex &\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    Complex& Complex::operator*=(const Complex &num)\\n    {\\n        double real = m_real;\\n        m_real = (m_real * num.m_real) - (m_imaginary * num.m_imaginary);\\n        m_imaginary = (real * num.m_imaginary) + (m_imaginary * num.m_real);\\n        \\n        return (*this);\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 67"
+            },
+            {
+              "name": "end_line: 74"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"operator/=\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"Complex &\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    Complex& Complex::operator/=(const Complex &num)\\n    {\\n        double real = m_real;\\n        double denominator = pow(num.m_real, 2) + pow(num.m_imaginary, 2);\\n    \\n        m_real = ((m_real * num.m_real) + \\\\\\n                 (m_imaginary * num.m_imaginary)) / denominator;\\n    \\n        m_imaginary = ((m_imaginary * num.m_real) - \\\\\\n                      (real * num.m_imaginary)) / denominator;\\n    \\n        return (*this);\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 76"
+            },
+            {
+              "name": "end_line: 88"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[8]",
+          "children": [
+            {
+              "name": "function_name: \"operator<<\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"std::ostream &\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    std::ostream &operator<<(std::ostream &stream, const Complex &num)\\n    {\\n        stream << \\\"(\\\" << num.GetReal() << \\\") + i(\\\" << num.GetImaginary() << \\\")\\\";\\n        return (stream);\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 90"
+            },
+            {
+              "name": "end_line: 94"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[9]",
+          "children": [
+            {
+              "name": "function_name: \"operator>>\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"std::istream &\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    std::istream &operator>>(std::istream &stream, Complex &num)\\n    {\\n        double real, imaginary;\\n        stream >> real >> imaginary;\\n        num = Complex(real, imaginary);\\n        return (stream);\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 96"
+            },
+            {
+              "name": "end_line: 102"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[10]",
+          "children": [
+            {
+              "name": "function_name: \"operator==\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"bool\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    bool operator==(const Complex &lhs, const Complex &rhs)\\n    {\\n        bool reCmp = std::fabs(lhs.GetReal() - rhs.GetReal()) < 1e-5;\\n        bool imCmp = std::fabs(lhs.GetImaginary() - rhs.GetImaginary()) < 1e-5;\\n        return (imCmp && reCmp);\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 104"
+            },
+            {
+              "name": "end_line: 109"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[11]",
+          "children": [
+            {
+              "name": "function_name: \"operator!=\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"bool\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    bool operator!=(const Complex &lhs, const Complex &rhs)\\n    {\\n        return (!(lhs == rhs));\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 111"
+            },
+            {
+              "name": "end_line: 114"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[12]",
+          "children": [
+            {
+              "name": "function_name: \"operator+\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"const Complex\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    const Complex operator+(const Complex &lhs, const Complex &rhs)\\n    {\\n        return (Complex(lhs) += rhs);\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 116"
+            },
+            {
+              "name": "end_line: 119"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[13]",
+          "children": [
+            {
+              "name": "function_name: \"operator-\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"const Complex\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    const Complex operator-(const Complex &lhs, const Complex &rhs)\\n    {\\n        return (Complex(lhs) -= rhs);\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 121"
+            },
+            {
+              "name": "end_line: 124"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[14]",
+          "children": [
+            {
+              "name": "function_name: \"operator*\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"const Complex\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    const Complex operator*(const Complex &lhs, const Complex &rhs)\\n    {\\n        return (Complex(lhs) *= rhs);\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 126"
+            },
+            {
+              "name": "end_line: 129"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        },
+        {
+          "name": "functions[15]",
+          "children": [
+            {
+              "name": "function_name: \"operator/\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"const Complex\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    const Complex operator/(const Complex &lhs, const Complex &rhs)\\n    {\\n        return (Complex(lhs) /= rhs);\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 131"
+            },
+            {
+              "name": "end_line: 134"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"complex/complex.cpp\""
+            },
+            {
+              "name": "folder: \"complex\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

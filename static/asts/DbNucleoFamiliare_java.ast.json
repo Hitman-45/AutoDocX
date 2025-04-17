@@ -1,0 +1,424 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"insertFamily\""
+            },
+            {
+              "name": "parameters: \"(Familynf)\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 41"
+            },
+            {
+              "name": "end_line: 64"
+            },
+            {
+              "name": "body_start: 41"
+            },
+            {
+              "name": "body_end: 64"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     int   idC   =   nf . getCapoFamiglia ( ) ; \\n     String   note   =   nf . getNote ( ) ; \\n     int   nc   =   nf . getNComponenti ( ) ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"INSERT INTO family VALUES (? ,? ,?,?)\\\" ) ; \\n       statement . setInt ( 1 ,   0 ) ; \\n       statement . setInt ( 2 ,   idC ) ; \\n       statement . setString ( 3 ,   note ) ; \\n       statement . setInt ( 4 ,   nc ) ; \\n       statement . executeUpdate ( ) ; \\n       return   lastId ( ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: household insertion failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: household insertion failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbNucleoFamiliare.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"deleteFamily\""
+            },
+            {
+              "name": "parameters: \"(intid)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 75"
+            },
+            {
+              "name": "end_line: 93"
+            },
+            {
+              "name": "body_start: 75"
+            },
+            {
+              "name": "body_end: 93"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     int   ret   =   0 ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"DELETE FROM family WHERE idFamily =?\\\" ) ; \\n       statement . setInt ( 1 ,   id ) ; \\n       ret   =   statement . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: Household deletion failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: Household deletion failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbNucleoFamiliare.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"getFamilyStatus\""
+            },
+            {
+              "name": "parameters: \"(intid)\""
+            },
+            {
+              "name": "return_type: \"Collection<Citizen>\""
+            },
+            {
+              "name": "start_line: 104"
+            },
+            {
+              "name": "end_line: 142"
+            },
+            {
+              "name": "body_start: 104"
+            },
+            {
+              "name": "body_end: 142"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     ArrayList < Citizen >   ret   =   new   ArrayList < Citizen > ( ) ; \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     Family   nf   =   getFamilyById ( id ) ; \\n     if   ( nf   ==   null ) \\n       return   null ; \\n     int   nc   =   nf . getNComponenti ( ) ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"SELECT * FROM familystatus WHERE family = ?\\\" ) ; \\n       statement . setInt ( 1 ,   id ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       for   ( int   i   =   0 ;   i   <   nc ;   i ++ )   { \\n         rs . next ( ) ; \\n         String   cc   =   rs . getString ( \\\"fiscalCode\\\" ) ; \\n         String   surname   =   rs . getString ( \\\"surname\\\" ) ; \\n         String   name   =   rs . getString ( \\\"name\\\" ) ; \\n         java . util . Date   dateOfBirth   =   rs . getDate ( \\\"dateOfBirth\\\" ) ; \\n         String   place   =   rs . getString ( \\\"placeOfBirth\\\" ) ; \\n         int   family   =   rs . getInt ( \\\"family\\\" ) ; \\n         ret . add ( new   Citizen ( family ,   cc ,   surname ,   name ,   dateOfBirth ,   place ) ) ; \\n       } \\n       if   ( ret . isEmpty ( ) ) \\n         return   null ; \\n       else \\n         return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: family status search failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: family status search failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbNucleoFamiliare.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"checkFamilyId\""
+            },
+            {
+              "name": "parameters: \"(intid)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 153"
+            },
+            {
+              "name": "end_line: 175"
+            },
+            {
+              "name": "body_start: 153"
+            },
+            {
+              "name": "body_end: 175"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     boolean   ret   =   false ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"SELECT * FROM family WHERE idFamily = ?\\\" ) ; \\n       statement . setInt ( 1 ,   id ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       ret   =   rs . next ( ) ; \\n       return   ( ret ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: Household check failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: Household check failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbNucleoFamiliare.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"familyNote\""
+            },
+            {
+              "name": "parameters: \"(intid)\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 186"
+            },
+            {
+              "name": "end_line: 213"
+            },
+            {
+              "name": "body_start: 186"
+            },
+            {
+              "name": "body_end: 213"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     String   ret   =   \\\"\\\" ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"SELECT note FROM family WHERE idFamily = ?\\\" ) ; \\n       statement . setInt ( 1 ,   id ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       if   ( ! rs . next ( ) ) \\n         return   null ; \\n       ret   =   rs . getString ( \\\"note\\\" ) ; \\n       if   ( ret   ==   null ) \\n         return   \\\"\\\" ; \\n       else \\n         return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: search note failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: search note failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbNucleoFamiliare.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"setHeadOfFamily\""
+            },
+            {
+              "name": "parameters: \"(intidF,intidC)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 226"
+            },
+            {
+              "name": "end_line: 246"
+            },
+            {
+              "name": "body_start: 226"
+            },
+            {
+              "name": "body_end: 246"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     int   ret   =   0 ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\n           \\\"UPDATE family SET headOfFamily = ? WHERE idFamily = ?\\\" ) ; \\n       statement . setInt ( 1 ,   idC ) ; \\n       statement . setInt ( 2 ,   idF ) ; \\n       ret   =   statement . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: modify head of household failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: modify head of household failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbNucleoFamiliare.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"getFamilyById\""
+            },
+            {
+              "name": "parameters: \"(intid)\""
+            },
+            {
+              "name": "return_type: \"Family\""
+            },
+            {
+              "name": "start_line: 257"
+            },
+            {
+              "name": "end_line: 285"
+            },
+            {
+              "name": "body_start: 257"
+            },
+            {
+              "name": "body_end: 285"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     Family   ret   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"SELECT* FROM family WHERE idFamily = ?\\\" ) ; \\n       statement . setInt ( 1 ,   id ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       if   ( ! rs . next ( ) ) \\n         return   ret ; \\n       int   idN   =   rs . getInt ( \\\"idFamily\\\" ) ; \\n       int   idC   =   rs . getInt ( \\\"headOfFamily\\\" ) ; \\n       String   note   =   rs . getString ( \\\"note\\\" ) ; \\n       int   nc   =   rs . getInt ( \\\"nComponenti\\\" ) ; \\n       ret   =   new   Family ( idN ,   idC ,   note ,   nc ) ; \\n       return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: household search by id failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: household search by id failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbNucleoFamiliare.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"lastId\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 287"
+            },
+            {
+              "name": "end_line: 310"
+            },
+            {
+              "name": "body_start: 287"
+            },
+            {
+              "name": "body_end: 310"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     int   ret   =   0 ; \\n     Statement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     try   { \\n       statement   =   connection . createStatement ( ) ; \\n       rs   =   statement . executeQuery ( \\\"SELECT max(idFamily)AS max FROM family\\\" ) ; \\n       if   ( ! rs . next ( ) ) \\n         return   ret ; \\n       ret   =   rs . getInt ( 1 ) ; \\n       return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: search id of the last household failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: search id of the last household failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbNucleoFamiliare.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[8]",
+          "children": [
+            {
+              "name": "function_name: \"setNComponents\""
+            },
+            {
+              "name": "parameters: \"(intidF,intn)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 323"
+            },
+            {
+              "name": "end_line: 343"
+            },
+            {
+              "name": "body_start: 323"
+            },
+            {
+              "name": "body_end: 343"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     int   ret   =   0 ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\n           \\\"UPDATE family SET nComponenti = ? WHERE idFamily = ?\\\" ) ; \\n       statement . setInt ( 1 ,   n ) ; \\n       statement . setInt ( 2 ,   idF ) ; \\n       ret   =   statement . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: modify number components failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: modify number components failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbNucleoFamiliare.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

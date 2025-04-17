@@ -1,0 +1,273 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: shared_pointer/shared_pointer.hpp
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="shared_pointer_shared_pointer_hpp.ast.json" />
+
+## `operator=()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** SharedPointer&lt;T&gt; &  
+      **Language:** C++  
+      **Start Line:** 81  
+      **End Line:** 86  
+      
+      
+      
+      ```c++
+      template &lt;typename T&gt;
+SharedPointer&lt;T&gt; &SharedPointer&lt;T&gt;::operator=(const SharedPointer&lt;T&gt; &other) noexcept
+{
+    CopyNSwap(other);
+    return (*this);
+}
+
+      ```
+      
+## `operator*()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** T &  
+      **Language:** C++  
+      **Start Line:** 94  
+      **End Line:** 98  
+      
+      
+      
+      ```c++
+      template &lt;typename T&gt;
+T &SharedPointer&lt;T&gt;::operator*() const
+{
+    return (*m_pointer);
+}
+
+      ```
+      
+## `operator-&gt;()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** T *  
+      **Language:** C++  
+      **Start Line:** 100  
+      **End Line:** 104  
+      
+      
+      
+      ```c++
+      template &lt;typename T&gt;
+T *SharedPointer&lt;T&gt;::operator-&gt;() const
+{
+    return (m_pointer);
+}
+
+      ```
+      
+## `GetPointer()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** T *  
+      **Language:** C++  
+      **Start Line:** 106  
+      **End Line:** 110  
+      
+      
+      
+      ```c++
+      template &lt;typename T&gt;
+T *SharedPointer&lt;T&gt;::GetPointer() const noexcept
+{
+    return (m_pointer);
+}
+
+      ```
+      
+## `Swap()`
+
+      **Class:** None  
+      **Access:** private  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 128  
+      **End Line:** 138  
+      
+      
+      
+      ```c++
+      template &lt;typename T&gt;
+void SharedPointer&lt;T&gt;::Swap(SharedPointer&lt;T&gt; &cpy)
+{
+    std::size_t *tmp_counter = m_counter;
+    m_counter = cpy.m_counter;
+    cpy.m_counter = tmp_counter;
+
+    T *tmp_pointer = m_pointer;
+    m_pointer = cpy.m_pointer;
+    cpy.m_pointer = tmp_pointer;
+}
+
+      ```
+      
+## `CopyNSwap()`
+
+      **Class:** None  
+      **Access:** private  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 140  
+      **End Line:** 145  
+      
+      
+      
+      ```c++
+      template &lt;typename T&gt;
+void SharedPointer&lt;T&gt;::CopyNSwap(const SharedPointer&lt;T&gt; &other)
+{
+    SharedPointer&lt;T&gt; cpy(other);
+    Swap(cpy);
+}
+
+      ```
+      
+## `SetCounter()`
+
+      **Class:** None  
+      **Access:** private  
+      **Return:** std::size_t *  
+      **Language:** C++  
+      **Start Line:** 147  
+      **End Line:** 161  
+      
+      
+      
+      ```c++
+      template &lt;typename T&gt;
+std::size_t *SharedPointer&lt;T&gt;::SetCounter(void)
+{
+    try
+    {
+        m_counter = new std::size_t(1);
+    }
+    catch(const std::bad_alloc& b)
+    {
+        DeleteResources();
+        throw(b);
+    }
+    
+    return (m_counter);
+}
+
+      ```
+      
+## `IsShared()`
+
+      **Class:** None  
+      **Access:** private  
+      **Return:** bool  
+      **Language:** C++  
+      **Start Line:** 163  
+      **End Line:** 167  
+      
+      
+      
+      ```c++
+      template &lt;typename T&gt;
+bool SharedPointer&lt;T&gt;::IsShared(void)
+{
+    return (0 != *m_counter);
+}
+
+      ```
+      
+## `DecCounter()`
+
+      **Class:** None  
+      **Access:** private  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 169  
+      **End Line:** 173  
+      
+      
+      
+      ```c++
+      template &lt;typename T&gt;
+void SharedPointer&lt;T&gt;::DecCounter(void)
+{
+    --(*m_counter);
+}
+
+      ```
+      
+## `IncCounter()`
+
+      **Class:** None  
+      **Access:** private  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 175  
+      **End Line:** 179  
+      
+      
+      
+      ```c++
+      template &lt;typename T&gt;
+void SharedPointer&lt;T&gt;::IncCounter(void)
+{
+    ++(*m_counter);
+}
+
+      ```
+      
+## `Deallocate()`
+
+      **Class:** None  
+      **Access:** private  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 181  
+      **End Line:** 189  
+      
+      
+      
+      ```c++
+      template &lt;typename T&gt;
+void SharedPointer&lt;T&gt;::Deallocate(void)
+{
+    DecCounter();
+    if(!IsShared())
+    {
+        DeleteResources();
+    }
+}
+
+      ```
+      
+## `DeleteResources()`
+
+      **Class:** None  
+      **Access:** private  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 191  
+      **End Line:** 198  
+      
+      
+      
+      ```c++
+      template &lt;typename T&gt;
+void SharedPointer&lt;T&gt;::DeleteResources(void)
+{
+    delete (m_pointer);
+    m_pointer = nullptr;
+    delete (m_counter);
+    m_counter = nullptr;
+}
+
+      ```
+      

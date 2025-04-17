@@ -1,0 +1,41 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: ServletVisualizzaPratiche.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="ServletVisualizzaPratiche_java.ast.json" />
+
+## `doGet()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** void  
+      **Language:** Java  
+      **Start Line:** 26  
+      **End Line:** 45  
+      
+      
+      
+      ```java
+      { 
+
+     HttpSession   session   =   request . getSession ( true ) ; 
+     ArrayList &lt; Request &gt;   arrayList   =   null ; 
+
+     try   { 
+       DbRequest   dbnc   =   new   DbRequest ( ) ; 
+       arrayList   =   ( ArrayList &lt; Request &gt; )   dbnc . getRequests ( ) ; 
+       session . setAttribute ( "array" ,   arrayList ) ; 
+     }   catch   ( Exception   e )   { 
+       //e.getMessage().toString(); 
+       e . printStackTrace ( ) ; 
+     } 
+
+     session . setAttribute ( "array" ,   arrayList ) ; 
+     ServletContext   sc   =   getServletContext ( ) ; 
+     RequestDispatcher   rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=pra&page=visualizza" ) ; 
+     rd . forward ( request ,   response ) ; 
+   }
+      ```
+      

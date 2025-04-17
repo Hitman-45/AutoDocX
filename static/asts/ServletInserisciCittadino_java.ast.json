@@ -1,0 +1,102 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"doPost\""
+            },
+            {
+              "name": "parameters: \"(HttpServletRequestrequest,HttpServletResponseresponse)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 43"
+            },
+            {
+              "name": "end_line: 125"
+            },
+            {
+              "name": "body_start: 44"
+            },
+            {
+              "name": "body_end: 125"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     HttpSession   session   =   request . getSession ( ) ; \\n     if   ( session \\n         !=   null )   {    //Se la sessione � nulla effettua il redirect alla pagina di autenticazione \\n       RequestDispatcher   rd   =   null ; \\n       ServletContext   sc   =   getServletContext ( ) ; \\n       String   ris ; \\n       try   { \\n         name   =   request . getParameter ( \\\"name\\\" ) ; \\n         surname   =   request . getParameter ( \\\"surname\\\" ) ; \\n         cf   =   request . getParameter ( \\\"cf\\\" ) . toUpperCase ( ) ; \\n         day   =   Integer . parseInt ( request . getParameter ( \\\"gg\\\" ) ) ; \\n         month   =   Integer . parseInt ( request . getParameter ( \\\"mm\\\" ) ) ; \\n         year   =   Integer . parseInt ( request . getParameter ( \\\"aa\\\" ) ) ; \\n         dataN . setDate ( day ) ; \\n         dataN . setMonth ( month ) ; \\n         dataN . setYear ( year ) ; \\n         placeN   =   request . getParameter ( \\\"ln\\\" ) ; \\n         if   ( request . getParameter ( \\\"email\\\" )   !=   null ) \\n           email   =   request . getParameter ( \\\"email\\\" ) ; \\n         else \\n           email   =   \\\"\\\" ; \\n         advertise   =   false ; \\n         idNF   =   Integer . parseInt ( request . getParameter ( \\\"nucleof\\\" ) ) ; \\n         login   =   null ; \\n         type   =   \\\"Citizen\\\" ; \\n\\n         CitizenManager   CM   =   new   CitizenManager ( ) ; \\n         NFM   =   new   FamilyManager ( ) ; \\n\\n         citizen   =   new   Citizen ( 0 ,   cf ,   surname ,   name ,   dataN ,   placeN ,   email ,   advertise ,   idNF ,   login ) ; \\n\\n         if   ( idNF   ==   0 )   {    //Se l'id del nucleo familiare � zero, devo creare un nuovo nucleo \\n\\n           int   idC   =   CM . insertCitizen ( citizen ) ;   //inserisco il citizen nel db \\n           citizen . setIdCitizen ( idC ) ; \\n           idNF   =   creaNucleoF ( ) ;   //Salvo l'id del nuovo nucleo \\n           citizen . setFamily ( idNF ) ;   //setto l'id del nucleo del citizen \\n           CM . modifyFamily ( citizen . getIdCitizen ( ) ,   idNF ) ; \\n           if   ( idNF   !=   0   &&   idC \\n               !=   0 )   {   //Se gli id restituiti sono diversi da zero l'operazione � andata a buon fine \\n             ris   =   \\\"ok\\\" ; \\n             request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n             rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=riuscita\\\" ) ; \\n           }   else   { \\n             ris   =   \\\"fallita\\\" ; \\n             request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n             rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n           } \\n         }   else   {    // Se l'id del nucleo familiare non � zero, devo aggiungere il citizen ad un nucleo esistente \\n           if   ( NFM . checkFamilyId ( idNF ) )   {    //controllo l'esistenza del nucleo nel db \\n             NFM . incrementaComponenti ( idNF ) ;    //incremento i componenti del nucleo \\n             int   idC   =   0 ; \\n             if   ( ( idC   =   CM . insertCitizen ( citizen ) ) \\n                 !=   0 )   {   //inserisco il citizen nel db e controllo se l'esito � positivo \\n               citizen . setIdCitizen ( idC ) ; \\n               ris   =   \\\"ok\\\" ; \\n               request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n               rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=riuscita\\\" ) ; \\n             }   else   { \\n               ris   =   \\\"Errore inserimento citizen\\\" ; \\n               request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n               rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n             } \\n           }   else   { \\n             ris   =   \\\"Id non presente\\\" ; \\n             request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n             rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n           } \\n         } \\n         rd . forward ( request ,   response ) ; \\n       }   catch   ( DbException   e )   { \\n         ris   =   e . getMessage ( ) ; \\n         request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n         rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n         rd . forward ( request ,   response ) ; \\n       } \\n     }   else   { \\n       String   url   =   \\\"/myDoc/workers/Access.jsp\\\" ; \\n       response . sendRedirect ( url ) ; \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletInserisciCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"creaNucleoF\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 127"
+            },
+            {
+              "name": "end_line: 133"
+            },
+            {
+              "name": "body_start: 127"
+            },
+            {
+              "name": "body_end: 133"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Family   nf   =   new   Family ( ) ; \\n     nf . setHeadOfFamily ( citizen . getIdCitizen ( ) ) ; \\n     nf . setIdFamily ( 0 ) ; \\n     nf . setNComponenti ( 1 ) ; \\n     return   NFM . insertNucleo ( nf ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletInserisciCittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

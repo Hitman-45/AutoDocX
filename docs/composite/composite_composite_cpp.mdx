@@ -1,0 +1,171 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: composite/composite.cpp
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="composite_composite_cpp.ast.json" />
+
+## `GetFilename()`
+
+      **Class:** None  
+      **Access:** protected  
+      **Return:** const std::string &  
+      **Language:** C++  
+      **Start Line:** 29  
+      **End Line:** 32  
+      
+      
+      
+      ```c++
+      const std::string& IEntry::GetFilename() const noexcept
+{
+    return (m_filename);
+}
+
+      ```
+      
+## `Print()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 44  
+      **End Line:** 47  
+      
+      
+      
+      ```c++
+      void File::Print() const noexcept
+{
+    std::cout &lt;&lt; GetFilename() &lt;&lt; std::endl;
+}
+
+      ```
+      
+## `clone()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** File *  
+      **Language:** C++  
+      **Start Line:** 49  
+      **End Line:** 52  
+      
+      
+      
+      ```c++
+      File* File::clone() const
+{
+    return (new File(GetFilename()));
+}
+
+      ```
+      
+## `Print()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 64  
+      **End Line:** 68  
+      
+      
+      
+      ```c++
+      void Dir::Print() const noexcept
+{
+    std::cout &lt;&lt; GetFilename() &lt;&lt; std::endl;
+    std::for_each(m_content.begin(), m_content.end(), PrintDir);
+}
+
+      ```
+      
+## `clone()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** Dir *  
+      **Language:** C++  
+      **Start Line:** 70  
+      **End Line:** 75  
+      
+      
+      
+      ```c++
+      Dir* Dir::clone() const
+{
+    Dir *newDir = new Dir(GetFilename());
+    newDir-&gt;m_content = this-&gt;m_content;
+    return (newDir);
+}
+
+      ```
+      
+## `AddIEntry()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 77  
+      **End Line:** 80  
+      
+      
+      
+      ```c++
+      void Dir::AddIEntry(const IEntry& entry)
+{
+    m_content.push_back(&entry);
+}
+
+      ```
+      
+## `RemoveIEntry()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 82  
+      **End Line:** 93  
+      
+      
+      
+      ```c++
+      void Dir::RemoveIEntry(std::string entry) noexcept
+{
+    std::vector&lt;const IEntry *&gt;::iterator it = m_content.begin();
+    for(; it != m_content.end(); ++it)
+    {
+        if(reinterpret_cast&lt;const Dir*&gt;(*it)-&gt;GetFilename() == entry)
+        {
+            m_content.erase(it);
+            return;
+        }
+    }
+}
+
+      ```
+      
+## `PrintDir()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 95  
+      **End Line:** 98  
+      
+      
+      
+      ```c++
+      static void PrintDir(const IEntry *entry)
+{
+    entry-&gt;Print();
+}
+
+      ```
+      

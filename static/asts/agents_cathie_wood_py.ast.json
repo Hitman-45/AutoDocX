@@ -1,0 +1,318 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"cathie_wood_agent\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Analyzes stocks using Cathie Wood's investing principles and LLM reasoning.\\n1. Prioritizes companies with breakthrough technologies or business models\\n2. Focuses on industries with rapid adoption curves and massive TAM (Total Addressable Market).\\n3. Invests mostly in AI, robotics, genomic sequencing, fintech, and blockchain.\\n4. Willing to endure short-term volatility for long-term gains.\""
+            },
+            {
+              "name": "body: \"def cathie_wood_agent(state: AgentState):\\n    \\\"\\\"\\\"\\n    Analyzes stocks using Cathie Wood's investing principles and LLM reasoning.\\n    1. Prioritizes companies with breakthrough technologies or business models\\n    2. Focuses on industries with rapid adoption curves and massive TAM (Total Addressable Market).\\n    3. Invests mostly in AI, robotics, genomic sequencing, fintech, and blockchain.\\n    4. Willing to endure short-term volatility for long-term gains.\\n    \\\"\\\"\\\"\\n    data = state[\\\"data\\\"]\\n    end_date = data[\\\"end_date\\\"]\\n    tickers = data[\\\"tickers\\\"]\\n\\n    analysis_data = {}\\n    cw_analysis = {}\\n\\n    for ticker in tickers:\\n        progress.update_status(\\\"cathie_wood_agent\\\", ticker, \\\"Fetching financial metrics\\\")\\n        metrics = get_financial_metrics(ticker, end_date, period=\\\"annual\\\", limit=5)\\n\\n        progress.update_status(\\\"cathie_wood_agent\\\", ticker, \\\"Gathering financial line items\\\")\\n        # Request multiple periods of data (annual or TTM) for a more robust view.\\n        financial_line_items = search_line_items(\\n            ticker,\\n            [\\n                \\\"revenue\\\",\\n                \\\"gross_margin\\\",\\n                \\\"operating_margin\\\",\\n                \\\"debt_to_equity\\\",\\n                \\\"free_cash_flow\\\",\\n                \\\"total_assets\\\",\\n                \\\"total_liabilities\\\",\\n                \\\"dividends_and_other_cash_distributions\\\",\\n                \\\"outstanding_shares\\\",\\n                \\\"research_and_development\\\",\\n                \\\"capital_expenditure\\\",\\n                \\\"operating_expense\\\",\\n\\n            ],\\n            end_date,\\n            period=\\\"annual\\\",\\n            limit=5\\n        )\\n\\n        progress.update_status(\\\"cathie_wood_agent\\\", ticker, \\\"Getting market cap\\\")\\n        market_cap = get_market_cap(ticker, end_date)\\n\\n        progress.update_status(\\\"cathie_wood_agent\\\", ticker, \\\"Analyzing disruptive potential\\\")\\n        disruptive_analysis = analyze_disruptive_potential(metrics, financial_line_items)\\n\\n        progress.update_status(\\\"cathie_wood_agent\\\", ticker, \\\"Analyzing innovation-driven growth\\\")\\n        innovation_analysis = analyze_innovation_growth(metrics, financial_line_items)\\n\\n        progress.update_status(\\\"cathie_wood_agent\\\", ticker, \\\"Calculating valuation & high-growth scenario\\\")\\n        valuation_analysis = analyze_cathie_wood_valuation(financial_line_items, market_cap)\\n\\n        # Combine partial scores or signals\\n        total_score = disruptive_analysis[\\\"score\\\"] + innovation_analysis[\\\"score\\\"] + valuation_analysis[\\\"score\\\"]\\n        max_possible_score = 15  # Adjust weighting as desired\\n\\n        if total_score >= 0.7 * max_possible_score:\\n            signal = \\\"bullish\\\"\\n        elif total_score <= 0.3 * max_possible_score:\\n            signal = \\\"bearish\\\"\\n        else:\\n            signal = \\\"neutral\\\"\\n\\n        analysis_data[ticker] = {\\n            \\\"signal\\\": signal,\\n            \\\"score\\\": total_score,\\n            \\\"max_score\\\": max_possible_score,\\n            \\\"disruptive_analysis\\\": disruptive_analysis,\\n            \\\"innovation_analysis\\\": innovation_analysis,\\n            \\\"valuation_analysis\\\": valuation_analysis\\n        }\\n\\n        progress.update_status(\\\"cathie_wood_agent\\\", ticker, \\\"Generating Cathie Wood analysis\\\")\\n        cw_output = generate_cathie_wood_output(\\n            ticker=ticker,\\n            analysis_data=analysis_data,\\n            model_name=state[\\\"metadata\\\"][\\\"model_name\\\"],\\n            model_provider=state[\\\"metadata\\\"][\\\"model_provider\\\"],\\n        )\\n\\n        cw_analysis[ticker] = {\\n            \\\"signal\\\": cw_output.signal,\\n            \\\"confidence\\\": cw_output.confidence,\\n            \\\"reasoning\\\": cw_output.reasoning\\n        }\\n\\n        progress.update_status(\\\"cathie_wood_agent\\\", ticker, \\\"Done\\\")\\n\\n    message = HumanMessage(\\n        content=json.dumps(cw_analysis),\\n        name=\\\"cathie_wood_agent\\\"\\n    )\\n\\n    if state[\\\"metadata\\\"].get(\\\"show_reasoning\\\"):\\n        show_agent_reasoning(cw_analysis, \\\"Cathie Wood Agent\\\")\\n\\n    state[\\\"data\\\"][\\\"analyst_signals\\\"][\\\"cathie_wood_agent\\\"] = cw_analysis\\n\\n    return {\\n        \\\"messages\\\": [message],\\n        \\\"data\\\": state[\\\"data\\\"]\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 17"
+            },
+            {
+              "name": "end_line: 121"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"agents/cathie_wood.py\""
+            },
+            {
+              "name": "folder: \"agents\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"analyze_disruptive_potential\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Analyze whether the company has disruptive products, technology, or business model.\\nEvaluates multiple dimensions of disruptive potential:\\n1. Revenue Growth Acceleration - indicates market adoption\\n2. R&D Intensity - shows innovation investment\\n3. Gross Margin Trends - suggests pricing power and scalability\\n4. Operating Leverage - demonstrates business model efficiency\\n5. Market Share Dynamics - indicates competitive position\""
+            },
+            {
+              "name": "body: \"def analyze_disruptive_potential(metrics: list, financial_line_items: list) -> dict:\\n    \\\"\\\"\\\"\\n    Analyze whether the company has disruptive products, technology, or business model.\\n    Evaluates multiple dimensions of disruptive potential:\\n    1. Revenue Growth Acceleration - indicates market adoption\\n    2. R&D Intensity - shows innovation investment\\n    3. Gross Margin Trends - suggests pricing power and scalability\\n    4. Operating Leverage - demonstrates business model efficiency\\n    5. Market Share Dynamics - indicates competitive position\\n    \\\"\\\"\\\"\\n    score = 0\\n    details = []\\n\\n    if not metrics or not financial_line_items:\\n        return {\\n            \\\"score\\\": 0,\\n            \\\"details\\\": \\\"Insufficient data to analyze disruptive potential\\\"\\n        }\\n\\n    # 1. Revenue Growth Analysis - Check for accelerating growth\\n    revenues = [item.revenue for item in financial_line_items if item.revenue]\\n    if len(revenues) >= 3:  # Need at least 3 periods to check acceleration\\n        growth_rates = []\\n        for i in range(len(revenues)-1):\\n            if revenues[i] and revenues[i+1]:\\n                growth_rate = (revenues[i+1] - revenues[i]) / abs(revenues[i]) if revenues[i] != 0 else 0\\n                growth_rates.append(growth_rate)\\n\\n        # Check if growth is accelerating\\n        if len(growth_rates) >= 2 and growth_rates[-1] > growth_rates[0]:\\n            score += 2\\n            details.append(f\\\"Revenue growth is accelerating: {(growth_rates[-1]*100):.1f}% vs {(growth_rates[0]*100):.1f}%\\\")\\n\\n        # Check absolute growth rate\\n        latest_growth = growth_rates[-1] if growth_rates else 0\\n        if latest_growth > 1.0:\\n            score += 3\\n            details.append(f\\\"Exceptional revenue growth: {(latest_growth*100):.1f}%\\\")\\n        elif latest_growth > 0.5:\\n            score += 2\\n            details.append(f\\\"Strong revenue growth: {(latest_growth*100):.1f}%\\\")\\n        elif latest_growth > 0.2:\\n            score += 1\\n            details.append(f\\\"Moderate revenue growth: {(latest_growth*100):.1f}%\\\")\\n    else:\\n        details.append(\\\"Insufficient revenue data for growth analysis\\\")\\n\\n    # 2. Gross Margin Analysis - Check for expanding margins\\n    gross_margins = [item.gross_margin for item in financial_line_items if hasattr(item, 'gross_margin') and item.gross_margin is not None]\\n    if len(gross_margins) >= 2:\\n        margin_trend = gross_margins[-1] - gross_margins[0]\\n        if margin_trend > 0.05:  # 5% improvement\\n            score += 2\\n            details.append(f\\\"Expanding gross margins: +{(margin_trend*100):.1f}%\\\")\\n        elif margin_trend > 0:\\n            score += 1\\n            details.append(f\\\"Slightly improving gross margins: +{(margin_trend*100):.1f}%\\\")\\n\\n        # Check absolute margin level\\n        if gross_margins[-1] > 0.50:  # High margin business\\n            score += 2\\n            details.append(f\\\"High gross margin: {(gross_margins[-1]*100):.1f}%\\\")\\n    else:\\n        details.append(\\\"Insufficient gross margin data\\\")\\n\\n    # 3. Operating Leverage Analysis\\n    revenues = [item.revenue for item in financial_line_items if item.revenue]\\n    operating_expenses = [\\n        item.operating_expense\\n        for item in financial_line_items\\n        if hasattr(item, \\\"operating_expense\\\") and item.operating_expense\\n    ]\\n\\n    if len(revenues) >= 2 and len(operating_expenses) >= 2:\\n        rev_growth = (revenues[-1] - revenues[0]) / abs(revenues[0])\\n        opex_growth = (operating_expenses[-1] - operating_expenses[0]) / abs(operating_expenses[0])\\n\\n        if rev_growth > opex_growth:\\n            score += 2\\n            details.append(\\\"Positive operating leverage: Revenue growing faster than expenses\\\")\\n    else:\\n        details.append(\\\"Insufficient data for operating leverage analysis\\\")\\n\\n    # 4. R&D Investment Analysis\\n    rd_expenses = [item.research_and_development for item in financial_line_items if hasattr(item, 'research_and_development') and item.research_and_development is not None]\\n    if rd_expenses and revenues:\\n        rd_intensity = rd_expenses[-1] / revenues[-1]\\n        if rd_intensity > 0.15:  # High R&D intensity\\n            score += 3\\n            details.append(f\\\"High R&D investment: {(rd_intensity*100):.1f}% of revenue\\\")\\n        elif rd_intensity > 0.08:\\n            score += 2\\n            details.append(f\\\"Moderate R&D investment: {(rd_intensity*100):.1f}% of revenue\\\")\\n        elif rd_intensity > 0.05:\\n            score += 1\\n            details.append(f\\\"Some R&D investment: {(rd_intensity*100):.1f}% of revenue\\\")\\n    else:\\n        details.append(\\\"No R&D data available\\\")\\n\\n    # Normalize score to be out of 5\\n    max_possible_score = 12  # Sum of all possible points\\n    normalized_score = (score / max_possible_score) * 5\\n\\n    return {\\n        \\\"score\\\": normalized_score,\\n        \\\"details\\\": \\\"; \\\".join(details),\\n        \\\"raw_score\\\": score,\\n        \\\"max_score\\\": max_possible_score\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 124"
+            },
+            {
+              "name": "end_line: 232"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"agents/cathie_wood.py\""
+            },
+            {
+              "name": "folder: \"agents\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"analyze_innovation_growth\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Evaluate the company's commitment to innovation and potential for exponential growth.\\nAnalyzes multiple dimensions:\\n1. R&D Investment Trends - measures commitment to innovation\\n2. Free Cash Flow Generation - indicates ability to fund innovation\\n3. Operating Efficiency - shows scalability of innovation\\n4. Capital Allocation - reveals innovation-focused management\\n5. Growth Reinvestment - demonstrates commitment to future growth\""
+            },
+            {
+              "name": "body: \"def analyze_innovation_growth(metrics: list, financial_line_items: list) -> dict:\\n    \\\"\\\"\\\"\\n    Evaluate the company's commitment to innovation and potential for exponential growth.\\n    Analyzes multiple dimensions:\\n    1. R&D Investment Trends - measures commitment to innovation\\n    2. Free Cash Flow Generation - indicates ability to fund innovation\\n    3. Operating Efficiency - shows scalability of innovation\\n    4. Capital Allocation - reveals innovation-focused management\\n    5. Growth Reinvestment - demonstrates commitment to future growth\\n    \\\"\\\"\\\"\\n    score = 0\\n    details = []\\n\\n    if not metrics or not financial_line_items:\\n        return {\\n            \\\"score\\\": 0,\\n            \\\"details\\\": \\\"Insufficient data to analyze innovation-driven growth\\\"\\n        }\\n\\n    # 1. R&D Investment Trends\\n    rd_expenses = [\\n        item.research_and_development\\n        for item in financial_line_items\\n        if hasattr(item, \\\"research_and_development\\\") and item.research_and_development\\n    ]\\n    revenues = [item.revenue for item in financial_line_items if item.revenue]\\n\\n    if rd_expenses and revenues and len(rd_expenses) >= 2:\\n        # Check R&D growth rate\\n        rd_growth = (rd_expenses[-1] - rd_expenses[0]) / abs(rd_expenses[0]) if rd_expenses[0] != 0 else 0\\n        if rd_growth > 0.5:  # 50% growth in R&D\\n            score += 3\\n            details.append(f\\\"Strong R&D investment growth: +{(rd_growth*100):.1f}%\\\")\\n        elif rd_growth > 0.2:\\n            score += 2\\n            details.append(f\\\"Moderate R&D investment growth: +{(rd_growth*100):.1f}%\\\")\\n\\n        # Check R&D intensity trend\\n        rd_intensity_start = rd_expenses[0] / revenues[0]\\n        rd_intensity_end = rd_expenses[-1] / revenues[-1]\\n        if rd_intensity_end > rd_intensity_start:\\n            score += 2\\n            details.append(f\\\"Increasing R&D intensity: {(rd_intensity_end*100):.1f}% vs {(rd_intensity_start*100):.1f}%\\\")\\n    else:\\n        details.append(\\\"Insufficient R&D data for trend analysis\\\")\\n\\n    # 2. Free Cash Flow Analysis\\n    fcf_vals = [item.free_cash_flow for item in financial_line_items if item.free_cash_flow]\\n    if fcf_vals and len(fcf_vals) >= 2:\\n        # Check FCF growth and consistency\\n        fcf_growth = (fcf_vals[-1] - fcf_vals[0]) / abs(fcf_vals[0])\\n        positive_fcf_count = sum(1 for f in fcf_vals if f > 0)\\n\\n        if fcf_growth > 0.3 and positive_fcf_count == len(fcf_vals):\\n            score += 3\\n            details.append(\\\"Strong and consistent FCF growth, excellent innovation funding capacity\\\")\\n        elif positive_fcf_count >= len(fcf_vals) * 0.75:\\n            score += 2\\n            details.append(\\\"Consistent positive FCF, good innovation funding capacity\\\")\\n        elif positive_fcf_count > len(fcf_vals) * 0.5:\\n            score += 1\\n            details.append(\\\"Moderately consistent FCF, adequate innovation funding capacity\\\")\\n    else:\\n        details.append(\\\"Insufficient FCF data for analysis\\\")\\n\\n    # 3. Operating Efficiency Analysis\\n    op_margin_vals = [item.operating_margin for item in financial_line_items if item.operating_margin]\\n    if op_margin_vals and len(op_margin_vals) >= 2:\\n        # Check margin improvement\\n        margin_trend = op_margin_vals[-1] - op_margin_vals[0]\\n\\n        if op_margin_vals[-1] > 0.15 and margin_trend > 0:\\n            score += 3\\n            details.append(f\\\"Strong and improving operating margin: {(op_margin_vals[-1]*100):.1f}%\\\")\\n        elif op_margin_vals[-1] > 0.10:\\n            score += 2\\n            details.append(f\\\"Healthy operating margin: {(op_margin_vals[-1]*100):.1f}%\\\")\\n        elif margin_trend > 0:\\n            score += 1\\n            details.append(\\\"Improving operating efficiency\\\")\\n    else:\\n        details.append(\\\"Insufficient operating margin data\\\")\\n\\n    # 4. Capital Allocation Analysis\\n    capex = [item.capital_expenditure for item in financial_line_items if hasattr(item, 'capital_expenditure') and item.capital_expenditure]\\n    if capex and revenues and len(capex) >= 2:\\n        capex_intensity = abs(capex[-1]) / revenues[-1]\\n        capex_growth = (abs(capex[-1]) - abs(capex[0])) / abs(capex[0]) if capex[0] != 0 else 0\\n\\n        if capex_intensity > 0.10 and capex_growth > 0.2:\\n            score += 2\\n            details.append(\\\"Strong investment in growth infrastructure\\\")\\n        elif capex_intensity > 0.05:\\n            score += 1\\n            details.append(\\\"Moderate investment in growth infrastructure\\\")\\n    else:\\n        details.append(\\\"Insufficient CAPEX data\\\")\\n\\n    # 5. Growth Reinvestment Analysis\\n    dividends = [item.dividends_and_other_cash_distributions for item in financial_line_items if hasattr(item, 'dividends_and_other_cash_distributions') and item.dividends_and_other_cash_distributions]\\n    if dividends and fcf_vals:\\n        # Check if company prioritizes reinvestment over dividends\\n        latest_payout_ratio = dividends[-1] / fcf_vals[-1] if fcf_vals[-1] != 0 else 1\\n        if latest_payout_ratio < 0.2:  # Low dividend payout ratio suggests reinvestment focus\\n            score += 2\\n            details.append(\\\"Strong focus on reinvestment over dividends\\\")\\n        elif latest_payout_ratio < 0.4:\\n            score += 1\\n            details.append(\\\"Moderate focus on reinvestment over dividends\\\")\\n    else:\\n        details.append(\\\"Insufficient dividend data\\\")\\n\\n    # Normalize score to be out of 5\\n    max_possible_score = 15  # Sum of all possible points\\n    normalized_score = (score / max_possible_score) * 5\\n\\n    return {\\n        \\\"score\\\": normalized_score,\\n        \\\"details\\\": \\\"; \\\".join(details),\\n        \\\"raw_score\\\": score,\\n        \\\"max_score\\\": max_possible_score\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 235"
+            },
+            {
+              "name": "end_line: 356"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"agents/cathie_wood.py\""
+            },
+            {
+              "name": "folder: \"agents\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"analyze_cathie_wood_valuation\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Cathie Wood often focuses on long-term exponential growth potential. We can do\\na simplified approach looking for a large total addressable market (TAM) and the\\ncompany's ability to capture a sizable portion.\""
+            },
+            {
+              "name": "body: \"def analyze_cathie_wood_valuation(financial_line_items: list, market_cap: float) -> dict:\\n    \\\"\\\"\\\"\\n    Cathie Wood often focuses on long-term exponential growth potential. We can do\\n    a simplified approach looking for a large total addressable market (TAM) and the\\n    company's ability to capture a sizable portion.\\n    \\\"\\\"\\\"\\n    if not financial_line_items or market_cap is None:\\n        return {\\n            \\\"score\\\": 0,\\n            \\\"details\\\": \\\"Insufficient data for valuation\\\"\\n        }\\n\\n    latest = financial_line_items[-1]\\n    fcf = latest.free_cash_flow if latest.free_cash_flow else 0\\n\\n    if fcf <= 0:\\n        return {\\n            \\\"score\\\": 0,\\n            \\\"details\\\": f\\\"No positive FCF for valuation; FCF = {fcf}\\\",\\n            \\\"intrinsic_value\\\": None\\n        }\\n\\n    # Instead of a standard DCF, let's assume a higher growth rate for an innovative company.\\n    # Example values:\\n    growth_rate = 0.20  # 20% annual growth\\n    discount_rate = 0.15\\n    terminal_multiple = 25\\n    projection_years = 5\\n\\n    present_value = 0\\n    for year in range(1, projection_years + 1):\\n        future_fcf = fcf * (1 + growth_rate) ** year\\n        pv = future_fcf / ((1 + discount_rate) ** year)\\n        present_value += pv\\n\\n    # Terminal Value\\n    terminal_value = (fcf * (1 + growth_rate) ** projection_years * terminal_multiple) \\\\\\n                     / ((1 + discount_rate) ** projection_years)\\n    intrinsic_value = present_value + terminal_value\\n\\n    margin_of_safety = (intrinsic_value - market_cap) / market_cap\\n\\n    score = 0\\n    if margin_of_safety > 0.5:\\n        score += 3\\n    elif margin_of_safety > 0.2:\\n        score += 1\\n\\n    details = [\\n        f\\\"Calculated intrinsic value: ~{intrinsic_value:,.2f}\\\",\\n        f\\\"Market cap: ~{market_cap:,.2f}\\\",\\n        f\\\"Margin of safety: {margin_of_safety:.2%}\\\"\\n    ]\\n\\n    return {\\n        \\\"score\\\": score,\\n        \\\"details\\\": \\\"; \\\".join(details),\\n        \\\"intrinsic_value\\\": intrinsic_value,\\n        \\\"margin_of_safety\\\": margin_of_safety\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 359"
+            },
+            {
+              "name": "end_line: 418"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"agents/cathie_wood.py\""
+            },
+            {
+              "name": "folder: \"agents\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"generate_cathie_wood_output\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                },
+                {
+                  "name": "parameters[3]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Generates investment decisions in the style of Cathie Wood.\""
+            },
+            {
+              "name": "body: \"def generate_cathie_wood_output(\\n    ticker: str,\\n    analysis_data: dict[str, any],\\n    model_name: str,\\n    model_provider: str,\\n) -> CathieWoodSignal:\\n    \\\"\\\"\\\"\\n    Generates investment decisions in the style of Cathie Wood.\\n    \\\"\\\"\\\"\\n    template = ChatPromptTemplate.from_messages([\\n        (\\n            \\\"system\\\",\\n            \\\"\\\"\\\"You are a Cathie Wood AI agent, making investment decisions using her principles:\\n\\n            1. Seek companies leveraging disruptive innovation.\\n            2. Emphasize exponential growth potential, large TAM.\\n            3. Focus on technology, healthcare, or other future-facing sectors.\\n            4. Consider multi-year time horizons for potential breakthroughs.\\n            5. Accept higher volatility in pursuit of high returns.\\n            6. Evaluate management's vision and ability to invest in R&D.\\n\\n            Rules:\\n            - Identify disruptive or breakthrough technology.\\n            - Evaluate strong potential for multi-year revenue growth.\\n            - Check if the company can scale effectively in a large market.\\n            - Use a growth-biased valuation approach.\\n            - Provide a data-driven recommendation (bullish, bearish, or neutral).\\n            \\n            When providing your reasoning, be thorough and specific by:\\n            1. Identifying the specific disruptive technologies/innovations the company is leveraging\\n            2. Highlighting growth metrics that indicate exponential potential (revenue acceleration, expanding TAM)\\n            3. Discussing the long-term vision and transformative potential over 5+ year horizons\\n            4. Explaining how the company might disrupt traditional industries or create new markets\\n            5. Addressing R&D investment and innovation pipeline that could drive future growth\\n            6. Using Cathie Wood's optimistic, future-focused, and conviction-driven voice\\n            \\n            For example, if bullish: \\\"The company's AI-driven platform is transforming the $500B healthcare analytics market, with evidence of platform adoption accelerating from 40% to 65% YoY. Their R&D investments of 22% of revenue are creating a technological moat that positions them to capture a significant share of this expanding market. The current valuation doesn't reflect the exponential growth trajectory we expect as...\\\"\\n            For example, if bearish: \\\"While operating in the genomics space, the company lacks truly disruptive technology and is merely incrementally improving existing techniques. R&D spending at only 8% of revenue signals insufficient investment in breakthrough innovation. With revenue growth slowing from 45% to 20% YoY, there's limited evidence of the exponential adoption curve we look for in transformative companies...\\\"\\n            \\\"\\\"\\\"\\n        ),\\n        (\\n            \\\"human\\\",\\n            \\\"\\\"\\\"Based on the following analysis, create a Cathie Wood-style investment signal.\\n\\n            Analysis Data for {ticker}:\\n            {analysis_data}\\n\\n            Return the trading signal in this JSON format:\\n            {{\\n              \\\"signal\\\": \\\"bullish/bearish/neutral\\\",\\n              \\\"confidence\\\": float (0-100),\\n              \\\"reasoning\\\": \\\"string\\\"\\n            }}\\n            \\\"\\\"\\\"\\n        )\\n    ])\\n\\n    prompt = template.invoke({\\n        \\\"analysis_data\\\": json.dumps(analysis_data, indent=2),\\n        \\\"ticker\\\": ticker\\n    })\\n\\n    def create_default_cathie_wood_signal():\\n        return CathieWoodSignal(\\n            signal=\\\"neutral\\\",\\n            confidence=0.0,\\n            reasoning=\\\"Error in analysis, defaulting to neutral\\\"\\n        )\\n\\n    return call_llm(\\n        prompt=prompt,\\n        model_name=model_name,\\n        model_provider=model_provider,\\n        pydantic_model=CathieWoodSignal,\\n        agent_name=\\\"cathie_wood_agent\\\",\\n        default_factory=create_default_cathie_wood_signal,\\n    )\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 421"
+            },
+            {
+              "name": "end_line: 497"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"agents/cathie_wood.py\""
+            },
+            {
+              "name": "folder: \"agents\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"create_default_cathie_wood_signal\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def create_default_cathie_wood_signal():\\n        return CathieWoodSignal(\\n            signal=\\\"neutral\\\",\\n            confidence=0.0,\\n            reasoning=\\\"Error in analysis, defaulting to neutral\\\"\\n        )\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 483"
+            },
+            {
+              "name": "end_line: 488"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"agents/cathie_wood.py\""
+            },
+            {
+              "name": "folder: \"agents\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: scope_lock/scope_lock_test.cpp
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="scope_lock_scope_lock_test_cpp.ast.json" />
+
+## `printNumbers()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** C++  
+      **Start Line:** 22  
+      **End Line:** 31  
+      
+      
+      
+      ```c++
+      void printNumbers(int num)
+{
+    ilrd_rd141::ScopeLock&lt;std::mutex&gt; lock(g_mutex);
+    for(int i = 0; i &lt; num; ++i)
+    {
+        std::cout &lt;&lt; i &lt;&lt; " ";
+    }
+
+    std::cout &lt;&lt; std::endl;
+}
+
+      ```
+      
+## `main()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** int  
+      **Language:** C++  
+      **Start Line:** 33  
+      **End Line:** 50  
+      
+      
+      
+      ```c++
+      int main(void)
+{
+    const int threadCount = 3;
+    const int numbersToPrint = 10;
+    std::thread threads[threadCount];
+
+    for(int i = 0; i &lt; threadCount; ++i)
+    {
+        threads[i] = std::thread(printNumbers, numbersToPrint);
+    }
+
+    for(int i = 0; i &lt; threadCount; ++i)
+    {
+        threads[i].join();
+    }
+
+    return (0);
+}
+
+      ```
+      

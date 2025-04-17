@@ -1,0 +1,976 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"getLogin\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 76"
+            },
+            {
+              "name": "end_line: 78"
+            },
+            {
+              "name": "body_start: 76"
+            },
+            {
+              "name": "body_end: 78"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   Login ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"setLogin\""
+            },
+            {
+              "name": "parameters: \"(Stringlog)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 80"
+            },
+            {
+              "name": "end_line: 82"
+            },
+            {
+              "name": "body_start: 80"
+            },
+            {
+              "name": "body_end: 82"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Login   =   log ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"getIdCitizen\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 84"
+            },
+            {
+              "name": "end_line: 86"
+            },
+            {
+              "name": "body_start: 84"
+            },
+            {
+              "name": "body_end: 86"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   idCitizen ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"setIdCitizen\""
+            },
+            {
+              "name": "parameters: \"(intidCitizen)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 88"
+            },
+            {
+              "name": "end_line: 90"
+            },
+            {
+              "name": "body_start: 88"
+            },
+            {
+              "name": "body_end: 90"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     this . idCitizen   =   idCitizen ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"getSurname\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 92"
+            },
+            {
+              "name": "end_line: 94"
+            },
+            {
+              "name": "body_start: 92"
+            },
+            {
+              "name": "body_end: 94"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   Surname ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"setSurname\""
+            },
+            {
+              "name": "parameters: \"(Stringsurname)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 96"
+            },
+            {
+              "name": "end_line: 98"
+            },
+            {
+              "name": "body_start: 96"
+            },
+            {
+              "name": "body_end: 98"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Surname   =   surname ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"getName\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 100"
+            },
+            {
+              "name": "end_line: 102"
+            },
+            {
+              "name": "body_start: 100"
+            },
+            {
+              "name": "body_end: 102"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   Name ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"setName\""
+            },
+            {
+              "name": "parameters: \"(Stringname)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 104"
+            },
+            {
+              "name": "end_line: 106"
+            },
+            {
+              "name": "body_start: 104"
+            },
+            {
+              "name": "body_end: 106"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Name   =   name ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[8]",
+          "children": [
+            {
+              "name": "function_name: \"getDateOfBirth\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"Date\""
+            },
+            {
+              "name": "start_line: 108"
+            },
+            {
+              "name": "end_line: 110"
+            },
+            {
+              "name": "body_start: 108"
+            },
+            {
+              "name": "body_end: 110"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   DateOfBirth ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[9]",
+          "children": [
+            {
+              "name": "function_name: \"setDateOfBirth\""
+            },
+            {
+              "name": "parameters: \"(Datedata)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 112"
+            },
+            {
+              "name": "end_line: 114"
+            },
+            {
+              "name": "body_start: 112"
+            },
+            {
+              "name": "body_end: 114"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     DateOfBirth   =   data ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[10]",
+          "children": [
+            {
+              "name": "function_name: \"setPlaceOfBirth\""
+            },
+            {
+              "name": "parameters: \"(Stringplace)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 116"
+            },
+            {
+              "name": "end_line: 118"
+            },
+            {
+              "name": "body_start: 116"
+            },
+            {
+              "name": "body_end: 118"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PlaceOfBirth   =   place ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[11]",
+          "children": [
+            {
+              "name": "function_name: \"getPlaceOfBirth\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 120"
+            },
+            {
+              "name": "end_line: 122"
+            },
+            {
+              "name": "body_start: 120"
+            },
+            {
+              "name": "body_end: 122"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   PlaceOfBirth ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[12]",
+          "children": [
+            {
+              "name": "function_name: \"getEmail\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 124"
+            },
+            {
+              "name": "end_line: 126"
+            },
+            {
+              "name": "body_start: 124"
+            },
+            {
+              "name": "body_end: 126"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   Email ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[13]",
+          "children": [
+            {
+              "name": "function_name: \"setEmail\""
+            },
+            {
+              "name": "parameters: \"(Stringmail)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 128"
+            },
+            {
+              "name": "end_line: 130"
+            },
+            {
+              "name": "body_start: 128"
+            },
+            {
+              "name": "body_end: 130"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Email   =   mail ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[14]",
+          "children": [
+            {
+              "name": "function_name: \"isAdvertise\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 132"
+            },
+            {
+              "name": "end_line: 134"
+            },
+            {
+              "name": "body_start: 132"
+            },
+            {
+              "name": "body_end: 134"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   Advertise ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[15]",
+          "children": [
+            {
+              "name": "function_name: \"setIsAdvertise\""
+            },
+            {
+              "name": "parameters: \"(booleanad)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 136"
+            },
+            {
+              "name": "end_line: 138"
+            },
+            {
+              "name": "body_start: 136"
+            },
+            {
+              "name": "body_end: 138"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Advertise   =   ad ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[16]",
+          "children": [
+            {
+              "name": "function_name: \"setFamily\""
+            },
+            {
+              "name": "parameters: \"(intnf)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 140"
+            },
+            {
+              "name": "end_line: 142"
+            },
+            {
+              "name": "body_start: 140"
+            },
+            {
+              "name": "body_end: 142"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     family   =   nf ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[17]",
+          "children": [
+            {
+              "name": "function_name: \"getFamily\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 144"
+            },
+            {
+              "name": "end_line: 146"
+            },
+            {
+              "name": "body_start: 144"
+            },
+            {
+              "name": "body_end: 146"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   family ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[18]",
+          "children": [
+            {
+              "name": "function_name: \"getFiscalCode\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 148"
+            },
+            {
+              "name": "end_line: 150"
+            },
+            {
+              "name": "body_start: 148"
+            },
+            {
+              "name": "body_end: 150"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   FiscalCode ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[19]",
+          "children": [
+            {
+              "name": "function_name: \"setFiscalCode\""
+            },
+            {
+              "name": "parameters: \"(Stringcod_fis)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 152"
+            },
+            {
+              "name": "end_line: 154"
+            },
+            {
+              "name": "body_start: 152"
+            },
+            {
+              "name": "body_end: 154"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     FiscalCode   =   cod_fis ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[20]",
+          "children": [
+            {
+              "name": "function_name: \"toString\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 156"
+            },
+            {
+              "name": "end_line: 161"
+            },
+            {
+              "name": "body_start: 156"
+            },
+            {
+              "name": "body_end: 161"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   \\\"ID:\\\"   +   getIdCitizen ( )   +   \\\"\\\\n\\\"   +   \\\"Login:\\\"   +   getLogin ( )   +   \\\"\\\\n\\\"   +   \\\"Tax code:\\\" \\n         +   getFiscalCode ( )   +   \\\"\\\\n\\\"   +   \\\"Name:\\\"   +   getName ( )   +   \\\"\\\\n\\\"   +   \\\"Surname:\\\"   +   getSurname ( )   +   \\\"\\\\n\\\" \\n         +   \\\"Date of birth:\\\"   +   getDateOfBirth ( )   +   \\\"\\\\n\\\"   +   \\\"Place of Birth:\\\"   +   getPlaceOfBirth ( )   +   \\\"\\\\n\\\" \\n         +   \\\"e-mail:\\\"   +   getEmail ( )   +   \\\". \\\\n\\\" ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Cittadino.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

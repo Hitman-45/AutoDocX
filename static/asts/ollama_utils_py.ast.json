@@ -1,0 +1,55 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"main\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def main():\\n    parser = argparse.ArgumentParser(description=\\\"Ollama model management utility\\\")\\n    subparsers = parser.add_subparsers(dest=\\\"command\\\", help=\\\"Command to run\\\")\\n    \\n    # List command\\n    list_parser = subparsers.add_parser(\\\"list\\\", help=\\\"List all downloaded models\\\")\\n    \\n    # Delete command\\n    delete_parser = subparsers.add_parser(\\\"delete\\\", help=\\\"Delete a model\\\")\\n    delete_parser.add_argument(\\\"model\\\", help=\\\"Model name to delete (e.g., gemma3:4b)\\\")\\n    \\n    # Download command\\n    download_parser = subparsers.add_parser(\\\"download\\\", help=\\\"Download a model\\\")\\n    download_parser.add_argument(\\\"model\\\", help=\\\"Model name to download (e.g., gemma3:4b)\\\")\\n    \\n    # Reinstall command\\n    reinstall_parser = subparsers.add_parser(\\\"reinstall\\\", help=\\\"Delete and re-download a model\\\")\\n    reinstall_parser.add_argument(\\\"model\\\", help=\\\"Model name to reinstall (e.g., gemma3:4b)\\\")\\n    \\n    args = parser.parse_args()\\n    \\n    # Check if Ollama is installed\\n    if not is_ollama_installed():\\n        print(f\\\"{Fore.RED}Ollama is not installed on your system.{Style.RESET_ALL}\\\")\\n        sys.exit(1)\\n    \\n    # Start the server if needed\\n    if not is_ollama_server_running():\\n        print(f\\\"{Fore.YELLOW}Starting Ollama server...{Style.RESET_ALL}\\\")\\n        if not start_ollama_server():\\n            print(f\\\"{Fore.RED}Failed to start Ollama server.{Style.RESET_ALL}\\\")\\n            sys.exit(1)\\n    \\n    if args.command == \\\"list\\\":\\n        models = get_locally_available_models()\\n        if not models:\\n            print(f\\\"{Fore.YELLOW}No models are currently downloaded.{Style.RESET_ALL}\\\")\\n        else:\\n            print(f\\\"{Fore.GREEN}Downloaded models:{Style.RESET_ALL}\\\")\\n            for model in models:\\n                print(f\\\"  - {model}\\\")\\n                \\n    elif args.command == \\\"delete\\\":\\n        if delete_model(args.model):\\n            print(f\\\"{Fore.GREEN}Successfully deleted model {args.model}.{Style.RESET_ALL}\\\")\\n        else:\\n            sys.exit(1)\\n            \\n    elif args.command == \\\"download\\\":\\n        if download_model(args.model):\\n            print(f\\\"{Fore.GREEN}Successfully downloaded model {args.model}.{Style.RESET_ALL}\\\")\\n        else:\\n            sys.exit(1)\\n            \\n    elif args.command == \\\"reinstall\\\":\\n        print(f\\\"{Fore.CYAN}Reinstalling model {args.model}...{Style.RESET_ALL}\\\")\\n        \\n        # First delete the model\\n        if not delete_model(args.model):\\n            print(f\\\"{Fore.RED}Failed to delete model {args.model}. Continuing with download anyway...{Style.RESET_ALL}\\\")\\n        \\n        # Then download it again\\n        if download_model(args.model):\\n            print(f\\\"{Fore.GREEN}Successfully reinstalled model {args.model}.{Style.RESET_ALL}\\\")\\n        else:\\n            sys.exit(1)\\n    \\n    else:\\n        parser.print_help()\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 22"
+            },
+            {
+              "name": "end_line: 90"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"ollama_utils.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
