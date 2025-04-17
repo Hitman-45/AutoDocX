@@ -1,0 +1,108 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"printMatrix\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void printMatrix(const vector<vector<int>>& mat) {\\n    for (auto& row : mat) {\\n        for (int val : row) {\\n            cout << val << \\\" \\\";\\n        }\\n        cout << endl;\\n    }\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 6"
+            },
+            {
+              "name": "end_line: 13"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"matrix.cpp\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"transposeMatrix\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"vector<vector<int>>\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"vector<vector<int>> transposeMatrix(const vector<vector<int>>& mat) {\\n    int rows = mat.size();\\n    int cols = mat[0].size();\\n    vector<vector<int>> trans(cols, vector<int>(rows));\\n\\n    for (int i = 0; i < rows; ++i)\\n        for (int j = 0; j < cols; ++j)\\n            trans[j][i] = mat[i][j];\\n    return trans;\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 15"
+            },
+            {
+              "name": "end_line: 24"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"matrix.cpp\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

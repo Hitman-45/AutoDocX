@@ -1,0 +1,148 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"login\""
+            },
+            {
+              "name": "parameters: \"(Stringusername,Stringpassword)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 5"
+            },
+            {
+              "name": "end_line: 10"
+            },
+            {
+              "name": "body_start: 5"
+            },
+            {
+              "name": "body_end: 10"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n         if   ( username . equals ( \\\"admin\\\" )   &&   password . equals ( \\\"password\\\" ) )   { \\n             return   true ; \\n         } \\n         return   false ; \\n     }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"userService.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"getUserRole\""
+            },
+            {
+              "name": "parameters: \"(Stringusername)\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 12"
+            },
+            {
+              "name": "end_line: 18"
+            },
+            {
+              "name": "body_start: 12"
+            },
+            {
+              "name": "body_end: 18"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n         if   ( username . equals ( \\\"admin\\\" ) )   { \\n             return   \\\"Administrator\\\" ; \\n         }   else   { \\n             return   \\\"User\\\" ; \\n         } \\n     }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"userService.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"logout\""
+            },
+            {
+              "name": "parameters: \"(Stringusername)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 20"
+            },
+            {
+              "name": "end_line: 22"
+            },
+            {
+              "name": "body_start: 20"
+            },
+            {
+              "name": "body_end: 22"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n         System . out . println ( username   +   \\\" has been logged out.\\\" ) ; \\n     }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"userService.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
