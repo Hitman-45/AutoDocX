@@ -194,7 +194,6 @@ def get_cpp_functions(filepath):
     extract(tu.cursor)
     return results
 
-
 def parse_repo(source_folder):
     data = []
     for root, dirs, files in os.walk(source_folder):
