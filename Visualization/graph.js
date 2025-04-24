@@ -1,5 +1,5 @@
 // Load JSON and draw
-d3.json("functions.json").then(function (data) {
+d3.json("../functions.json").then(function (data) {
     const width = window.innerWidth;
     const height = 800;
     const svg = d3.select("svg");
