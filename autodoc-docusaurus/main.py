@@ -3,6 +3,7 @@ import sys
 import json
 import ast
 import javalang
+import esprima
 from clang.cindex import Index, CursorKind, Config, AccessSpecifier
 from antlr4 import *
 from JavaLexer import JavaLexer
@@ -12,8 +13,8 @@ from JavaParserListener import JavaParserListener
 
 
 
-Config.set_library_file("./libclang.so.1")
-
+# Config.set_library_file("./libclang.so.1")
+Config.set_library_file("/usr/lib/x86_64-linux-gnu/libclang-18.so")
 
 def get_python_functions(filepath):
     with open(filepath, 'r', encoding='utf-8') as f:
@@ -125,6 +126,70 @@ def get_java_functions(filepath):
 
     return results
 
+def get_javascript_functions(filepath):
+    with open(filepath, 'r', encoding='utf-8') as f:
+        source = f.read()
+
+    results = []
+    try:
+        parsed = esprima.parseScript(source, {
+            'loc': True,
+            'range': True,
+            'tolerant': True
+        })
+    except Exception as e:
+        print(f"Error parsing {filepath}: {e}")
+        return []
+
+    def walk(node):
+        """Recursively walk the AST to find all function definitions"""
+        if not hasattr(node, 'type'):
+            return
+
+        # Handle function declarations
+        if node.type == 'FunctionDeclaration':
+            try:
+                if not node.loc:
+                    return
+
+                func_name = node.id.name if (hasattr(node, 'id') and node.id )else 'anonymous'
+                params = [p.name for p in node.params]
+                start_line = node.loc.start.line
+                end_line = node.loc.end.line
+
+                # Extract function body using line numbers
+                lines = source.split('\n')
+                body = '\n'.join(lines[start_line-1:end_line])
+
+                results.append({
+                    "function_name": func_name,
+                    "parameters": params,
+                    "return_type": None,
+                    "class_name": None,
+                    "belongs_to_class": False,
+                    "docstring_or_comment": "",
+                    "body": body,
+                    "access_specifier": "public",
+                    "start_line": start_line,
+                    "end_line": end_line,
+                    "language": "JavaScript"
+                })
+            except AttributeError as e:
+                print(f"Skipping function in {filepath}: {e}")
+
+        # Traverse child nodes
+        for prop in ['body', 'declarations', 'arguments', 'expression']:
+            if hasattr(node, prop):
+                child = getattr(node, prop)
+                if isinstance(child, list):
+                    for item in child:
+                        walk(item)
+                elif child:
+                    walk(child)
+
+    walk(parsed)
+    return results
+
 
 def get_cpp_functions(filepath):
     index = Index.create()
@@ -197,6 +262,8 @@ def parse_repo(source_folder):
                     funcs = get_java_functions(full_path)
                 elif file.endswith((".cpp", ".cc", ".h", ".hpp")):
                     funcs = get_cpp_functions(full_path)
+                elif file.endswith(".js"):  # Add this condition
+                    funcs = get_javascript_functions(full_path)
                 else:
                     continue
 
