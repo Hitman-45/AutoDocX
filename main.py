@@ -96,29 +96,61 @@ class FunctionExtractor(JavaParserListener):
             'method_body': method_body,
             'modifiers': modifiers if modifiers else ["package-private"]
         })
+
+
 def get_julia_functions(filepath):
-    """Extract top-level Julia functions via regex (function … end)."""
+    """Extract top-level Julia functions (one-liners and multi-line) via regex."""
     with open(filepath, 'r', encoding='utf-8') as f:
         source = f.read()
     lines = source.split('\n')
-
-    # Regex to match function name(args...)
-    pattern = re.compile(r'^\s*function\s+([A-Za-z_]\w*)\s*\(([^)]*)\)', re.MULTILINE)
-
     results = []
-    for m in pattern.finditer(source):
-        name   = m.group(1)
-        params = [p.strip() for p in m.group(2).split(',')] if m.group(2).strip() else []
-        start  = source[:m.start()].count('\n') + 1
 
-        # Find matching end line by tracking nested functions
+    
+    one_liner = re.compile(
+        r'^\s*'                                   
+        r'([A-Za-z_]\w*)'                        
+        r'\s*\(\s*([^)]*?)\s*\)\s*'               
+        r'(?:::\s*([A-Za-z_]\w*(?:\{[^\}]*\})?))?' 
+        r'\s*=\s*(.+)$',                           
+        re.MULTILINE
+    )
+    for m in one_liner.finditer(source):
+        name, param_str, ret, body = m.group(1), m.group(2), m.group(3), m.group(4)
+        start = source[:m.start()].count('\n') + 1
+        results.append({
+            "function_name": name,
+            "parameters": [p.strip() for p in param_str.split(',')] if param_str.strip() else [],
+            "return_type": ret or None,
+            "class_name": None,
+            "belongs_to_class": False,
+            "docstring_or_comment": "",
+            "body": body.strip(),
+            "access_specifier": "public",
+            "start_line": start,
+            "end_line": start,
+            "language": "Julia"
+        })
+
+   
+    block_pattern = re.compile(
+        r'^\s*function\s+([A-Za-z_]\w*)'           
+        r'\s*\(\s*([^)]*?)\s*\)\s*'                
+        r'(?:::\s*([A-Za-z_]\w*(?:\{[^\}]*\})?))?', 
+        re.MULTILINE
+    )
+    for m in block_pattern.finditer(source):
+        name, param_str, ret = m.group(1), m.group(2), m.group(3)
+        start = source[:m.start()].count('\n') + 1
+
+      
         depth = 0
         end_line = start
         for idx in range(start, len(lines)):
-            line = lines[idx]
-            if re.match(r'^\s*function\b', line):
+            line = lines[idx].strip()
+       
+            if re.match(r'^(function|if|while|for)\b', line):
                 depth += 1
-            if re.match(r'^\s*end\b', line):
+            elif line == 'end':
                 if depth == 0:
                     end_line = idx + 1
                     break
@@ -127,8 +159,8 @@ def get_julia_functions(filepath):
         body = '\n'.join(lines[start-1:end_line])
         results.append({
             "function_name": name,
-            "parameters": params,
-            "return_type": None,
+            "parameters": [p.strip() for p in param_str.split(',')] if param_str.strip() else [],
+            "return_type": ret or None,
             "class_name": None,
             "belongs_to_class": False,
             "docstring_or_comment": "",
@@ -138,6 +170,7 @@ def get_julia_functions(filepath):
             "end_line": end_line,
             "language": "Julia"
         })
+
     return results
 
 

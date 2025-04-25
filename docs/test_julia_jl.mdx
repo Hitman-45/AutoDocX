@@ -1,0 +1,183 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: test_julia.jl
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="test_julia_jl.ast.json" />
+
+## `add()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** Julia  
+      **Start Line:** 19  
+      **End Line:** 19  
+      
+      
+      
+      ```julia
+      a + b
+      ```
+      
+## `TreeNode()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** Julia  
+      **Start Line:** 29  
+      **End Line:** 29  
+      
+      
+      
+      ```julia
+      TreeNode(val, nothing, nothing)
+      ```
+      
+## `isprime()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** Bool  
+      **Language:** Julia  
+      **Start Line:** 1  
+      **End Line:** 28  
+      
+      
+      
+      ```julia
+      
+function isprime(n::Int)::Bool
+    if n &lt;= 1
+        return false
+    elseif n &lt;= 3
+        return true
+    elseif n % 2 == 0 || n % 3 == 0
+        return false
+    end
+    i = 5
+    while i * i &lt;= n
+        if n % i == 0 || n % (i + 2) == 0
+            return false
+        end
+        i += 6
+    end
+    return true
+end
+
+
+add(a::Int, b::Int) = a + b
+
+
+struct TreeNode
+    val::Int
+    left::Union{TreeNode, Nothing}
+    right::Union{TreeNode, Nothing}
+end
+      ```
+      
+## `count_nodes()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** Int  
+      **Language:** Julia  
+      **Start Line:** 32  
+      **End Line:** 32  
+      
+      
+      
+      ```julia
+      
+      ```
+      
+## `inorder()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** Julia  
+      **Start Line:** 38  
+      **End Line:** 38  
+      
+      
+      
+      ```julia
+      
+      ```
+      
+## `_traverse()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** Julia  
+      **Start Line:** 42  
+      **End Line:** 47  
+      
+      
+      
+      ```julia
+          function _traverse(node)
+        node === nothing && return
+        _traverse(node.left)
+        push!(result, node.val)
+        _traverse(node.right)
+    end
+      ```
+      
+## `bfs()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** Julia  
+      **Start Line:** 75  
+      **End Line:** 93  
+      
+      
+      
+      ```julia
+      function bfs(g::Dict{Int, Vector{Int}}, start::Int)
+    visited = Set{Int}()
+    order   = Int[]
+    queue   = [start]
+    push!(visited, start)
+
+    while !isempty(queue)
+        u = popfirst!(queue)
+        push!(order, u)
+        for v in g[u]
+            if v ∉ visited
+                push!(visited, v)
+                push!(queue, v)
+            end
+        end
+    end
+
+    return order
+end
+      ```
+      
+## `dfs()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** Julia  
+      **Start Line:** 102  
+      **End Line:** 107  
+      
+      
+      
+      ```julia
+      function dfs(g::Dict{Int, Vector{Int}}, start::Int)
+    visited = Set{Int}()
+    order   = Int[]
+    _dfs!(g, start, visited, order)
+    return order
+end
+      ```
+      

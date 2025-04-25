@@ -200,6 +200,149 @@
     "folder": "."
   },
   {
+    "function_name": "add",
+    "parameters": [
+      "a::Int",
+      "b::Int"
+    ],
+    "return_type": null,
+    "class_name": null,
+    "belongs_to_class": false,
+    "docstring_or_comment": "",
+    "body": "a + b",
+    "access_specifier": "public",
+    "start_line": 19,
+    "end_line": 19,
+    "language": "Julia",
+    "file_path": "test_julia.jl",
+    "folder": "."
+  },
+  {
+    "function_name": "TreeNode",
+    "parameters": [
+      "val::Int"
+    ],
+    "return_type": null,
+    "class_name": null,
+    "belongs_to_class": false,
+    "docstring_or_comment": "",
+    "body": "TreeNode(val, nothing, nothing)",
+    "access_specifier": "public",
+    "start_line": 29,
+    "end_line": 29,
+    "language": "Julia",
+    "file_path": "test_julia.jl",
+    "folder": "."
+  },
+  {
+    "function_name": "isprime",
+    "parameters": [
+      "n::Int"
+    ],
+    "return_type": "Bool",
+    "class_name": null,
+    "belongs_to_class": false,
+    "docstring_or_comment": "",
+    "body": "\nfunction isprime(n::Int)::Bool\n    if n <= 1\n        return false\n    elseif n <= 3\n        return true\n    elseif n % 2 == 0 || n % 3 == 0\n        return false\n    end\n    i = 5\n    while i * i <= n\n        if n % i == 0 || n % (i + 2) == 0\n            return false\n        end\n        i += 6\n    end\n    return true\nend\n\n\nadd(a::Int, b::Int) = a + b\n\n\nstruct TreeNode\n    val::Int\n    left::Union{TreeNode, Nothing}\n    right::Union{TreeNode, Nothing}\nend",
+    "access_specifier": "public",
+    "start_line": 1,
+    "end_line": 28,
+    "language": "Julia",
+    "file_path": "test_julia.jl",
+    "folder": "."
+  },
+  {
+    "function_name": "count_nodes",
+    "parameters": [
+      "root::Union{TreeNode",
+      "Nothing}"
+    ],
+    "return_type": "Int",
+    "class_name": null,
+    "belongs_to_class": false,
+    "docstring_or_comment": "",
+    "body": "",
+    "access_specifier": "public",
+    "start_line": 32,
+    "end_line": 32,
+    "language": "Julia",
+    "file_path": "test_julia.jl",
+    "folder": "."
+  },
+  {
+    "function_name": "inorder",
+    "parameters": [
+      "root::Union{TreeNode",
+      "Nothing}"
+    ],
+    "return_type": null,
+    "class_name": null,
+    "belongs_to_class": false,
+    "docstring_or_comment": "",
+    "body": "",
+    "access_specifier": "public",
+    "start_line": 38,
+    "end_line": 38,
+    "language": "Julia",
+    "file_path": "test_julia.jl",
+    "folder": "."
+  },
+  {
+    "function_name": "_traverse",
+    "parameters": [
+      "node"
+    ],
+    "return_type": null,
+    "class_name": null,
+    "belongs_to_class": false,
+    "docstring_or_comment": "",
+    "body": "    function _traverse(node)\n        node === nothing && return\n        _traverse(node.left)\n        push!(result, node.val)\n        _traverse(node.right)\n    end",
+    "access_specifier": "public",
+    "start_line": 42,
+    "end_line": 47,
+    "language": "Julia",
+    "file_path": "test_julia.jl",
+    "folder": "."
+  },
+  {
+    "function_name": "bfs",
+    "parameters": [
+      "g::Dict{Int",
+      "Vector{Int}}",
+      "start::Int"
+    ],
+    "return_type": null,
+    "class_name": null,
+    "belongs_to_class": false,
+    "docstring_or_comment": "",
+    "body": "function bfs(g::Dict{Int, Vector{Int}}, start::Int)\n    visited = Set{Int}()\n    order   = Int[]\n    queue   = [start]\n    push!(visited, start)\n\n    while !isempty(queue)\n        u = popfirst!(queue)\n        push!(order, u)\n        for v in g[u]\n            if v \u2209 visited\n                push!(visited, v)\n                push!(queue, v)\n            end\n        end\n    end\n\n    return order\nend",
+    "access_specifier": "public",
+    "start_line": 75,
+    "end_line": 93,
+    "language": "Julia",
+    "file_path": "test_julia.jl",
+    "folder": "."
+  },
+  {
+    "function_name": "dfs",
+    "parameters": [
+      "g::Dict{Int",
+      "Vector{Int}}",
+      "start::Int"
+    ],
+    "return_type": null,
+    "class_name": null,
+    "belongs_to_class": false,
+    "docstring_or_comment": "",
+    "body": "function dfs(g::Dict{Int, Vector{Int}}, start::Int)\n    visited = Set{Int}()\n    order   = Int[]\n    _dfs!(g, start, visited, order)\n    return order\nend",
+    "access_specifier": "public",
+    "start_line": 102,
+    "end_line": 107,
+    "language": "Julia",
+    "file_path": "test_julia.jl",
+    "folder": "."
+  },
+  {
     "function_name": "hash_password",
     "parameters": [
       "password"
