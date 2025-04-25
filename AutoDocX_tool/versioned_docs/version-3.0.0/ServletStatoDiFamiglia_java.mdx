@@ -1,0 +1,46 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: ServletStatoDiFamiglia.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="ServletStatoDiFamiglia_java.ast.json" />
+
+## `doGet()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** void  
+      **Language:** Java  
+      **Start Line:** 24  
+      **End Line:** 48  
+      
+      
+      
+      ```java
+      { 
+     int   id   =   Integer . parseInt ( request . getParameter ( "id" ) ) ; 
+     //int id = 200101; 
+
+     HttpSession   session   =   request . getSession ( true ) ; 
+     ArrayList &lt; Citizen &gt;   arrayList   =   null ; 
+     //Request ric = null; 
+
+     try   { 
+       DbFamily   dbnc   =   new   DbFamily ( ) ; 
+       arrayList   =   ( ArrayList &lt; Citizen &gt; )   dbnc . getFamilyStatus ( id ) ; 
+       for   ( int   i   =   0 ;   i   &lt;   arrayList . size ( ) ;   i ++ )   { 
+         System . out . println ( arrayList . get ( i ) . getName ( ) ) ; 
+       } 
+       session . setAttribute ( "array" ,   arrayList ) ; 
+     }   catch   ( Exception   e )   { 
+       //e.getMessage().toString(); 
+       e . printStackTrace ( ) ; 
+     } 
+
+     ServletContext   sc   =   getServletContext ( ) ; 
+     RequestDispatcher   rd   =   sc . getRequestDispatcher ( "/user/home.jsp?func=serv&page=state_famiglia" ) ; 
+     rd . forward ( request ,   response ) ; 
+   }
+      ```
+      

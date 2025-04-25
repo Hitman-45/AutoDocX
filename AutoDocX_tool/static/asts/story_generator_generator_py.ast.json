@@ -1,0 +1,126 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"__init__\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"StoryGenerator\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def __init__(self, model_name='gpt2'):\\n        self.tokenizer = GPT2Tokenizer.from_pretrained(model_name)\\n        self.model = GPT2LMHeadModel.from_pretrained(model_name)\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 5"
+            },
+            {
+              "name": "end_line: 7"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"story_generator\\\\generator.py\""
+            },
+            {
+              "name": "folder: \"story_generator\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"generate\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                },
+                {
+                  "name": "parameters[3]"
+                },
+                {
+                  "name": "parameters[4]"
+                },
+                {
+                  "name": "parameters[5]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"StoryGenerator\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def generate(self, prompt, max_length=150, temperature=0.9, top_k=50, top_p=0.95):\\n        inputs = self.tokenizer(prompt, return_tensors='pt')\\n        outputs = self.model.generate(\\n            **inputs,\\n            max_length=max_length,\\n            temperature=temperature,\\n            top_k=top_k,\\n            top_p=top_p,\\n            do_sample=True,\\n            pad_token_id=self.tokenizer.eos_token_id\\n        )\\n        return self.tokenizer.decode(outputs[0], skip_special_tokens=True)\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 9"
+            },
+            {
+              "name": "end_line: 20"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"story_generator\\\\generator.py\""
+            },
+            {
+              "name": "folder: \"story_generator\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

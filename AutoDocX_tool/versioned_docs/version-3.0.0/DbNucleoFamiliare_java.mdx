@@ -1,0 +1,362 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: DbNucleoFamiliare.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="DbNucleoFamiliare_java.ast.json" />
+
+## `insertFamily()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** int  
+      **Language:** Java  
+      **Start Line:** 41  
+      **End Line:** 64  
+      
+      
+      
+      ```java
+      { 
+     PreparedStatement   statement   =   null ; 
+     int   idC   =   nf . getCapoFamiglia ( ) ; 
+     String   note   =   nf . getNote ( ) ; 
+     int   nc   =   nf . getNComponenti ( ) ; 
+     try   { 
+       statement   =   connection . prepareStatement ( "INSERT INTO family VALUES (? ,? ,?,?)" ) ; 
+       statement . setInt ( 1 ,   0 ) ; 
+       statement . setInt ( 2 ,   idC ) ; 
+       statement . setString ( 3 ,   note ) ; 
+       statement . setInt ( 4 ,   nc ) ; 
+       statement . executeUpdate ( ) ; 
+       return   lastId ( ) ; 
+     }   catch   ( SQLException   e )   { 
+       throw   new   DbException ( "Error: household insertion failed" ) ; 
+     }   finally   { 
+       try   { 
+         if   ( statement   !=   null ) 
+           statement . close ( ) ; 
+       }   catch   ( SQLException   e )   { 
+         throw   new   DbException ( "Error: household insertion failed" ) ; 
+       } 
+     } 
+   }
+      ```
+      
+## `deleteFamily()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** boolean  
+      **Language:** Java  
+      **Start Line:** 75  
+      **End Line:** 93  
+      
+      
+      
+      ```java
+      { 
+     PreparedStatement   statement   =   null ; 
+     int   ret   =   0 ; 
+     try   { 
+       statement   =   connection . prepareStatement ( "DELETE FROM family WHERE idFamily =?" ) ; 
+       statement . setInt ( 1 ,   id ) ; 
+       ret   =   statement . executeUpdate ( ) ; 
+       return   ( ret   ==   1 ) ; 
+     }   catch   ( SQLException   e )   { 
+       throw   new   DbException ( "Error: Household deletion failed" ) ; 
+     }   finally   { 
+       try   { 
+         if   ( statement   !=   null ) 
+           statement . close ( ) ; 
+       }   catch   ( SQLException   e )   { 
+         throw   new   DbException ( "Error: Household deletion failed" ) ; 
+       } 
+     } 
+   }
+      ```
+      
+## `getFamilyStatus()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** Collection&lt;Citizen&gt;  
+      **Language:** Java  
+      **Start Line:** 104  
+      **End Line:** 142  
+      
+      
+      
+      ```java
+      { 
+     ArrayList &lt; Citizen &gt;   ret   =   new   ArrayList &lt; Citizen &gt; ( ) ; 
+     PreparedStatement   statement   =   null ; 
+     ResultSet   rs   =   null ; 
+     Family   nf   =   getFamilyById ( id ) ; 
+     if   ( nf   ==   null ) 
+       return   null ; 
+     int   nc   =   nf . getNComponenti ( ) ; 
+     try   { 
+       statement   =   connection . prepareStatement ( "SELECT * FROM familystatus WHERE family = ?" ) ; 
+       statement . setInt ( 1 ,   id ) ; 
+       rs   =   statement . executeQuery ( ) ; 
+       for   ( int   i   =   0 ;   i   &lt;   nc ;   i ++ )   { 
+         rs . next ( ) ; 
+         String   cc   =   rs . getString ( "fiscalCode" ) ; 
+         String   surname   =   rs . getString ( "surname" ) ; 
+         String   name   =   rs . getString ( "name" ) ; 
+         java . util . Date   dateOfBirth   =   rs . getDate ( "dateOfBirth" ) ; 
+         String   place   =   rs . getString ( "placeOfBirth" ) ; 
+         int   family   =   rs . getInt ( "family" ) ; 
+         ret . add ( new   Citizen ( family ,   cc ,   surname ,   name ,   dateOfBirth ,   place ) ) ; 
+       } 
+       if   ( ret . isEmpty ( ) ) 
+         return   null ; 
+       else 
+         return   ret ; 
+     }   catch   ( SQLException   e )   { 
+       throw   new   DbException ( "Error: family status search failed" ) ; 
+     }   finally   { 
+       try   { 
+         if   ( statement   !=   null ) 
+           statement . close ( ) ; 
+         if   ( rs   !=   null ) 
+           rs . close ( ) ; 
+       }   catch   ( SQLException   e )   { 
+         throw   new   DbException ( "Error: family status search failed" ) ; 
+       } 
+     } 
+   }
+      ```
+      
+## `checkFamilyId()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** boolean  
+      **Language:** Java  
+      **Start Line:** 153  
+      **End Line:** 175  
+      
+      
+      
+      ```java
+      { 
+     PreparedStatement   statement   =   null ; 
+     ResultSet   rs   =   null ; 
+     boolean   ret   =   false ; 
+     try   { 
+       statement   =   connection . prepareStatement ( "SELECT * FROM family WHERE idFamily = ?" ) ; 
+       statement . setInt ( 1 ,   id ) ; 
+       rs   =   statement . executeQuery ( ) ; 
+       ret   =   rs . next ( ) ; 
+       return   ( ret ) ; 
+     }   catch   ( SQLException   e )   { 
+       throw   new   DbException ( "Error: Household check failed" ) ; 
+     }   finally   { 
+       try   { 
+         if   ( statement   !=   null ) 
+           statement . close ( ) ; 
+         if   ( rs   !=   null ) 
+           rs . close ( ) ; 
+       }   catch   ( SQLException   e )   { 
+         throw   new   DbException ( "Error: Household check failed" ) ; 
+       } 
+     } 
+   }
+      ```
+      
+## `familyNote()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** String  
+      **Language:** Java  
+      **Start Line:** 186  
+      **End Line:** 213  
+      
+      
+      
+      ```java
+      { 
+     PreparedStatement   statement   =   null ; 
+     ResultSet   rs   =   null ; 
+     String   ret   =   "" ; 
+     try   { 
+       statement   =   connection . prepareStatement ( "SELECT note FROM family WHERE idFamily = ?" ) ; 
+       statement . setInt ( 1 ,   id ) ; 
+       rs   =   statement . executeQuery ( ) ; 
+       if   ( ! rs . next ( ) ) 
+         return   null ; 
+       ret   =   rs . getString ( "note" ) ; 
+       if   ( ret   ==   null ) 
+         return   "" ; 
+       else 
+         return   ret ; 
+     }   catch   ( SQLException   e )   { 
+       throw   new   DbException ( "Error: search note failed" ) ; 
+     }   finally   { 
+       try   { 
+         if   ( statement   !=   null ) 
+           statement . close ( ) ; 
+         if   ( rs   !=   null ) 
+           rs . close ( ) ; 
+       }   catch   ( SQLException   e )   { 
+         throw   new   DbException ( "Error: search note failed" ) ; 
+       } 
+     } 
+   }
+      ```
+      
+## `setHeadOfFamily()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** boolean  
+      **Language:** Java  
+      **Start Line:** 226  
+      **End Line:** 246  
+      
+      
+      
+      ```java
+      { 
+     PreparedStatement   statement   =   null ; 
+     int   ret   =   0 ; 
+     try   { 
+       statement   =   connection . prepareStatement ( 
+           "UPDATE family SET headOfFamily = ? WHERE idFamily = ?" ) ; 
+       statement . setInt ( 1 ,   idC ) ; 
+       statement . setInt ( 2 ,   idF ) ; 
+       ret   =   statement . executeUpdate ( ) ; 
+       return   ( ret   ==   1 ) ; 
+     }   catch   ( SQLException   e )   { 
+       throw   new   DbException ( "Error: modify head of household failed" ) ; 
+     }   finally   { 
+       try   { 
+         if   ( statement   !=   null ) 
+           statement . close ( ) ; 
+       }   catch   ( SQLException   e )   { 
+         throw   new   DbException ( "Error: modify head of household failed" ) ; 
+       } 
+     } 
+   }
+      ```
+      
+## `getFamilyById()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** Family  
+      **Language:** Java  
+      **Start Line:** 257  
+      **End Line:** 285  
+      
+      
+      
+      ```java
+      { 
+     PreparedStatement   statement   =   null ; 
+     ResultSet   rs   =   null ; 
+     Family   ret   =   null ; 
+     try   { 
+       statement   =   connection . prepareStatement ( "SELECT* FROM family WHERE idFamily = ?" ) ; 
+       statement . setInt ( 1 ,   id ) ; 
+       rs   =   statement . executeQuery ( ) ; 
+       if   ( ! rs . next ( ) ) 
+         return   ret ; 
+       int   idN   =   rs . getInt ( "idFamily" ) ; 
+       int   idC   =   rs . getInt ( "headOfFamily" ) ; 
+       String   note   =   rs . getString ( "note" ) ; 
+       int   nc   =   rs . getInt ( "nComponenti" ) ; 
+       ret   =   new   Family ( idN ,   idC ,   note ,   nc ) ; 
+       return   ret ; 
+     }   catch   ( SQLException   e )   { 
+       throw   new   DbException ( "Error: household search by id failed" ) ; 
+     }   finally   { 
+       try   { 
+         if   ( statement   !=   null ) 
+           statement . close ( ) ; 
+         if   ( rs   !=   null ) 
+           rs . close ( ) ; 
+       }   catch   ( SQLException   e )   { 
+         throw   new   DbException ( "Error: household search by id failed" ) ; 
+       } 
+     } 
+   }
+      ```
+      
+## `lastId()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** int  
+      **Language:** Java  
+      **Start Line:** 287  
+      **End Line:** 310  
+      
+      
+      
+      ```java
+      { 
+     int   ret   =   0 ; 
+     Statement   statement   =   null ; 
+     ResultSet   rs   =   null ; 
+     try   { 
+       statement   =   connection . createStatement ( ) ; 
+       rs   =   statement . executeQuery ( "SELECT max(idFamily)AS max FROM family" ) ; 
+       if   ( ! rs . next ( ) ) 
+         return   ret ; 
+       ret   =   rs . getInt ( 1 ) ; 
+       return   ret ; 
+     }   catch   ( SQLException   e )   { 
+       throw   new   DbException ( "Error: search id of the last household failed" ) ; 
+     }   finally   { 
+       try   { 
+         if   ( statement   !=   null ) 
+           statement . close ( ) ; 
+         if   ( rs   !=   null ) 
+           rs . close ( ) ; 
+       }   catch   ( SQLException   e )   { 
+         throw   new   DbException ( "Error: search id of the last household failed" ) ; 
+       } 
+     } 
+   }
+      ```
+      
+## `setNComponents()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** boolean  
+      **Language:** Java  
+      **Start Line:** 323  
+      **End Line:** 343  
+      
+      
+      
+      ```java
+      { 
+     PreparedStatement   statement   =   null ; 
+     int   ret   =   0 ; 
+     try   { 
+       statement   =   connection . prepareStatement ( 
+           "UPDATE family SET nComponenti = ? WHERE idFamily = ?" ) ; 
+       statement . setInt ( 1 ,   n ) ; 
+       statement . setInt ( 2 ,   idF ) ; 
+       ret   =   statement . executeUpdate ( ) ; 
+       return   ( ret   ==   1 ) ; 
+     }   catch   ( SQLException   e )   { 
+       throw   new   DbException ( "Error: modify number components failed" ) ; 
+     }   finally   { 
+       try   { 
+         if   ( statement   !=   null ) 
+           statement . close ( ) ; 
+       }   catch   ( SQLException   e )   { 
+         throw   new   DbException ( "Error: modify number components failed" ) ; 
+       } 
+     } 
+   }
+      ```
+      

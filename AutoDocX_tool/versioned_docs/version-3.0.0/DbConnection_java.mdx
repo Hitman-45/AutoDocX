@@ -1,0 +1,82 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: DbConnection.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="DbConnection_java.ast.json" />
+
+## `createPool()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** void  
+      **Language:** Java  
+      **Start Line:** 40  
+      **End Line:** 46  
+      
+      
+      
+      ```java
+      { 
+     cpds   =   new   ComboPooledDataSource ( ) ; 
+     cpds . setJdbcUrl ( DbConnection . dbProperties . getProperty ( "url" ) ) ; 
+     cpds . setDriverClass ( DbConnection . dbProperties . getProperty ( "driver" ) ) ; 
+     cpds . setUser ( DbConnection . dbProperties . getProperty ( "username" ) ) ; 
+     cpds . setPassword ( DbConnection . dbProperties . getProperty ( "password" ) ) ; 
+   }
+      ```
+      
+## `getConnection()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** Connection  
+      **Language:** Java  
+      **Start Line:** 54  
+      **End Line:** 56  
+      
+      
+      
+      ```java
+      { 
+     return   cpds . getConnection ( ) ; 
+   }
+      ```
+      
+## `loadDbProperties()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** void  
+      **Language:** Java  
+      **Start Line:** 63  
+      **End Line:** 67  
+      
+      
+      
+      ```java
+      { 
+     InputStream   fileProperties   =   new   FileInputStream ( "database.properties" ) ; 
+     DbConnection . dbProperties   =   new   Properties ( ) ; 
+     DbConnection . dbProperties . load ( fileProperties ) ; 
+   }
+      ```
+      
+## `closePool()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** void  
+      **Language:** Java  
+      **Start Line:** 72  
+      **End Line:** 74  
+      
+      
+      
+      ```java
+      { 
+     cpds . close ( ) ; 
+   }
+      ```
+      

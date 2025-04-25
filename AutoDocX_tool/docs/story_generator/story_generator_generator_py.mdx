@@ -1,0 +1,51 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: story_generator\generator.py
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="story_generator_generator_py.ast.json" />
+
+## `__init__()`
+
+      **Class:** StoryGenerator  
+      **Access:** public  
+      **Return:** void  
+      **Language:** Python  
+      **Start Line:** 5  
+      **End Line:** 7  
+      
+      
+      
+      ```python
+      def __init__(self, model_name='gpt2'):
+        self.tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+        self.model = GPT2LMHeadModel.from_pretrained(model_name)
+      ```
+      
+## `generate()`
+
+      **Class:** StoryGenerator  
+      **Access:** public  
+      **Return:** void  
+      **Language:** Python  
+      **Start Line:** 9  
+      **End Line:** 20  
+      
+      
+      
+      ```python
+      def generate(self, prompt, max_length=150, temperature=0.9, top_k=50, top_p=0.95):
+        inputs = self.tokenizer(prompt, return_tensors='pt')
+        outputs = self.model.generate(
+            **inputs,
+            max_length=max_length,
+            temperature=temperature,
+            top_k=top_k,
+            top_p=top_p,
+            do_sample=True,
+            pad_token_id=self.tokenizer.eos_token_id
+        )
+        return self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+      ```
+      

@@ -1,0 +1,61 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: ServletRicercaPratica.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="ServletRicercaPratica_java.ast.json" />
+
+## `doPost()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** void  
+      **Language:** Java  
+      **Start Line:** 22  
+      **End Line:** 61  
+      
+      
+      
+      ```java
+      { 
+
+     int   cod   =   Integer . parseInt ( request . getParameter ( "codice" ) ) ; 
+     String   value   =   request . getParameter ( "valore" ) ; 
+
+     int   idp   =   0 ,   idr   =   0 ; 
+     String   idr_attesa   =   "" ,   idr_lavorazione   =   "" ,   idr_completato   =   "" ; 
+
+     ArrayList &lt; Request &gt;   arrayList ; 
+     Request   ric   =   null ; 
+     DbRequest   dbric   =   null ; 
+
+     try   { 
+       dbric   =   new   DbRequest ( ) ; 
+       System . out . println ( "ok" ) ; 
+
+       if   ( value . equals ( "idp" ) )   { 
+         ric   =   dbric . getRequestById ( cod ) ; 
+         request . setAttribute ( "ris" ,   ric ) ; 
+       }   else   if   ( value . equals ( "idr" ) )   { 
+         arrayList   =   ( ArrayList &lt; Request &gt; )   dbric . getRequestByApplicant ( cod ) ; 
+         request . setAttribute ( "ris" ,   arrayList ) ; 
+       }   else   if   ( ( value . equals ( "accettata" ) )   ||   value . equals ( "rifiutata" ) )   { 
+         arrayList   =   ( ArrayList &lt; Request &gt; )   dbric . getRequestByState ( cod ,   value ) ; 
+         request . setAttribute ( "ris" ,   arrayList ) ; 
+       }   else   { 
+         arrayList   =   null ; 
+       } 
+
+     }   catch   ( Exception   e )   { 
+       //e.getMessage().toString(); 
+       e . printStackTrace ( ) ; 
+     } 
+
+     ServletContext   sc   =   getServletContext ( ) ; 
+     RequestDispatcher   rd   =   sc . getRequestDispatcher ( 
+         "/workers/index.jsp?func=visualizza&page=DatiPratica" ) ; 
+     rd . forward ( request ,   response ) ; 
+   }
+      ```
+      

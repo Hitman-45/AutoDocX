@@ -1,0 +1,53 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: ServletRicercaAmministratore.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="ServletRicercaAmministratore_java.ast.json" />
+
+## `doPost()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** void  
+      **Language:** Java  
+      **Start Line:** 25  
+      **End Line:** 56  
+      
+      
+      
+      ```java
+      { 
+     HttpSession   session   =   request . getSession ( ) ; 
+     if   ( session   !=   null )   { 
+       ServletContext   sc   =   getServletContext ( ) ; 
+       RequestDispatcher   rd   =   null ; 
+       String   ris ; 
+       try   { 
+         String   number   =   request . getParameter ( "number" ) ; 
+         AdminManager   AdM   =   new   AdminManager ( ) ; 
+         Administrator   A   =   AdM . searchAdminByNumber ( number ) ; 
+
+         if   ( A   !=   null )   { 
+           request . setAttribute ( "ris" ,   A ) ; 
+           rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=mostra&page=datiA" ) ; 
+         }   else   { 
+           ris   =   "Administrator non trovato" ; 
+           request . setAttribute ( "ris" ,   ris ) ; 
+           rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=operazione&page=fallita" ) ; 
+         } 
+         rd . forward ( request ,   response ) ; 
+       }   catch   ( DbException   e )   { 
+         ris   =   e . getMessage ( ) ; 
+         request . setAttribute ( "ris" ,   ris ) ; 
+         rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=operazione&page=fallita" ) ; 
+         rd . forward ( request ,   response ) ; 
+       } 
+     }   else   { 
+       String   url   =   "/myDoc/workers/Access.jsp" ; 
+       response . sendRedirect ( url ) ; 
+     } 
+   }
+      ```
+      

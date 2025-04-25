@@ -1,0 +1,67 @@
+{
+    "EA3.txt": [
+        "AccessManager.java",
+        "Accesso.java",
+        "DbAccesso.java",
+        "ServletMostraAccesso.java",
+        "ServletLogin.java",
+        "CittadinoManager.java",
+        "Amministratore.java",
+        "DbAmministratore.java",
+        "DbImpiegato.java",
+        "ImpiegatoManager.java",
+        "ServletLogout.java"
+    ],
+    "EA1.txt": [
+        "AccessManager.java",
+        "Accesso.java",
+        "AdminManager.java",
+        "DbAmministratore.java",
+        "DbAccesso.java",
+        "ServletMostraAccesso.java",
+        "Amministratore.java",
+        "ServletModificaAmministratore.java",
+        "ServletInserisciAmministratore.java",
+        "ServletLogin.java",
+        "ServletMostraAccessoA.java"
+    ],
+    "EA4.txt": [
+        "DbCambioResidenza.java",
+        "DbCittadino.java",
+        "Comune.java",
+        "DbComune.java",
+        "ServletModificaCittadino.java",
+        "Cittadino.java",
+        "NucleoFamiliare.java",
+        "CartaIdentita.java",
+        "ServletEliminaCittadino.java",
+        "DbCartaIdentita.java",
+        "ServletAnnulla.java"
+    ],
+    "EA5.txt": [
+        "ServletEliminaAmministratore.java",
+        "AdminManager.java",
+        "DbCambioResidenza.java",
+        "ServletEliminaImpiegato.java",
+        "Amministratore.java",
+        "ImpiegatoManager.java",
+        "Impiegato.java",
+        "ServletEliminaCittadino.java",
+        "DbAmministratore.java",
+        "AccessManager.java",
+        "DbImpiegato.java"
+    ],
+    "EA2.txt": [
+        "CittadinoManager.java",
+        "ServletRecuperoPassword.java",
+        "Accesso.java",
+        "ServletLogout.java",
+        "DbCittadino.java",
+        "AccessManager.java",
+        "ServletLogin.java",
+        "ServletMostraAccessoA.java",
+        "CIManager.java",
+        "DbCambioResidenza.java",
+        "ServletRegistraCittadino.java"
+    ]
+}

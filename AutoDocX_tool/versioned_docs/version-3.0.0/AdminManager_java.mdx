@@ -1,0 +1,134 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: AdminManager.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="AdminManager_java.ast.json" />
+
+## `editAdmin()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** boolean  
+      **Language:** Java  
+      **Start Line:** 34  
+      **End Line:** 36  
+      
+      
+      
+      ```java
+      { 
+     return   dbAdministrator . editAdministrator ( number ,   newAdmin ) ; 
+   }
+      ```
+      
+## `searchAdminByNumber()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** Administrator  
+      **Language:** Java  
+      **Start Line:** 46  
+      **End Line:** 48  
+      
+      
+      
+      ```java
+      { 
+     return   dbAdministrator . getAdministratorByNumber ( number ) ; 
+   }
+      ```
+      
+## `enterAdmin()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** boolean  
+      **Language:** Java  
+      **Start Line:** 59  
+      **End Line:** 61  
+      
+      
+      
+      ```java
+      { 
+     return   dbAdministrator . enterAdministrator ( newAdmin ) ; 
+   }
+      ```
+      
+## `deleteAdministrator()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** String  
+      **Language:** Java  
+      **Start Line:** 71  
+      **End Line:** 80  
+      
+      
+      
+      ```java
+      { 
+     Collection &lt; Administrator &gt;   Administrators   =   dbAdministrator . getAdministrators ( ) ; 
+     if   ( Administrators . size ( )   &gt;   1 )   { 
+       if   ( dbAdministrator . deleteAdministrator ( number ) ) 
+         return   "ok" ; 
+       else 
+         return   "error" ; 
+     }   else 
+       return   "unique" ; 
+   }
+      ```
+      
+## `getAdministratorByLogin()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** Administrator  
+      **Language:** Java  
+      **Start Line:** 90  
+      **End Line:** 92  
+      
+      
+      
+      ```java
+      { 
+     return   dbAdministrator . getAdministratorByLogin ( login ) ; 
+   }
+      ```
+      
+## `getAdministratorByName()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** Collection&lt;Administrator&gt;  
+      **Language:** Java  
+      **Start Line:** 104  
+      **End Line:** 107  
+      
+      
+      
+      ```java
+      { 
+     return   dbAdministrator . getAdministratorByName ( nameAmm ,   surnameAmm ) ; 
+   }
+      ```
+      
+## `getAdministrators()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** Collection&lt;Administrator&gt;  
+      **Language:** Java  
+      **Start Line:** 115  
+      **End Line:** 117  
+      
+      
+      
+      ```java
+      { 
+     return   dbAdministrator . getAdministrators ( ) ; 
+   }
+      ```
+      

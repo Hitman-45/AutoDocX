@@ -1,0 +1,57 @@
+[
+  {
+    "function_name": "main",
+    "parameters": [],
+    "return_type": null,
+    "class_name": null,
+    "belongs_to_class": false,
+    "docstring_or_comment": "",
+    "body": "def main():\n    prompt = input(\"Enter a story prompt: \")\n    generator = StoryGenerator()\n    story = generator.generate(prompt)\n    \n    print(\"\\nGenerated Story:\\n\")\n    print(story)",
+    "access_specifier": "public",
+    "start_line": 3,
+    "end_line": 9,
+    "language": "Python",
+    "file_path": "run.py",
+    "folder": "."
+  },
+  {
+    "function_name": "__init__",
+    "parameters": [
+      "self",
+      "model_name"
+    ],
+    "return_type": null,
+    "class_name": "StoryGenerator",
+    "belongs_to_class": true,
+    "docstring_or_comment": "",
+    "body": "def __init__(self, model_name='gpt2'):\n        self.tokenizer = GPT2Tokenizer.from_pretrained(model_name)\n        self.model = GPT2LMHeadModel.from_pretrained(model_name)",
+    "access_specifier": "public",
+    "start_line": 5,
+    "end_line": 7,
+    "language": "Python",
+    "file_path": "story_generator\\generator.py",
+    "folder": "story_generator"
+  },
+  {
+    "function_name": "generate",
+    "parameters": [
+      "self",
+      "prompt",
+      "max_length",
+      "temperature",
+      "top_k",
+      "top_p"
+    ],
+    "return_type": null,
+    "class_name": "StoryGenerator",
+    "belongs_to_class": true,
+    "docstring_or_comment": "",
+    "body": "def generate(self, prompt, max_length=150, temperature=0.9, top_k=50, top_p=0.95):\n        inputs = self.tokenizer(prompt, return_tensors='pt')\n        outputs = self.model.generate(\n            **inputs,\n            max_length=max_length,\n            temperature=temperature,\n            top_k=top_k,\n            top_p=top_p,\n            do_sample=True,\n            pad_token_id=self.tokenizer.eos_token_id\n        )\n        return self.tokenizer.decode(outputs[0], skip_special_tokens=True)",
+    "access_specifier": "public",
+    "start_line": 9,
+    "end_line": 20,
+    "language": "Python",
+    "file_path": "story_generator\\generator.py",
+    "folder": "story_generator"
+  }
+]

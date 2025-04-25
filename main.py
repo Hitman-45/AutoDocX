@@ -5,9 +5,9 @@ import ast
 import javalang
 from clang.cindex import Index, CursorKind, Config, AccessSpecifier
 from antlr4 import *
-from AutoDocX.JavaLexer import JavaLexer
-from AutoDocX.JavaParser import JavaParser
-from AutoDocX.JavaParserListener import JavaParserListener
+from AutoDocX_tool.JavaLexer import JavaLexer
+from AutoDocX_tool.JavaParser import JavaParser
+from AutoDocX_tool.JavaParserListener import JavaParserListener
 import argparse
 import subprocess
 
@@ -111,8 +111,8 @@ class FunctionExtractor(JavaParserListener):
 
 
 from antlr4 import InputStream, CommonTokenStream, ParseTreeWalker
-from AutoDocX.JavaLexer import JavaLexer
-from AutoDocX.JavaParser import JavaParser
+from AutoDocX_tool.JavaLexer import JavaLexer
+from AutoDocX_tool.JavaParser import JavaParser
 
 def get_java_functions(filepath):
     try:
@@ -271,12 +271,12 @@ if __name__ == "__main__":
     parser.add_argument("--source_folder", type=str, required=True, help="Path to the source code repository")
     args = parser.parse_args()
     # source_folder = input("Enter the source folder path: ").strip()
-    # source_folder = r"C:\Users\havis\autodocx\AutoDocX\eANCI" 
+    # source_folder = r"C:\Users\havis\AutoDocX_tool\AutoDocX_tool\eANCI" 
 
     source_folder = args.source_folder
     current_dir = os.path.dirname(os.path.abspath(__file__))
     print(current_dir)
-    output_file = rf"{current_dir}\AutoDocX\static\functions.json"
+    output_file = rf"{current_dir}\AutoDocX_tool\static\functions.json"
 
     print(f"Outtput file: {output_file} ...")
     # output_file = args.output
@@ -292,7 +292,7 @@ if __name__ == "__main__":
 
     print(f"Done! Extracted {len(result)} functions. Saved to {output_file}")
 
-    command = ["node", f"{current_dir}\AutoDocX\scripts\generateDocs.js"]
+    command = ["node", f"{current_dir}\AutoDocX_tool\scripts\generateDocs.js"]
     result = subprocess.run(command, capture_output=True, text=True)
     print("Running command:", ' '.join(command))
     print("Output from JS:")

@@ -1,0 +1,69 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: ServletRicercaCittadino.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="ServletRicercaCittadino_java.ast.json" />
+
+## `doPost()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** void  
+      **Language:** Java  
+      **Start Line:** 27  
+      **End Line:** 74  
+      
+      
+      
+      ```java
+      { 
+     HttpSession   session   =   request . getSession ( ) ; 
+     Citizen   c   =   null ; 
+     ServletContext   sc   =   getServletContext ( ) ; 
+     RequestDispatcher   rd   =   null ; 
+     String   ris ; 
+     if   ( session   !=   null )   { 
+       try   { 
+         CitizenManager   CM   =   new   CitizenManager ( ) ; 
+         if   ( request . getParameter ( "ci" )   !=   null )   { 
+           String   cod   =   request . getParameter ( "ci" ) . toUpperCase ( ) ; 
+           CIManager   CIM   =   new   CIManager ( ) ; 
+           IdentityCard   CI   =   CIM . getCardByNumber ( cod ) ; 
+           if   ( CI   !=   null )   { 
+             c   =   CM . getCitizenById ( CI . id ( ) ) ; 
+             session . setAttribute ( "ci" ,   c ) ; 
+             rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=mostra&page=risultati" ) ; 
+           }   else   { 
+             ris   =   "Siamo spiacenti, il codice della carta d'identit� non� presente nel database" ; 
+             request . setAttribute ( "ris" ,   ris ) ; 
+             rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=mostra&page=risultati" ) ; 
+           } 
+         }   else   { 
+           String   name   =   request . getParameter ( "name" ) ; 
+           String   surname   =   request . getParameter ( "surname" ) ; 
+           ArrayList &lt; Citizen &gt;   cityadini   =   ( ArrayList &lt; Citizen &gt; )   CM . searchCitizen ( name ,   surname ) ; 
+           if   ( cityadini . size ( )   &gt;   0 )   { 
+             request . setAttribute ( "ris" ,   cityadini ) ; 
+             rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=mostra&page=risultati" ) ; 
+           }   else   { 
+             ris   =   "Siamo spiacenti, nessun risultato" ; 
+             request . setAttribute ( "ris" ,   ris ) ; 
+             rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=operazione&page=fallita" ) ; 
+           } 
+         } 
+         rd . forward ( request ,   response ) ; 
+       }   catch   ( DbException   e )   { 
+         ris   =   e . getMessage ( ) ; 
+         request . setAttribute ( "ris" ,   ris ) ; 
+         rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=operazione&page=fallita" ) ; 
+         rd . forward ( request ,   response ) ; 
+       } 
+     }   else   { 
+       String   url   =   "/myDoc/workers/Access.jsp" ; 
+       response . sendRedirect ( url ) ; 
+     } 
+   }
+      ```
+      

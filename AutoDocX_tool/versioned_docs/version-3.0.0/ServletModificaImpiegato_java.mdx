@@ -1,0 +1,93 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: ServletModificaImpiegato.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="ServletModificaImpiegato_java.ast.json" />
+
+## `doPost()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** void  
+      **Language:** Java  
+      **Start Line:** 35  
+      **End Line:** 106  
+      
+      
+      
+      ```java
+      { 
+     HttpSession   session   =   request . getSession ( ) ; 
+     if   ( session 
+         !=   null )   {    //Se la sessione� nulla effettua il redirect alla pagina di autenticazione 
+       ServletContext   sc   =   getServletContext ( ) ; 
+       RequestDispatcher   rd   =   null ; 
+       String   ris ; 
+       try   { 
+         //Se gli attributi di sessione amm e acc sono nulli devo effettuare la search 
+         if   ( session . getAttribute ( "amm" )   ==   null   &&   session . getAttribute ( "acc" )   ==   null )   { 
+           number   =   request . getParameter ( "number" ) ; 
+           EmployeeManager   IM   =   new   EmployeeManager ( ) ; 
+           Employee   imp   =   IM . searchEmployeeByNumber ( number ) ; 
+           if   ( imp   !=   null )   { 
+             session . setAttribute ( "amm" ,   imp ) ; 
+
+             AccessManager   AM   =   new   AccessManager ( ) ; 
+             Access   ac   =   AM . getAccess ( imp . getLogin ( ) ) ; 
+             session . setAttribute ( "acc" ,   ac ) ; 
+
+             rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=modify&page=employee" ) ; 
+             rd . forward ( request ,   response ) ; 
+           }   else   { 
+             ris   =   "La number non corrisponde ad un employee" ; 
+             request . setAttribute ( "ris" ,   ris ) ; 
+             rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=operazione&page=fallita" ) ; 
+             rd . forward ( request ,   response ) ; 
+           } 
+         }   else   { 
+           name   =   request . getParameter ( "name" ) ; 
+           surname   =   request . getParameter ( "surname" ) ; 
+           email   =   request . getParameter ( "email" ) ; 
+           number   =   request . getParameter ( "number" ) ; 
+           login   =   request . getParameter ( "login" ) ; 
+           password   =   request . getParameter ( "password" ) ; 
+           type   =   request . getParameter ( "type" ) ; 
+
+           AccessManager   AM   =   new   AccessManager ( ) ; 
+           EmployeeManager   IM   =   new   EmployeeManager ( ) ; 
+
+           Access   ac   =   new   Access ( login ,   password ,   type ) ; 
+           Employee   imp   =   new   Employee ( name ,   surname ,   number ,   email ,   login ) ; 
+           Employee   impOld   =   ( Employee )   session . getAttribute ( "amm" ) ; 
+
+           if   ( AM . editAccess ( impOld . getLogin ( ) ,   ac )   &&   IM . modifyEmployee ( impOld . getNumber ( ) , 
+               imp ) )   {    //procedo con la modify dei dati 
+             //controllando l'esito 
+             ris   =   "ok" ; 
+             request . setAttribute ( "ris" ,   ris ) ; 
+             rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=operazione&page=riuscita" ) ; 
+
+           }   else   { 
+             ris   =   "fallita" ; 
+             request . setAttribute ( "ris" ,   ris ) ; 
+             rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=operazione&page=fallita" ) ; 
+           } 
+           rd . forward ( request ,   response ) ; 
+           session . removeAttribute ( "amm" ) ; 
+           session . removeAttribute ( "acc" ) ; 
+         } 
+       }   catch   ( DbException   e )   { 
+         ris   =   e . getMessage ( ) ; 
+         request . setAttribute ( "ris" ,   ris ) ; 
+         rd   =   sc . getRequestDispatcher ( "/workers/index.jsp?func=operazione&page=fallita" ) ; 
+         rd . forward ( request ,   response ) ; 
+       } 
+     }   else   { 
+       String   url   =   "/myDoc/workers/Access.jsp" ; 
+       response . sendRedirect ( url ) ; 
+     } 
+   }
+      ```
+      

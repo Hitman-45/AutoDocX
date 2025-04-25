@@ -1,0 +1,281 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: DbAccesso.java
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="DbAccesso_java.ast.json" />
+
+## `enterAccess()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** boolean  
+      **Language:** Java  
+      **Start Line:** 41  
+      **End Line:** 64  
+      
+      
+      
+      ```java
+      { 
+     int   ret   =   0 ; 
+     PreparedStatement   statement   =   null ; 
+     String   login   =   a . getLogin ( ) ; 
+     String   password   =   a . getPassword ( ) ; 
+     String   type   =   a . getType ( ) ; 
+     try   { 
+       statement   =   connection . prepareStatement ( "INSERT INTO access VALUES (? ,? ,?)" ) ; 
+       statement . setString ( 1 ,   login ) ; 
+       statement . setString ( 2 ,   password ) ; 
+       statement . setString ( 3 ,   type ) ; 
+       ret   =   statement . executeUpdate ( ) ; 
+       return   ( ret   ==   1 ) ; 
+     }   catch   ( SQLException   e )   { 
+       throw   new   DbException ( "Error: Access failed" ) ; 
+     }   finally   { 
+       try   { 
+         if   ( statement   !=   null ) 
+           statement . close ( ) ; 
+       }   catch   ( SQLException   e )   { 
+         throw   new   DbException ( "Error: Access failed" ) ; 
+       } 
+     } 
+   }
+      ```
+      
+## `deleteAccess()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** boolean  
+      **Language:** Java  
+      **Start Line:** 75  
+      **End Line:** 93  
+      
+      
+      
+      ```java
+      { 
+     PreparedStatement   statement   =   null ; 
+     int   ret   =   0 ; 
+     try   { 
+       statement   =   connection . prepareStatement ( "DELETE FROM access WHERE login =?" ) ; 
+       statement . setString ( 1 ,   log ) ; 
+       ret   =   statement . executeUpdate ( ) ; 
+       return   ( ret   ==   1 ) ; 
+     }   catch   ( SQLException   e )   { 
+       throw   new   DbException ( "Error: delete access failed" ) ; 
+     }   finally   { 
+       try   { 
+         if   ( statement   !=   null ) 
+           statement . close ( ) ; 
+       }   catch   ( SQLException   e )   { 
+         throw   new   DbException ( "Error: delete access failed" ) ; 
+       } 
+     } 
+   }
+      ```
+      
+## `getAccess()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** Access  
+      **Language:** Java  
+      **Start Line:** 104  
+      **End Line:** 131  
+      
+      
+      
+      ```java
+      { 
+     PreparedStatement   statement   =   null ; 
+     ResultSet   rs   =   null ; 
+     Access   ret   =   null ; 
+     try   { 
+       statement   =   connection . prepareStatement ( "SELECT* FROM access WHERE login=?" ) ; 
+       statement . setString ( 1 ,   log ) ; 
+       rs   =   statement . executeQuery ( ) ; 
+       if   ( ! rs . next ( ) ) 
+         return   ret ; 
+       String   login   =   rs . getString ( "login" ) ; 
+       String   password   =   rs . getString ( "password" ) ; 
+       String   type   =   rs . getString ( "type" ) ; 
+       ret   =   new   Access ( login ,   password ,   type ) ; 
+       return   ret ; 
+     }   catch   ( SQLException   e )   { 
+       throw   new   DbException ( "Error: search access failed" ) ; 
+     }   finally   { 
+       try   { 
+         if   ( statement   !=   null ) 
+           statement . close ( ) ; 
+         if   ( rs   !=   null ) 
+           rs . close ( ) ; 
+       }   catch   ( SQLException   e )   { 
+         throw   new   DbException ( "Error: search access failed" ) ; 
+       } 
+     } 
+   }
+      ```
+      
+## `getAccesses()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** Collection&lt;Access&gt;  
+      **Language:** Java  
+      **Start Line:** 140  
+      **End Line:** 169  
+      
+      
+      
+      ```java
+      { 
+     ArrayList &lt; Access &gt;   ret   =   new   ArrayList &lt; Access &gt; ( ) ; 
+     Statement   statement   =   null ; 
+     ResultSet   rs   =   null ; 
+     try   { 
+       statement   =   connection . createStatement ( ) ; 
+       rs   =   statement . executeQuery ( "SELECT * FROM access" ) ; 
+       while   ( rs . next ( ) )   { 
+         String   login   =   rs . getString ( "login" ) ; 
+         String   password   =   rs . getString ( "password" ) ; 
+         String   type   =   rs . getString ( "type" ) ; 
+         ret . add ( new   Access ( login ,   password ,   type ) ) ; 
+       } 
+       if   ( ret . isEmpty ( ) ) 
+         return   null ; 
+       else 
+         return   ret ; 
+     }   catch   ( SQLException   e )   { 
+       throw   new   DbException ( "Error: search accesses failed" ) ; 
+     }   finally   { 
+       try   { 
+         if   ( statement   !=   null ) 
+           statement . close ( ) ; 
+         if   ( rs   !=   null ) 
+           rs . close ( ) ; 
+       }   catch   ( SQLException   e )   { 
+         throw   new   DbException ( "Error: search accesses failed" ) ; 
+       } 
+     } 
+   }
+      ```
+      
+## `checkLogin()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** boolean  
+      **Language:** Java  
+      **Start Line:** 180  
+      **End Line:** 202  
+      
+      
+      
+      ```java
+      { 
+     PreparedStatement   statement   =   null ; 
+     ResultSet   rs   =   null ; 
+     boolean   ret   =   false ; 
+     try   { 
+       statement   =   connection . prepareStatement ( "SELECT * FROM access WHERE login = ?" ) ; 
+       statement . setString ( 1 ,   login ) ; 
+       rs   =   statement . executeQuery ( ) ; 
+       ret   =   rs . next ( ) ; 
+       return   ret ; 
+     }   catch   ( SQLException   e )   { 
+       throw   new   DbException ( "Error: login check failed" ) ; 
+     }   finally   { 
+       try   { 
+         if   ( statement   !=   null ) 
+           statement . close ( ) ; 
+         if   ( rs   !=   null ) 
+           rs . close ( ) ; 
+       }   catch   ( SQLException   e )   { 
+         throw   new   DbException ( "Error: login check failed" ) ; 
+       } 
+     } 
+   }
+      ```
+      
+## `checkAccess()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** boolean  
+      **Language:** Java  
+      **Start Line:** 216  
+      **End Line:** 240  
+      
+      
+      
+      ```java
+      { 
+     PreparedStatement   statement   =   null ; 
+     ResultSet   rs   =   null ; 
+     boolean   ret   =   false ; 
+     try   { 
+       statement   =   connection . prepareStatement ( 
+           "SELECT * FROM access WHERE login = ? and password = ?" ) ; 
+       statement . setString ( 1 ,   login ) ; 
+       statement . setString ( 2 ,   password ) ; 
+       rs   =   statement . executeQuery ( ) ; 
+       ret   =   rs . next ( ) ; 
+       return   ret ; 
+     }   catch   ( SQLException   e )   { 
+       throw   new   DbException ( "Error: Login verification failed" ) ; 
+     }   finally   { 
+       try   { 
+         if   ( statement   !=   null ) 
+           statement . close ( ) ; 
+         if   ( rs   !=   null ) 
+           rs . close ( ) ; 
+       }   catch   ( SQLException   e )   { 
+         throw   new   DbException ( "Error: Login verification failed" ) ; 
+       } 
+     } 
+   }
+      ```
+      
+## `editAccess()`
+
+      **Class:** None  
+      **Access:**   
+      **Return:** boolean  
+      **Language:** Java  
+      **Start Line:** 252  
+      **End Line:** 277  
+      
+      
+      
+      ```java
+      { 
+     String   login   =   a . getLogin ( ) ; 
+     String   password   =   a . getPassword ( ) ; 
+     String   type   =   a . getType ( ) ; 
+     int   ret   =   0 ; 
+     PreparedStatement   statement   =   null ; 
+     try   { 
+       statement   =   connection . prepareStatement ( 
+           "UPDATE access SET login = ?,password = ?, type = ? WHERE login = ?" ) ; 
+       statement . setString ( 1 ,   login ) ; 
+       statement . setString ( 2 ,   password ) ; 
+       statement . setString ( 3 ,   type ) ; 
+       statement . setString ( 4 ,   log ) ; 
+       ret   =   statement . executeUpdate ( ) ; 
+       return   ( ret   ==   1 ) ; 
+     }   catch   ( SQLException   e )   { 
+       throw   new   DbException ( "Error: modify access failed " ) ; 
+     }   finally   { 
+       try   { 
+         if   ( statement   !=   null ) 
+           statement . close ( ) ; 
+       }   catch   ( SQLException   e )   { 
+         throw   new   DbException ( "Error: modify access failed " ) ; 
+       } 
+     } 
+   }
+      ```
+      
