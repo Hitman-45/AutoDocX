@@ -22,6 +22,12 @@ function HomepageHeader() {
             to="/docs/intro">
             Docusaurus Tutorial - 5min ⏱️
           </Link>
+          <Link
+            className="button button--info button--lg"
+            to="/visualization"
+            style={{ marginLeft: '1rem' }}>
+            Open Visualization 📊
+          </Link>
         </div>
       </div>
     </header>

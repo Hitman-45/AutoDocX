@@ -1,4 +1,4 @@
-import {themes as prismThemes} from 'prism-react-renderer';
+import { themes as prismThemes } from 'prism-react-renderer';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -23,7 +23,7 @@ const config = {
   tagline: siteTagline,
   favicon: 'img/favicon.ico',
 
-  
+
   url: siteUrl,
   baseUrl: baseUrl,
 
@@ -33,9 +33,9 @@ const config = {
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
 
-  
-  
-  
+
+
+
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -56,10 +56,10 @@ const config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          
-          
+
+
           editUrl: githubUrl,
-          
+
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -84,12 +84,12 @@ const config = {
       },
     ],
   ],
-  
+
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      
+
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
         title: siteTitle,
@@ -105,11 +105,16 @@ const config = {
             label: 'Tutorial',
           },
           {
+            label: 'Visualization',
+            to: '/visualization',
+            position: 'left',
+          },
+          {
             type: 'docsVersionDropdown',
             position: 'right',
             dropdownActiveClassDisabled: true,
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: githubUrl,
             label: 'GitHub',
