@@ -2,7 +2,9 @@ import os
 import sys
 import json
 import ast
+import re
 import javalang
+import esprima
 from clang.cindex import Index, CursorKind, Config, AccessSpecifier
 from antlr4 import *
 from JavaLexer import JavaLexer
@@ -12,9 +14,8 @@ from JavaParserListener import JavaParserListener
 
 
 
-Config.set_library_file("/usr/lib/llvm-18/lib/libclang.so.1")
-
-
+# Config.set_library_file("./libclang.so.1")
+Config.set_library_file("/usr/lib/x86_64-linux-gnu/libclang-18.so")
 
 def get_python_functions(filepath):
     with open(filepath, 'r', encoding='utf-8') as f:
@@ -95,21 +96,53 @@ class FunctionExtractor(JavaParserListener):
             'method_body': method_body,
             'modifiers': modifiers if modifiers else ["package-private"]
         })
+def get_julia_functions(filepath):
+    """Extract top-level Julia functions via regex (function … end)."""
+    with open(filepath, 'r', encoding='utf-8') as f:
+        source = f.read()
+    lines = source.split('\n')
 
+    # Regex to match function name(args...)
+    pattern = re.compile(r'^\s*function\s+([A-Za-z_]\w*)\s*\(([^)]*)\)', re.MULTILINE)
 
-from antlr4 import InputStream, CommonTokenStream, ParseTreeWalker
-from JavaLexer import JavaLexer
-from JavaParser import JavaParser
+    results = []
+    for m in pattern.finditer(source):
+        name   = m.group(1)
+        params = [p.strip() for p in m.group(2).split(',')] if m.group(2).strip() else []
+        start  = source[:m.start()].count('\n') + 1
+
+        # Find matching end line by tracking nested functions
+        depth = 0
+        end_line = start
+        for idx in range(start, len(lines)):
+            line = lines[idx]
+            if re.match(r'^\s*function\b', line):
+                depth += 1
+            if re.match(r'^\s*end\b', line):
+                if depth == 0:
+                    end_line = idx + 1
+                    break
+                depth -= 1
+
+        body = '\n'.join(lines[start-1:end_line])
+        results.append({
+            "function_name": name,
+            "parameters": params,
+            "return_type": None,
+            "class_name": None,
+            "belongs_to_class": False,
+            "docstring_or_comment": "",
+            "body": body,
+            "access_specifier": "public",
+            "start_line": start,
+            "end_line": end_line,
+            "language": "Julia"
+        })
+    return results
+
 
 def get_java_functions(filepath):
-    try:
-        with open(filepath, "r", encoding="utf-8") as f:
-            code = f.read()
-    except UnicodeDecodeError:
-        with open(filepath, "r", encoding="utf-8-sig") as f:
-            code = f.read()
-
-    input_stream = InputStream(code)
+    input_stream = FileStream(filepath)
     lexer = JavaLexer(input_stream)
     token_stream = CommonTokenStream(lexer)
     parser = JavaParser(token_stream)
@@ -136,6 +169,106 @@ def get_java_functions(filepath):
         })
 
     return results
+
+def get_javascript_functions(filepath):
+    with open(filepath, 'r', encoding='utf-8') as f:
+        source = f.read()
+
+    results = []
+    try:
+        parsed = esprima.parseModule(source, {
+            'loc': True,
+            'range': True,
+            'tolerant': True
+        })
+    except Exception as e:
+        print(f"Error parsing {filepath}: {e}")
+        return []
+
+    def walk(node, class_name=None):
+        if not hasattr(node, 'type'):
+            return
+
+        # Handle standalone functions
+        if node.type == 'FunctionDeclaration':
+            try:
+                func_name  = node.id.name if node.id else 'anonymous'
+                params     = [p.name for p in node.params]
+                start_line = node.loc.start.line
+                end_line   = node.loc.end.line
+                lines      = source.split('\n')
+                body       = '\n'.join(lines[start_line-1:end_line])
+
+                results.append({
+                    "function_name": func_name,
+                    "parameters": params,
+                    "return_type": None,
+                    "class_name": class_name,
+                    "belongs_to_class": class_name is not None,
+                    "docstring_or_comment": "",
+                    "body": body,
+                    "access_specifier": "public",
+                    "start_line": start_line,
+                    "end_line": end_line,
+                    "language": "JavaScript"
+                })
+            except AttributeError:
+                pass
+
+        # Handle a class and its methods
+        elif node.type == 'ClassDeclaration':
+            cls = node.id.name if node.id else None
+            for method in node.body.body:
+                walk(method, class_name=cls)
+
+        elif node.type == 'MethodDefinition':
+            try:
+                func_name  = node.key.name if hasattr(node.key, 'name') else 'anonymous'
+                params     = [p.name for p in node.value.params]
+                start_line = node.loc.start.line
+                end_line   = node.loc.end.line
+                lines      = source.split('\n')
+                body       = '\n'.join(lines[start_line-1:end_line])
+
+                results.append({
+                    "function_name": func_name,
+                    "parameters": params,
+                    "return_type": None,
+                    "class_name": class_name,
+                    "belongs_to_class": True,
+                    "docstring_or_comment": "",
+                    "body": body,
+                    "access_specifier": "public",
+                    "start_line": start_line,
+                    "end_line": end_line,
+                    "language": "JavaScript"
+                })
+            except AttributeError:
+                pass
+
+        # Recurse into known child properties
+        for prop in ('body', 'declarations', 'expression', 'argument', 'arguments'):
+            child = getattr(node, prop, None)
+            if isinstance(child, list):
+                for item in child:
+                    walk(item, class_name)
+            elif child:
+                walk(child, class_name)
+
+    # build the list
+    walk(parsed)
+
+    # de-duplicate by (name, start, end)
+    unique = []
+    seen   = set()
+    for fn in results:
+        key = (fn['function_name'], fn['start_line'], fn['end_line'])
+        if key not in seen:
+            seen.add(key)
+            unique.append(fn)
+
+    return unique
+
 
 
 def get_cpp_functions(filepath):
@@ -194,6 +327,7 @@ def get_cpp_functions(filepath):
     extract(tu.cursor)
     return results
 
+
 def parse_repo(source_folder):
     data = []
     for root, dirs, files in os.walk(source_folder):
@@ -208,6 +342,10 @@ def parse_repo(source_folder):
                     funcs = get_java_functions(full_path)
                 elif file.endswith((".cpp", ".cc", ".h", ".hpp")):
                     funcs = get_cpp_functions(full_path)
+                elif file.endswith(".js"):  # Add this condition
+                    funcs = get_javascript_functions(full_path)
+                elif file.endswith(".jl"):
+                    funcs = get_julia_functions(full_path)
                 else:
                     continue
 
@@ -224,7 +362,7 @@ def parse_repo(source_folder):
     return data
 
 if __name__ == "__main__":
-    source_folder = input("Enter the source folder path: ").strip()  
+    source_folder = "code/"  
     output_file = "functions.json"
 
     print(f"Scanning repository: {source_folder} ...")

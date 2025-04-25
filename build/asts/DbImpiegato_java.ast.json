@@ -1,0 +1,332 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"insertEmployee\""
+            },
+            {
+              "name": "parameters: \"(Employeei)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 36"
+            },
+            {
+              "name": "end_line: 63"
+            },
+            {
+              "name": "body_start: 36"
+            },
+            {
+              "name": "body_end: 63"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     String   matr   =   i . getNumber ( ) ; \\n     String   name   =   i . getName ( ) ; \\n     String   surname   =   i . getSurname ( ) ; \\n     String   email   =   i . getEmail ( ) ; \\n     String   login   =   i . getLogin ( ) ; \\n     int   ret   =   0 ; \\n     PreparedStatement   statement   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"INSERT INTO employee VALUES (? ,? ,?,?,?)\\\" ) ; \\n       statement . setString ( 1 ,   matr ) ; \\n       statement . setString ( 2 ,   name ) ; \\n       statement . setString ( 3 ,   surname ) ; \\n       statement . setString ( 4 ,   email ) ; \\n       statement . setString ( 5 ,   login ) ; \\n       ret   =   statement . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: employee insertion failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: employee insertion failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbImpiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"deleteEmployee\""
+            },
+            {
+              "name": "parameters: \"(Stringmatr)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 73"
+            },
+            {
+              "name": "end_line: 91"
+            },
+            {
+              "name": "body_start: 73"
+            },
+            {
+              "name": "body_end: 91"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     int   ret   =   0 ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"DELETE FROM employee WHERE number =?\\\" ) ; \\n       statement . setString ( 1 ,   matr ) ; \\n       ret   =   statement . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: employee deletion failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: employee deletion failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbImpiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"getEmployeeByName\""
+            },
+            {
+              "name": "parameters: \"(StringnameImp,StringsurnameImp)\""
+            },
+            {
+              "name": "return_type: \"Collection<Employee>\""
+            },
+            {
+              "name": "start_line: 103"
+            },
+            {
+              "name": "end_line: 138"
+            },
+            {
+              "name": "body_start: 104"
+            },
+            {
+              "name": "body_end: 138"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     ArrayList < Employee >   ret   =   new   ArrayList < Employee > ( ) ; \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\n           \\\"SELECT * FROM employee WHERE name =? and surname =?\\\" ) ; \\n       statement . setString ( 1 ,   nameImp ) ; \\n       statement . setString ( 2 ,   surnameImp ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       while   ( rs . next ( ) )   { \\n         String   matr   =   rs . getString ( \\\"number\\\" ) ; \\n         String   name   =   rs . getString ( \\\"name\\\" ) ; \\n         String   surname   =   rs . getString ( \\\"surname\\\" ) ; \\n         String   eMail   =   rs . getString ( \\\"eMail\\\" ) ; \\n         String   login   =   rs . getString ( \\\"login\\\" ) ; \\n         ret . add ( new   Employee ( name ,   surname ,   matr ,   eMail ,   login ) ) ; \\n       } \\n       if   ( ret . isEmpty ( ) ) \\n         return   null ; \\n       else \\n         return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: search employee via name and surname failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: search employee via name and surname failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbImpiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"getEmployeeByNumber\""
+            },
+            {
+              "name": "parameters: \"(StringmatrImp)\""
+            },
+            {
+              "name": "return_type: \"Employee\""
+            },
+            {
+              "name": "start_line: 149"
+            },
+            {
+              "name": "end_line: 178"
+            },
+            {
+              "name": "body_start: 149"
+            },
+            {
+              "name": "body_end: 178"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     Employee   ret   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"SELECT * FROM employee WHERE number =?\\\" ) ; \\n       statement . setString ( 1 ,   matrImp ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       if   ( ! rs . next ( ) ) \\n         return   ret ; \\n       String   matr   =   rs . getString ( \\\"number\\\" ) ; \\n       String   name   =   rs . getString ( \\\"name\\\" ) ; \\n       String   surname   =   rs . getString ( \\\"surname\\\" ) ; \\n       String   eMail   =   rs . getString ( \\\"eMail\\\" ) ; \\n       String   login   =   rs . getString ( \\\"login\\\" ) ; \\n       ret   =   new   Employee ( name ,   surname ,   matr ,   eMail ,   login ) ; \\n       return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: search employee by number failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: search employee by number failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbImpiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"getEmployees\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"Collection<Employee>\""
+            },
+            {
+              "name": "start_line: 187"
+            },
+            {
+              "name": "end_line: 218"
+            },
+            {
+              "name": "body_start: 187"
+            },
+            {
+              "name": "body_end: 218"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     ArrayList < Employee >   ret   =   new   ArrayList < Employee > ( ) ; \\n     Statement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     try   { \\n       statement   =   connection . createStatement ( ) ; \\n       rs   =   statement . executeQuery ( \\\"SELECT * FROM employee\\\" ) ; \\n       while   ( rs . next ( ) )   { \\n         String   matr   =   rs . getString ( \\\"number\\\" ) ; \\n         String   name   =   rs . getString ( \\\"name\\\" ) ; \\n         String   surname   =   rs . getString ( \\\"surname\\\" ) ; \\n         String   eMail   =   rs . getString ( \\\"eMail\\\" ) ; \\n         String   login   =   rs . getString ( \\\"login\\\" ) ; \\n         ret . add ( new   Employee ( name ,   surname ,   matr ,   eMail ,   login ) ) ; \\n       } \\n       if   ( ret . isEmpty ( ) ) \\n         return   null ; \\n       else \\n         return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: Employee search failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: Employee search failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbImpiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"getEmployeeByLogin\""
+            },
+            {
+              "name": "parameters: \"(Stringlog)\""
+            },
+            {
+              "name": "return_type: \"Employee\""
+            },
+            {
+              "name": "start_line: 229"
+            },
+            {
+              "name": "end_line: 258"
+            },
+            {
+              "name": "body_start: 229"
+            },
+            {
+              "name": "body_end: 258"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     Employee   ret   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"SELECT * FROM employee WHERE login =?\\\" ) ; \\n       statement . setString ( 1 ,   log ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       if   ( ! rs . next ( ) ) \\n         return   ret ; \\n       String   matr   =   rs . getString ( \\\"number\\\" ) ; \\n       String   name   =   rs . getString ( \\\"name\\\" ) ; \\n       String   surname   =   rs . getString ( \\\"surname\\\" ) ; \\n       String   eMail   =   rs . getString ( \\\"eMail\\\" ) ; \\n       String   login   =   rs . getString ( \\\"login\\\" ) ; \\n       ret   =   new   Employee ( name ,   surname ,   matr ,   eMail ,   login ) ; \\n       return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: search employee via login failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: search employee via login failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbImpiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"modifyEmployee\""
+            },
+            {
+              "name": "parameters: \"(Stringmatr,Employeea)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 270"
+            },
+            {
+              "name": "end_line: 299"
+            },
+            {
+              "name": "body_start: 270"
+            },
+            {
+              "name": "body_end: 299"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     String   number   =   a . getNumber ( ) ; \\n     String   name   =   a . getName ( ) ; \\n     String   surname   =   a . getSurname ( ) ; \\n     String   email   =   a . getEmail ( ) ; \\n     String   login   =   a . getLogin ( ) ; \\n     int   ret   =   0 ; \\n     PreparedStatement   statement   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\n           \\\"UPDATE employee SET number = ?,name = ?, surname = ?, email = ?, login = ? WHERE number = ?\\\" ) ; \\n       statement . setString ( 1 ,   number ) ; \\n       statement . setString ( 2 ,   name ) ; \\n       statement . setString ( 3 ,   surname ) ; \\n       statement . setString ( 4 ,   email ) ; \\n       statement . setString ( 5 ,   login ) ; \\n       statement . setString ( 6 ,   matr ) ; \\n       ret   =   statement . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: modify employee failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: modify employee failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbImpiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

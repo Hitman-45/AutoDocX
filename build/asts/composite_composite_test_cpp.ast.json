@@ -1,0 +1,190 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"main\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"int main(void)\\n{\\n    AddFilesAndPrintTest();\\n    AddFilesAndCloneTest();\\n    AddFilesAndRemoveTest();\\n    std::cout << \\\"Passed\\\" << std::endl;\\n    return (0);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 19"
+            },
+            {
+              "name": "end_line: 26"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"composite/composite_test.cpp\""
+            },
+            {
+              "name": "folder: \"composite\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"AddFilesAndPrintTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void AddFilesAndPrintTest(void)\\n{\\n    std::cout << \\\"==== AddFilesAndPrintTest ====\\\\n\\\" << std::endl;\\n    \\n    File file1(\\\"file1.txt\\\");\\n    File file2(\\\"file2.txt\\\");\\n    Dir dir1(\\\"dir1\\\");\\n    Dir dir2(\\\"dir2\\\");\\n\\n    dir1.AddIEntry(file1);\\n    dir1.AddIEntry(file2);\\n\\n    dir2.AddIEntry(file1);\\n    dir2.AddIEntry(dir1);\\n\\n    dir2.Print();\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 28"
+            },
+            {
+              "name": "end_line: 44"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"composite/composite_test.cpp\""
+            },
+            {
+              "name": "folder: \"composite\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"AddFilesAndRemoveTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void AddFilesAndRemoveTest(void)\\n{\\n    std::cout << \\\"\\\\n======= AddFilesAndRemoveTest ========\\\\n\\\" << std::endl;\\n\\n    File file1(\\\"file1.txt\\\");\\n    File file2(\\\"file2.txt\\\");\\n    Dir dir1(\\\"dir1\\\");\\n    Dir dir2(\\\"dir2\\\");\\n\\n    dir1.AddIEntry(file1);\\n    dir1.AddIEntry(file2);\\n\\n    dir2.AddIEntry(file1);\\n    dir2.AddIEntry(dir1);\\n\\n    dir2.Print();\\n\\n    std::cout << \\\"\\\\n---- Removing file1.txt from dir2 ----\\\\n\\\" << std::endl;\\n    dir2.RemoveIEntry(\\\"file1.txt\\\");\\n    dir2.Print();\\n    std::cout << \\\"\\\\n------- Removing dir1 from dir2 ------\\\\n\\\" << std::endl;\\n    dir2.RemoveIEntry(\\\"dir1\\\");\\n    dir2.Print();\\n    std::cout << \\\"\\\\n======================================\\\\n\\\" << std::endl;\\n\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 46"
+            },
+            {
+              "name": "end_line: 71"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"composite/composite_test.cpp\""
+            },
+            {
+              "name": "folder: \"composite\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"AddFilesAndCloneTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void AddFilesAndCloneTest(void)\\n{\\n    std::cout << \\\"\\\\n======= Clone dirs and files test =====\\\\n\\\" << std::endl;\\n    File file1(\\\"file1.txt\\\");\\n    File file2(\\\"file2.txt\\\");\\n    Dir dir1(\\\"dir1\\\");\\n    Dir dir2(\\\"dir2\\\");\\n\\n    dir1.AddIEntry(file1);\\n    dir1.AddIEntry(file2);\\n\\n    dir2.AddIEntry(file1);\\n    dir2.AddIEntry(dir1);\\n\\n    std::cout << \\\"Original directory:\\\" << std::endl;\\n    dir2.Print();\\n\\n    Dir* clonedDir = dir2.clone();\\n\\n    std::cout << \\\"\\\\nCloned directory:\\\" << std::endl;\\n    clonedDir->Print();\\n    delete clonedDir;\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 73"
+            },
+            {
+              "name": "end_line: 95"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"composite/composite_test.cpp\""
+            },
+            {
+              "name": "folder: \"composite\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

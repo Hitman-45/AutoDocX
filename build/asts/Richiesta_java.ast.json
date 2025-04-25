@@ -1,0 +1,654 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"getIdRequest\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 77"
+            },
+            {
+              "name": "end_line: 79"
+            },
+            {
+              "name": "body_start: 77"
+            },
+            {
+              "name": "body_end: 79"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   idRequest ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Richiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"setIdRequest\""
+            },
+            {
+              "name": "parameters: \"(intstr)\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 88"
+            },
+            {
+              "name": "end_line: 91"
+            },
+            {
+              "name": "body_start: 88"
+            },
+            {
+              "name": "body_end: 91"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     idRequest   =   str ; \\n     return   str ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Richiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"getType\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 98"
+            },
+            {
+              "name": "end_line: 100"
+            },
+            {
+              "name": "body_start: 98"
+            },
+            {
+              "name": "body_end: 100"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   type ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Richiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"setType\""
+            },
+            {
+              "name": "parameters: \"(Stringstr)\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 109"
+            },
+            {
+              "name": "end_line: 112"
+            },
+            {
+              "name": "body_start: 109"
+            },
+            {
+              "name": "body_end: 112"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     type   =   str ; \\n     return   str ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Richiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"getData\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 119"
+            },
+            {
+              "name": "end_line: 121"
+            },
+            {
+              "name": "body_start: 119"
+            },
+            {
+              "name": "body_end: 121"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   data ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Richiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"setData\""
+            },
+            {
+              "name": "parameters: \"(Stringstr)\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 130"
+            },
+            {
+              "name": "end_line: 133"
+            },
+            {
+              "name": "body_start: 130"
+            },
+            {
+              "name": "body_end: 133"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     data   =   str ; \\n     return   str ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Richiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"getApplicant\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 140"
+            },
+            {
+              "name": "end_line: 142"
+            },
+            {
+              "name": "body_start: 140"
+            },
+            {
+              "name": "body_end: 142"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   applicant ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Richiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"setApplicant\""
+            },
+            {
+              "name": "parameters: \"(intstr)\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 151"
+            },
+            {
+              "name": "end_line: 154"
+            },
+            {
+              "name": "body_start: 151"
+            },
+            {
+              "name": "body_end: 154"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     applicant   =   str ; \\n     return   str ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Richiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[8]",
+          "children": [
+            {
+              "name": "function_name: \"getState\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 161"
+            },
+            {
+              "name": "end_line: 163"
+            },
+            {
+              "name": "body_start: 161"
+            },
+            {
+              "name": "body_end: 163"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   state ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Richiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[9]",
+          "children": [
+            {
+              "name": "function_name: \"setState\""
+            },
+            {
+              "name": "parameters: \"(Stringstr)\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 172"
+            },
+            {
+              "name": "end_line: 175"
+            },
+            {
+              "name": "body_start: 172"
+            },
+            {
+              "name": "body_end: 175"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     state   =   str ; \\n     return   str ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Richiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[10]",
+          "children": [
+            {
+              "name": "function_name: \"getDocument\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 182"
+            },
+            {
+              "name": "end_line: 184"
+            },
+            {
+              "name": "body_start: 182"
+            },
+            {
+              "name": "body_end: 184"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   document ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Richiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[11]",
+          "children": [
+            {
+              "name": "function_name: \"setDocument\""
+            },
+            {
+              "name": "parameters: \"(Stringstr)\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 193"
+            },
+            {
+              "name": "end_line: 196"
+            },
+            {
+              "name": "body_start: 193"
+            },
+            {
+              "name": "body_end: 196"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     document   =   str ; \\n     return   str ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Richiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[12]",
+          "children": [
+            {
+              "name": "function_name: \"isAccepted\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 203"
+            },
+            {
+              "name": "end_line: 205"
+            },
+            {
+              "name": "body_start: 203"
+            },
+            {
+              "name": "body_end: 205"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   state . equalsIgnoreCase ( \\\"accepted\\\" ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Richiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[13]",
+          "children": [
+            {
+              "name": "function_name: \"isRejected\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 212"
+            },
+            {
+              "name": "end_line: 214"
+            },
+            {
+              "name": "body_start: 212"
+            },
+            {
+              "name": "body_end: 214"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   state . equalsIgnoreCase ( \\\"rejected\\\" ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Richiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

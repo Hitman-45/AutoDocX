@@ -1,0 +1,194 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"getName\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 42"
+            },
+            {
+              "name": "end_line: 44"
+            },
+            {
+              "name": "body_start: 42"
+            },
+            {
+              "name": "body_end: 44"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   this . name ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Comune.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"setName\""
+            },
+            {
+              "name": "parameters: \"(Stringn)\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 54"
+            },
+            {
+              "name": "end_line: 57"
+            },
+            {
+              "name": "body_start: 54"
+            },
+            {
+              "name": "body_end: 57"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     this . name   =   n ; \\n     return   n ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Comune.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"getIPAddress\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 65"
+            },
+            {
+              "name": "end_line: 67"
+            },
+            {
+              "name": "body_start: 65"
+            },
+            {
+              "name": "body_end: 67"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   this . IPAddress ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Comune.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"setIPAddress\""
+            },
+            {
+              "name": "parameters: \"(Stringi)\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 77"
+            },
+            {
+              "name": "end_line: 80"
+            },
+            {
+              "name": "body_start: 77"
+            },
+            {
+              "name": "body_end: 80"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     this . IPAddress   =   i ; \\n     return   i ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Comune.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

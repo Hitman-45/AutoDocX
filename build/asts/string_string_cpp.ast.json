@@ -1,0 +1,503 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"operator=\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"String &\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    String& String::operator=(const String& other_)\\n    {\\n        if(this != &other_)\\n        {\\n            StrDestroy();\\n            StrSet(other_.Cstr());\\n        }\\n\\n        return (*this);\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 36"
+            },
+            {
+              "name": "end_line: 45"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"string/string.cpp\""
+            },
+            {
+              "name": "folder: \"string\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"Length\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"std::size_t\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    std::size_t String::Length() const\\n    {\\n        return (length);\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 52"
+            },
+            {
+              "name": "end_line: 55"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"string/string.cpp\""
+            },
+            {
+              "name": "folder: \"string\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"Cstr\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"const char *\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    const char *String::Cstr() const\\n    {\\n        return (isDynamic ? data.dynamicBuffer : data.ssoBuffer);\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 57"
+            },
+            {
+              "name": "end_line: 60"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"string/string.cpp\""
+            },
+            {
+              "name": "folder: \"string\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"StrSet\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    void String::StrSet(const char *str)\\n    {\\n        length = std::strlen(str);\\n        if(length < ssoLength)\\n        {\\n            std::memcpy(data.ssoBuffer, str, length + 1);\\n            isDynamic = false;\\n            return;\\n        }\\n\\n        data.dynamicBuffer = new char[length + 1];\\n        std::memcpy(data.dynamicBuffer, str, length + 1);\\n        isDynamic = true;\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"private\""
+            },
+            {
+              "name": "start_line: 62"
+            },
+            {
+              "name": "end_line: 75"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"string/string.cpp\""
+            },
+            {
+              "name": "folder: \"string\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"StrDestroy\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    void String::StrDestroy(void)\\n    {\\n        if(isDynamic)\\n        {\\n            delete[] (data.dynamicBuffer);\\n        }\\n\\n        data.dynamicBuffer = NULL;\\n        isDynamic = false;\\n        length = 0;\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"private\""
+            },
+            {
+              "name": "start_line: 77"
+            },
+            {
+              "name": "end_line: 87"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"string/string.cpp\""
+            },
+            {
+              "name": "folder: \"string\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"operator<<\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"std::ostream &\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    std::ostream &operator<<(std::ostream &stream, const String &str)\\n    {\\n        return (stream << str.Cstr());\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 89"
+            },
+            {
+              "name": "end_line: 92"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"string/string.cpp\""
+            },
+            {
+              "name": "folder: \"string\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"operator>>\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"std::istream &\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    std::istream &operator>>(std::istream &stream, String &str)\\n    {\\n        const std::size_t bufferSize = 4096;\\n        char buffer[bufferSize] = {0};\\n        stream.getline(buffer, bufferSize);\\n        str = buffer;\\n        return (stream);\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 94"
+            },
+            {
+              "name": "end_line: 101"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"string/string.cpp\""
+            },
+            {
+              "name": "folder: \"string\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"operator>\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"bool\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    bool operator>(const String &str1 ,const String &str2)\\n    {\\n        return (0 < strcmp(str1.Cstr(), str2.Cstr()));\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 103"
+            },
+            {
+              "name": "end_line: 106"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"string/string.cpp\""
+            },
+            {
+              "name": "folder: \"string\""
+            }
+          ]
+        },
+        {
+          "name": "functions[8]",
+          "children": [
+            {
+              "name": "function_name: \"operator<\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"bool\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    bool operator<(const String &str1 ,const String &str2)\\n    {\\n        return (0 > strcmp(str1.Cstr(), str2.Cstr()));\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 108"
+            },
+            {
+              "name": "end_line: 111"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"string/string.cpp\""
+            },
+            {
+              "name": "folder: \"string\""
+            }
+          ]
+        },
+        {
+          "name": "functions[9]",
+          "children": [
+            {
+              "name": "function_name: \"operator==\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"bool\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"    bool operator==(const String &str1 ,const String &str2)\\n    {\\n        return (0 == strcmp(str1.Cstr(), str2.Cstr()));\\n    }\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 113"
+            },
+            {
+              "name": "end_line: 116"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"string/string.cpp\""
+            },
+            {
+              "name": "folder: \"string\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

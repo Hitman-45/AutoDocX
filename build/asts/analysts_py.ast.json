@@ -1,0 +1,55 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"get_analyst_nodes\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Get the mapping of analyst keys to their (node_name, agent_func) tuples.\""
+            },
+            {
+              "name": "body: \"def get_analyst_nodes():\\n    \\\"\\\"\\\"Get the mapping of analyst keys to their (node_name, agent_func) tuples.\\\"\\\"\\\"\\n    return {key: (f\\\"{key}_agent\\\", config[\\\"agent_func\\\"]) for key, config in ANALYST_CONFIG.items()}\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 90"
+            },
+            {
+              "name": "end_line: 92"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"analysts.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

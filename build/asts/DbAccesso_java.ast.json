@@ -1,0 +1,332 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"enterAccess\""
+            },
+            {
+              "name": "parameters: \"(Accessa)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 41"
+            },
+            {
+              "name": "end_line: 64"
+            },
+            {
+              "name": "body_start: 41"
+            },
+            {
+              "name": "body_end: 64"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     int   ret   =   0 ; \\n     PreparedStatement   statement   =   null ; \\n     String   login   =   a . getLogin ( ) ; \\n     String   password   =   a . getPassword ( ) ; \\n     String   type   =   a . getType ( ) ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"INSERT INTO access VALUES (? ,? ,?)\\\" ) ; \\n       statement . setString ( 1 ,   login ) ; \\n       statement . setString ( 2 ,   password ) ; \\n       statement . setString ( 3 ,   type ) ; \\n       ret   =   statement . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: Access failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: Access failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbAccesso.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"deleteAccess\""
+            },
+            {
+              "name": "parameters: \"(Stringlog)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 75"
+            },
+            {
+              "name": "end_line: 93"
+            },
+            {
+              "name": "body_start: 75"
+            },
+            {
+              "name": "body_end: 93"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     int   ret   =   0 ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"DELETE FROM access WHERE login =?\\\" ) ; \\n       statement . setString ( 1 ,   log ) ; \\n       ret   =   statement . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: delete access failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: delete access failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbAccesso.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"getAccess\""
+            },
+            {
+              "name": "parameters: \"(Stringlog)\""
+            },
+            {
+              "name": "return_type: \"Access\""
+            },
+            {
+              "name": "start_line: 104"
+            },
+            {
+              "name": "end_line: 131"
+            },
+            {
+              "name": "body_start: 104"
+            },
+            {
+              "name": "body_end: 131"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     Access   ret   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"SELECT* FROM access WHERE login=?\\\" ) ; \\n       statement . setString ( 1 ,   log ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       if   ( ! rs . next ( ) ) \\n         return   ret ; \\n       String   login   =   rs . getString ( \\\"login\\\" ) ; \\n       String   password   =   rs . getString ( \\\"password\\\" ) ; \\n       String   type   =   rs . getString ( \\\"type\\\" ) ; \\n       ret   =   new   Access ( login ,   password ,   type ) ; \\n       return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: search access failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: search access failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbAccesso.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"getAccesses\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"Collection<Access>\""
+            },
+            {
+              "name": "start_line: 140"
+            },
+            {
+              "name": "end_line: 169"
+            },
+            {
+              "name": "body_start: 140"
+            },
+            {
+              "name": "body_end: 169"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     ArrayList < Access >   ret   =   new   ArrayList < Access > ( ) ; \\n     Statement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     try   { \\n       statement   =   connection . createStatement ( ) ; \\n       rs   =   statement . executeQuery ( \\\"SELECT * FROM access\\\" ) ; \\n       while   ( rs . next ( ) )   { \\n         String   login   =   rs . getString ( \\\"login\\\" ) ; \\n         String   password   =   rs . getString ( \\\"password\\\" ) ; \\n         String   type   =   rs . getString ( \\\"type\\\" ) ; \\n         ret . add ( new   Access ( login ,   password ,   type ) ) ; \\n       } \\n       if   ( ret . isEmpty ( ) ) \\n         return   null ; \\n       else \\n         return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: search accesses failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: search accesses failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbAccesso.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"checkLogin\""
+            },
+            {
+              "name": "parameters: \"(Stringlogin)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 180"
+            },
+            {
+              "name": "end_line: 202"
+            },
+            {
+              "name": "body_start: 180"
+            },
+            {
+              "name": "body_end: 202"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     boolean   ret   =   false ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"SELECT * FROM access WHERE login = ?\\\" ) ; \\n       statement . setString ( 1 ,   login ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       ret   =   rs . next ( ) ; \\n       return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: login check failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: login check failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbAccesso.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"checkAccess\""
+            },
+            {
+              "name": "parameters: \"(Stringlogin,Stringpassword)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 216"
+            },
+            {
+              "name": "end_line: 240"
+            },
+            {
+              "name": "body_start: 216"
+            },
+            {
+              "name": "body_end: 240"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     boolean   ret   =   false ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\n           \\\"SELECT * FROM access WHERE login = ? and password = ?\\\" ) ; \\n       statement . setString ( 1 ,   login ) ; \\n       statement . setString ( 2 ,   password ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       ret   =   rs . next ( ) ; \\n       return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: Login verification failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: Login verification failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbAccesso.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"editAccess\""
+            },
+            {
+              "name": "parameters: \"(Stringlog,Accessa)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 252"
+            },
+            {
+              "name": "end_line: 277"
+            },
+            {
+              "name": "body_start: 252"
+            },
+            {
+              "name": "body_end: 277"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     String   login   =   a . getLogin ( ) ; \\n     String   password   =   a . getPassword ( ) ; \\n     String   type   =   a . getType ( ) ; \\n     int   ret   =   0 ; \\n     PreparedStatement   statement   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\n           \\\"UPDATE access SET login = ?,password = ?, type = ? WHERE login = ?\\\" ) ; \\n       statement . setString ( 1 ,   login ) ; \\n       statement . setString ( 2 ,   password ) ; \\n       statement . setString ( 3 ,   type ) ; \\n       statement . setString ( 4 ,   log ) ; \\n       ret   =   statement . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: modify access failed \\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: modify access failed \\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbAccesso.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

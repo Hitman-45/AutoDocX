@@ -1,0 +1,56 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"doGet\""
+            },
+            {
+              "name": "parameters: \"(HttpServletRequestrequest,HttpServletResponseresponse)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 24"
+            },
+            {
+              "name": "end_line: 55"
+            },
+            {
+              "name": "body_start: 25"
+            },
+            {
+              "name": "body_end: 55"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     HttpSession   session   =   request . getSession ( ) ; \\n\\n     if   ( session   !=   null )   { \\n       ServletContext   sc   =   getServletContext ( ) ; \\n       RequestDispatcher   rd   =   null ; \\n       String   ris ; \\n       try   { \\n         Access   ac   =   null ; \\n         AccessManager   AM   =   new   AccessManager ( ) ; \\n         String   login ; \\n         if   ( session . getAttribute ( \\\"c\\\" )   !=   null )   { \\n           Citizen   c   =   ( Citizen )   session . getAttribute ( \\\"c\\\" ) ; \\n           login   =   c . getLogin ( ) ; \\n           ac   =   AM . getAccess ( login ) ; \\n           rd   =   sc . getRequestDispatcher ( \\\"/user/home.jsp?func=mostra&page=access\\\" ) ; \\n         } \\n         request . setAttribute ( \\\"access\\\" ,   ac ) ; \\n         rd . forward ( request ,   response ) ; \\n       }   catch   ( DbException   e )   { \\n         ris   =   e . getMessage ( ) ; \\n         request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n         rd   =   sc . getRequestDispatcher ( \\\"/user/home.jsp?func=operazione&page=fallita\\\" ) ; \\n         rd . forward ( request ,   response ) ; \\n       } \\n     }   else   { \\n       String   url ; \\n       url   =   \\\"/myDoc/user/home.jsp\\\" ; \\n       response . sendRedirect ( url ) ; \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletMostraAccessoA.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

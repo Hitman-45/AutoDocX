@@ -1,0 +1,416 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"charlie_munger_agent\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Analyzes stocks using Charlie Munger's investing principles and mental models.\\nFocuses on moat strength, management quality, predictability, and valuation.\""
+            },
+            {
+              "name": "body: \"def charlie_munger_agent(state: AgentState):\\n    \\\"\\\"\\\"\\n    Analyzes stocks using Charlie Munger's investing principles and mental models.\\n    Focuses on moat strength, management quality, predictability, and valuation.\\n    \\\"\\\"\\\"\\n    data = state[\\\"data\\\"]\\n    end_date = data[\\\"end_date\\\"]\\n    tickers = data[\\\"tickers\\\"]\\n    \\n    analysis_data = {}\\n    munger_analysis = {}\\n    \\n    for ticker in tickers:\\n        progress.update_status(\\\"charlie_munger_agent\\\", ticker, \\\"Fetching financial metrics\\\")\\n        metrics = get_financial_metrics(ticker, end_date, period=\\\"annual\\\", limit=10)  # Munger looks at longer periods\\n        \\n        progress.update_status(\\\"charlie_munger_agent\\\", ticker, \\\"Gathering financial line items\\\")\\n        financial_line_items = search_line_items(\\n            ticker,\\n            [\\n                \\\"revenue\\\",\\n                \\\"net_income\\\",\\n                \\\"operating_income\\\",\\n                \\\"return_on_invested_capital\\\",\\n                \\\"gross_margin\\\",\\n                \\\"operating_margin\\\",\\n                \\\"free_cash_flow\\\",\\n                \\\"capital_expenditure\\\",\\n                \\\"cash_and_equivalents\\\",\\n                \\\"total_debt\\\",\\n                \\\"shareholders_equity\\\",\\n                \\\"outstanding_shares\\\",\\n                \\\"research_and_development\\\",\\n                \\\"goodwill_and_intangible_assets\\\",\\n            ],\\n            end_date,\\n            period=\\\"annual\\\",\\n            limit=10  # Munger examines long-term trends\\n        )\\n        \\n        progress.update_status(\\\"charlie_munger_agent\\\", ticker, \\\"Getting market cap\\\")\\n        market_cap = get_market_cap(ticker, end_date)\\n        \\n        progress.update_status(\\\"charlie_munger_agent\\\", ticker, \\\"Fetching insider trades\\\")\\n        # Munger values management with skin in the game\\n        insider_trades = get_insider_trades(\\n            ticker,\\n            end_date,\\n            # Look back 2 years for insider trading patterns\\n            start_date=None,\\n            limit=100\\n        )\\n        \\n        progress.update_status(\\\"charlie_munger_agent\\\", ticker, \\\"Fetching company news\\\")\\n        # Munger avoids businesses with frequent negative press\\n        company_news = get_company_news(\\n            ticker,\\n            end_date,\\n            # Look back 1 year for news\\n            start_date=None,\\n            limit=100\\n        )\\n        \\n        progress.update_status(\\\"charlie_munger_agent\\\", ticker, \\\"Analyzing moat strength\\\")\\n        moat_analysis = analyze_moat_strength(metrics, financial_line_items)\\n        \\n        progress.update_status(\\\"charlie_munger_agent\\\", ticker, \\\"Analyzing management quality\\\")\\n        management_analysis = analyze_management_quality(financial_line_items, insider_trades)\\n        \\n        progress.update_status(\\\"charlie_munger_agent\\\", ticker, \\\"Analyzing business predictability\\\")\\n        predictability_analysis = analyze_predictability(financial_line_items)\\n        \\n        progress.update_status(\\\"charlie_munger_agent\\\", ticker, \\\"Calculating Munger-style valuation\\\")\\n        valuation_analysis = calculate_munger_valuation(financial_line_items, market_cap)\\n        \\n        # Combine partial scores with Munger's weighting preferences\\n        # Munger weights quality and predictability higher than current valuation\\n        total_score = (\\n            moat_analysis[\\\"score\\\"] * 0.35 +\\n            management_analysis[\\\"score\\\"] * 0.25 +\\n            predictability_analysis[\\\"score\\\"] * 0.25 +\\n            valuation_analysis[\\\"score\\\"] * 0.15\\n        )\\n        \\n        max_possible_score = 10  # Scale to 0-10\\n        \\n        # Generate a simple buy/hold/sell signal\\n        if total_score >= 7.5:  # Munger has very high standards\\n            signal = \\\"bullish\\\"\\n        elif total_score <= 4.5:\\n            signal = \\\"bearish\\\"\\n        else:\\n            signal = \\\"neutral\\\"\\n        \\n        analysis_data[ticker] = {\\n            \\\"signal\\\": signal,\\n            \\\"score\\\": total_score,\\n            \\\"max_score\\\": max_possible_score,\\n            \\\"moat_analysis\\\": moat_analysis,\\n            \\\"management_analysis\\\": management_analysis,\\n            \\\"predictability_analysis\\\": predictability_analysis,\\n            \\\"valuation_analysis\\\": valuation_analysis,\\n            # Include some qualitative assessment from news\\n            \\\"news_sentiment\\\": analyze_news_sentiment(company_news) if company_news else \\\"No news data available\\\"\\n        }\\n        \\n        progress.update_status(\\\"charlie_munger_agent\\\", ticker, \\\"Generating Charlie Munger analysis\\\")\\n        munger_output = generate_munger_output(\\n            ticker=ticker, \\n            analysis_data=analysis_data,\\n            model_name=state[\\\"metadata\\\"][\\\"model_name\\\"],\\n            model_provider=state[\\\"metadata\\\"][\\\"model_provider\\\"],\\n        )\\n        \\n        munger_analysis[ticker] = {\\n            \\\"signal\\\": munger_output.signal,\\n            \\\"confidence\\\": munger_output.confidence,\\n            \\\"reasoning\\\": munger_output.reasoning\\n        }\\n        \\n        progress.update_status(\\\"charlie_munger_agent\\\", ticker, \\\"Done\\\")\\n    \\n    # Wrap results in a single message for the chain\\n    message = HumanMessage(\\n        content=json.dumps(munger_analysis),\\n        name=\\\"charlie_munger_agent\\\"\\n    )\\n    \\n    # Show reasoning if requested\\n    if state[\\\"metadata\\\"][\\\"show_reasoning\\\"]:\\n        show_agent_reasoning(munger_analysis, \\\"Charlie Munger Agent\\\")\\n    \\n    # Add signals to the overall state\\n    state[\\\"data\\\"][\\\"analyst_signals\\\"][\\\"charlie_munger_agent\\\"] = munger_analysis\\n\\n    return {\\n        \\\"messages\\\": [message],\\n        \\\"data\\\": state[\\\"data\\\"]\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 17"
+            },
+            {
+              "name": "end_line: 155"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"agents/charlie_munger.py\""
+            },
+            {
+              "name": "folder: \"agents\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"analyze_moat_strength\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Analyze the business's competitive advantage using Munger's approach:\\n- Consistent high returns on capital (ROIC)\\n- Pricing power (stable/improving gross margins)\\n- Low capital requirements\\n- Network effects and intangible assets (R&D investments, goodwill)\""
+            },
+            {
+              "name": "body: \"def analyze_moat_strength(metrics: list, financial_line_items: list) -> dict:\\n    \\\"\\\"\\\"\\n    Analyze the business's competitive advantage using Munger's approach:\\n    - Consistent high returns on capital (ROIC)\\n    - Pricing power (stable/improving gross margins)\\n    - Low capital requirements\\n    - Network effects and intangible assets (R&D investments, goodwill)\\n    \\\"\\\"\\\"\\n    score = 0\\n    details = []\\n    \\n    if not metrics or not financial_line_items:\\n        return {\\n            \\\"score\\\": 0,\\n            \\\"details\\\": \\\"Insufficient data to analyze moat strength\\\"\\n        }\\n    \\n    # 1. Return on Invested Capital (ROIC) analysis - Munger's favorite metric\\n    roic_values = [item.return_on_invested_capital for item in financial_line_items \\n                   if hasattr(item, 'return_on_invested_capital') and item.return_on_invested_capital is not None]\\n    \\n    if roic_values:\\n        # Check if ROIC consistently above 15% (Munger's threshold)\\n        high_roic_count = sum(1 for r in roic_values if r > 0.15)\\n        if high_roic_count >= len(roic_values) * 0.8:  # 80% of periods show high ROIC\\n            score += 3\\n            details.append(f\\\"Excellent ROIC: >15% in {high_roic_count}/{len(roic_values)} periods\\\")\\n        elif high_roic_count >= len(roic_values) * 0.5:  # 50% of periods\\n            score += 2\\n            details.append(f\\\"Good ROIC: >15% in {high_roic_count}/{len(roic_values)} periods\\\")\\n        elif high_roic_count > 0:\\n            score += 1\\n            details.append(f\\\"Mixed ROIC: >15% in only {high_roic_count}/{len(roic_values)} periods\\\")\\n        else:\\n            details.append(\\\"Poor ROIC: Never exceeds 15% threshold\\\")\\n    else:\\n        details.append(\\\"No ROIC data available\\\")\\n    \\n    # 2. Pricing power - check gross margin stability and trends\\n    gross_margins = [item.gross_margin for item in financial_line_items \\n                    if hasattr(item, 'gross_margin') and item.gross_margin is not None]\\n    \\n    if gross_margins and len(gross_margins) >= 3:\\n        # Munger likes stable or improving gross margins\\n        margin_trend = sum(1 for i in range(1, len(gross_margins)) if gross_margins[i] >= gross_margins[i-1])\\n        if margin_trend >= len(gross_margins) * 0.7:  # Improving in 70% of periods\\n            score += 2\\n            details.append(\\\"Strong pricing power: Gross margins consistently improving\\\")\\n        elif sum(gross_margins) / len(gross_margins) > 0.3:  # Average margin > 30%\\n            score += 1\\n            details.append(f\\\"Good pricing power: Average gross margin {sum(gross_margins)/len(gross_margins):.1%}\\\")\\n        else:\\n            details.append(\\\"Limited pricing power: Low or declining gross margins\\\")\\n    else:\\n        details.append(\\\"Insufficient gross margin data\\\")\\n    \\n    # 3. Capital intensity - Munger prefers low capex businesses\\n    if len(financial_line_items) >= 3:\\n        capex_to_revenue = []\\n        for item in financial_line_items:\\n            if (hasattr(item, 'capital_expenditure') and item.capital_expenditure is not None and \\n                hasattr(item, 'revenue') and item.revenue is not None and item.revenue > 0):\\n                # Note: capital_expenditure is typically negative in financial statements\\n                capex_ratio = abs(item.capital_expenditure) / item.revenue\\n                capex_to_revenue.append(capex_ratio)\\n        \\n        if capex_to_revenue:\\n            avg_capex_ratio = sum(capex_to_revenue) / len(capex_to_revenue)\\n            if avg_capex_ratio < 0.05:  # Less than 5% of revenue\\n                score += 2\\n                details.append(f\\\"Low capital requirements: Avg capex {avg_capex_ratio:.1%} of revenue\\\")\\n            elif avg_capex_ratio < 0.10:  # Less than 10% of revenue\\n                score += 1\\n                details.append(f\\\"Moderate capital requirements: Avg capex {avg_capex_ratio:.1%} of revenue\\\")\\n            else:\\n                details.append(f\\\"High capital requirements: Avg capex {avg_capex_ratio:.1%} of revenue\\\")\\n        else:\\n            details.append(\\\"No capital expenditure data available\\\")\\n    else:\\n        details.append(\\\"Insufficient data for capital intensity analysis\\\")\\n    \\n    # 4. Intangible assets - Munger values R&D and intellectual property\\n    r_and_d = [item.research_and_development for item in financial_line_items\\n              if hasattr(item, 'research_and_development') and item.research_and_development is not None]\\n    \\n    goodwill_and_intangible_assets = [item.goodwill_and_intangible_assets for item in financial_line_items\\n               if hasattr(item, 'goodwill_and_intangible_assets') and item.goodwill_and_intangible_assets is not None]\\n\\n    if r_and_d and len(r_and_d) > 0:\\n        if sum(r_and_d) > 0:  # If company is investing in R&D\\n            score += 1\\n            details.append(\\\"Invests in R&D, building intellectual property\\\")\\n    \\n    if (goodwill_and_intangible_assets and len(goodwill_and_intangible_assets) > 0):\\n        score += 1\\n        details.append(\\\"Significant goodwill/intangible assets, suggesting brand value or IP\\\")\\n    \\n    # Scale score to 0-10 range\\n    final_score = min(10, score * 10 / 9)  # Max possible raw score is 9\\n    \\n    return {\\n        \\\"score\\\": final_score,\\n        \\\"details\\\": \\\"; \\\".join(details)\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 158"
+            },
+            {
+              "name": "end_line: 261"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"agents/charlie_munger.py\""
+            },
+            {
+              "name": "folder: \"agents\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"analyze_management_quality\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Evaluate management quality using Munger's criteria:\\n- Capital allocation wisdom\\n- Insider ownership and transactions\\n- Cash management efficiency\\n- Candor and transparency\\n- Long-term focus\""
+            },
+            {
+              "name": "body: \"def analyze_management_quality(financial_line_items: list, insider_trades: list) -> dict:\\n    \\\"\\\"\\\"\\n    Evaluate management quality using Munger's criteria:\\n    - Capital allocation wisdom\\n    - Insider ownership and transactions\\n    - Cash management efficiency\\n    - Candor and transparency\\n    - Long-term focus\\n    \\\"\\\"\\\"\\n    score = 0\\n    details = []\\n    \\n    if not financial_line_items:\\n        return {\\n            \\\"score\\\": 0,\\n            \\\"details\\\": \\\"Insufficient data to analyze management quality\\\"\\n        }\\n    \\n    # 1. Capital allocation - Check FCF to net income ratio\\n    # Munger values companies that convert earnings to cash\\n    fcf_values = [item.free_cash_flow for item in financial_line_items \\n                 if hasattr(item, 'free_cash_flow') and item.free_cash_flow is not None]\\n    \\n    net_income_values = [item.net_income for item in financial_line_items \\n                        if hasattr(item, 'net_income') and item.net_income is not None]\\n    \\n    if fcf_values and net_income_values and len(fcf_values) == len(net_income_values):\\n        # Calculate FCF to Net Income ratio for each period\\n        fcf_to_ni_ratios = []\\n        for i in range(len(fcf_values)):\\n            if net_income_values[i] and net_income_values[i] > 0:\\n                fcf_to_ni_ratios.append(fcf_values[i] / net_income_values[i])\\n        \\n        if fcf_to_ni_ratios:\\n            avg_ratio = sum(fcf_to_ni_ratios) / len(fcf_to_ni_ratios)\\n            if avg_ratio > 1.1:  # FCF > net income suggests good accounting\\n                score += 3\\n                details.append(f\\\"Excellent cash conversion: FCF/NI ratio of {avg_ratio:.2f}\\\")\\n            elif avg_ratio > 0.9:  # FCF roughly equals net income\\n                score += 2\\n                details.append(f\\\"Good cash conversion: FCF/NI ratio of {avg_ratio:.2f}\\\")\\n            elif avg_ratio > 0.7:  # FCF somewhat lower than net income\\n                score += 1\\n                details.append(f\\\"Moderate cash conversion: FCF/NI ratio of {avg_ratio:.2f}\\\")\\n            else:\\n                details.append(f\\\"Poor cash conversion: FCF/NI ratio of only {avg_ratio:.2f}\\\")\\n        else:\\n            details.append(\\\"Could not calculate FCF to Net Income ratios\\\")\\n    else:\\n        details.append(\\\"Missing FCF or Net Income data\\\")\\n    \\n    # 2. Debt management - Munger is cautious about debt\\n    debt_values = [item.total_debt for item in financial_line_items \\n                  if hasattr(item, 'total_debt') and item.total_debt is not None]\\n    \\n    equity_values = [item.shareholders_equity for item in financial_line_items \\n                    if hasattr(item, 'shareholders_equity') and item.shareholders_equity is not None]\\n    \\n    if debt_values and equity_values and len(debt_values) == len(equity_values):\\n        # Calculate D/E ratio for most recent period\\n        recent_de_ratio = debt_values[0] / equity_values[0] if equity_values[0] > 0 else float('inf')\\n        \\n        if recent_de_ratio < 0.3:  # Very low debt\\n            score += 3\\n            details.append(f\\\"Conservative debt management: D/E ratio of {recent_de_ratio:.2f}\\\")\\n        elif recent_de_ratio < 0.7:  # Moderate debt\\n            score += 2\\n            details.append(f\\\"Prudent debt management: D/E ratio of {recent_de_ratio:.2f}\\\")\\n        elif recent_de_ratio < 1.5:  # Higher but still reasonable debt\\n            score += 1\\n            details.append(f\\\"Moderate debt level: D/E ratio of {recent_de_ratio:.2f}\\\")\\n        else:\\n            details.append(f\\\"High debt level: D/E ratio of {recent_de_ratio:.2f}\\\")\\n    else:\\n        details.append(\\\"Missing debt or equity data\\\")\\n    \\n    # 3. Cash management efficiency - Munger values appropriate cash levels\\n    cash_values = [item.cash_and_equivalents for item in financial_line_items\\n                  if hasattr(item, 'cash_and_equivalents') and item.cash_and_equivalents is not None]\\n    revenue_values = [item.revenue for item in financial_line_items\\n                     if hasattr(item, 'revenue') and item.revenue is not None]\\n    \\n    if cash_values and revenue_values and len(cash_values) > 0 and len(revenue_values) > 0:\\n        # Calculate cash to revenue ratio (Munger likes 10-20% for most businesses)\\n        cash_to_revenue = cash_values[0] / revenue_values[0] if revenue_values[0] > 0 else 0\\n        \\n        if 0.1 <= cash_to_revenue <= 0.25:\\n            # Goldilocks zone - not too much, not too little\\n            score += 2\\n            details.append(f\\\"Prudent cash management: Cash/Revenue ratio of {cash_to_revenue:.2f}\\\")\\n        elif 0.05 <= cash_to_revenue < 0.1 or 0.25 < cash_to_revenue <= 0.4:\\n            # Reasonable but not ideal\\n            score += 1\\n            details.append(f\\\"Acceptable cash position: Cash/Revenue ratio of {cash_to_revenue:.2f}\\\")\\n        elif cash_to_revenue > 0.4:\\n            # Too much cash - potentially inefficient capital allocation\\n            details.append(f\\\"Excess cash reserves: Cash/Revenue ratio of {cash_to_revenue:.2f}\\\")\\n        else:\\n            # Too little cash - potentially risky\\n            details.append(f\\\"Low cash reserves: Cash/Revenue ratio of {cash_to_revenue:.2f}\\\")\\n    else:\\n        details.append(\\\"Insufficient cash or revenue data\\\")\\n    \\n    # 4. Insider activity - Munger values skin in the game\\n    if insider_trades and len(insider_trades) > 0:\\n        # Count buys vs. sells\\n        buys = sum(1 for trade in insider_trades if hasattr(trade, 'transaction_type') and \\n                   trade.transaction_type and trade.transaction_type.lower() in ['buy', 'purchase'])\\n        sells = sum(1 for trade in insider_trades if hasattr(trade, 'transaction_type') and \\n                    trade.transaction_type and trade.transaction_type.lower() in ['sell', 'sale'])\\n        \\n        # Calculate the buy ratio\\n        total_trades = buys + sells\\n        if total_trades > 0:\\n            buy_ratio = buys / total_trades\\n            if buy_ratio > 0.7:  # Strong insider buying\\n                score += 2\\n                details.append(f\\\"Strong insider buying: {buys}/{total_trades} transactions are purchases\\\")\\n            elif buy_ratio > 0.4:  # Balanced insider activity\\n                score += 1\\n                details.append(f\\\"Balanced insider trading: {buys}/{total_trades} transactions are purchases\\\")\\n            elif buy_ratio < 0.1 and sells > 5:  # Heavy selling\\n                score -= 1  # Penalty for excessive selling\\n                details.append(f\\\"Concerning insider selling: {sells}/{total_trades} transactions are sales\\\")\\n            else:\\n                details.append(f\\\"Mixed insider activity: {buys}/{total_trades} transactions are purchases\\\")\\n        else:\\n            details.append(\\\"No recorded insider transactions\\\")\\n    else:\\n        details.append(\\\"No insider trading data available\\\")\\n    \\n    # 5. Consistency in share count - Munger prefers stable/decreasing shares\\n    share_counts = [item.outstanding_shares for item in financial_line_items\\n                   if hasattr(item, 'outstanding_shares') and item.outstanding_shares is not None]\\n    \\n    if share_counts and len(share_counts) >= 3:\\n        if share_counts[0] < share_counts[-1] * 0.95:  # 5%+ reduction in shares\\n            score += 2\\n            details.append(\\\"Shareholder-friendly: Reducing share count over time\\\")\\n        elif share_counts[0] < share_counts[-1] * 1.05:  # Stable share count\\n            score += 1\\n            details.append(\\\"Stable share count: Limited dilution\\\")\\n        elif share_counts[0] > share_counts[-1] * 1.2:  # >20% dilution\\n            score -= 1  # Penalty for excessive dilution\\n            details.append(\\\"Concerning dilution: Share count increased significantly\\\")\\n        else:\\n            details.append(\\\"Moderate share count increase over time\\\")\\n    else:\\n        details.append(\\\"Insufficient share count data\\\")\\n    \\n    # Scale score to 0-10 range\\n    # Maximum possible raw score would be 12 (3+3+2+2+2)\\n    final_score = max(0, min(10, score * 10 / 12))\\n    \\n    return {\\n        \\\"score\\\": final_score,\\n        \\\"details\\\": \\\"; \\\".join(details)\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 264"
+            },
+            {
+              "name": "end_line: 421"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"agents/charlie_munger.py\""
+            },
+            {
+              "name": "folder: \"agents\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"analyze_predictability\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Assess the predictability of the business - Munger strongly prefers businesses\\nwhose future operations and cashflows are relatively easy to predict.\""
+            },
+            {
+              "name": "body: \"def analyze_predictability(financial_line_items: list) -> dict:\\n    \\\"\\\"\\\"\\n    Assess the predictability of the business - Munger strongly prefers businesses\\n    whose future operations and cashflows are relatively easy to predict.\\n    \\\"\\\"\\\"\\n    score = 0\\n    details = []\\n    \\n    if not financial_line_items or len(financial_line_items) < 5:\\n        return {\\n            \\\"score\\\": 0,\\n            \\\"details\\\": \\\"Insufficient data to analyze business predictability (need 5+ years)\\\"\\n        }\\n    \\n    # 1. Revenue stability and growth\\n    revenues = [item.revenue for item in financial_line_items \\n               if hasattr(item, 'revenue') and item.revenue is not None]\\n    \\n    if revenues and len(revenues) >= 5:\\n        # Calculate year-over-year growth rates\\n        growth_rates = [(revenues[i] / revenues[i+1] - 1) for i in range(len(revenues)-1)]\\n        \\n        avg_growth = sum(growth_rates) / len(growth_rates)\\n        growth_volatility = sum(abs(r - avg_growth) for r in growth_rates) / len(growth_rates)\\n        \\n        if avg_growth > 0.05 and growth_volatility < 0.1:\\n            # Steady, consistent growth (Munger loves this)\\n            score += 3\\n            details.append(f\\\"Highly predictable revenue: {avg_growth:.1%} avg growth with low volatility\\\")\\n        elif avg_growth > 0 and growth_volatility < 0.2:\\n            # Positive but somewhat volatile growth\\n            score += 2\\n            details.append(f\\\"Moderately predictable revenue: {avg_growth:.1%} avg growth with some volatility\\\")\\n        elif avg_growth > 0:\\n            # Growing but unpredictable\\n            score += 1\\n            details.append(f\\\"Growing but less predictable revenue: {avg_growth:.1%} avg growth with high volatility\\\")\\n        else:\\n            details.append(f\\\"Declining or highly unpredictable revenue: {avg_growth:.1%} avg growth\\\")\\n    else:\\n        details.append(\\\"Insufficient revenue history for predictability analysis\\\")\\n    \\n    # 2. Operating income stability\\n    op_income = [item.operating_income for item in financial_line_items \\n                if hasattr(item, 'operating_income') and item.operating_income is not None]\\n    \\n    if op_income and len(op_income) >= 5:\\n        # Count positive operating income periods\\n        positive_periods = sum(1 for income in op_income if income > 0)\\n        \\n        if positive_periods == len(op_income):\\n            # Consistently profitable operations\\n            score += 3\\n            details.append(\\\"Highly predictable operations: Operating income positive in all periods\\\")\\n        elif positive_periods >= len(op_income) * 0.8:\\n            # Mostly profitable operations\\n            score += 2\\n            details.append(f\\\"Predictable operations: Operating income positive in {positive_periods}/{len(op_income)} periods\\\")\\n        elif positive_periods >= len(op_income) * 0.6:\\n            # Somewhat profitable operations\\n            score += 1\\n            details.append(f\\\"Somewhat predictable operations: Operating income positive in {positive_periods}/{len(op_income)} periods\\\")\\n        else:\\n            details.append(f\\\"Unpredictable operations: Operating income positive in only {positive_periods}/{len(op_income)} periods\\\")\\n    else:\\n        details.append(\\\"Insufficient operating income history\\\")\\n    \\n    # 3. Margin consistency - Munger values stable margins\\n    op_margins = [item.operating_margin for item in financial_line_items \\n                 if hasattr(item, 'operating_margin') and item.operating_margin is not None]\\n    \\n    if op_margins and len(op_margins) >= 5:\\n        # Calculate margin volatility\\n        avg_margin = sum(op_margins) / len(op_margins)\\n        margin_volatility = sum(abs(m - avg_margin) for m in op_margins) / len(op_margins)\\n        \\n        if margin_volatility < 0.03:  # Very stable margins\\n            score += 2\\n            details.append(f\\\"Highly predictable margins: {avg_margin:.1%} avg with minimal volatility\\\")\\n        elif margin_volatility < 0.07:  # Moderately stable margins\\n            score += 1\\n            details.append(f\\\"Moderately predictable margins: {avg_margin:.1%} avg with some volatility\\\")\\n        else:\\n            details.append(f\\\"Unpredictable margins: {avg_margin:.1%} avg with high volatility ({margin_volatility:.1%})\\\")\\n    else:\\n        details.append(\\\"Insufficient margin history\\\")\\n    \\n    # 4. Cash generation reliability\\n    fcf_values = [item.free_cash_flow for item in financial_line_items \\n                 if hasattr(item, 'free_cash_flow') and item.free_cash_flow is not None]\\n    \\n    if fcf_values and len(fcf_values) >= 5:\\n        # Count positive FCF periods\\n        positive_fcf_periods = sum(1 for fcf in fcf_values if fcf > 0)\\n        \\n        if positive_fcf_periods == len(fcf_values):\\n            # Consistently positive FCF\\n            score += 2\\n            details.append(\\\"Highly predictable cash generation: Positive FCF in all periods\\\")\\n        elif positive_fcf_periods >= len(fcf_values) * 0.8:\\n            # Mostly positive FCF\\n            score += 1\\n            details.append(f\\\"Predictable cash generation: Positive FCF in {positive_fcf_periods}/{len(fcf_values)} periods\\\")\\n        else:\\n            details.append(f\\\"Unpredictable cash generation: Positive FCF in only {positive_fcf_periods}/{len(fcf_values)} periods\\\")\\n    else:\\n        details.append(\\\"Insufficient free cash flow history\\\")\\n    \\n    # Scale score to 0-10 range\\n    # Maximum possible raw score would be 10 (3+3+2+2)\\n    final_score = min(10, score * 10 / 10)\\n    \\n    return {\\n        \\\"score\\\": final_score,\\n        \\\"details\\\": \\\"; \\\".join(details)\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 424"
+            },
+            {
+              "name": "end_line: 539"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"agents/charlie_munger.py\""
+            },
+            {
+              "name": "folder: \"agents\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"calculate_munger_valuation\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Calculate intrinsic value using Munger's approach:\\n- Focus on owner earnings (approximated by FCF)\\n- Simple multiple on normalized earnings\\n- Prefer paying a fair price for a wonderful business\""
+            },
+            {
+              "name": "body: \"def calculate_munger_valuation(financial_line_items: list, market_cap: float) -> dict:\\n    \\\"\\\"\\\"\\n    Calculate intrinsic value using Munger's approach:\\n    - Focus on owner earnings (approximated by FCF)\\n    - Simple multiple on normalized earnings\\n    - Prefer paying a fair price for a wonderful business\\n    \\\"\\\"\\\"\\n    score = 0\\n    details = []\\n    \\n    if not financial_line_items or market_cap is None:\\n        return {\\n            \\\"score\\\": 0,\\n            \\\"details\\\": \\\"Insufficient data to perform valuation\\\"\\n        }\\n    \\n    # Get FCF values (Munger's preferred \\\"owner earnings\\\" metric)\\n    fcf_values = [item.free_cash_flow for item in financial_line_items \\n                 if hasattr(item, 'free_cash_flow') and item.free_cash_flow is not None]\\n    \\n    if not fcf_values or len(fcf_values) < 3:\\n        return {\\n            \\\"score\\\": 0,\\n            \\\"details\\\": \\\"Insufficient free cash flow data for valuation\\\"\\n        }\\n    \\n    # 1. Normalize earnings by taking average of last 3-5 years\\n    # (Munger prefers to normalize earnings to avoid over/under-valuation based on cyclical factors)\\n    normalized_fcf = sum(fcf_values[:min(5, len(fcf_values))]) / min(5, len(fcf_values))\\n    \\n    if normalized_fcf <= 0:\\n        return {\\n            \\\"score\\\": 0,\\n            \\\"details\\\": f\\\"Negative or zero normalized FCF ({normalized_fcf}), cannot value\\\",\\n            \\\"intrinsic_value\\\": None\\n        }\\n    \\n    # 2. Calculate FCF yield (inverse of P/FCF multiple)\\n    fcf_yield = normalized_fcf / market_cap\\n    \\n    # 3. Apply Munger's FCF multiple based on business quality\\n    # Munger would pay higher multiples for wonderful businesses\\n    # Let's use a sliding scale where higher FCF yields are more attractive\\n    if fcf_yield > 0.08:  # >8% FCF yield (P/FCF < 12.5x)\\n        score += 4\\n        details.append(f\\\"Excellent value: {fcf_yield:.1%} FCF yield\\\")\\n    elif fcf_yield > 0.05:  # >5% FCF yield (P/FCF < 20x)\\n        score += 3\\n        details.append(f\\\"Good value: {fcf_yield:.1%} FCF yield\\\")\\n    elif fcf_yield > 0.03:  # >3% FCF yield (P/FCF < 33x)\\n        score += 1\\n        details.append(f\\\"Fair value: {fcf_yield:.1%} FCF yield\\\")\\n    else:\\n        details.append(f\\\"Expensive: Only {fcf_yield:.1%} FCF yield\\\")\\n    \\n    # 4. Calculate simple intrinsic value range\\n    # Munger tends to use straightforward valuations, avoiding complex DCF models\\n    conservative_value = normalized_fcf * 10  # 10x FCF = 10% yield\\n    reasonable_value = normalized_fcf * 15    # 15x FCF ≈ 6.7% yield\\n    optimistic_value = normalized_fcf * 20    # 20x FCF = 5% yield\\n    \\n    # 5. Calculate margins of safety\\n    current_to_reasonable = (reasonable_value - market_cap) / market_cap\\n    \\n    if current_to_reasonable > 0.3:  # >30% upside\\n        score += 3\\n        details.append(f\\\"Large margin of safety: {current_to_reasonable:.1%} upside to reasonable value\\\")\\n    elif current_to_reasonable > 0.1:  # >10% upside\\n        score += 2\\n        details.append(f\\\"Moderate margin of safety: {current_to_reasonable:.1%} upside to reasonable value\\\")\\n    elif current_to_reasonable > -0.1:  # Within 10% of reasonable value\\n        score += 1\\n        details.append(f\\\"Fair price: Within 10% of reasonable value ({current_to_reasonable:.1%})\\\")\\n    else:\\n        details.append(f\\\"Expensive: {-current_to_reasonable:.1%} premium to reasonable value\\\")\\n    \\n    # 6. Check earnings trajectory for additional context\\n    # Munger likes growing owner earnings\\n    if len(fcf_values) >= 3:\\n        recent_avg = sum(fcf_values[:3]) / 3\\n        older_avg = sum(fcf_values[-3:]) / 3 if len(fcf_values) >= 6 else fcf_values[-1]\\n        \\n        if recent_avg > older_avg * 1.2:  # >20% growth in FCF\\n            score += 3\\n            details.append(\\\"Growing FCF trend adds to intrinsic value\\\")\\n        elif recent_avg > older_avg:\\n            score += 2\\n            details.append(\\\"Stable to growing FCF supports valuation\\\")\\n        else:\\n            details.append(\\\"Declining FCF trend is concerning\\\")\\n    \\n    # Scale score to 0-10 range\\n    # Maximum possible raw score would be 10 (4+3+3)\\n    final_score = min(10, score * 10 / 10) \\n    \\n    return {\\n        \\\"score\\\": final_score,\\n        \\\"details\\\": \\\"; \\\".join(details),\\n        \\\"intrinsic_value_range\\\": {\\n            \\\"conservative\\\": conservative_value,\\n            \\\"reasonable\\\": reasonable_value,\\n            \\\"optimistic\\\": optimistic_value\\n        },\\n        \\\"fcf_yield\\\": fcf_yield,\\n        \\\"normalized_fcf\\\": normalized_fcf\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 542"
+            },
+            {
+              "name": "end_line: 647"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"agents/charlie_munger.py\""
+            },
+            {
+              "name": "folder: \"agents\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"analyze_news_sentiment\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Simple qualitative analysis of recent news.\\nMunger pays attention to significant news but doesn't overreact to short-term stories.\""
+            },
+            {
+              "name": "body: \"def analyze_news_sentiment(news_items: list) -> str:\\n    \\\"\\\"\\\"\\n    Simple qualitative analysis of recent news.\\n    Munger pays attention to significant news but doesn't overreact to short-term stories.\\n    \\\"\\\"\\\"\\n    if not news_items or len(news_items) == 0:\\n        return \\\"No news data available\\\"\\n    \\n    # Just return a simple count for now - in a real implementation, this would use NLP\\n    return f\\\"Qualitative review of {len(news_items)} recent news items would be needed\\\"\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 650"
+            },
+            {
+              "name": "end_line: 659"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"agents/charlie_munger.py\""
+            },
+            {
+              "name": "folder: \"agents\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"generate_munger_output\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                },
+                {
+                  "name": "parameters[3]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Generates investment decisions in the style of Charlie Munger.\""
+            },
+            {
+              "name": "body: \"def generate_munger_output(\\n    ticker: str,\\n    analysis_data: dict[str, any],\\n    model_name: str,\\n    model_provider: str,\\n) -> CharlieMungerSignal:\\n    \\\"\\\"\\\"\\n    Generates investment decisions in the style of Charlie Munger.\\n    \\\"\\\"\\\"\\n    template = ChatPromptTemplate.from_messages([\\n        (\\n            \\\"system\\\",\\n            \\\"\\\"\\\"You are a Charlie Munger AI agent, making investment decisions using his principles:\\n\\n            1. Focus on the quality and predictability of the business.\\n            2. Rely on mental models from multiple disciplines to analyze investments.\\n            3. Look for strong, durable competitive advantages (moats).\\n            4. Emphasize long-term thinking and patience.\\n            5. Value management integrity and competence.\\n            6. Prioritize businesses with high returns on invested capital.\\n            7. Pay a fair price for wonderful businesses.\\n            8. Never overpay, always demand a margin of safety.\\n            9. Avoid complexity and businesses you don't understand.\\n            10. \\\"Invert, always invert\\\" - focus on avoiding stupidity rather than seeking brilliance.\\n            \\n            Rules:\\n            - Praise businesses with predictable, consistent operations and cash flows.\\n            - Value businesses with high ROIC and pricing power.\\n            - Prefer simple businesses with understandable economics.\\n            - Admire management with skin in the game and shareholder-friendly capital allocation.\\n            - Focus on long-term economics rather than short-term metrics.\\n            - Be skeptical of businesses with rapidly changing dynamics or excessive share dilution.\\n            - Avoid excessive leverage or financial engineering.\\n            - Provide a rational, data-driven recommendation (bullish, bearish, or neutral).\\n            \\n            When providing your reasoning, be thorough and specific by:\\n            1. Explaining the key factors that influenced your decision the most (both positive and negative)\\n            2. Applying at least 2-3 specific mental models or disciplines to explain your thinking\\n            3. Providing quantitative evidence where relevant (e.g., specific ROIC values, margin trends)\\n            4. Citing what you would \\\"avoid\\\" in your analysis (invert the problem)\\n            5. Using Charlie Munger's direct, pithy conversational style in your explanation\\n            \\n            For example, if bullish: \\\"The high ROIC of 22% demonstrates the company's moat. When applying basic microeconomics, we can see that competitors would struggle to...\\\"\\n            For example, if bearish: \\\"I see this business making a classic mistake in capital allocation. As I've often said about [relevant Mungerism], this company appears to be...\\\"\\n            \\\"\\\"\\\"\\n        ),\\n        (\\n            \\\"human\\\",\\n            \\\"\\\"\\\"Based on the following analysis, create a Munger-style investment signal.\\n\\n            Analysis Data for {ticker}:\\n            {analysis_data}\\n\\n            Return the trading signal in this JSON format:\\n            {{\\n              \\\"signal\\\": \\\"bullish/bearish/neutral\\\",\\n              \\\"confidence\\\": float (0-100),\\n              \\\"reasoning\\\": \\\"string\\\"\\n            }}\\n            \\\"\\\"\\\"\\n        )\\n    ])\\n\\n    prompt = template.invoke({\\n        \\\"analysis_data\\\": json.dumps(analysis_data, indent=2),\\n        \\\"ticker\\\": ticker\\n    })\\n\\n    def create_default_charlie_munger_signal():\\n        return CharlieMungerSignal(\\n            signal=\\\"neutral\\\",\\n            confidence=0.0,\\n            reasoning=\\\"Error in analysis, defaulting to neutral\\\"\\n        )\\n\\n    return call_llm(\\n        prompt=prompt, \\n        model_name=model_name, \\n        model_provider=model_provider, \\n        pydantic_model=CharlieMungerSignal, \\n        agent_name=\\\"charlie_munger_agent\\\", \\n        default_factory=create_default_charlie_munger_signal,\\n    )\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 662"
+            },
+            {
+              "name": "end_line: 744"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"agents/charlie_munger.py\""
+            },
+            {
+              "name": "folder: \"agents\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"create_default_charlie_munger_signal\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def create_default_charlie_munger_signal():\\n        return CharlieMungerSignal(\\n            signal=\\\"neutral\\\",\\n            confidence=0.0,\\n            reasoning=\\\"Error in analysis, defaulting to neutral\\\"\\n        )\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 730"
+            },
+            {
+              "name": "end_line: 735"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"agents/charlie_munger.py\""
+            },
+            {
+              "name": "folder: \"agents\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

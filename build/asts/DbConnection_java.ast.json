@@ -1,0 +1,206 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"createPool\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 40"
+            },
+            {
+              "name": "end_line: 46"
+            },
+            {
+              "name": "body_start: 40"
+            },
+            {
+              "name": "body_end: 46"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                },
+                {
+                  "name": "modifiers[1]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     cpds   =   new   ComboPooledDataSource ( ) ; \\n     cpds . setJdbcUrl ( DbConnection . dbProperties . getProperty ( \\\"url\\\" ) ) ; \\n     cpds . setDriverClass ( DbConnection . dbProperties . getProperty ( \\\"driver\\\" ) ) ; \\n     cpds . setUser ( DbConnection . dbProperties . getProperty ( \\\"username\\\" ) ) ; \\n     cpds . setPassword ( DbConnection . dbProperties . getProperty ( \\\"password\\\" ) ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbConnection.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"getConnection\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"Connection\""
+            },
+            {
+              "name": "start_line: 54"
+            },
+            {
+              "name": "end_line: 56"
+            },
+            {
+              "name": "body_start: 54"
+            },
+            {
+              "name": "body_end: 56"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                },
+                {
+                  "name": "modifiers[1]"
+                },
+                {
+                  "name": "modifiers[2]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   cpds . getConnection ( ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbConnection.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"loadDbProperties\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 63"
+            },
+            {
+              "name": "end_line: 67"
+            },
+            {
+              "name": "body_start: 63"
+            },
+            {
+              "name": "body_end: 67"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                },
+                {
+                  "name": "modifiers[1]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     InputStream   fileProperties   =   new   FileInputStream ( \\\"database.properties\\\" ) ; \\n     DbConnection . dbProperties   =   new   Properties ( ) ; \\n     DbConnection . dbProperties . load ( fileProperties ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbConnection.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"closePool\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 72"
+            },
+            {
+              "name": "end_line: 74"
+            },
+            {
+              "name": "body_start: 72"
+            },
+            {
+              "name": "body_end: 74"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     cpds . close ( ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbConnection.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"printNumbers\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void printNumbers(int num)\\n{\\n    ilrd_rd141::ScopeLock<std::mutex> lock(g_mutex);\\n    for(int i = 0; i < num; ++i)\\n    {\\n        std::cout << i << \\\" \\\";\\n    }\\n\\n    std::cout << std::endl;\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 22"
+            },
+            {
+              "name": "end_line: 31"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"scope_lock/scope_lock_test.cpp\""
+            },
+            {
+              "name": "folder: \"scope_lock\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"main\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"int main(void)\\n{\\n    const int threadCount = 3;\\n    const int numbersToPrint = 10;\\n    std::thread threads[threadCount];\\n\\n    for(int i = 0; i < threadCount; ++i)\\n    {\\n        threads[i] = std::thread(printNumbers, numbersToPrint);\\n    }\\n\\n    for(int i = 0; i < threadCount; ++i)\\n    {\\n        threads[i].join();\\n    }\\n\\n    return (0);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 33"
+            },
+            {
+              "name": "end_line: 50"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"scope_lock/scope_lock_test.cpp\""
+            },
+            {
+              "name": "folder: \"scope_lock\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

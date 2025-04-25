@@ -1,0 +1,56 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"doPost\""
+            },
+            {
+              "name": "parameters: \"(HttpServletRequestrequest,HttpServletResponseresponse)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 30"
+            },
+            {
+              "name": "end_line: 84"
+            },
+            {
+              "name": "body_start: 31"
+            },
+            {
+              "name": "body_end: 84"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     int   flag   =   - 1 ; \\n     String   login   =   request . getParameter ( \\\"login\\\" ) ; \\n     String   password   =   request . getParameter ( \\\"password\\\" ) ; \\n     String   type   =   request . getParameter ( \\\"type\\\" ) ; \\n\\n     HttpSession   session   =   request . getSession ( true ) ; \\n     try   { \\n       AccessManager   AM   =   new   AccessManager ( ) ; \\n       String   url ; \\n\\n       Access   ac   =   AM . getAccess ( login ) ; \\n\\n       if   ( type   !=   null )   {    //Se type � diverso da null la servlet � stata invocata dal lato citizen \\n         flag   =   0 ; \\n         if   ( AM . checkAccess ( login ,   password )   &&   ac . getType ( ) . equals ( \\\"Citizen\\\" ) )   { \\n\\n           CitizenManager   CM   =   new   CitizenManager ( ) ; \\n           Citizen   c   =   CM . getCitizenByLogin ( login ) ; \\n           CIManager   ciM   =   new   CIManager ( ) ; \\n           IdentityCard   ci   =   ciM . getCardByIdCStri ( c . getIdCitizen ( ) ) ; \\n           session . setAttribute ( \\\"c\\\" ,   c ) ; \\n           session . setAttribute ( \\\"ci\\\" ,   ci ) ; \\n           url   =   \\\"/myDoc/user/home.jsp\\\" ; \\n         }   else \\n           url   =   \\\"/myDoc/user/home.jsp?error=e\\\" ; \\n       }   else   {    //Se type � null la servlet � stata invocata dal lato administrator/employee \\n         flag   =   1 ; \\n         if   ( AM . checkAccess ( login ,   password )   &&   ! ac . getType ( ) . equals ( \\\"Citizen\\\" ) )   { \\n           session . setAttribute ( \\\"login\\\" ,   ac . getLogin ( ) ) ; \\n           session . setAttribute ( \\\"type\\\" ,   ac . getType ( ) ) ; \\n           if   ( ac . getType ( ) . equals ( \\\"Employee\\\" ) )   { \\n             EmployeeManager   IM   =   new   EmployeeManager ( ) ; \\n             Employee   imp   =   IM . getEmployeeByLogin ( login ) ; \\n             session . setAttribute ( \\\"imp\\\" ,   imp ) ; \\n           }   else   if   ( ac . getType ( ) . equals ( \\\"Administrator\\\" ) )   { \\n             AdminManager   AdM   =   new   AdminManager ( ) ; \\n             Administrator   am   =   AdM . getAdministratorByLogin ( login ) ; \\n             session . setAttribute ( \\\"am\\\" ,   am ) ; \\n           } \\n           url   =   \\\"/myDoc/workers/index.jsp\\\" ; \\n         }   else \\n           url   =   \\\"/myDoc/workers/Access.jsp?error=e\\\" ; \\n       } \\n       response . sendRedirect ( url ) ; \\n     }   catch   ( DbException   e )   { \\n       String   url ; \\n       if   ( flag   ==   1 ) \\n         url   =   \\\"/myDoc/workers/Access.jsp?error=\\\"   +   e . getMessage ( ) ; \\n       else \\n         url   =   \\\"/myDoc/user/home.jsp?error=\\\"   +   e . getMessage ( ) ; \\n       response . sendRedirect ( url ) ; \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletLogin.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

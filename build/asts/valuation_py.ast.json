@@ -1,0 +1,242 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"valuation_agent\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Performs detailed valuation analysis using multiple methodologies for multiple tickers.\""
+            },
+            {
+              "name": "body: \"def valuation_agent(state: AgentState):\\n    \\\"\\\"\\\"Performs detailed valuation analysis using multiple methodologies for multiple tickers.\\\"\\\"\\\"\\n    data = state[\\\"data\\\"]\\n    end_date = data[\\\"end_date\\\"]\\n    tickers = data[\\\"tickers\\\"]\\n\\n    # Initialize valuation analysis for each ticker\\n    valuation_analysis = {}\\n\\n    for ticker in tickers:\\n        progress.update_status(\\\"valuation_agent\\\", ticker, \\\"Fetching financial data\\\")\\n\\n        # Fetch the financial metrics\\n        financial_metrics = get_financial_metrics(\\n            ticker=ticker,\\n            end_date=end_date,\\n            period=\\\"ttm\\\",\\n        )\\n\\n        # Add safety check for financial metrics\\n        if not financial_metrics:\\n            progress.update_status(\\\"valuation_agent\\\", ticker, \\\"Failed: No financial metrics found\\\")\\n            continue\\n        \\n        metrics = financial_metrics[0]\\n\\n        progress.update_status(\\\"valuation_agent\\\", ticker, \\\"Gathering line items\\\")\\n        # Fetch the specific line_items that we need for valuation purposes\\n        financial_line_items = search_line_items(\\n            ticker=ticker,\\n            line_items=[\\n                \\\"free_cash_flow\\\",\\n                \\\"net_income\\\",\\n                \\\"depreciation_and_amortization\\\",\\n                \\\"capital_expenditure\\\",\\n                \\\"working_capital\\\",\\n            ],\\n            end_date=end_date,\\n            period=\\\"ttm\\\",\\n            limit=2,\\n        )\\n\\n        # Add safety check for financial line items\\n        if len(financial_line_items) < 2:\\n            progress.update_status(\\\"valuation_agent\\\", ticker, \\\"Failed: Insufficient financial line items\\\")\\n            continue\\n\\n        # Pull the current and previous financial line items\\n        current_financial_line_item = financial_line_items[0]\\n        previous_financial_line_item = financial_line_items[1]\\n\\n        progress.update_status(\\\"valuation_agent\\\", ticker, \\\"Calculating owner earnings\\\")\\n        # Calculate working capital change\\n        working_capital_change = current_financial_line_item.working_capital - previous_financial_line_item.working_capital\\n\\n        # Owner Earnings Valuation (Buffett Method)\\n        owner_earnings_value = calculate_owner_earnings_value(\\n            net_income=current_financial_line_item.net_income,\\n            depreciation=current_financial_line_item.depreciation_and_amortization,\\n            capex=current_financial_line_item.capital_expenditure,\\n            working_capital_change=working_capital_change,\\n            growth_rate=metrics.earnings_growth,\\n            required_return=0.15,\\n            margin_of_safety=0.25,\\n        )\\n\\n        progress.update_status(\\\"valuation_agent\\\", ticker, \\\"Calculating DCF value\\\")\\n        # DCF Valuation\\n        dcf_value = calculate_intrinsic_value(\\n            free_cash_flow=current_financial_line_item.free_cash_flow,\\n            growth_rate=metrics.earnings_growth,\\n            discount_rate=0.10,\\n            terminal_growth_rate=0.03,\\n            num_years=5,\\n        )\\n\\n        progress.update_status(\\\"valuation_agent\\\", ticker, \\\"Comparing to market value\\\")\\n        # Get the market cap\\n        market_cap = get_market_cap(ticker=ticker, end_date=end_date)\\n\\n        # Calculate combined valuation gap (average of both methods)\\n        dcf_gap = (dcf_value - market_cap) / market_cap\\n        owner_earnings_gap = (owner_earnings_value - market_cap) / market_cap\\n        valuation_gap = (dcf_gap + owner_earnings_gap) / 2\\n\\n        if valuation_gap > 0.15:  # More than 15% undervalued\\n            signal = \\\"bullish\\\"\\n        elif valuation_gap < -0.15:  # More than 15% overvalued\\n            signal = \\\"bearish\\\"\\n        else:\\n            signal = \\\"neutral\\\"\\n\\n        # Create the reasoning\\n        reasoning = {}\\n        reasoning[\\\"dcf_analysis\\\"] = {\\n            \\\"signal\\\": (\\\"bullish\\\" if dcf_gap > 0.15 else \\\"bearish\\\" if dcf_gap < -0.15 else \\\"neutral\\\"),\\n            \\\"details\\\": f\\\"Intrinsic Value: ${dcf_value:,.2f}, Market Cap: ${market_cap:,.2f}, Gap: {dcf_gap:.1%}\\\",\\n        }\\n\\n        reasoning[\\\"owner_earnings_analysis\\\"] = {\\n            \\\"signal\\\": (\\\"bullish\\\" if owner_earnings_gap > 0.15 else \\\"bearish\\\" if owner_earnings_gap < -0.15 else \\\"neutral\\\"),\\n            \\\"details\\\": f\\\"Owner Earnings Value: ${owner_earnings_value:,.2f}, Market Cap: ${market_cap:,.2f}, Gap: {owner_earnings_gap:.1%}\\\",\\n        }\\n\\n        # Calculate confidence as a percentage between 0 and 100\\n        # The higher the absolute valuation gap, the higher the confidence, but capped at 100%\\n        # Use 0.30 (30%) as the maximum gap that corresponds to 100% confidence\\n        confidence = min(abs(valuation_gap) / 0.30 * 100, 100)\\n        confidence = round(confidence)\\n        valuation_analysis[ticker] = {\\n            \\\"signal\\\": signal,\\n            \\\"confidence\\\": confidence,\\n            \\\"reasoning\\\": reasoning,\\n        }\\n\\n        progress.update_status(\\\"valuation_agent\\\", ticker, \\\"Done\\\")\\n\\n    message = HumanMessage(\\n        content=json.dumps(valuation_analysis),\\n        name=\\\"valuation_agent\\\",\\n    )\\n\\n    # Print the reasoning if the flag is set\\n    if state[\\\"metadata\\\"][\\\"show_reasoning\\\"]:\\n        show_agent_reasoning(valuation_analysis, \\\"Valuation Analysis Agent\\\")\\n\\n    # Add the signal to the analyst_signals list\\n    state[\\\"data\\\"][\\\"analyst_signals\\\"][\\\"valuation_agent\\\"] = valuation_analysis\\n\\n    return {\\n        \\\"messages\\\": [message],\\n        \\\"data\\\": data,\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 10"
+            },
+            {
+              "name": "end_line: 142"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"valuation.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"calculate_owner_earnings_value\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                },
+                {
+                  "name": "parameters[3]"
+                },
+                {
+                  "name": "parameters[4]"
+                },
+                {
+                  "name": "parameters[5]"
+                },
+                {
+                  "name": "parameters[6]"
+                },
+                {
+                  "name": "parameters[7]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Calculates the intrinsic value using Buffett's Owner Earnings method.\\n\\nOwner Earnings = Net Income\\n                + Depreciation/Amortization\\n                - Capital Expenditures\\n                - Working Capital Changes\\n\\nArgs:\\n    net_income: Annual net income\\n    depreciation: Annual depreciation and amortization\\n    capex: Annual capital expenditures\\n    working_capital_change: Annual change in working capital\\n    growth_rate: Expected growth rate\\n    required_return: Required rate of return (Buffett typically uses 15%)\\n    margin_of_safety: Margin of safety to apply to final value\\n    num_years: Number of years to project\\n\\nReturns:\\n    float: Intrinsic value with margin of safety\""
+            },
+            {
+              "name": "body: \"def calculate_owner_earnings_value(\\n    net_income: float,\\n    depreciation: float,\\n    capex: float,\\n    working_capital_change: float,\\n    growth_rate: float = 0.05,\\n    required_return: float = 0.15,\\n    margin_of_safety: float = 0.25,\\n    num_years: int = 5,\\n) -> float:\\n    \\\"\\\"\\\"\\n    Calculates the intrinsic value using Buffett's Owner Earnings method.\\n\\n    Owner Earnings = Net Income\\n                    + Depreciation/Amortization\\n                    - Capital Expenditures\\n                    - Working Capital Changes\\n\\n    Args:\\n        net_income: Annual net income\\n        depreciation: Annual depreciation and amortization\\n        capex: Annual capital expenditures\\n        working_capital_change: Annual change in working capital\\n        growth_rate: Expected growth rate\\n        required_return: Required rate of return (Buffett typically uses 15%)\\n        margin_of_safety: Margin of safety to apply to final value\\n        num_years: Number of years to project\\n\\n    Returns:\\n        float: Intrinsic value with margin of safety\\n    \\\"\\\"\\\"\\n    if not all([isinstance(x, (int, float)) for x in [net_income, depreciation, capex, working_capital_change]]):\\n        return 0\\n\\n    # Calculate initial owner earnings\\n    owner_earnings = net_income + depreciation - capex - working_capital_change\\n\\n    if owner_earnings <= 0:\\n        return 0\\n\\n    # Project future owner earnings\\n    future_values = []\\n    for year in range(1, num_years + 1):\\n        future_value = owner_earnings * (1 + growth_rate) ** year\\n        discounted_value = future_value / (1 + required_return) ** year\\n        future_values.append(discounted_value)\\n\\n    # Calculate terminal value (using perpetuity growth formula)\\n    terminal_growth = min(growth_rate, 0.03)  # Cap terminal growth at 3%\\n    terminal_value = (future_values[-1] * (1 + terminal_growth)) / (required_return - terminal_growth)\\n    terminal_value_discounted = terminal_value / (1 + required_return) ** num_years\\n\\n    # Sum all values and apply margin of safety\\n    intrinsic_value = sum(future_values) + terminal_value_discounted\\n    value_with_safety_margin = intrinsic_value * (1 - margin_of_safety)\\n\\n    return value_with_safety_margin\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 145"
+            },
+            {
+              "name": "end_line: 201"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"valuation.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"calculate_intrinsic_value\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                },
+                {
+                  "name": "parameters[3]"
+                },
+                {
+                  "name": "parameters[4]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Computes the discounted cash flow (DCF) for a given company based on the current free cash flow.\\nUse this function to calculate the intrinsic value of a stock.\""
+            },
+            {
+              "name": "body: \"def calculate_intrinsic_value(\\n    free_cash_flow: float,\\n    growth_rate: float = 0.05,\\n    discount_rate: float = 0.10,\\n    terminal_growth_rate: float = 0.02,\\n    num_years: int = 5,\\n) -> float:\\n    \\\"\\\"\\\"\\n    Computes the discounted cash flow (DCF) for a given company based on the current free cash flow.\\n    Use this function to calculate the intrinsic value of a stock.\\n    \\\"\\\"\\\"\\n    # Estimate the future cash flows based on the growth rate\\n    cash_flows = [free_cash_flow * (1 + growth_rate) ** i for i in range(num_years)]\\n\\n    # Calculate the present value of projected cash flows\\n    present_values = []\\n    for i in range(num_years):\\n        present_value = cash_flows[i] / (1 + discount_rate) ** (i + 1)\\n        present_values.append(present_value)\\n\\n    # Calculate the terminal value\\n    terminal_value = cash_flows[-1] * (1 + terminal_growth_rate) / (discount_rate - terminal_growth_rate)\\n    terminal_present_value = terminal_value / (1 + discount_rate) ** num_years\\n\\n    # Sum up the present values and terminal value\\n    dcf_value = sum(present_values) + terminal_present_value\\n\\n    return dcf_value\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 204"
+            },
+            {
+              "name": "end_line: 231"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"valuation.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"calculate_working_capital_change\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Calculate the absolute change in working capital between two periods.\\nA positive change means more capital is tied up in working capital (cash outflow).\\nA negative change means less capital is tied up (cash inflow).\\n\\nArgs:\\n    current_working_capital: Current period's working capital\\n    previous_working_capital: Previous period's working capital\\n\\nReturns:\\n    float: Change in working capital (current - previous)\""
+            },
+            {
+              "name": "body: \"def calculate_working_capital_change(\\n    current_working_capital: float,\\n    previous_working_capital: float,\\n) -> float:\\n    \\\"\\\"\\\"\\n    Calculate the absolute change in working capital between two periods.\\n    A positive change means more capital is tied up in working capital (cash outflow).\\n    A negative change means less capital is tied up (cash inflow).\\n\\n    Args:\\n        current_working_capital: Current period's working capital\\n        previous_working_capital: Previous period's working capital\\n\\n    Returns:\\n        float: Change in working capital (current - previous)\\n    \\\"\\\"\\\"\\n    return current_working_capital - previous_working_capital\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 234"
+            },
+            {
+              "name": "end_line: 250"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"valuation.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"doGet\""
+            },
+            {
+              "name": "parameters: \"(HttpServletRequestrequest,HttpServletResponseresponse)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 26"
+            },
+            {
+              "name": "end_line: 45"
+            },
+            {
+              "name": "body_start: 27"
+            },
+            {
+              "name": "body_end: 45"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n\\n     HttpSession   session   =   request . getSession ( true ) ; \\n     ArrayList < Request >   arrayList   =   null ; \\n\\n     try   { \\n       DbRequest   dbnc   =   new   DbRequest ( ) ; \\n       arrayList   =   ( ArrayList < Request > )   dbnc . getRequests ( ) ; \\n       session . setAttribute ( \\\"array\\\" ,   arrayList ) ; \\n     }   catch   ( Exception   e )   { \\n       //e.getMessage().toString(); \\n       e . printStackTrace ( ) ; \\n     } \\n\\n     session . setAttribute ( \\\"array\\\" ,   arrayList ) ; \\n     ServletContext   sc   =   getServletContext ( ) ; \\n     RequestDispatcher   rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=pra&page=visualizza\\\" ) ; \\n     rd . forward ( request ,   response ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletVisualizzaPratiche.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

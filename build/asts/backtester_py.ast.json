@@ -1,0 +1,450 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"__init__\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                },
+                {
+                  "name": "parameters[3]"
+                },
+                {
+                  "name": "parameters[4]"
+                },
+                {
+                  "name": "parameters[5]"
+                },
+                {
+                  "name": "parameters[6]"
+                },
+                {
+                  "name": "parameters[7]"
+                },
+                {
+                  "name": "parameters[8]"
+                },
+                {
+                  "name": "parameters[9]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Backtester\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \":param agent: The trading agent (Callable).\\n:param tickers: List of tickers to backtest.\\n:param start_date: Start date string (YYYY-MM-DD).\\n:param end_date: End date string (YYYY-MM-DD).\\n:param initial_capital: Starting portfolio cash.\\n:param model_name: Which LLM model name to use (gpt-4, etc).\\n:param model_provider: Which LLM provider (OpenAI, etc).\\n:param selected_analysts: List of analyst names or IDs to incorporate.\\n:param initial_margin_requirement: The margin ratio (e.g. 0.5 = 50%).\""
+            },
+            {
+              "name": "body: \"def __init__(\\n        self,\\n        agent: Callable,\\n        tickers: list[str],\\n        start_date: str,\\n        end_date: str,\\n        initial_capital: float,\\n        model_name: str = \\\"gpt-4o\\\",\\n        model_provider: str = \\\"OpenAI\\\",\\n        selected_analysts: list[str] = [],\\n        initial_margin_requirement: float = 0.0,\\n    ):\\n        \\\"\\\"\\\"\\n        :param agent: The trading agent (Callable).\\n        :param tickers: List of tickers to backtest.\\n        :param start_date: Start date string (YYYY-MM-DD).\\n        :param end_date: End date string (YYYY-MM-DD).\\n        :param initial_capital: Starting portfolio cash.\\n        :param model_name: Which LLM model name to use (gpt-4, etc).\\n        :param model_provider: Which LLM provider (OpenAI, etc).\\n        :param selected_analysts: List of analyst names or IDs to incorporate.\\n        :param initial_margin_requirement: The margin ratio (e.g. 0.5 = 50%).\\n        \\\"\\\"\\\"\\n        self.agent = agent\\n        self.tickers = tickers\\n        self.start_date = start_date\\n        self.end_date = end_date\\n        self.initial_capital = initial_capital\\n        self.model_name = model_name\\n        self.model_provider = model_provider\\n        self.selected_analysts = selected_analysts\\n\\n        # Initialize portfolio with support for long/short positions\\n        self.portfolio_values = []\\n        self.portfolio = {\\n            \\\"cash\\\": initial_capital,\\n            \\\"margin_used\\\": 0.0,  # total margin usage across all short positions\\n            \\\"margin_requirement\\\": initial_margin_requirement,  # The margin ratio required for shorts\\n            \\\"positions\\\": {\\n                ticker: {\\n                    \\\"long\\\": 0,               # Number of shares held long\\n                    \\\"short\\\": 0,              # Number of shares held short\\n                    \\\"long_cost_basis\\\": 0.0,  # Average cost basis per share (long)\\n                    \\\"short_cost_basis\\\": 0.0, # Average cost basis per share (short)\\n                    \\\"short_margin_used\\\": 0.0 # Dollars of margin used for this ticker's short\\n                } for ticker in tickers\\n            },\\n            \\\"realized_gains\\\": {\\n                ticker: {\\n                    \\\"long\\\": 0.0,   # Realized gains from long positions\\n                    \\\"short\\\": 0.0,  # Realized gains from short positions\\n                } for ticker in tickers\\n            }\\n        }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 31"
+            },
+            {
+              "name": "end_line: 84"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"backtester.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"execute_trade\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                },
+                {
+                  "name": "parameters[3]"
+                },
+                {
+                  "name": "parameters[4]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Backtester\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Execute trades with support for both long and short positions.\\n`quantity` is the number of shares the agent wants to buy/sell/short/cover.\\nWe will only trade integer shares to keep it simple.\""
+            },
+            {
+              "name": "body: \"def execute_trade(self, ticker: str, action: str, quantity: float, current_price: float):\\n        \\\"\\\"\\\"\\n        Execute trades with support for both long and short positions.\\n        `quantity` is the number of shares the agent wants to buy/sell/short/cover.\\n        We will only trade integer shares to keep it simple.\\n        \\\"\\\"\\\"\\n        if quantity <= 0:\\n            return 0\\n\\n        quantity = int(quantity)  # force integer shares\\n        position = self.portfolio[\\\"positions\\\"][ticker]\\n\\n        if action == \\\"buy\\\":\\n            cost = quantity * current_price\\n            if cost <= self.portfolio[\\\"cash\\\"]:\\n                # Weighted average cost basis for the new total\\n                old_shares = position[\\\"long\\\"]\\n                old_cost_basis = position[\\\"long_cost_basis\\\"]\\n                new_shares = quantity\\n                total_shares = old_shares + new_shares\\n\\n                if total_shares > 0:\\n                    total_old_cost = old_cost_basis * old_shares\\n                    total_new_cost = cost\\n                    position[\\\"long_cost_basis\\\"] = (total_old_cost + total_new_cost) / total_shares\\n\\n                position[\\\"long\\\"] += quantity\\n                self.portfolio[\\\"cash\\\"] -= cost\\n                return quantity\\n            else:\\n                # Calculate maximum affordable quantity\\n                max_quantity = int(self.portfolio[\\\"cash\\\"] / current_price)\\n                if max_quantity > 0:\\n                    cost = max_quantity * current_price\\n                    old_shares = position[\\\"long\\\"]\\n                    old_cost_basis = position[\\\"long_cost_basis\\\"]\\n                    total_shares = old_shares + max_quantity\\n\\n                    if total_shares > 0:\\n                        total_old_cost = old_cost_basis * old_shares\\n                        total_new_cost = cost\\n                        position[\\\"long_cost_basis\\\"] = (total_old_cost + total_new_cost) / total_shares\\n\\n                    position[\\\"long\\\"] += max_quantity\\n                    self.portfolio[\\\"cash\\\"] -= cost\\n                    return max_quantity\\n                return 0\\n\\n        elif action == \\\"sell\\\":\\n            # You can only sell as many as you own\\n            quantity = min(quantity, position[\\\"long\\\"])\\n            if quantity > 0:\\n                # Realized gain/loss using average cost basis\\n                avg_cost_per_share = position[\\\"long_cost_basis\\\"] if position[\\\"long\\\"] > 0 else 0\\n                realized_gain = (current_price - avg_cost_per_share) * quantity\\n                self.portfolio[\\\"realized_gains\\\"][ticker][\\\"long\\\"] += realized_gain\\n\\n                position[\\\"long\\\"] -= quantity\\n                self.portfolio[\\\"cash\\\"] += quantity * current_price\\n\\n                if position[\\\"long\\\"] == 0:\\n                    position[\\\"long_cost_basis\\\"] = 0.0\\n\\n                return quantity\\n\\n        elif action == \\\"short\\\":\\n            \\\"\\\"\\\"\\n            Typical short sale flow:\\n              1) Receive proceeds = current_price * quantity\\n              2) Post margin_required = proceeds * margin_ratio\\n              3) Net effect on cash = +proceeds - margin_required\\n            \\\"\\\"\\\"\\n            proceeds = current_price * quantity\\n            margin_required = proceeds * self.portfolio[\\\"margin_requirement\\\"]\\n            if margin_required <= self.portfolio[\\\"cash\\\"]:\\n                # Weighted average short cost basis\\n                old_short_shares = position[\\\"short\\\"]\\n                old_cost_basis = position[\\\"short_cost_basis\\\"]\\n                new_shares = quantity\\n                total_shares = old_short_shares + new_shares\\n\\n                if total_shares > 0:\\n                    total_old_cost = old_cost_basis * old_short_shares\\n                    total_new_cost = current_price * new_shares\\n                    position[\\\"short_cost_basis\\\"] = (total_old_cost + total_new_cost) / total_shares\\n\\n                position[\\\"short\\\"] += quantity\\n\\n                # Update margin usage\\n                position[\\\"short_margin_used\\\"] += margin_required\\n                self.portfolio[\\\"margin_used\\\"] += margin_required\\n\\n                # Increase cash by proceeds, then subtract the required margin\\n                self.portfolio[\\\"cash\\\"] += proceeds\\n                self.portfolio[\\\"cash\\\"] -= margin_required\\n                return quantity\\n            else:\\n                # Calculate maximum shortable quantity\\n                margin_ratio = self.portfolio[\\\"margin_requirement\\\"]\\n                if margin_ratio > 0:\\n                    max_quantity = int(self.portfolio[\\\"cash\\\"] / (current_price * margin_ratio))\\n                else:\\n                    max_quantity = 0\\n\\n                if max_quantity > 0:\\n                    proceeds = current_price * max_quantity\\n                    margin_required = proceeds * margin_ratio\\n\\n                    old_short_shares = position[\\\"short\\\"]\\n                    old_cost_basis = position[\\\"short_cost_basis\\\"]\\n                    total_shares = old_short_shares + max_quantity\\n\\n                    if total_shares > 0:\\n                        total_old_cost = old_cost_basis * old_short_shares\\n                        total_new_cost = current_price * max_quantity\\n                        position[\\\"short_cost_basis\\\"] = (total_old_cost + total_new_cost) / total_shares\\n\\n                    position[\\\"short\\\"] += max_quantity\\n                    position[\\\"short_margin_used\\\"] += margin_required\\n                    self.portfolio[\\\"margin_used\\\"] += margin_required\\n\\n                    self.portfolio[\\\"cash\\\"] += proceeds\\n                    self.portfolio[\\\"cash\\\"] -= margin_required\\n                    return max_quantity\\n                return 0\\n\\n        elif action == \\\"cover\\\":\\n            \\\"\\\"\\\"\\n            When covering shares:\\n              1) Pay cover cost = current_price * quantity\\n              2) Release a proportional share of the margin\\n              3) Net effect on cash = -cover_cost + released_margin\\n            \\\"\\\"\\\"\\n            quantity = min(quantity, position[\\\"short\\\"])\\n            if quantity > 0:\\n                cover_cost = quantity * current_price\\n                avg_short_price = position[\\\"short_cost_basis\\\"] if position[\\\"short\\\"] > 0 else 0\\n                realized_gain = (avg_short_price - current_price) * quantity\\n\\n                if position[\\\"short\\\"] > 0:\\n                    portion = quantity / position[\\\"short\\\"]\\n                else:\\n                    portion = 1.0\\n\\n                margin_to_release = portion * position[\\\"short_margin_used\\\"]\\n\\n                position[\\\"short\\\"] -= quantity\\n                position[\\\"short_margin_used\\\"] -= margin_to_release\\n                self.portfolio[\\\"margin_used\\\"] -= margin_to_release\\n\\n                # Pay the cost to cover, but get back the released margin\\n                self.portfolio[\\\"cash\\\"] += margin_to_release\\n                self.portfolio[\\\"cash\\\"] -= cover_cost\\n\\n                self.portfolio[\\\"realized_gains\\\"][ticker][\\\"short\\\"] += realized_gain\\n\\n                if position[\\\"short\\\"] == 0:\\n                    position[\\\"short_cost_basis\\\"] = 0.0\\n                    position[\\\"short_margin_used\\\"] = 0.0\\n\\n                return quantity\\n\\n        return 0\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 86"
+            },
+            {
+              "name": "end_line: 248"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"backtester.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"calculate_portfolio_value\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Backtester\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Calculate total portfolio value, including:\\n  - cash\\n  - market value of long positions\\n  - unrealized gains/losses for short positions\""
+            },
+            {
+              "name": "body: \"def calculate_portfolio_value(self, current_prices):\\n        \\\"\\\"\\\"\\n        Calculate total portfolio value, including:\\n          - cash\\n          - market value of long positions\\n          - unrealized gains/losses for short positions\\n        \\\"\\\"\\\"\\n        total_value = self.portfolio[\\\"cash\\\"]\\n\\n        for ticker in self.tickers:\\n            position = self.portfolio[\\\"positions\\\"][ticker]\\n            price = current_prices[ticker]\\n\\n            # Long position value\\n            long_value = position[\\\"long\\\"] * price\\n            total_value += long_value\\n\\n            # Short position unrealized PnL = short_shares * (short_cost_basis - current_price)\\n            if position[\\\"short\\\"] > 0:\\n                total_value += position[\\\"short\\\"] * (position[\\\"short_cost_basis\\\"] - price)\\n\\n        return total_value\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 250"
+            },
+            {
+              "name": "end_line: 271"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"backtester.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"prefetch_data\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Backtester\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Pre-fetch all data needed for the backtest period.\""
+            },
+            {
+              "name": "body: \"def prefetch_data(self):\\n        \\\"\\\"\\\"Pre-fetch all data needed for the backtest period.\\\"\\\"\\\"\\n        print(\\\"\\\\nPre-fetching data for the entire backtest period...\\\")\\n\\n        # Convert end_date string to datetime, fetch up to 1 year before\\n        end_date_dt = datetime.strptime(self.end_date, \\\"%Y-%m-%d\\\")\\n        start_date_dt = end_date_dt - relativedelta(years=1)\\n        start_date_str = start_date_dt.strftime(\\\"%Y-%m-%d\\\")\\n\\n        for ticker in self.tickers:\\n            # Fetch price data for the entire period, plus 1 year\\n            get_prices(ticker, start_date_str, self.end_date)\\n\\n            # Fetch financial metrics\\n            get_financial_metrics(ticker, self.end_date, limit=10)\\n\\n            # Fetch insider trades\\n            get_insider_trades(ticker, self.end_date, start_date=self.start_date, limit=1000)\\n\\n            # Fetch company news\\n            get_company_news(ticker, self.end_date, start_date=self.start_date, limit=1000)\\n\\n        print(\\\"Data pre-fetch complete.\\\")\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 273"
+            },
+            {
+              "name": "end_line: 295"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"backtester.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"parse_agent_response\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Backtester\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Parse JSON output from the agent (fallback to 'hold' if invalid).\""
+            },
+            {
+              "name": "body: \"def parse_agent_response(self, agent_output):\\n        \\\"\\\"\\\"Parse JSON output from the agent (fallback to 'hold' if invalid).\\\"\\\"\\\"\\n        import json\\n\\n        try:\\n            decision = json.loads(agent_output)\\n            return decision\\n        except Exception:\\n            print(f\\\"Error parsing action: {agent_output}\\\")\\n            return {\\\"action\\\": \\\"hold\\\", \\\"quantity\\\": 0}\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 297"
+            },
+            {
+              "name": "end_line: 306"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"backtester.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"run_backtest\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Backtester\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def run_backtest(self):\\n        # Pre-fetch all data at the start\\n        self.prefetch_data()\\n\\n        dates = pd.date_range(self.start_date, self.end_date, freq=\\\"B\\\")\\n        table_rows = []\\n        performance_metrics = {\\n            'sharpe_ratio': None,\\n            'sortino_ratio': None,\\n            'max_drawdown': None,\\n            'long_short_ratio': None,\\n            'gross_exposure': None,\\n            'net_exposure': None\\n        }\\n\\n        print(\\\"\\\\nStarting backtest...\\\")\\n\\n        # Initialize portfolio values list with initial capital\\n        if len(dates) > 0:\\n            self.portfolio_values = [{\\\"Date\\\": dates[0], \\\"Portfolio Value\\\": self.initial_capital}]\\n        else:\\n            self.portfolio_values = []\\n\\n        for current_date in dates:\\n            lookback_start = (current_date - timedelta(days=30)).strftime(\\\"%Y-%m-%d\\\")\\n            current_date_str = current_date.strftime(\\\"%Y-%m-%d\\\")\\n            previous_date_str = (current_date - timedelta(days=1)).strftime(\\\"%Y-%m-%d\\\")\\n\\n            # Skip if there's no prior day to look back (i.e., first date in the range)\\n            if lookback_start == current_date_str:\\n                continue\\n\\n            # Get current prices for all tickers\\n            try:\\n                current_prices = {}\\n                missing_data = False\\n                \\n                for ticker in self.tickers:\\n                    try:\\n                        price_data = get_price_data(ticker, previous_date_str, current_date_str)\\n                        if price_data.empty:\\n                            print(f\\\"Warning: No price data for {ticker} on {current_date_str}\\\")\\n                            missing_data = True\\n                            break\\n                        current_prices[ticker] = price_data.iloc[-1][\\\"close\\\"]\\n                    except Exception as e:\\n                        print(f\\\"Error fetching price for {ticker} between {previous_date_str} and {current_date_str}: {e}\\\")\\n                        missing_data = True\\n                        break\\n                \\n                if missing_data:\\n                    print(f\\\"Skipping trading day {current_date_str} due to missing price data\\\")\\n                    continue\\n                \\n            except Exception as e:\\n                # If there's a general API error, log it and skip this day\\n                print(f\\\"Error fetching prices for {current_date_str}: {e}\\\")\\n                continue\\n\\n            # ---------------------------------------------------------------\\n            # 1) Execute the agent's trades\\n            # ---------------------------------------------------------------\\n            output = self.agent(\\n                tickers=self.tickers,\\n                start_date=lookback_start,\\n                end_date=current_date_str,\\n                portfolio=self.portfolio,\\n                model_name=self.model_name,\\n                model_provider=self.model_provider,\\n                selected_analysts=self.selected_analysts,\\n            )\\n            decisions = output[\\\"decisions\\\"]\\n            analyst_signals = output[\\\"analyst_signals\\\"]\\n\\n            # Execute trades for each ticker\\n            executed_trades = {}\\n            for ticker in self.tickers:\\n                decision = decisions.get(ticker, {\\\"action\\\": \\\"hold\\\", \\\"quantity\\\": 0})\\n                action, quantity = decision.get(\\\"action\\\", \\\"hold\\\"), decision.get(\\\"quantity\\\", 0)\\n\\n                executed_quantity = self.execute_trade(ticker, action, quantity, current_prices[ticker])\\n                executed_trades[ticker] = executed_quantity\\n\\n            # ---------------------------------------------------------------\\n            # 2) Now that trades have executed trades, recalculate the final\\n            #    portfolio value for this day.\\n            # ---------------------------------------------------------------\\n            total_value = self.calculate_portfolio_value(current_prices)\\n\\n            # Also compute long/short exposures for final post‐trade state\\n            long_exposure = sum(\\n                self.portfolio[\\\"positions\\\"][t][\\\"long\\\"] * current_prices[t]\\n                for t in self.tickers\\n            )\\n            short_exposure = sum(\\n                self.portfolio[\\\"positions\\\"][t][\\\"short\\\"] * current_prices[t]\\n                for t in self.tickers\\n            )\\n\\n            # Calculate gross and net exposures\\n            gross_exposure = long_exposure + short_exposure\\n            net_exposure = long_exposure - short_exposure\\n            long_short_ratio = (\\n                long_exposure / short_exposure if short_exposure > 1e-9 else float('inf')\\n            )\\n\\n            # Track each day's portfolio value in self.portfolio_values\\n            self.portfolio_values.append({\\n                \\\"Date\\\": current_date,\\n                \\\"Portfolio Value\\\": total_value,\\n                \\\"Long Exposure\\\": long_exposure,\\n                \\\"Short Exposure\\\": short_exposure,\\n                \\\"Gross Exposure\\\": gross_exposure,\\n                \\\"Net Exposure\\\": net_exposure,\\n                \\\"Long/Short Ratio\\\": long_short_ratio\\n            })\\n\\n            # ---------------------------------------------------------------\\n            # 3) Build the table rows to display\\n            # ---------------------------------------------------------------\\n            date_rows = []\\n\\n            # For each ticker, record signals/trades\\n            for ticker in self.tickers:\\n                ticker_signals = {}\\n                for agent_name, signals in analyst_signals.items():\\n                    if ticker in signals:\\n                        ticker_signals[agent_name] = signals[ticker]\\n\\n                bullish_count = len([s for s in ticker_signals.values() if s.get(\\\"signal\\\", \\\"\\\").lower() == \\\"bullish\\\"])\\n                bearish_count = len([s for s in ticker_signals.values() if s.get(\\\"signal\\\", \\\"\\\").lower() == \\\"bearish\\\"])\\n                neutral_count = len([s for s in ticker_signals.values() if s.get(\\\"signal\\\", \\\"\\\").lower() == \\\"neutral\\\"])\\n\\n                # Calculate net position value\\n                pos = self.portfolio[\\\"positions\\\"][ticker]\\n                long_val = pos[\\\"long\\\"] * current_prices[ticker]\\n                short_val = pos[\\\"short\\\"] * current_prices[ticker]\\n                net_position_value = long_val - short_val\\n\\n                # Get the action and quantity from the decisions\\n                action = decisions.get(ticker, {}).get(\\\"action\\\", \\\"hold\\\")\\n                quantity = executed_trades.get(ticker, 0)\\n                \\n                # Append the agent action to the table rows\\n                date_rows.append(\\n                    format_backtest_row(\\n                        date=current_date_str,\\n                        ticker=ticker,\\n                        action=action,\\n                        quantity=quantity,\\n                        price=current_prices[ticker],\\n                        shares_owned=pos[\\\"long\\\"] - pos[\\\"short\\\"],  # net shares\\n                        position_value=net_position_value,\\n                        bullish_count=bullish_count,\\n                        bearish_count=bearish_count,\\n                        neutral_count=neutral_count,\\n                    )\\n                )\\n            # ---------------------------------------------------------------\\n            # 4) Calculate performance summary metrics\\n            # ---------------------------------------------------------------\\n            # Calculate portfolio return vs. initial capital\\n            # The realized gains are already reflected in cash balance, so we don't add them separately\\n            portfolio_return = (total_value / self.initial_capital - 1) * 100\\n\\n            # Add summary row for this day\\n            date_rows.append(\\n                format_backtest_row(\\n                    date=current_date_str,\\n                    ticker=\\\"\\\",\\n                    action=\\\"\\\",\\n                    quantity=0,\\n                    price=0,\\n                    shares_owned=0,\\n                    position_value=0,\\n                    bullish_count=0,\\n                    bearish_count=0,\\n                    neutral_count=0,\\n                    is_summary=True,\\n                    total_value=total_value,\\n                    return_pct=portfolio_return,\\n                    cash_balance=self.portfolio[\\\"cash\\\"],\\n                    total_position_value=total_value - self.portfolio[\\\"cash\\\"],\\n                    sharpe_ratio=performance_metrics[\\\"sharpe_ratio\\\"],\\n                    sortino_ratio=performance_metrics[\\\"sortino_ratio\\\"],\\n                    max_drawdown=performance_metrics[\\\"max_drawdown\\\"],\\n                ),\\n            )\\n\\n            table_rows.extend(date_rows)\\n            print_backtest_results(table_rows)\\n\\n            # Update performance metrics if we have enough data\\n            if len(self.portfolio_values) > 3:\\n                self._update_performance_metrics(performance_metrics)\\n\\n        # Store the final performance metrics for reference in analyze_performance\\n        self.performance_metrics = performance_metrics\\n        return performance_metrics\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 308"
+            },
+            {
+              "name": "end_line: 506"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"backtester.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"_update_performance_metrics\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Backtester\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Helper method to update performance metrics using daily returns.\""
+            },
+            {
+              "name": "body: \"def _update_performance_metrics(self, performance_metrics):\\n        \\\"\\\"\\\"Helper method to update performance metrics using daily returns.\\\"\\\"\\\"\\n        values_df = pd.DataFrame(self.portfolio_values).set_index(\\\"Date\\\")\\n        values_df[\\\"Daily Return\\\"] = values_df[\\\"Portfolio Value\\\"].pct_change()\\n        clean_returns = values_df[\\\"Daily Return\\\"].dropna()\\n\\n        if len(clean_returns) < 2:\\n            return  # not enough data points\\n\\n        # Assumes 252 trading days/year\\n        daily_risk_free_rate = 0.0434 / 252\\n        excess_returns = clean_returns - daily_risk_free_rate\\n        mean_excess_return = excess_returns.mean()\\n        std_excess_return = excess_returns.std()\\n\\n        # Sharpe ratio\\n        if std_excess_return > 1e-12:\\n            performance_metrics[\\\"sharpe_ratio\\\"] = np.sqrt(252) * (mean_excess_return / std_excess_return)\\n        else:\\n            performance_metrics[\\\"sharpe_ratio\\\"] = 0.0\\n\\n        # Sortino ratio\\n        negative_returns = excess_returns[excess_returns < 0]\\n        if len(negative_returns) > 0:\\n            downside_std = negative_returns.std()\\n            if downside_std > 1e-12:\\n                performance_metrics[\\\"sortino_ratio\\\"] = np.sqrt(252) * (mean_excess_return / downside_std)\\n            else:\\n                performance_metrics[\\\"sortino_ratio\\\"] = float('inf') if mean_excess_return > 0 else 0\\n        else:\\n            performance_metrics[\\\"sortino_ratio\\\"] = float('inf') if mean_excess_return > 0 else 0\\n\\n        # Maximum drawdown (ensure it's stored as a negative percentage)\\n        rolling_max = values_df[\\\"Portfolio Value\\\"].cummax()\\n        drawdown = (values_df[\\\"Portfolio Value\\\"] - rolling_max) / rolling_max\\n        \\n        if len(drawdown) > 0:\\n            min_drawdown = drawdown.min()\\n            # Store as a negative percentage\\n            performance_metrics[\\\"max_drawdown\\\"] = min_drawdown * 100\\n            \\n            # Store the date of max drawdown for reference\\n            if min_drawdown < 0:\\n                performance_metrics[\\\"max_drawdown_date\\\"] = drawdown.idxmin().strftime('%Y-%m-%d')\\n            else:\\n                performance_metrics[\\\"max_drawdown_date\\\"] = None\\n        else:\\n            performance_metrics[\\\"max_drawdown\\\"] = 0.0\\n            performance_metrics[\\\"max_drawdown_date\\\"] = None\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 508"
+            },
+            {
+              "name": "end_line: 556"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"backtester.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"analyze_performance\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Backtester\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Creates a performance DataFrame, prints summary stats, and plots equity curve.\""
+            },
+            {
+              "name": "body: \"def analyze_performance(self):\\n        \\\"\\\"\\\"Creates a performance DataFrame, prints summary stats, and plots equity curve.\\\"\\\"\\\"\\n        if not self.portfolio_values:\\n            print(\\\"No portfolio data found. Please run the backtest first.\\\")\\n            return pd.DataFrame()\\n\\n        performance_df = pd.DataFrame(self.portfolio_values).set_index(\\\"Date\\\")\\n        if performance_df.empty:\\n            print(\\\"No valid performance data to analyze.\\\")\\n            return performance_df\\n\\n        final_portfolio_value = performance_df[\\\"Portfolio Value\\\"].iloc[-1]\\n        total_return = ((final_portfolio_value - self.initial_capital) / self.initial_capital) * 100\\n\\n        print(f\\\"\\\\n{Fore.WHITE}{Style.BRIGHT}PORTFOLIO PERFORMANCE SUMMARY:{Style.RESET_ALL}\\\")\\n        print(f\\\"Total Return: {Fore.GREEN if total_return >= 0 else Fore.RED}{total_return:.2f}%{Style.RESET_ALL}\\\")\\n        \\n        # Print realized P&L for informational purposes only\\n        total_realized_gains = sum(\\n            self.portfolio[\\\"realized_gains\\\"][ticker][\\\"long\\\"] + \\n            self.portfolio[\\\"realized_gains\\\"][ticker][\\\"short\\\"] \\n            for ticker in self.tickers\\n        )\\n        print(f\\\"Total Realized Gains/Losses: {Fore.GREEN if total_realized_gains >= 0 else Fore.RED}${total_realized_gains:,.2f}{Style.RESET_ALL}\\\")\\n\\n        # Plot the portfolio value over time\\n        plt.figure(figsize=(12, 6))\\n        plt.plot(performance_df.index, performance_df[\\\"Portfolio Value\\\"], color=\\\"blue\\\")\\n        plt.title(\\\"Portfolio Value Over Time\\\")\\n        plt.ylabel(\\\"Portfolio Value ($)\\\")\\n        plt.xlabel(\\\"Date\\\")\\n        plt.grid(True)\\n        plt.show()\\n\\n        # Compute daily returns\\n        performance_df[\\\"Daily Return\\\"] = performance_df[\\\"Portfolio Value\\\"].pct_change().fillna(0)\\n        daily_rf = 0.0434 / 252  # daily risk-free rate\\n        mean_daily_return = performance_df[\\\"Daily Return\\\"].mean()\\n        std_daily_return = performance_df[\\\"Daily Return\\\"].std()\\n\\n        # Annualized Sharpe Ratio\\n        if std_daily_return != 0:\\n            annualized_sharpe = np.sqrt(252) * ((mean_daily_return - daily_rf) / std_daily_return)\\n        else:\\n            annualized_sharpe = 0\\n        print(f\\\"\\\\nSharpe Ratio: {Fore.YELLOW}{annualized_sharpe:.2f}{Style.RESET_ALL}\\\")\\n\\n        # Use the max drawdown value calculated during the backtest if available\\n        max_drawdown = getattr(self, 'performance_metrics', {}).get('max_drawdown')\\n        max_drawdown_date = getattr(self, 'performance_metrics', {}).get('max_drawdown_date')\\n        \\n        # If no value exists yet, calculate it\\n        if max_drawdown is None:\\n            rolling_max = performance_df[\\\"Portfolio Value\\\"].cummax()\\n            drawdown = (performance_df[\\\"Portfolio Value\\\"] - rolling_max) / rolling_max\\n            max_drawdown = drawdown.min() * 100\\n            max_drawdown_date = drawdown.idxmin().strftime('%Y-%m-%d') if pd.notnull(drawdown.idxmin()) else None\\n\\n        if max_drawdown_date:\\n            print(f\\\"Maximum Drawdown: {Fore.RED}{abs(max_drawdown):.2f}%{Style.RESET_ALL} (on {max_drawdown_date})\\\")\\n        else:\\n            print(f\\\"Maximum Drawdown: {Fore.RED}{abs(max_drawdown):.2f}%{Style.RESET_ALL}\\\")\\n\\n        # Win Rate\\n        winning_days = len(performance_df[performance_df[\\\"Daily Return\\\"] > 0])\\n        total_days = max(len(performance_df) - 1, 1)\\n        win_rate = (winning_days / total_days) * 100\\n        print(f\\\"Win Rate: {Fore.GREEN}{win_rate:.2f}%{Style.RESET_ALL}\\\")\\n\\n        # Average Win/Loss Ratio\\n        positive_returns = performance_df[performance_df[\\\"Daily Return\\\"] > 0][\\\"Daily Return\\\"]\\n        negative_returns = performance_df[performance_df[\\\"Daily Return\\\"] < 0][\\\"Daily Return\\\"]\\n        avg_win = positive_returns.mean() if not positive_returns.empty else 0\\n        avg_loss = abs(negative_returns.mean()) if not negative_returns.empty else 0\\n        if avg_loss != 0:\\n            win_loss_ratio = avg_win / avg_loss\\n        else:\\n            win_loss_ratio = float('inf') if avg_win > 0 else 0\\n        print(f\\\"Win/Loss Ratio: {Fore.GREEN}{win_loss_ratio:.2f}{Style.RESET_ALL}\\\")\\n\\n        # Maximum Consecutive Wins / Losses\\n        returns_binary = (performance_df[\\\"Daily Return\\\"] > 0).astype(int)\\n        if len(returns_binary) > 0:\\n            max_consecutive_wins = max((len(list(g)) for k, g in itertools.groupby(returns_binary) if k == 1), default=0)\\n            max_consecutive_losses = max((len(list(g)) for k, g in itertools.groupby(returns_binary) if k == 0), default=0)\\n        else:\\n            max_consecutive_wins = 0\\n            max_consecutive_losses = 0\\n\\n        print(f\\\"Max Consecutive Wins: {Fore.GREEN}{max_consecutive_wins}{Style.RESET_ALL}\\\")\\n        print(f\\\"Max Consecutive Losses: {Fore.RED}{max_consecutive_losses}{Style.RESET_ALL}\\\")\\n\\n        return performance_df\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 558"
+            },
+            {
+              "name": "end_line: 650"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"backtester.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

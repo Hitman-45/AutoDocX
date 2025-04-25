@@ -1,0 +1,145 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"operator()\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"RET\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"template <typename RET>\\nRET Function<RET(void)>::operator()() const\\n{\\n    return (*m_fun)();\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 89"
+            },
+            {
+              "name": "end_line: 93"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"function/function.hpp\""
+            },
+            {
+              "name": "folder: \"function\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"operator()\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"RET\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"template <typename RET>\\ntemplate <typename ARG>\\nRET Function<RET(void)>::FreeFunction<ARG>::operator()() const\\n{\\n    return (m_fun(m_arg));\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 110"
+            },
+            {
+              "name": "end_line: 115"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"function/function.hpp\""
+            },
+            {
+              "name": "folder: \"function\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"operator()\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"RET\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"template <typename RET>\\ntemplate <typename OBJ, typename ARG>\\nRET Function<RET(void)>::ObjectFunction<OBJ, ARG>::operator()() const\\n{\\n    return ((m_obj->*m_fun)(m_arg));\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 134"
+            },
+            {
+              "name": "end_line: 139"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"function/function.hpp\""
+            },
+            {
+              "name": "folder: \"function\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

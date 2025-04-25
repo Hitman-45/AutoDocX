@@ -1,0 +1,145 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"main\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"int main(void)\\n{\\n    StringOperatorsTest();\\n    BasicMethodsStringTest();\\n    std::cout << \\\"Passed.\\\" << std::endl;\\n    return (0);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 21"
+            },
+            {
+              "name": "end_line: 27"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"string/string_test.cpp\""
+            },
+            {
+              "name": "folder: \"string\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"BasicMethodsStringTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void BasicMethodsStringTest(void)\\n{\\n    String str;\\n    assert(0 == str.Length());\\n    assert(0 == strcmp(\\\"\\\", str.Cstr()));\\n\\n    String str1(\\\"Tal has created a string\\\");\\n    assert(strlen(\\\"Tal has created a string\\\") == str1.Length());\\n    assert(0 == strcmp(\\\"Tal has created a string\\\", str1.Cstr()));\\n\\n    String str2(str1);\\n    assert(strlen(\\\"Tal has created a string\\\") == str2.Length());\\n    assert(0 == strcmp(\\\"Tal has created a string\\\", str2.Cstr()));\\n\\n    str = str2;\\n    assert(strlen(\\\"Tal has created a string\\\") == str.Length());\\n    assert(0 == strcmp(str1.Cstr(), str.Cstr()));\\n\\n    String str3(\\\"Habana\\\");\\n    str1 = str3;\\n    assert(0 != strcmp(str1.Cstr(), str.Cstr()));\\n    assert(strlen(\\\"Habana\\\") == str1.Length());\\n\\n    String str4 = \\\"Tal has created a string\\\";\\n    assert(strlen(\\\"Tal has created a string\\\") == str4.Length());\\n    assert(0 == strcmp(\\\"Tal has created a string\\\", str4.Cstr()));\\n\\n    String str5 = \\\"\\\";\\n    assert(0 == str5.Length());\\n    assert(0 == strcmp(\\\"\\\", str5.Cstr()));\\n\\n    String str6(\\\"\\\");\\n    assert(0 == str6.Length());\\n    assert(0 == strcmp(\\\"\\\", str6.Cstr()));\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 29"
+            },
+            {
+              "name": "end_line: 63"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"string/string_test.cpp\""
+            },
+            {
+              "name": "folder: \"string\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"StringOperatorsTest\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void StringOperatorsTest(void)\\n{\\n    String str1(\\\"abc\\\");\\n    String str2(\\\"abc\\\");\\n    assert(str1 == str2);\\n    assert(str2 == str1);\\n    assert(\\\"abc\\\" == str2);\\n    assert(!(str1 == \\\"abd\\\"));\\n    assert(!(\\\"abd\\\" == str1));\\n\\n    String str3(\\\"abc\\\");\\n    String str4(\\\"abk\\\");\\n    assert(!(str3 == str4));\\n    assert(!(str4 == str3));\\n    assert(!(\\\"abc\\\" == str4));\\n    assert(!(str3 == \\\"abd\\\"));\\n    assert(!(\\\"abd\\\" == str3));\\n\\n    String str5(\\\"abd\\\");\\n    assert(str5 > str1);\\n    assert(str1 < str5);\\n    assert(\\\"aaa\\\" < str5);\\n    assert(str1 < \\\"mmm\\\");\\n    assert(\\\"mmm\\\" > str5);\\n\\n// Remove comments to test input and output.\\n\\n//    String input;\\n//    String output(\\\"Please enter a string: \\\");\\n//    std::cout << output << std::endl;\\n//    std::cin >> input;\\n//    std::cout << input << std::endl;\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 65"
+            },
+            {
+              "name": "end_line: 97"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"string/string_test.cpp\""
+            },
+            {
+              "name": "folder: \"string\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,378 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"insertRequest\""
+            },
+            {
+              "name": "parameters: \"(Requestric)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 40"
+            },
+            {
+              "name": "end_line: 68"
+            },
+            {
+              "name": "body_start: 40"
+            },
+            {
+              "name": "body_end: 68"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     int   ret   =   0 ; \\n     PreparedStatement   statement   =   null ; \\n     String   type   =   ric . getType ( ) ; \\n     String   data   =   ric . getData ( ) ; \\n     int   applicant   =   ric . getApplicant ( ) ; \\n     String   state   =   ric . getState ( ) ; \\n     String   document   =   ric . getDocument ( ) ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"INSERT INTO request VALUES (?, ?, ?, ?, ?, ?)\\\" ) ; \\n       statement . setInt ( 1 ,   0 ) ; \\n       statement . setString ( 2 ,   type ) ; \\n       statement . setString ( 3 ,   data ) ; \\n       statement . setInt ( 4 ,   applicant ) ; \\n       statement . setString ( 5 ,   state ) ; \\n       statement . setString ( 6 ,   document ) ; \\n       ret   =   statement . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: Request insertion failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: Request insertion failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbRichiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"deleteRequest\""
+            },
+            {
+              "name": "parameters: \"(intid)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 79"
+            },
+            {
+              "name": "end_line: 97"
+            },
+            {
+              "name": "body_start: 79"
+            },
+            {
+              "name": "body_end: 97"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     int   ret   =   0 ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"DELETE FROM request WHERE idRequest =?\\\" ) ; \\n       statement . setInt ( 1 ,   id ) ; \\n       ret   =   statement . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: request deletion failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: request deletion failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbRichiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"getRequestById\""
+            },
+            {
+              "name": "parameters: \"(intid)\""
+            },
+            {
+              "name": "return_type: \"Request\""
+            },
+            {
+              "name": "start_line: 108"
+            },
+            {
+              "name": "end_line: 138"
+            },
+            {
+              "name": "body_start: 108"
+            },
+            {
+              "name": "body_end: 138"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     Request   ret   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"SELECT* FROM request WHERE idRequest = ?\\\" ) ; \\n       statement . setInt ( 1 ,   id ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       if   ( ! rs . next ( ) ) \\n         return   ret ; \\n       int   idR   =   rs . getInt ( \\\"idRequest\\\" ) ; \\n       String   type   =   rs . getString ( \\\"type\\\" ) ; \\n       String   data   =   rs . getString ( \\\"data\\\" ) ; \\n       int   applicant   =   rs . getInt ( \\\"applicant\\\" ) ; \\n       String   state   =   rs . getString ( \\\"state\\\" ) ; \\n       String   document   =   rs . getString ( \\\"document\\\" ) ; \\n       ret   =   new   Request ( idR ,   type ,   data ,   applicant ,   state ,   document ) ; \\n       return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: search by request id failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: search by request id failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbRichiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"getRequestByApplicant\""
+            },
+            {
+              "name": "parameters: \"(intidR)\""
+            },
+            {
+              "name": "return_type: \"Collection<Request>\""
+            },
+            {
+              "name": "start_line: 149"
+            },
+            {
+              "name": "end_line: 183"
+            },
+            {
+              "name": "body_start: 149"
+            },
+            {
+              "name": "body_end: 183"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     ArrayList < Request >   ret   =   new   ArrayList < Request > ( ) ; \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\n           \\\"SELECT * FROM request WHERE applicant = ? ORDER BY  data desc\\\" ) ; \\n       statement . setInt ( 1 ,   idR ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       while   ( rs . next ( ) )   { \\n         int   idRic   =   rs . getInt ( \\\"idRequest\\\" ) ; \\n         String   type   =   rs . getString ( \\\"type\\\" ) ; \\n         String   data   =   rs . getString ( \\\"data\\\" ) ; \\n         int   applicant   =   rs . getInt ( \\\"applicant\\\" ) ; \\n         String   stateR   =   rs . getString ( \\\"state\\\" ) ; \\n         String   document   =   rs . getString ( \\\"document\\\" ) ; \\n         ret . add ( new   Request ( idRic ,   type ,   data ,   applicant ,   stateR ,   document ) ) ; \\n       } \\n       if   ( ret . isEmpty ( ) ) \\n         return   null ; \\n       else \\n         return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: Search requests via applicant id failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: Search requests via applicant id failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbRichiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"getRequestByState\""
+            },
+            {
+              "name": "parameters: \"(intidR,Stringstate)\""
+            },
+            {
+              "name": "return_type: \"Collection<Request>\""
+            },
+            {
+              "name": "start_line: 196"
+            },
+            {
+              "name": "end_line: 231"
+            },
+            {
+              "name": "body_start: 196"
+            },
+            {
+              "name": "body_end: 231"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     ArrayList < Request >   ret   =   new   ArrayList < Request > ( ) ; \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\n           \\\"SELECT * FROM request WHERE applicant =? and state =? ORDER BY  data desc\\\" ) ; \\n       statement . setInt ( 1 ,   idR ) ; \\n       statement . setString ( 2 ,   state ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       while   ( rs . next ( ) )   { \\n         int   idRic   =   rs . getInt ( \\\"idRequest\\\" ) ; \\n         String   type   =   rs . getString ( \\\"type\\\" ) ; \\n         String   data   =   rs . getString ( \\\"data\\\" ) ; \\n         int   applicant   =   rs . getInt ( \\\"applicant\\\" ) ; \\n         String   stateR   =   rs . getString ( \\\"state\\\" ) ; \\n         String   document   =   rs . getString ( \\\"document\\\" ) ; \\n         ret . add ( new   Request ( idRic ,   type ,   data ,   applicant ,   stateR ,   document ) ) ; \\n       } \\n       if   ( ret . isEmpty ( ) ) \\n         return   null ; \\n       else \\n         return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: search requests via applicant id and state request failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: search requests via applicant id and state request failed \\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbRichiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"getRequestByType\""
+            },
+            {
+              "name": "parameters: \"(intidR,Stringtype)\""
+            },
+            {
+              "name": "return_type: \"Collection<Request>\""
+            },
+            {
+              "name": "start_line: 244"
+            },
+            {
+              "name": "end_line: 279"
+            },
+            {
+              "name": "body_start: 244"
+            },
+            {
+              "name": "body_end: 279"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     ArrayList < Request >   ret   =   new   ArrayList < Request > ( ) ; \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\n           \\\"SELECT * FROM request WHERE applicant =? and type =? ORDER BY  data desc\\\" ) ; \\n       statement . setInt ( 1 ,   idR ) ; \\n       statement . setString ( 2 ,   type ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       while   ( rs . next ( ) )   { \\n         int   idRic   =   rs . getInt ( \\\"idRequest\\\" ) ; \\n         String   typeR   =   rs . getString ( \\\"type\\\" ) ; \\n         String   data   =   rs . getString ( \\\"data\\\" ) ; \\n         int   applicant   =   rs . getInt ( \\\"applicant\\\" ) ; \\n         String   stateR   =   rs . getString ( \\\"state\\\" ) ; \\n         String   document   =   rs . getString ( \\\"document\\\" ) ; \\n         ret . add ( new   Request ( idRic ,   typeR ,   data ,   applicant ,   stateR ,   document ) ) ; \\n       } \\n       if   ( ret . isEmpty ( ) ) \\n         return   null ; \\n       else \\n         return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: search requests via applicant id and type request failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: search via applicant id and type request failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbRichiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"setStateRequest\""
+            },
+            {
+              "name": "parameters: \"(intidR,Stringstate)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 292"
+            },
+            {
+              "name": "end_line: 311"
+            },
+            {
+              "name": "body_start: 292"
+            },
+            {
+              "name": "body_end: 311"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     PreparedStatement   statement   =   null ; \\n     int   ret   =   0 ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"UPDATE request SET state = ? WHERE idRequest = ?\\\" ) ; \\n       statement . setString ( 1 ,   state ) ; \\n       statement . setInt ( 2 ,   idR ) ; \\n       ret   =   statement . executeUpdate ( ) ; \\n       return   ( ret   ==   1 ) ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: modify state request failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: modify state request failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbRichiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"getRequests\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"Collection<Request>\""
+            },
+            {
+              "name": "start_line: 320"
+            },
+            {
+              "name": "end_line: 352"
+            },
+            {
+              "name": "body_start: 320"
+            },
+            {
+              "name": "body_end: 352"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     ArrayList < Request >   ret   =   new   ArrayList < Request > ( ) ; \\n     PreparedStatement   statement   =   null ; \\n     ResultSet   rs   =   null ; \\n     try   { \\n       statement   =   connection . prepareStatement ( \\\"SELECT * FROM request ORDER BY data desc\\\" ) ; \\n       rs   =   statement . executeQuery ( ) ; \\n       while   ( rs . next ( ) )   { \\n         int   idRic   =   rs . getInt ( \\\"idRequest\\\" ) ; \\n         String   type   =   rs . getString ( \\\"type\\\" ) ; \\n         String   data   =   rs . getString ( \\\"data\\\" ) ; \\n         int   applicant   =   rs . getInt ( \\\"applicant\\\" ) ; \\n         String   stateR   =   rs . getString ( \\\"state\\\" ) ; \\n         String   document   =   rs . getString ( \\\"document\\\" ) ; \\n         ret . add ( new   Request ( idRic ,   type ,   data ,   applicant ,   stateR ,   document ) ) ; \\n       } \\n       if   ( ret . isEmpty ( ) ) \\n         return   null ; \\n       else \\n         return   ret ; \\n     }   catch   ( SQLException   e )   { \\n       throw   new   DbException ( \\\"Error: search requests failed\\\" ) ; \\n     }   finally   { \\n       try   { \\n         if   ( statement   !=   null ) \\n           statement . close ( ) ; \\n         if   ( rs   !=   null ) \\n           rs . close ( ) ; \\n       }   catch   ( SQLException   e )   { \\n         throw   new   DbException ( \\\"Error: Search requests via applicant id failed\\\" ) ; \\n       } \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"DbRichiesta.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

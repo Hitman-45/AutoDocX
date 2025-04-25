@@ -1,0 +1,56 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"doPost\""
+            },
+            {
+              "name": "parameters: \"(HttpServletRequestrequest,HttpServletResponseresponse)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 22"
+            },
+            {
+              "name": "end_line: 61"
+            },
+            {
+              "name": "body_start: 23"
+            },
+            {
+              "name": "body_end: 61"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n\\n     int   cod   =   Integer . parseInt ( request . getParameter ( \\\"codice\\\" ) ) ; \\n     String   value   =   request . getParameter ( \\\"valore\\\" ) ; \\n\\n     int   idp   =   0 ,   idr   =   0 ; \\n     String   idr_attesa   =   \\\"\\\" ,   idr_lavorazione   =   \\\"\\\" ,   idr_completato   =   \\\"\\\" ; \\n\\n     ArrayList < Request >   arrayList ; \\n     Request   ric   =   null ; \\n     DbRequest   dbric   =   null ; \\n\\n     try   { \\n       dbric   =   new   DbRequest ( ) ; \\n       System . out . println ( \\\"ok\\\" ) ; \\n\\n       if   ( value . equals ( \\\"idp\\\" ) )   { \\n         ric   =   dbric . getRequestById ( cod ) ; \\n         request . setAttribute ( \\\"ris\\\" ,   ric ) ; \\n       }   else   if   ( value . equals ( \\\"idr\\\" ) )   { \\n         arrayList   =   ( ArrayList < Request > )   dbric . getRequestByApplicant ( cod ) ; \\n         request . setAttribute ( \\\"ris\\\" ,   arrayList ) ; \\n       }   else   if   ( ( value . equals ( \\\"accettata\\\" ) )   ||   value . equals ( \\\"rifiutata\\\" ) )   { \\n         arrayList   =   ( ArrayList < Request > )   dbric . getRequestByState ( cod ,   value ) ; \\n         request . setAttribute ( \\\"ris\\\" ,   arrayList ) ; \\n       }   else   { \\n         arrayList   =   null ; \\n       } \\n\\n     }   catch   ( Exception   e )   { \\n       //e.getMessage().toString(); \\n       e . printStackTrace ( ) ; \\n     } \\n\\n     ServletContext   sc   =   getServletContext ( ) ; \\n     RequestDispatcher   rd   =   sc . getRequestDispatcher ( \\n         \\\"/workers/index.jsp?func=visualizza&page=DatiPratica\\\" ) ; \\n     rd . forward ( request ,   response ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletRicercaPratica.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

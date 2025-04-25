@@ -1,0 +1,102 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"getCardByNumber\""
+            },
+            {
+              "name": "parameters: \"(Stringcod)\""
+            },
+            {
+              "name": "return_type: \"IdentityCard\""
+            },
+            {
+              "name": "start_line: 31"
+            },
+            {
+              "name": "end_line: 33"
+            },
+            {
+              "name": "body_start: 31"
+            },
+            {
+              "name": "body_end: 33"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   dbIdentityCard . searchIdentityCardByNumber ( cod ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CIManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"getCardByIdCStri\""
+            },
+            {
+              "name": "parameters: \"(intid)\""
+            },
+            {
+              "name": "return_type: \"IdentityCard\""
+            },
+            {
+              "name": "start_line: 35"
+            },
+            {
+              "name": "end_line: 37"
+            },
+            {
+              "name": "body_start: 35"
+            },
+            {
+              "name": "body_end: 37"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   dbIdentityCard . searchIdentityCardByOwner ( id ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"CIManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

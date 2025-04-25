@@ -1,0 +1,257 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"sort_agent_signals\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Sort agent signals in a consistent order.\""
+            },
+            {
+              "name": "body: \"def sort_agent_signals(signals):\\n    \\\"\\\"\\\"Sort agent signals in a consistent order.\\\"\\\"\\\"\\n    # Create order mapping from ANALYST_ORDER\\n    analyst_order = {display: idx for idx, (display, _) in enumerate(ANALYST_ORDER)}\\n    analyst_order[\\\"Risk Management\\\"] = len(ANALYST_ORDER)  # Add Risk Management at the end\\n\\n    return sorted(signals, key=lambda x: analyst_order.get(x[0], 999))\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 8"
+            },
+            {
+              "name": "end_line: 14"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"display.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"print_trading_output\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Print formatted trading results with colored tables for multiple tickers.\\n\\nArgs:\\n    result (dict): Dictionary containing decisions and analyst signals for multiple tickers\""
+            },
+            {
+              "name": "body: \"def print_trading_output(result: dict) -> None:\\n    \\\"\\\"\\\"\\n    Print formatted trading results with colored tables for multiple tickers.\\n\\n    Args:\\n        result (dict): Dictionary containing decisions and analyst signals for multiple tickers\\n    \\\"\\\"\\\"\\n    decisions = result.get(\\\"decisions\\\")\\n    if not decisions:\\n        print(f\\\"{Fore.RED}No trading decisions available{Style.RESET_ALL}\\\")\\n        return\\n\\n    # Print decisions for each ticker\\n    for ticker, decision in decisions.items():\\n        print(f\\\"\\\\n{Fore.WHITE}{Style.BRIGHT}Analysis for {Fore.CYAN}{ticker}{Style.RESET_ALL}\\\")\\n        print(f\\\"{Fore.WHITE}{Style.BRIGHT}{'=' * 50}{Style.RESET_ALL}\\\")\\n\\n        # Prepare analyst signals table for this ticker\\n        table_data = []\\n        for agent, signals in result.get(\\\"analyst_signals\\\", {}).items():\\n            if ticker not in signals:\\n                continue\\n                \\n            # Skip Risk Management agent in the signals section\\n            if agent == \\\"risk_management_agent\\\":\\n                continue\\n\\n            signal = signals[ticker]\\n            agent_name = agent.replace(\\\"_agent\\\", \\\"\\\").replace(\\\"_\\\", \\\" \\\").title()\\n            signal_type = signal.get(\\\"signal\\\", \\\"\\\").upper()\\n            confidence = signal.get(\\\"confidence\\\", 0)\\n\\n            signal_color = {\\n                \\\"BULLISH\\\": Fore.GREEN,\\n                \\\"BEARISH\\\": Fore.RED,\\n                \\\"NEUTRAL\\\": Fore.YELLOW,\\n            }.get(signal_type, Fore.WHITE)\\n            \\n            # Get reasoning if available\\n            reasoning_str = \\\"\\\"\\n            if \\\"reasoning\\\" in signal and signal[\\\"reasoning\\\"]:\\n                reasoning = signal[\\\"reasoning\\\"]\\n                \\n                # Handle different types of reasoning (string, dict, etc.)\\n                if isinstance(reasoning, str):\\n                    reasoning_str = reasoning\\n                elif isinstance(reasoning, dict):\\n                    # Convert dict to string representation\\n                    reasoning_str = json.dumps(reasoning, indent=2)\\n                else:\\n                    # Convert any other type to string\\n                    reasoning_str = str(reasoning)\\n                \\n                # Wrap long reasoning text to make it more readable\\n                wrapped_reasoning = \\\"\\\"\\n                current_line = \\\"\\\"\\n                # Use a fixed width of 60 characters to match the table column width\\n                max_line_length = 60\\n                for word in reasoning_str.split():\\n                    if len(current_line) + len(word) + 1 > max_line_length:\\n                        wrapped_reasoning += current_line + \\\"\\\\n\\\"\\n                        current_line = word\\n                    else:\\n                        if current_line:\\n                            current_line += \\\" \\\" + word\\n                        else:\\n                            current_line = word\\n                if current_line:\\n                    wrapped_reasoning += current_line\\n                \\n                reasoning_str = wrapped_reasoning\\n\\n            table_data.append(\\n                [\\n                    f\\\"{Fore.CYAN}{agent_name}{Style.RESET_ALL}\\\",\\n                    f\\\"{signal_color}{signal_type}{Style.RESET_ALL}\\\",\\n                    f\\\"{Fore.WHITE}{confidence}%{Style.RESET_ALL}\\\",\\n                    f\\\"{Fore.WHITE}{reasoning_str}{Style.RESET_ALL}\\\",\\n                ]\\n            )\\n\\n        # Sort the signals according to the predefined order\\n        table_data = sort_agent_signals(table_data)\\n\\n        print(f\\\"\\\\n{Fore.WHITE}{Style.BRIGHT}AGENT ANALYSIS:{Style.RESET_ALL} [{Fore.CYAN}{ticker}{Style.RESET_ALL}]\\\")\\n        print(\\n            tabulate(\\n                table_data,\\n                headers=[f\\\"{Fore.WHITE}Agent\\\", \\\"Signal\\\", \\\"Confidence\\\", \\\"Reasoning\\\"],\\n                tablefmt=\\\"grid\\\",\\n                colalign=(\\\"left\\\", \\\"center\\\", \\\"right\\\", \\\"left\\\"),\\n            )\\n        )\\n\\n        # Print Trading Decision Table\\n        action = decision.get(\\\"action\\\", \\\"\\\").upper()\\n        action_color = {\\n            \\\"BUY\\\": Fore.GREEN,\\n            \\\"SELL\\\": Fore.RED,\\n            \\\"HOLD\\\": Fore.YELLOW,\\n            \\\"COVER\\\": Fore.GREEN,\\n            \\\"SHORT\\\": Fore.RED,\\n        }.get(action, Fore.WHITE)\\n\\n        # Get reasoning and format it\\n        reasoning = decision.get(\\\"reasoning\\\", \\\"\\\")\\n        # Wrap long reasoning text to make it more readable\\n        wrapped_reasoning = \\\"\\\"\\n        if reasoning:\\n            current_line = \\\"\\\"\\n            # Use a fixed width of 60 characters to match the table column width\\n            max_line_length = 60\\n            for word in reasoning.split():\\n                if len(current_line) + len(word) + 1 > max_line_length:\\n                    wrapped_reasoning += current_line + \\\"\\\\n\\\"\\n                    current_line = word\\n                else:\\n                    if current_line:\\n                        current_line += \\\" \\\" + word\\n                    else:\\n                        current_line = word\\n            if current_line:\\n                wrapped_reasoning += current_line\\n\\n        decision_data = [\\n            [\\\"Action\\\", f\\\"{action_color}{action}{Style.RESET_ALL}\\\"],\\n            [\\\"Quantity\\\", f\\\"{action_color}{decision.get('quantity')}{Style.RESET_ALL}\\\"],\\n            [\\n                \\\"Confidence\\\",\\n                f\\\"{Fore.WHITE}{decision.get('confidence'):.1f}%{Style.RESET_ALL}\\\",\\n            ],\\n            [\\\"Reasoning\\\", f\\\"{Fore.WHITE}{wrapped_reasoning}{Style.RESET_ALL}\\\"],\\n        ]\\n        \\n        print(f\\\"\\\\n{Fore.WHITE}{Style.BRIGHT}TRADING DECISION:{Style.RESET_ALL} [{Fore.CYAN}{ticker}{Style.RESET_ALL}]\\\")\\n        print(tabulate(decision_data, tablefmt=\\\"grid\\\", colalign=(\\\"left\\\", \\\"left\\\")))\\n\\n    # Print Portfolio Summary\\n    print(f\\\"\\\\n{Fore.WHITE}{Style.BRIGHT}PORTFOLIO SUMMARY:{Style.RESET_ALL}\\\")\\n    portfolio_data = []\\n    \\n    # Extract portfolio manager reasoning (common for all tickers)\\n    portfolio_manager_reasoning = None\\n    for ticker, decision in decisions.items():\\n        if decision.get(\\\"reasoning\\\"):\\n            portfolio_manager_reasoning = decision.get(\\\"reasoning\\\")\\n            break\\n            \\n    for ticker, decision in decisions.items():\\n        action = decision.get(\\\"action\\\", \\\"\\\").upper()\\n        action_color = {\\n            \\\"BUY\\\": Fore.GREEN,\\n            \\\"SELL\\\": Fore.RED,\\n            \\\"HOLD\\\": Fore.YELLOW,\\n            \\\"COVER\\\": Fore.GREEN,\\n            \\\"SHORT\\\": Fore.RED,\\n        }.get(action, Fore.WHITE)\\n        portfolio_data.append(\\n            [\\n                f\\\"{Fore.CYAN}{ticker}{Style.RESET_ALL}\\\",\\n                f\\\"{action_color}{action}{Style.RESET_ALL}\\\",\\n                f\\\"{action_color}{decision.get('quantity')}{Style.RESET_ALL}\\\",\\n                f\\\"{Fore.WHITE}{decision.get('confidence'):.1f}%{Style.RESET_ALL}\\\",\\n            ]\\n        )\\n\\n    headers = [f\\\"{Fore.WHITE}Ticker\\\", \\\"Action\\\", \\\"Quantity\\\", \\\"Confidence\\\"]\\n    \\n    # Print the portfolio summary table\\n    print(\\n        tabulate(\\n            portfolio_data,\\n            headers=headers,\\n            tablefmt=\\\"grid\\\",\\n            colalign=(\\\"left\\\", \\\"center\\\", \\\"right\\\", \\\"right\\\"),\\n        )\\n    )\\n    \\n    # Print Portfolio Manager's reasoning if available\\n    if portfolio_manager_reasoning:\\n        # Handle different types of reasoning (string, dict, etc.)\\n        reasoning_str = \\\"\\\"\\n        if isinstance(portfolio_manager_reasoning, str):\\n            reasoning_str = portfolio_manager_reasoning\\n        elif isinstance(portfolio_manager_reasoning, dict):\\n            # Convert dict to string representation\\n            reasoning_str = json.dumps(portfolio_manager_reasoning, indent=2)\\n        else:\\n            # Convert any other type to string\\n            reasoning_str = str(portfolio_manager_reasoning)\\n            \\n        # Wrap long reasoning text to make it more readable\\n        wrapped_reasoning = \\\"\\\"\\n        current_line = \\\"\\\"\\n        # Use a fixed width of 60 characters to match the table column width\\n        max_line_length = 60\\n        for word in reasoning_str.split():\\n            if len(current_line) + len(word) + 1 > max_line_length:\\n                wrapped_reasoning += current_line + \\\"\\\\n\\\"\\n                current_line = word\\n            else:\\n                if current_line:\\n                    current_line += \\\" \\\" + word\\n                else:\\n                    current_line = word\\n        if current_line:\\n            wrapped_reasoning += current_line\\n            \\n        print(f\\\"\\\\n{Fore.WHITE}{Style.BRIGHT}Portfolio Strategy:{Style.RESET_ALL}\\\")\\n        print(f\\\"{Fore.CYAN}{wrapped_reasoning}{Style.RESET_ALL}\\\")\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 17"
+            },
+            {
+              "name": "end_line: 226"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"display.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"print_backtest_results\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Print the backtest results in a nicely formatted table\""
+            },
+            {
+              "name": "body: \"def print_backtest_results(table_rows: list) -> None:\\n    \\\"\\\"\\\"Print the backtest results in a nicely formatted table\\\"\\\"\\\"\\n    # Clear the screen\\n    os.system(\\\"cls\\\" if os.name == \\\"nt\\\" else \\\"clear\\\")\\n\\n    # Split rows into ticker rows and summary rows\\n    ticker_rows = []\\n    summary_rows = []\\n\\n    for row in table_rows:\\n        if isinstance(row[1], str) and \\\"PORTFOLIO SUMMARY\\\" in row[1]:\\n            summary_rows.append(row)\\n        else:\\n            ticker_rows.append(row)\\n\\n    \\n    # Display latest portfolio summary\\n    if summary_rows:\\n        latest_summary = summary_rows[-1]\\n        print(f\\\"\\\\n{Fore.WHITE}{Style.BRIGHT}PORTFOLIO SUMMARY:{Style.RESET_ALL}\\\")\\n\\n        # Extract values and remove commas before converting to float\\n        cash_str = latest_summary[7].split(\\\"$\\\")[1].split(Style.RESET_ALL)[0].replace(\\\",\\\", \\\"\\\")\\n        position_str = latest_summary[6].split(\\\"$\\\")[1].split(Style.RESET_ALL)[0].replace(\\\",\\\", \\\"\\\")\\n        total_str = latest_summary[8].split(\\\"$\\\")[1].split(Style.RESET_ALL)[0].replace(\\\",\\\", \\\"\\\")\\n\\n        print(f\\\"Cash Balance: {Fore.CYAN}${float(cash_str):,.2f}{Style.RESET_ALL}\\\")\\n        print(f\\\"Total Position Value: {Fore.YELLOW}${float(position_str):,.2f}{Style.RESET_ALL}\\\")\\n        print(f\\\"Total Value: {Fore.WHITE}${float(total_str):,.2f}{Style.RESET_ALL}\\\")\\n        print(f\\\"Return: {latest_summary[9]}\\\")\\n        \\n        # Display performance metrics if available\\n        if latest_summary[10]:  # Sharpe ratio\\n            print(f\\\"Sharpe Ratio: {latest_summary[10]}\\\")\\n        if latest_summary[11]:  # Sortino ratio\\n            print(f\\\"Sortino Ratio: {latest_summary[11]}\\\")\\n        if latest_summary[12]:  # Max drawdown\\n            print(f\\\"Max Drawdown: {latest_summary[12]}\\\")\\n\\n    # Add vertical spacing\\n    print(\\\"\\\\n\\\" * 2)\\n\\n    # Print the table with just ticker rows\\n    print(\\n        tabulate(\\n            ticker_rows,\\n            headers=[\\n                \\\"Date\\\",\\n                \\\"Ticker\\\",\\n                \\\"Action\\\",\\n                \\\"Quantity\\\",\\n                \\\"Price\\\",\\n                \\\"Shares\\\",\\n                \\\"Position Value\\\",\\n                \\\"Bullish\\\",\\n                \\\"Bearish\\\",\\n                \\\"Neutral\\\",\\n            ],\\n            tablefmt=\\\"grid\\\",\\n            colalign=(\\n                \\\"left\\\",  # Date\\n                \\\"left\\\",  # Ticker\\n                \\\"center\\\",  # Action\\n                \\\"right\\\",  # Quantity\\n                \\\"right\\\",  # Price\\n                \\\"right\\\",  # Shares\\n                \\\"right\\\",  # Position Value\\n                \\\"right\\\",  # Bullish\\n                \\\"right\\\",  # Bearish\\n                \\\"right\\\",  # Neutral\\n            ),\\n        )\\n    )\\n\\n    # Add vertical spacing\\n    print(\\\"\\\\n\\\" * 4)\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 229"
+            },
+            {
+              "name": "end_line: 304"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"display.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"format_backtest_row\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                },
+                {
+                  "name": "parameters[3]"
+                },
+                {
+                  "name": "parameters[4]"
+                },
+                {
+                  "name": "parameters[5]"
+                },
+                {
+                  "name": "parameters[6]"
+                },
+                {
+                  "name": "parameters[7]"
+                },
+                {
+                  "name": "parameters[8]"
+                },
+                {
+                  "name": "parameters[9]"
+                },
+                {
+                  "name": "parameters[10]"
+                },
+                {
+                  "name": "parameters[11]"
+                },
+                {
+                  "name": "parameters[12]"
+                },
+                {
+                  "name": "parameters[13]"
+                },
+                {
+                  "name": "parameters[14]"
+                },
+                {
+                  "name": "parameters[15]"
+                },
+                {
+                  "name": "parameters[16]"
+                },
+                {
+                  "name": "parameters[17]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Format a row for the backtest results table\""
+            },
+            {
+              "name": "body: \"def format_backtest_row(\\n    date: str,\\n    ticker: str,\\n    action: str,\\n    quantity: float,\\n    price: float,\\n    shares_owned: float,\\n    position_value: float,\\n    bullish_count: int,\\n    bearish_count: int,\\n    neutral_count: int,\\n    is_summary: bool = False,\\n    total_value: float = None,\\n    return_pct: float = None,\\n    cash_balance: float = None,\\n    total_position_value: float = None,\\n    sharpe_ratio: float = None,\\n    sortino_ratio: float = None,\\n    max_drawdown: float = None,\\n) -> list[any]:\\n    \\\"\\\"\\\"Format a row for the backtest results table\\\"\\\"\\\"\\n    # Color the action\\n    action_color = {\\n        \\\"BUY\\\": Fore.GREEN,\\n        \\\"COVER\\\": Fore.GREEN,\\n        \\\"SELL\\\": Fore.RED,\\n        \\\"SHORT\\\": Fore.RED,\\n        \\\"HOLD\\\": Fore.WHITE,\\n    }.get(action.upper(), Fore.WHITE)\\n\\n    if is_summary:\\n        return_color = Fore.GREEN if return_pct >= 0 else Fore.RED\\n        return [\\n            date,\\n            f\\\"{Fore.WHITE}{Style.BRIGHT}PORTFOLIO SUMMARY{Style.RESET_ALL}\\\",\\n            \\\"\\\",  # Action\\n            \\\"\\\",  # Quantity\\n            \\\"\\\",  # Price\\n            \\\"\\\",  # Shares\\n            f\\\"{Fore.YELLOW}${total_position_value:,.2f}{Style.RESET_ALL}\\\",  # Total Position Value\\n            f\\\"{Fore.CYAN}${cash_balance:,.2f}{Style.RESET_ALL}\\\",  # Cash Balance\\n            f\\\"{Fore.WHITE}${total_value:,.2f}{Style.RESET_ALL}\\\",  # Total Value\\n            f\\\"{return_color}{return_pct:+.2f}%{Style.RESET_ALL}\\\",  # Return\\n            f\\\"{Fore.YELLOW}{sharpe_ratio:.2f}{Style.RESET_ALL}\\\" if sharpe_ratio is not None else \\\"\\\",  # Sharpe Ratio\\n            f\\\"{Fore.YELLOW}{sortino_ratio:.2f}{Style.RESET_ALL}\\\" if sortino_ratio is not None else \\\"\\\",  # Sortino Ratio\\n            f\\\"{Fore.RED}{abs(max_drawdown):.2f}%{Style.RESET_ALL}\\\" if max_drawdown is not None else \\\"\\\",  # Max Drawdown\\n        ]\\n    else:\\n        return [\\n            date,\\n            f\\\"{Fore.CYAN}{ticker}{Style.RESET_ALL}\\\",\\n            f\\\"{action_color}{action.upper()}{Style.RESET_ALL}\\\",\\n            f\\\"{action_color}{quantity:,.0f}{Style.RESET_ALL}\\\",\\n            f\\\"{Fore.WHITE}{price:,.2f}{Style.RESET_ALL}\\\",\\n            f\\\"{Fore.WHITE}{shares_owned:,.0f}{Style.RESET_ALL}\\\",\\n            f\\\"{Fore.YELLOW}{position_value:,.2f}{Style.RESET_ALL}\\\",\\n            f\\\"{Fore.GREEN}{bullish_count}{Style.RESET_ALL}\\\",\\n            f\\\"{Fore.RED}{bearish_count}{Style.RESET_ALL}\\\",\\n            f\\\"{Fore.BLUE}{neutral_count}{Style.RESET_ALL}\\\",\\n        ]\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 307"
+            },
+            {
+              "name": "end_line: 366"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"display.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

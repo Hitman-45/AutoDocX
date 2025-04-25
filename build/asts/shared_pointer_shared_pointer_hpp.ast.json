@@ -1,0 +1,562 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"operator=\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"SharedPointer<T> &\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"template <typename T>\\nSharedPointer<T> &SharedPointer<T>::operator=(const SharedPointer<T> &other) noexcept\\n{\\n    CopyNSwap(other);\\n    return (*this);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 81"
+            },
+            {
+              "name": "end_line: 86"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer.hpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"operator*\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"T &\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"template <typename T>\\nT &SharedPointer<T>::operator*() const\\n{\\n    return (*m_pointer);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 94"
+            },
+            {
+              "name": "end_line: 98"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer.hpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"operator->\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"T *\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"template <typename T>\\nT *SharedPointer<T>::operator->() const\\n{\\n    return (m_pointer);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 100"
+            },
+            {
+              "name": "end_line: 104"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer.hpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"GetPointer\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"T *\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"template <typename T>\\nT *SharedPointer<T>::GetPointer() const noexcept\\n{\\n    return (m_pointer);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 106"
+            },
+            {
+              "name": "end_line: 110"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer.hpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"Swap\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"template <typename T>\\nvoid SharedPointer<T>::Swap(SharedPointer<T> &cpy)\\n{\\n    std::size_t *tmp_counter = m_counter;\\n    m_counter = cpy.m_counter;\\n    cpy.m_counter = tmp_counter;\\n\\n    T *tmp_pointer = m_pointer;\\n    m_pointer = cpy.m_pointer;\\n    cpy.m_pointer = tmp_pointer;\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"private\""
+            },
+            {
+              "name": "start_line: 128"
+            },
+            {
+              "name": "end_line: 138"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer.hpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"CopyNSwap\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"template <typename T>\\nvoid SharedPointer<T>::CopyNSwap(const SharedPointer<T> &other)\\n{\\n    SharedPointer<T> cpy(other);\\n    Swap(cpy);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"private\""
+            },
+            {
+              "name": "start_line: 140"
+            },
+            {
+              "name": "end_line: 145"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer.hpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"SetCounter\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"std::size_t *\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"template <typename T>\\nstd::size_t *SharedPointer<T>::SetCounter(void)\\n{\\n    try\\n    {\\n        m_counter = new std::size_t(1);\\n    }\\n    catch(const std::bad_alloc& b)\\n    {\\n        DeleteResources();\\n        throw(b);\\n    }\\n    \\n    return (m_counter);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"private\""
+            },
+            {
+              "name": "start_line: 147"
+            },
+            {
+              "name": "end_line: 161"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer.hpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"IsShared\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"bool\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"template <typename T>\\nbool SharedPointer<T>::IsShared(void)\\n{\\n    return (0 != *m_counter);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"private\""
+            },
+            {
+              "name": "start_line: 163"
+            },
+            {
+              "name": "end_line: 167"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer.hpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[8]",
+          "children": [
+            {
+              "name": "function_name: \"DecCounter\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"template <typename T>\\nvoid SharedPointer<T>::DecCounter(void)\\n{\\n    --(*m_counter);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"private\""
+            },
+            {
+              "name": "start_line: 169"
+            },
+            {
+              "name": "end_line: 173"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer.hpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[9]",
+          "children": [
+            {
+              "name": "function_name: \"IncCounter\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"template <typename T>\\nvoid SharedPointer<T>::IncCounter(void)\\n{\\n    ++(*m_counter);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"private\""
+            },
+            {
+              "name": "start_line: 175"
+            },
+            {
+              "name": "end_line: 179"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer.hpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[10]",
+          "children": [
+            {
+              "name": "function_name: \"Deallocate\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"template <typename T>\\nvoid SharedPointer<T>::Deallocate(void)\\n{\\n    DecCounter();\\n    if(!IsShared())\\n    {\\n        DeleteResources();\\n    }\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"private\""
+            },
+            {
+              "name": "start_line: 181"
+            },
+            {
+              "name": "end_line: 189"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer.hpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        },
+        {
+          "name": "functions[11]",
+          "children": [
+            {
+              "name": "function_name: \"DeleteResources\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"template <typename T>\\nvoid SharedPointer<T>::DeleteResources(void)\\n{\\n    delete (m_pointer);\\n    m_pointer = nullptr;\\n    delete (m_counter);\\n    m_counter = nullptr;\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"private\""
+            },
+            {
+              "name": "start_line: 191"
+            },
+            {
+              "name": "end_line: 198"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"shared_pointer/shared_pointer.hpp\""
+            },
+            {
+              "name": "folder: \"shared_pointer\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

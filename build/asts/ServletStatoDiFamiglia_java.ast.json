@@ -1,0 +1,56 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"doGet\""
+            },
+            {
+              "name": "parameters: \"(HttpServletRequestrequest,HttpServletResponseresponse)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 24"
+            },
+            {
+              "name": "end_line: 48"
+            },
+            {
+              "name": "body_start: 25"
+            },
+            {
+              "name": "body_end: 48"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     int   id   =   Integer . parseInt ( request . getParameter ( \\\"id\\\" ) ) ; \\n     //int id = 200101; \\n\\n     HttpSession   session   =   request . getSession ( true ) ; \\n     ArrayList < Citizen >   arrayList   =   null ; \\n     //Request ric = null; \\n\\n     try   { \\n       DbFamily   dbnc   =   new   DbFamily ( ) ; \\n       arrayList   =   ( ArrayList < Citizen > )   dbnc . getFamilyStatus ( id ) ; \\n       for   ( int   i   =   0 ;   i   <   arrayList . size ( ) ;   i ++ )   { \\n         System . out . println ( arrayList . get ( i ) . getName ( ) ) ; \\n       } \\n       session . setAttribute ( \\\"array\\\" ,   arrayList ) ; \\n     }   catch   ( Exception   e )   { \\n       //e.getMessage().toString(); \\n       e . printStackTrace ( ) ; \\n     } \\n\\n     ServletContext   sc   =   getServletContext ( ) ; \\n     RequestDispatcher   rd   =   sc . getRequestDispatcher ( \\\"/user/home.jsp?func=serv&page=state_famiglia\\\" ) ; \\n     rd . forward ( request ,   response ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletStatoDiFamiglia.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

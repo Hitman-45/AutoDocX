@@ -1,0 +1,788 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"operator=\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"RCString &\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"RCString& RCString::operator=(const RCString& other_)\\n{\\n    if(this != &other_)\\n    {\\n        ReleaseData();\\n        m_data = other_.m_data;\\n        ++(m_data->counter);\\n    }\\n\\n    return (*this);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 45"
+            },
+            {
+              "name": "end_line: 55"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"Length\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"size_t\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"size_t RCString::Length() const\\n{\\n    return (std::strlen(m_data->str));\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 62"
+            },
+            {
+              "name": "end_line: 65"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"IsShared\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"bool\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"bool RCString::IsShared() const\\n{\\n    return (m_data->counter > 1);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 67"
+            },
+            {
+              "name": "end_line: 70"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"ToCstr\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"const char *\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"const char *RCString::ToCstr() const\\n{\\n    return (m_data->str);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 72"
+            },
+            {
+              "name": "end_line: 75"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"SetData\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"Data_t *\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"Data_t *RCString::SetData(const char *str)\\n{\\n    std::size_t size = sizeof(Data_t) + std::strlen(str) + 1;\\n\\n    try\\n    {\\n        m_data = reinterpret_cast<Data_t *>(new char[size]);\\n        m_data->str = reinterpret_cast<char *>(m_data + 1);\\n        std::strcpy(m_data->str, str);\\n        m_data->counter = 1;\\n    }\\n    catch(std::bad_alloc& alloc_err)\\n    {\\n        DeAllocate();\\n        throw(alloc_err);\\n    }\\n\\n    return m_data;\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"private\""
+            },
+            {
+              "name": "start_line: 77"
+            },
+            {
+              "name": "end_line: 95"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"DeAllocate\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void RCString::DeAllocate(void)\\n{\\n    delete[] (m_data);\\n    m_data = NULL;\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"private\""
+            },
+            {
+              "name": "start_line: 97"
+            },
+            {
+              "name": "end_line: 101"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"DetachData\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void RCString::DetachData(void)\\n{\\n    if(IsShared() && --(m_data->counter))\\n        SetData(this->ToCstr());\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"private\""
+            },
+            {
+              "name": "start_line: 103"
+            },
+            {
+              "name": "end_line: 107"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"ReleaseData\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"void RCString::ReleaseData(void)\\n{\\n    if(0 == --(m_data->counter))\\n        DeAllocate();\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"private\""
+            },
+            {
+              "name": "start_line: 109"
+            },
+            {
+              "name": "end_line: 113"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[8]",
+          "children": [
+            {
+              "name": "function_name: \"operator[]\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"char &\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"char& RCString::operator[](size_t index) throw(std::bad_alloc)\\n{\\n    DetachData();\\n    return (m_data->str[index]);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 115"
+            },
+            {
+              "name": "end_line: 119"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[9]",
+          "children": [
+            {
+              "name": "function_name: \"operator[]\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"char\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"char RCString::operator[](size_t index) const\\n{\\n    return (m_data->str[index]);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 121"
+            },
+            {
+              "name": "end_line: 124"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[10]",
+          "children": [
+            {
+              "name": "function_name: \"operator<<\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"std::ostream &\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"std::ostream &operator<<(std::ostream &stream, const RCString &str)\\n{\\n    return (stream << str.ToCstr());\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 126"
+            },
+            {
+              "name": "end_line: 129"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[11]",
+          "children": [
+            {
+              "name": "function_name: \"operator>>\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"std::istream &\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"std::istream &operator>>(std::istream &stream, RCString &str)\\n{\\n    const size_t bufSiz = 1024;\\n    char buffer[bufSiz] = {0};\\n    stream.getline(buffer, bufSiz);\\n    str = buffer;\\n    return (stream);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 131"
+            },
+            {
+              "name": "end_line: 138"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[12]",
+          "children": [
+            {
+              "name": "function_name: \"operator>\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"bool\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"bool operator>(const RCString &str1 ,const RCString &str2)\\n{\\n    return (0 < std::strcmp(str1.ToCstr(), str2.ToCstr()));\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 140"
+            },
+            {
+              "name": "end_line: 143"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[13]",
+          "children": [
+            {
+              "name": "function_name: \"operator<\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"bool\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"bool operator<(const RCString &str1 ,const RCString &str2)\\n{\\n    return (0 > std::strcmp(str1.ToCstr(), str2.ToCstr()));\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 145"
+            },
+            {
+              "name": "end_line: 148"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[14]",
+          "children": [
+            {
+              "name": "function_name: \"operator==\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"bool\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"bool operator==(const RCString &str1 ,const RCString &str2)\\n{\\n    return (0 == std::strcmp(str1.ToCstr(), str2.ToCstr()));\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 150"
+            },
+            {
+              "name": "end_line: 153"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        },
+        {
+          "name": "functions[15]",
+          "children": [
+            {
+              "name": "function_name: \"operator!=\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type: \"bool\""
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"bool operator!=(const RCString &lhs ,const RCString &rhs)\\n{\\n    return !(lhs == rhs);\\n}\\n\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 155"
+            },
+            {
+              "name": "end_line: 158"
+            },
+            {
+              "name": "language: \"C++\""
+            },
+            {
+              "name": "file_path: \"rcstring/rcstring.cpp\""
+            },
+            {
+              "name": "folder: \"rcstring\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

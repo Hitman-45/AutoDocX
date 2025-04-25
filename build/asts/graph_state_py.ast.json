@@ -1,0 +1,163 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"merge_dicts\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def merge_dicts(a: dict[str, any], b: dict[str, any]) -> dict[str, any]:\\n    return {**a, **b}\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 10"
+            },
+            {
+              "name": "end_line: 11"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"graph/state.py\""
+            },
+            {
+              "name": "folder: \"graph\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"show_agent_reasoning\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def show_agent_reasoning(output, agent_name):\\n    print(f\\\"\\\\n{'=' * 10} {agent_name.center(28)} {'=' * 10}\\\")\\n\\n    def convert_to_serializable(obj):\\n        if hasattr(obj, \\\"to_dict\\\"):  # Handle Pandas Series/DataFrame\\n            return obj.to_dict()\\n        elif hasattr(obj, \\\"__dict__\\\"):  # Handle custom objects\\n            return obj.__dict__\\n        elif isinstance(obj, (int, float, bool, str)):\\n            return obj\\n        elif isinstance(obj, (list, tuple)):\\n            return [convert_to_serializable(item) for item in obj]\\n        elif isinstance(obj, dict):\\n            return {key: convert_to_serializable(value) for key, value in obj.items()}\\n        else:\\n            return str(obj)  # Fallback to string representation\\n\\n    if isinstance(output, (dict, list)):\\n        # Convert the output to JSON-serializable format\\n        serializable_output = convert_to_serializable(output)\\n        print(json.dumps(serializable_output, indent=2))\\n    else:\\n        try:\\n            # Parse the string as JSON and pretty print it\\n            parsed_output = json.loads(output)\\n            print(json.dumps(parsed_output, indent=2))\\n        except json.JSONDecodeError:\\n            # Fallback to original string if not valid JSON\\n            print(output)\\n\\n    print(\\\"=\\\" * 48)\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 21"
+            },
+            {
+              "name": "end_line: 51"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"graph/state.py\""
+            },
+            {
+              "name": "folder: \"graph\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"convert_to_serializable\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def convert_to_serializable(obj):\\n        if hasattr(obj, \\\"to_dict\\\"):  # Handle Pandas Series/DataFrame\\n            return obj.to_dict()\\n        elif hasattr(obj, \\\"__dict__\\\"):  # Handle custom objects\\n            return obj.__dict__\\n        elif isinstance(obj, (int, float, bool, str)):\\n            return obj\\n        elif isinstance(obj, (list, tuple)):\\n            return [convert_to_serializable(item) for item in obj]\\n        elif isinstance(obj, dict):\\n            return {key: convert_to_serializable(value) for key, value in obj.items()}\\n        else:\\n            return str(obj)\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 24"
+            },
+            {
+              "name": "end_line: 36"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"graph/state.py\""
+            },
+            {
+              "name": "folder: \"graph\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

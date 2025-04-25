@@ -1,0 +1,62 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"save_graph_as_png\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def save_graph_as_png(app: CompiledGraph, output_file_path) -> None:\\n    png_image = app.get_graph().draw_mermaid_png(draw_method=MermaidDrawMethod.API)\\n    file_path = output_file_path if len(output_file_path) > 0 else \\\"graph.png\\\"\\n    with open(file_path, \\\"wb\\\") as f:\\n        f.write(png_image)\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 5"
+            },
+            {
+              "name": "end_line: 9"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"visualize.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

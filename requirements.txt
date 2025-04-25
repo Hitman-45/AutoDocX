@@ -5,4 +5,5 @@ javalang==0.13.0
 libclang==18.1.1
 python-dotenv==1.1.0
 six==1.17.0
+esprima==4.0.1
 tree-sitter==0.24.0

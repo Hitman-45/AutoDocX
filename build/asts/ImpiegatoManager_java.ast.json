@@ -1,0 +1,332 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"modifyEmployee\""
+            },
+            {
+              "name": "parameters: \"(Stringnumber,EmployeenewEmployee)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 34"
+            },
+            {
+              "name": "end_line: 36"
+            },
+            {
+              "name": "body_start: 34"
+            },
+            {
+              "name": "body_end: 36"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   dbEmployee . modifyEmployee ( number ,   newEmployee ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ImpiegatoManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"searchEmployeeByNumber\""
+            },
+            {
+              "name": "parameters: \"(Stringnumber)\""
+            },
+            {
+              "name": "return_type: \"Employee\""
+            },
+            {
+              "name": "start_line: 46"
+            },
+            {
+              "name": "end_line: 48"
+            },
+            {
+              "name": "body_start: 46"
+            },
+            {
+              "name": "body_end: 48"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   dbEmployee . getEmployeeByNumber ( number ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ImpiegatoManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"insertEmployee\""
+            },
+            {
+              "name": "parameters: \"(EmployeenewEmployee)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 58"
+            },
+            {
+              "name": "end_line: 60"
+            },
+            {
+              "name": "body_start: 58"
+            },
+            {
+              "name": "body_end: 60"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   dbEmployee . insertEmployee ( newEmployee ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ImpiegatoManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"deleteEmployee\""
+            },
+            {
+              "name": "parameters: \"(Stringnumber)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 70"
+            },
+            {
+              "name": "end_line: 72"
+            },
+            {
+              "name": "body_start: 70"
+            },
+            {
+              "name": "body_end: 72"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   dbEmployee . deleteEmployee ( number ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ImpiegatoManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"getEmployeeByLogin\""
+            },
+            {
+              "name": "parameters: \"(Stringlogin)\""
+            },
+            {
+              "name": "return_type: \"Employee\""
+            },
+            {
+              "name": "start_line: 82"
+            },
+            {
+              "name": "end_line: 84"
+            },
+            {
+              "name": "body_start: 82"
+            },
+            {
+              "name": "body_end: 84"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   dbEmployee . getEmployeeByLogin ( login ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ImpiegatoManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"getEmployeeByName\""
+            },
+            {
+              "name": "parameters: \"(StringnameImp,StringsurnameImp)\""
+            },
+            {
+              "name": "return_type: \"Collection<Employee>\""
+            },
+            {
+              "name": "start_line: 96"
+            },
+            {
+              "name": "end_line: 99"
+            },
+            {
+              "name": "body_start: 97"
+            },
+            {
+              "name": "body_end: 99"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   dbEmployee . getEmployeeByName ( nameImp ,   surnameImp ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ImpiegatoManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"getEmployees\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"Collection<Employee>\""
+            },
+            {
+              "name": "start_line: 107"
+            },
+            {
+              "name": "end_line: 109"
+            },
+            {
+              "name": "body_start: 107"
+            },
+            {
+              "name": "body_end: 109"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   dbEmployee . getEmployees ( ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ImpiegatoManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

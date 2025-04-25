@@ -1,0 +1,56 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"doPost\""
+            },
+            {
+              "name": "parameters: \"(HttpServletRequestrequest,HttpServletResponseresponse)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 25"
+            },
+            {
+              "name": "end_line: 56"
+            },
+            {
+              "name": "body_start: 26"
+            },
+            {
+              "name": "body_end: 56"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     HttpSession   session   =   request . getSession ( ) ; \\n     if   ( session   !=   null )   { \\n       ServletContext   sc   =   getServletContext ( ) ; \\n       RequestDispatcher   rd   =   null ; \\n       String   ris ; \\n       try   { \\n         String   number   =   request . getParameter ( \\\"number\\\" ) ; \\n         AdminManager   AdM   =   new   AdminManager ( ) ; \\n         Administrator   A   =   AdM . searchAdminByNumber ( number ) ; \\n\\n         if   ( A   !=   null )   { \\n           request . setAttribute ( \\\"ris\\\" ,   A ) ; \\n           rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=mostra&page=datiA\\\" ) ; \\n         }   else   { \\n           ris   =   \\\"Administrator non trovato\\\" ; \\n           request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n           rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n         } \\n         rd . forward ( request ,   response ) ; \\n       }   catch   ( DbException   e )   { \\n         ris   =   e . getMessage ( ) ; \\n         request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n         rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n         rd . forward ( request ,   response ) ; \\n       } \\n     }   else   { \\n       String   url   =   \\\"/myDoc/workers/Access.jsp\\\" ; \\n       response . sendRedirect ( url ) ; \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletRicercaAmministratore.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

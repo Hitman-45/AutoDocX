@@ -1,0 +1,313 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"__init__\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"AgentProgress\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def __init__(self):\\n        self.agent_status: Dict[str, Dict[str, str]] = {}\\n        self.table = Table(show_header=False, box=None, padding=(0, 1))\\n        self.live = Live(self.table, console=console, refresh_per_second=4)\\n        self.started = False\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 14"
+            },
+            {
+              "name": "end_line: 18"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"utils/progress.py\""
+            },
+            {
+              "name": "folder: \"utils\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"start\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"AgentProgress\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Start the progress display.\""
+            },
+            {
+              "name": "body: \"def start(self):\\n        \\\"\\\"\\\"Start the progress display.\\\"\\\"\\\"\\n        if not self.started:\\n            self.live.start()\\n            self.started = True\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 20"
+            },
+            {
+              "name": "end_line: 24"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"utils/progress.py\""
+            },
+            {
+              "name": "folder: \"utils\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"stop\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"AgentProgress\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Stop the progress display.\""
+            },
+            {
+              "name": "body: \"def stop(self):\\n        \\\"\\\"\\\"Stop the progress display.\\\"\\\"\\\"\\n        if self.started:\\n            self.live.stop()\\n            self.started = False\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 26"
+            },
+            {
+              "name": "end_line: 30"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"utils/progress.py\""
+            },
+            {
+              "name": "folder: \"utils\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"update_status\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                },
+                {
+                  "name": "parameters[3]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"AgentProgress\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Update the status of an agent.\""
+            },
+            {
+              "name": "body: \"def update_status(self, agent_name: str, ticker: Optional[str] = None, status: str = \\\"\\\"):\\n        \\\"\\\"\\\"Update the status of an agent.\\\"\\\"\\\"\\n        if agent_name not in self.agent_status:\\n            self.agent_status[agent_name] = {\\\"status\\\": \\\"\\\", \\\"ticker\\\": None}\\n\\n        if ticker:\\n            self.agent_status[agent_name][\\\"ticker\\\"] = ticker\\n        if status:\\n            self.agent_status[agent_name][\\\"status\\\"] = status\\n\\n        self._refresh_display()\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 32"
+            },
+            {
+              "name": "end_line: 42"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"utils/progress.py\""
+            },
+            {
+              "name": "folder: \"utils\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"_refresh_display\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"AgentProgress\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Refresh the progress display.\""
+            },
+            {
+              "name": "body: \"def _refresh_display(self):\\n        \\\"\\\"\\\"Refresh the progress display.\\\"\\\"\\\"\\n        self.table.columns.clear()\\n        self.table.add_column(width=100)\\n\\n        # Sort agents with Risk Management and Portfolio Management at the bottom\\n        def sort_key(item):\\n            agent_name = item[0]\\n            if \\\"risk_management\\\" in agent_name:\\n                return (2, agent_name)\\n            elif \\\"portfolio_management\\\" in agent_name:\\n                return (3, agent_name)\\n            else:\\n                return (1, agent_name)\\n\\n        for agent_name, info in sorted(self.agent_status.items(), key=sort_key):\\n            status = info[\\\"status\\\"]\\n            ticker = info[\\\"ticker\\\"]\\n\\n            # Create the status text with appropriate styling\\n            if status.lower() == \\\"done\\\":\\n                style = Style(color=\\\"green\\\", bold=True)\\n                symbol = \\\"✓\\\"\\n            elif status.lower() == \\\"error\\\":\\n                style = Style(color=\\\"red\\\", bold=True)\\n                symbol = \\\"✗\\\"\\n            else:\\n                style = Style(color=\\\"yellow\\\")\\n                symbol = \\\"⋯\\\"\\n\\n            agent_display = agent_name.replace(\\\"_agent\\\", \\\"\\\").replace(\\\"_\\\", \\\" \\\").title()\\n            status_text = Text()\\n            status_text.append(f\\\"{symbol} \\\", style=style)\\n            status_text.append(f\\\"{agent_display:<20}\\\", style=Style(bold=True))\\n\\n            if ticker:\\n                status_text.append(f\\\"[{ticker}] \\\", style=Style(color=\\\"cyan\\\"))\\n            status_text.append(status, style=style)\\n\\n            self.table.add_row(status_text)\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 44"
+            },
+            {
+              "name": "end_line: 83"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"utils/progress.py\""
+            },
+            {
+              "name": "folder: \"utils\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"sort_key\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def sort_key(item):\\n            agent_name = item[0]\\n            if \\\"risk_management\\\" in agent_name:\\n                return (2, agent_name)\\n            elif \\\"portfolio_management\\\" in agent_name:\\n                return (3, agent_name)\\n            else:\\n                return (1, agent_name)\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 50"
+            },
+            {
+              "name": "end_line: 57"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"utils/progress.py\""
+            },
+            {
+              "name": "folder: \"utils\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

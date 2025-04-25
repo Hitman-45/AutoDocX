@@ -1,0 +1,56 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"doPost\""
+            },
+            {
+              "name": "parameters: \"(HttpServletRequestrequest,HttpServletResponseresponse)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 34"
+            },
+            {
+              "name": "end_line: 83"
+            },
+            {
+              "name": "body_start: 35"
+            },
+            {
+              "name": "body_end: 83"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     HttpSession   session   =   request . getSession ( ) ; \\n\\n     if   ( session \\n         !=   null )   {    //Se la sessione + nulla effettua il redirect alla pagina di autenticazione \\n       ServletContext   sc   =   getServletContext ( ) ; \\n       RequestDispatcher   rd   =   null ; \\n       String   ris ; \\n       try   { \\n         name   =   request . getParameter ( \\\"name\\\" ) ; \\n         surname   =   request . getParameter ( \\\"surname\\\" ) ; \\n         email   =   request . getParameter ( \\\"email\\\" ) ; \\n         number   =   request . getParameter ( \\\"number\\\" ) ; \\n         login   =   request . getParameter ( \\\"login\\\" ) ; \\n         password   =   request . getParameter ( \\\"password\\\" ) ; \\n         type   =   request . getParameter ( \\\"type\\\" ) ; \\n\\n         AccessManager   AM   =   new   AccessManager ( ) ; \\n         AdminManager   AdM   =   new   AdminManager ( ) ; \\n\\n         Access   ac   =   new   Access ( login ,   password ,   type ) ; \\n         Administrator   am   =   new   Administrator ( name ,   surname ,   number ,   email ,   login ) ; \\n\\n         rd   =   null ; \\n         sc   =   getServletContext ( ) ; \\n\\n         if   ( AM . enterAccess ( ac )   &&   AdM . enterAdmin ( \\n             am ) )   {   //inserisco idati relativi all'access e all'administrator \\n           //controllando l'esito positivo \\n           ris   =   \\\"ok\\\" ; \\n           request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n           rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=riuscita\\\" ) ; \\n         }   else   { \\n           ris   =   \\\"fallita\\\" ; \\n           request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n           rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n         } \\n         rd . forward ( request ,   response ) ; \\n       }   catch   ( DbException   e )   { \\n         ris   =   e . getMessage ( ) ; \\n         request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n         rd   =   sc . getRequestDispatcher ( \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; \\n         rd . forward ( request ,   response ) ; \\n       } \\n     }   else   { \\n       String   url   =   \\\"/myDoc/workers/Access.jsp\\\" ; \\n       response . sendRedirect ( url ) ; \\n     } \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletInserisciAmministratore.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

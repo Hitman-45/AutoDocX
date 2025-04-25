@@ -1,0 +1,378 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"getIdFamily\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 41"
+            },
+            {
+              "name": "end_line: 43"
+            },
+            {
+              "name": "body_start: 41"
+            },
+            {
+              "name": "body_end: 43"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   idFamily ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"NucleoFamiliare.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"setIdFamily\""
+            },
+            {
+              "name": "parameters: \"(intstr)\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 50"
+            },
+            {
+              "name": "end_line: 53"
+            },
+            {
+              "name": "body_start: 50"
+            },
+            {
+              "name": "body_end: 53"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     idFamily   =   str ; \\n     return   idFamily ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"NucleoFamiliare.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"getCapoFamiglia\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 60"
+            },
+            {
+              "name": "end_line: 62"
+            },
+            {
+              "name": "body_start: 60"
+            },
+            {
+              "name": "body_end: 62"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   headOfFamily ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"NucleoFamiliare.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"setHeadOfFamily\""
+            },
+            {
+              "name": "parameters: \"(intstr)\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 69"
+            },
+            {
+              "name": "end_line: 72"
+            },
+            {
+              "name": "body_start: 69"
+            },
+            {
+              "name": "body_end: 72"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     headOfFamily   =   str ; \\n     return   headOfFamily ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"NucleoFamiliare.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"getNote\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 79"
+            },
+            {
+              "name": "end_line: 81"
+            },
+            {
+              "name": "body_start: 79"
+            },
+            {
+              "name": "body_end: 81"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   note ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"NucleoFamiliare.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"setNote\""
+            },
+            {
+              "name": "parameters: \"(Stringstr)\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 88"
+            },
+            {
+              "name": "end_line: 91"
+            },
+            {
+              "name": "body_start: 88"
+            },
+            {
+              "name": "body_end: 91"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     note   =   str ; \\n     return   note ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"NucleoFamiliare.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"getNComponents\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 98"
+            },
+            {
+              "name": "end_line: 100"
+            },
+            {
+              "name": "body_start: 98"
+            },
+            {
+              "name": "body_end: 100"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   nComponents ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"NucleoFamiliare.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"setNComponents\""
+            },
+            {
+              "name": "parameters: \"(intstr)\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 107"
+            },
+            {
+              "name": "end_line: 110"
+            },
+            {
+              "name": "body_start: 107"
+            },
+            {
+              "name": "body_end: 110"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     nComponents   =   str ; \\n     return   nComponents ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"NucleoFamiliare.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

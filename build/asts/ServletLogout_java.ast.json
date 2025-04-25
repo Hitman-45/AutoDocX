@@ -1,0 +1,56 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"doGet\""
+            },
+            {
+              "name": "parameters: \"(HttpServletRequestrequest,HttpServletResponseresponse)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 20"
+            },
+            {
+              "name": "end_line: 33"
+            },
+            {
+              "name": "body_start: 21"
+            },
+            {
+              "name": "body_end: 33"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     HttpSession   session   =   request . getSession ( ) ; \\n     String   url ; \\n     Citizen   c   =   ( Citizen )   session . getAttribute ( \\\"c\\\" ) ; \\n\\n     if   ( c   !=   null ) \\n       url   =   \\\"/myDoc/user/home.jsp\\\" ; \\n     else \\n       url   =   \\\"/myDoc/workers/Access.jsp\\\" ; \\n\\n     session . invalidate ( ) ; \\n     response . sendRedirect ( url ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletLogout.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

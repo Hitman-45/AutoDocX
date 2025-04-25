@@ -1,0 +1,697 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"get_cache\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Get the global cache instance.\""
+            },
+            {
+              "name": "body: \"def get_cache() -> Cache:\\n    \\\"\\\"\\\"Get the global cache instance.\\\"\\\"\\\"\\n    return _cache\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 69"
+            },
+            {
+              "name": "end_line: 71"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"cache.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"__init__\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Cache\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def __init__(self):\\n        self._prices_cache: dict[str, list[dict[str, any]]] = {}\\n        self._financial_metrics_cache: dict[str, list[dict[str, any]]] = {}\\n        self._line_items_cache: dict[str, list[dict[str, any]]] = {}\\n        self._insider_trades_cache: dict[str, list[dict[str, any]]] = {}\\n        self._company_news_cache: dict[str, list[dict[str, any]]] = {}\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 4"
+            },
+            {
+              "name": "end_line: 9"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"cache.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"_merge_data\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                },
+                {
+                  "name": "parameters[3]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Cache\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Merge existing and new data, avoiding duplicates based on a key field.\""
+            },
+            {
+              "name": "body: \"def _merge_data(self, existing: list[dict] | None, new_data: list[dict], key_field: str) -> list[dict]:\\n        \\\"\\\"\\\"Merge existing and new data, avoiding duplicates based on a key field.\\\"\\\"\\\"\\n        if not existing:\\n            return new_data\\n\\n        # Create a set of existing keys for O(1) lookup\\n        existing_keys = {item[key_field] for item in existing}\\n\\n        # Only add items that don't exist yet\\n        merged = existing.copy()\\n        merged.extend([item for item in new_data if item[key_field] not in existing_keys])\\n        return merged\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 11"
+            },
+            {
+              "name": "end_line: 22"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"cache.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"get_prices\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Cache\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Get cached price data if available.\""
+            },
+            {
+              "name": "body: \"def get_prices(self, ticker: str) -> list[dict[str, any]] | None:\\n        \\\"\\\"\\\"Get cached price data if available.\\\"\\\"\\\"\\n        return self._prices_cache.get(ticker)\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 24"
+            },
+            {
+              "name": "end_line: 26"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"cache.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"set_prices\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Cache\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Append new price data to cache.\""
+            },
+            {
+              "name": "body: \"def set_prices(self, ticker: str, data: list[dict[str, any]]):\\n        \\\"\\\"\\\"Append new price data to cache.\\\"\\\"\\\"\\n        self._prices_cache[ticker] = self._merge_data(self._prices_cache.get(ticker), data, key_field=\\\"time\\\")\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 28"
+            },
+            {
+              "name": "end_line: 30"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"cache.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"get_financial_metrics\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Cache\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Get cached financial metrics if available.\""
+            },
+            {
+              "name": "body: \"def get_financial_metrics(self, ticker: str) -> list[dict[str, any]]:\\n        \\\"\\\"\\\"Get cached financial metrics if available.\\\"\\\"\\\"\\n        return self._financial_metrics_cache.get(ticker)\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 32"
+            },
+            {
+              "name": "end_line: 34"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"cache.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"set_financial_metrics\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Cache\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Append new financial metrics to cache.\""
+            },
+            {
+              "name": "body: \"def set_financial_metrics(self, ticker: str, data: list[dict[str, any]]):\\n        \\\"\\\"\\\"Append new financial metrics to cache.\\\"\\\"\\\"\\n        self._financial_metrics_cache[ticker] = self._merge_data(self._financial_metrics_cache.get(ticker), data, key_field=\\\"report_period\\\")\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 36"
+            },
+            {
+              "name": "end_line: 38"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"cache.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"get_line_items\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Cache\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Get cached line items if available.\""
+            },
+            {
+              "name": "body: \"def get_line_items(self, ticker: str) -> list[dict[str, any]] | None:\\n        \\\"\\\"\\\"Get cached line items if available.\\\"\\\"\\\"\\n        return self._line_items_cache.get(ticker)\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 40"
+            },
+            {
+              "name": "end_line: 42"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"cache.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[8]",
+          "children": [
+            {
+              "name": "function_name: \"set_line_items\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Cache\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Append new line items to cache.\""
+            },
+            {
+              "name": "body: \"def set_line_items(self, ticker: str, data: list[dict[str, any]]):\\n        \\\"\\\"\\\"Append new line items to cache.\\\"\\\"\\\"\\n        self._line_items_cache[ticker] = self._merge_data(self._line_items_cache.get(ticker), data, key_field=\\\"report_period\\\")\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 44"
+            },
+            {
+              "name": "end_line: 46"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"cache.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[9]",
+          "children": [
+            {
+              "name": "function_name: \"get_insider_trades\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Cache\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Get cached insider trades if available.\""
+            },
+            {
+              "name": "body: \"def get_insider_trades(self, ticker: str) -> list[dict[str, any]] | None:\\n        \\\"\\\"\\\"Get cached insider trades if available.\\\"\\\"\\\"\\n        return self._insider_trades_cache.get(ticker)\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 48"
+            },
+            {
+              "name": "end_line: 50"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"cache.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[10]",
+          "children": [
+            {
+              "name": "function_name: \"set_insider_trades\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Cache\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Append new insider trades to cache.\""
+            },
+            {
+              "name": "body: \"def set_insider_trades(self, ticker: str, data: list[dict[str, any]]):\\n        \\\"\\\"\\\"Append new insider trades to cache.\\\"\\\"\\\"\\n        self._insider_trades_cache[ticker] = self._merge_data(self._insider_trades_cache.get(ticker), data, key_field=\\\"filing_date\\\")\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 52"
+            },
+            {
+              "name": "end_line: 54"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"cache.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[11]",
+          "children": [
+            {
+              "name": "function_name: \"get_company_news\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Cache\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Get cached company news if available.\""
+            },
+            {
+              "name": "body: \"def get_company_news(self, ticker: str) -> list[dict[str, any]] | None:\\n        \\\"\\\"\\\"Get cached company news if available.\\\"\\\"\\\"\\n        return self._company_news_cache.get(ticker)\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 56"
+            },
+            {
+              "name": "end_line: 58"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"cache.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[12]",
+          "children": [
+            {
+              "name": "function_name: \"set_company_news\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name: \"Cache\""
+            },
+            {
+              "name": "belongs_to_class: true"
+            },
+            {
+              "name": "docstring_or_comment: \"Append new company news to cache.\""
+            },
+            {
+              "name": "body: \"def set_company_news(self, ticker: str, data: list[dict[str, any]]):\\n        \\\"\\\"\\\"Append new company news to cache.\\\"\\\"\\\"\\n        self._company_news_cache[ticker] = self._merge_data(self._company_news_cache.get(ticker), data, key_field=\\\"date\\\")\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 60"
+            },
+            {
+              "name": "end_line: 62"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"cache.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

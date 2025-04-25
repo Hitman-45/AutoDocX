@@ -1,0 +1,59 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"sentiment_agent\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Analyzes market sentiment and generates trading signals for multiple tickers.\""
+            },
+            {
+              "name": "body: \"def sentiment_agent(state: AgentState):\\n    \\\"\\\"\\\"Analyzes market sentiment and generates trading signals for multiple tickers.\\\"\\\"\\\"\\n    data = state.get(\\\"data\\\", {})\\n    end_date = data.get(\\\"end_date\\\")\\n    tickers = data.get(\\\"tickers\\\")\\n\\n    # Initialize sentiment analysis for each ticker\\n    sentiment_analysis = {}\\n\\n    for ticker in tickers:\\n        progress.update_status(\\\"sentiment_agent\\\", ticker, \\\"Fetching insider trades\\\")\\n\\n        # Get the insider trades\\n        insider_trades = get_insider_trades(\\n            ticker=ticker,\\n            end_date=end_date,\\n            limit=1000,\\n        )\\n\\n        progress.update_status(\\\"sentiment_agent\\\", ticker, \\\"Analyzing trading patterns\\\")\\n\\n        # Get the signals from the insider trades\\n        transaction_shares = pd.Series([t.transaction_shares for t in insider_trades]).dropna()\\n        insider_signals = np.where(transaction_shares < 0, \\\"bearish\\\", \\\"bullish\\\").tolist()\\n\\n        progress.update_status(\\\"sentiment_agent\\\", ticker, \\\"Fetching company news\\\")\\n\\n        # Get the company news\\n        company_news = get_company_news(ticker, end_date, limit=100)\\n\\n        # Get the sentiment from the company news\\n        sentiment = pd.Series([n.sentiment for n in company_news]).dropna()\\n        news_signals = np.where(sentiment == \\\"negative\\\", \\\"bearish\\\", \\n                              np.where(sentiment == \\\"positive\\\", \\\"bullish\\\", \\\"neutral\\\")).tolist()\\n        \\n        progress.update_status(\\\"sentiment_agent\\\", ticker, \\\"Combining signals\\\")\\n        # Combine signals from both sources with weights\\n        insider_weight = 0.3\\n        news_weight = 0.7\\n        \\n        # Calculate weighted signal counts\\n        bullish_signals = (\\n            insider_signals.count(\\\"bullish\\\") * insider_weight +\\n            news_signals.count(\\\"bullish\\\") * news_weight\\n        )\\n        bearish_signals = (\\n            insider_signals.count(\\\"bearish\\\") * insider_weight +\\n            news_signals.count(\\\"bearish\\\") * news_weight\\n        )\\n\\n        if bullish_signals > bearish_signals:\\n            overall_signal = \\\"bullish\\\"\\n        elif bearish_signals > bullish_signals:\\n            overall_signal = \\\"bearish\\\"\\n        else:\\n            overall_signal = \\\"neutral\\\"\\n\\n        # Calculate confidence level based on the weighted proportion\\n        total_weighted_signals = len(insider_signals) * insider_weight + len(news_signals) * news_weight\\n        confidence = 0  # Default confidence when there are no signals\\n        if total_weighted_signals > 0:\\n            confidence = round(max(bullish_signals, bearish_signals) / total_weighted_signals, 2) * 100\\n        reasoning = f\\\"Weighted Bullish signals: {bullish_signals:.1f}, Weighted Bearish signals: {bearish_signals:.1f}\\\"\\n\\n        sentiment_analysis[ticker] = {\\n            \\\"signal\\\": overall_signal,\\n            \\\"confidence\\\": confidence,\\n            \\\"reasoning\\\": reasoning,\\n        }\\n\\n        progress.update_status(\\\"sentiment_agent\\\", ticker, \\\"Done\\\")\\n\\n    # Create the sentiment message\\n    message = HumanMessage(\\n        content=json.dumps(sentiment_analysis),\\n        name=\\\"sentiment_agent\\\",\\n    )\\n\\n    # Print the reasoning if the flag is set\\n    if state[\\\"metadata\\\"][\\\"show_reasoning\\\"]:\\n        show_agent_reasoning(sentiment_analysis, \\\"Sentiment Analysis Agent\\\")\\n\\n    # Add the signal to the analyst_signals list\\n    state[\\\"data\\\"][\\\"analyst_signals\\\"][\\\"sentiment_agent\\\"] = sentiment_analysis\\n\\n    return {\\n        \\\"messages\\\": [message],\\n        \\\"data\\\": data,\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 12"
+            },
+            {
+              "name": "end_line: 100"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"agents/sentiment.py\""
+            },
+            {
+              "name": "folder: \"agents\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

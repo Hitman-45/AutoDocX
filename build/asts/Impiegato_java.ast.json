@@ -1,0 +1,516 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"getName\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 50"
+            },
+            {
+              "name": "end_line: 52"
+            },
+            {
+              "name": "body_start: 50"
+            },
+            {
+              "name": "body_end: 52"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   Name ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Impiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"setName\""
+            },
+            {
+              "name": "parameters: \"(Stringname)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 59"
+            },
+            {
+              "name": "end_line: 61"
+            },
+            {
+              "name": "body_start: 59"
+            },
+            {
+              "name": "body_end: 61"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Name   =   name ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Impiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"getSurname\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 68"
+            },
+            {
+              "name": "end_line: 70"
+            },
+            {
+              "name": "body_start: 68"
+            },
+            {
+              "name": "body_end: 70"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   Surname ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Impiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"setSurname\""
+            },
+            {
+              "name": "parameters: \"(Stringsurname)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 77"
+            },
+            {
+              "name": "end_line: 79"
+            },
+            {
+              "name": "body_start: 77"
+            },
+            {
+              "name": "body_end: 79"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Surname   =   surname ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Impiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"getNumber\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 86"
+            },
+            {
+              "name": "end_line: 88"
+            },
+            {
+              "name": "body_start: 86"
+            },
+            {
+              "name": "body_end: 88"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   Number ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Impiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"setNumber\""
+            },
+            {
+              "name": "parameters: \"(Stringnumber)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 95"
+            },
+            {
+              "name": "end_line: 97"
+            },
+            {
+              "name": "body_start: 95"
+            },
+            {
+              "name": "body_end: 97"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Number   =   number ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Impiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"getEmail\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 104"
+            },
+            {
+              "name": "end_line: 106"
+            },
+            {
+              "name": "body_start: 104"
+            },
+            {
+              "name": "body_end: 106"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   Email ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Impiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[7]",
+          "children": [
+            {
+              "name": "function_name: \"setEmail\""
+            },
+            {
+              "name": "parameters: \"(Stringemail)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 113"
+            },
+            {
+              "name": "end_line: 115"
+            },
+            {
+              "name": "body_start: 113"
+            },
+            {
+              "name": "body_end: 115"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Email   =   email ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Impiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[8]",
+          "children": [
+            {
+              "name": "function_name: \"getLogin\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 122"
+            },
+            {
+              "name": "end_line: 124"
+            },
+            {
+              "name": "body_start: 122"
+            },
+            {
+              "name": "body_end: 124"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   Login ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Impiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[9]",
+          "children": [
+            {
+              "name": "function_name: \"setLogin\""
+            },
+            {
+              "name": "parameters: \"(Stringlogin)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 131"
+            },
+            {
+              "name": "end_line: 133"
+            },
+            {
+              "name": "body_start: 131"
+            },
+            {
+              "name": "body_end: 133"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Login   =   login ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Impiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[10]",
+          "children": [
+            {
+              "name": "function_name: \"toString\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 140"
+            },
+            {
+              "name": "end_line: 143"
+            },
+            {
+              "name": "body_start: 140"
+            },
+            {
+              "name": "body_end: 143"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   \\\"Name: \\\"   +   Name   +   \\\", Surname: \\\"   +   Surname   +   \\\", Number: \\\"   +   Number   +   \\\", e-mail: \\\"   +   Email \\n         +   \\\", Login: \\\"   +   Login ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"Impiegato.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

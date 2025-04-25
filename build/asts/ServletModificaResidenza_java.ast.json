@@ -1,0 +1,240 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"init\""
+            },
+            {
+              "name": "parameters: \"(ServletConfigconf)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 14"
+            },
+            {
+              "name": "end_line: 16"
+            },
+            {
+              "name": "body_start: 14"
+            },
+            {
+              "name": "body_end: 16"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     super . init ( conf ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletModificaResidenza.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"main\""
+            },
+            {
+              "name": "parameters: \"(intid_citizen,Stringdate)\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 36"
+            },
+            {
+              "name": "end_line: 74"
+            },
+            {
+              "name": "body_start: 36"
+            },
+            {
+              "name": "body_end: 74"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n       // in the case of the employee the path is c: \\\\\\\\ RequestsCambioResidence \\n       // directory to search for files with certain extensions \\n       from   =   new   File ( \\\"C: \\\\\\\\ RequestsCambioResidence\\\" ) ; \\n\\n       // name of the file to search for. For example I am looking for a file named foo will insert foo \\n       // if not specified will search for all files with any name \\n       // I save myself as a string for the citizen id to then compare it with \\n       // the id of the citizen that comes to me from the database to look for the \\n       // change file associated with that citizen \\n       String   id_city   =   String . valueOf ( id_citizen ) ; \\n       String   dataric   =   date ; \\n\\n       String   param   =   \\\"internal\\\" ; \\n       String   param1   =   \\\"external\\\" ; \\n       // name of the file to search for \\n       String   name   =   dataric   +   \\\"_\\\"   +   id_city   +   \\\"_\\\" . concat ( param ) ; \\n       String   namefile2   =   dataric   +   \\\"_\\\"   +   id_city   +   \\\"_\\\" . concat ( param1 ) ; \\n\\n       String [ ]   splitter   =   name . split ( \\\"_\\\" ) ; \\n\\n       // extension of the file to search for. For example * .mp3 I will insert .mp3 \\n       // if not specified it will search for all files with any extension \\n       String   type   =   \\\".pdf\\\" ; \\n\\n       File   newfile   =   exploreFile ( from ,   name ,   type ) ; \\n       if   ( newfile   !=   null )   { \\n         internal   =   \\\"internal\\\" ; \\n       }   else   { \\n         newfile   =   exploreFile ( from ,   namefile2 ,   type ) ; \\n         if   ( newfile   !=   null )   { \\n           // external file \\n           internal   =   \\\"external\\\" ; \\n         }   else   { \\n           internal   =   null ;   // file not present \\n         } \\n       } \\n       return   internal ; \\n     }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletModificaResidenza.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"exploreFile\""
+            },
+            {
+              "name": "parameters: \"(Filefrom,Stringname,Stringtype)\""
+            },
+            {
+              "name": "return_type: \"File\""
+            },
+            {
+              "name": "start_line: 84"
+            },
+            {
+              "name": "end_line: 95"
+            },
+            {
+              "name": "body_start: 84"
+            },
+            {
+              "name": "body_end: 95"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n       //utilizziamo per la search un filtro \\n       File [ ]   files   =   from . listFiles ( new   Filter ( name ,   type ) ) ; \\n       //ordiniamo i file nella lista secondo la data \\n       if   ( files . length   >   1   ||   files . length   ==   0 )   { \\n         return   null ; \\n       }   else   { \\n         return   files [ 0 ] ; \\n\\n       } \\n\\n     }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletModificaResidenza.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"accept\""
+            },
+            {
+              "name": "parameters: \"(Filedir,Stringfile)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 108"
+            },
+            {
+              "name": "end_line: 128"
+            },
+            {
+              "name": "body_start: 108"
+            },
+            {
+              "name": "body_end: 128"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n         File   f   =   new   File ( dir ,   file ) ; \\n\\n         //controllo sul type. \\n         //Ad esempio se cerco \\\\\\\"pippo.txt\\\\\\\" la indexOf(.txt) � uguale a 6 ed � uguale \\n         // ed � uguale a 10(\\\\\\\"pippo.txt\\\\\\\".length()) - 4 (\\\\\\\".txt\\\\\\\".length) \\n\\n         boolean   flag1   =   true ; \\n         if   ( type   !=   null   &&   type   !=   \\\"\\\\\\\\\\\" ) \\n           flag1   =   ( file . indexOf ( type )   ==   file . length ( )   -   type . length ( ) ) ; \\n\\n         //controllo sul name \\n         //flag2 � true se il file contiene la parola cercata \\n\\n         boolean   flag2   =   true ; \\n         if   ( name   !=   null   &&   name   !=   \\\"\\\\\\\\\\\" ) \\n           flag2   =   file . toUpperCase ( ) . indexOf ( name . toUpperCase ( ) )   !=   - 1 ; \\n         //ritorno i file che passano il controllo del type e del name le directory \\n\\n         return   ( ( flag1   &&   flag2 )   ||   f . isDirectory ( ) )   &&   ! f . isHidden ( ) ; \\n       }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletModificaResidenza.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"doPost\""
+            },
+            {
+              "name": "parameters: \"(HttpServletRequestrequest,HttpServletResponseresponse)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 131"
+            },
+            {
+              "name": "end_line: 226"
+            },
+            {
+              "name": "body_start: 132"
+            },
+            {
+              "name": "body_end: 226"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n\\n       //innanzitutto mi recupero la sessione di lavoro del citizen \\n       HttpSession   session   =   request . getSession ( ) ; \\n       int   idCitizen ; \\n       String   idtrovato ; \\n       /**\\n       * se la sessione � stata creata correttamente\\n       * all'access dell'employee, viene mandato in exe\\n       * il metodo che controlla se sono presenti file pdf\\n       * riguardanti il cambio di residence interno o\\n       * esterno richiesti dai cityadini\\n       */ \\n       if   ( session   !=   null )   { \\n         ServletContext   sc   =   getServletContext ( ) ; \\n         RequestDispatcher   rd   =   null ; \\n         String   ris ; \\n         try   { \\n           /**\\n           * (1)\\tcosa deve fare la servlet:\\n           * \\t\\tdeve prendere l'id del citizen\\n           * \\t\\tdi cui ha inserito il codice della carta di identit�\\n           * \\t\\tdal form e lo passa al metodo main\\n           * \\t\\tper cercare il file corrispondente\\n           */ \\n           /**\\n           * (2)\\til codice della carta di identit� e la data della request\\n           * \\t\\tli prende con request.getParameter\\n           * \\t\\tsalvandoli nelle apposite variabili,\\n           * \\t\\tdopodich� viene chiamato il metodo che restituisce\\n           * \\t\\tl'id di un citizen dopo avergli\\n           * \\t\\tpassato name, surname e codice_fiscale di\\n           * \\t\\tquest'ultimo.\\n           */ \\n           String   cardCode   =   request . getParameter ( \\\"cardCode\\\" ) ; \\n           String   data   =   request . getParameter ( \\\"year\\\" ) \\n               . concat ( request . getParameter ( \\\"month\\\" ) . concat ( request . getParameter ( \\\"day\\\" ) ) ) ; \\n           /**\\n           * una volta salvati i parametri, li passo\\n           * al metodo che restituisce l'id di questo\\n           * particolare citizen che ha instreetto la\\n           * request di cambio di residence e di cui\\n           * se ne vuole cercare il file\\n           */ \\n           DbIdentityCard   dbcarta   =   new   DbIdentityCard ( ) ; \\n           idCitizen   =   dbcarta . searchIdentityCardByNumber ( cardCode ) . id ( ) ; \\n           String   risp ; \\n           if   ( idCitizen   ==   - 1 )   { \\n             risp   =   \\\"Non � possibile recuperare l'id del citizen all'interno del database\\\" ; \\n             response . sendRedirect ( \\n                 \\\"http://localhost:8080/E_ANCI/index.jsp?error=e\\\" ) ; //da modifyre i collegamenti \\n             request . setAttribute ( \\\"risp\\\" ,   risp ) ; \\n           }   else   { \\n             /**\\n             * una volta conosciuto l'id del citizen\\n             * lo passo al metodo di search del file\\n             * ad esso corrispondente\\n             */ \\n             SearchFiles   search   =   new   SearchFiles ( ) ; \\n             idtrovato   =   search . main ( idCitizen ,   data ) ; \\n             /**\\n             * ora nella variabile idtrovato c'� l'esito della search\\n             * del file relativa ad un determinato citizen\\n             * che ha instreetto la request di cambio di residence.\\n             * tale valore andr� controllato, se � true si lancia\\n             * all'employee il modulo da compilare per mantenere traccia\\n             * della request dopo aver effettuato i controlli necessari\\n             */ \\n             if   ( idtrovato   ==   null )   { \\n               ris   =   \\\"File della request di cambio di residence non trovato\\\" ; \\n               request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n               rd   =   sc . getRequestDispatcher ( \\n                   \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; //da modifyre i collegamenti \\n             }   else   if   ( idtrovato . equals ( \\\"interno\\\" ) )   { \\n               rd   =   sc . getRequestDispatcher ( \\n                   \\\"/workers/index.jsp?func=pra&page=modulone\\\" ) ; //da modifyre i collegamenti \\n             }   else   if   ( idtrovato . equals ( \\\"esterno\\\" ) )   { \\n               rd   =   sc . getRequestDispatcher ( \\n                   \\\"/workers/index.jsp?func=pra&page=modulone\\\" ) ; //da modifyre i collegamenti \\n             } \\n             rd . forward ( request ,   response ) ; \\n           } \\n         }   catch   ( DbException   e )   { \\n           ris   =   e . getMessage ( ) ; \\n           request . setAttribute ( \\\"ris\\\" ,   ris ) ; \\n           rd   =   sc . getRequestDispatcher ( \\n               \\\"/workers/index.jsp?func=operazione&page=fallita\\\" ) ; //da modifyre i collegamenti \\n           rd . forward ( request ,   response ) ; \\n         } \\n\\n       }   else   { \\n         String   url   =   \\\"/workers/Access.jsp\\\" ; //da modifyre i collegamenti \\n         response . sendRedirect ( url ) ; \\n       } \\n     }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"ServletModificaResidenza.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

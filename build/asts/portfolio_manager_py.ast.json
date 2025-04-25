@@ -1,0 +1,171 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"portfolio_management_agent\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Makes final trading decisions and generates orders for multiple tickers\""
+            },
+            {
+              "name": "body: \"def portfolio_management_agent(state: AgentState):\\n    \\\"\\\"\\\"Makes final trading decisions and generates orders for multiple tickers\\\"\\\"\\\"\\n\\n    # Get the portfolio and analyst signals\\n    portfolio = state[\\\"data\\\"][\\\"portfolio\\\"]\\n    analyst_signals = state[\\\"data\\\"][\\\"analyst_signals\\\"]\\n    tickers = state[\\\"data\\\"][\\\"tickers\\\"]\\n\\n    progress.update_status(\\\"portfolio_management_agent\\\", None, \\\"Analyzing signals\\\")\\n\\n    # Get position limits, current prices, and signals for every ticker\\n    position_limits = {}\\n    current_prices = {}\\n    max_shares = {}\\n    signals_by_ticker = {}\\n    for ticker in tickers:\\n        progress.update_status(\\\"portfolio_management_agent\\\", ticker, \\\"Processing analyst signals\\\")\\n\\n        # Get position limits and current prices for the ticker\\n        risk_data = analyst_signals.get(\\\"risk_management_agent\\\", {}).get(ticker, {})\\n        position_limits[ticker] = risk_data.get(\\\"remaining_position_limit\\\", 0)\\n        current_prices[ticker] = risk_data.get(\\\"current_price\\\", 0)\\n\\n        # Calculate maximum shares allowed based on position limit and price\\n        if current_prices[ticker] > 0:\\n            max_shares[ticker] = int(position_limits[ticker] / current_prices[ticker])\\n        else:\\n            max_shares[ticker] = 0\\n\\n        # Get signals for the ticker\\n        ticker_signals = {}\\n        for agent, signals in analyst_signals.items():\\n            if agent != \\\"risk_management_agent\\\" and ticker in signals:\\n                ticker_signals[agent] = {\\\"signal\\\": signals[ticker][\\\"signal\\\"], \\\"confidence\\\": signals[ticker][\\\"confidence\\\"]}\\n        signals_by_ticker[ticker] = ticker_signals\\n\\n    progress.update_status(\\\"portfolio_management_agent\\\", None, \\\"Making trading decisions\\\")\\n\\n    # Generate the trading decision\\n    result = generate_trading_decision(\\n        tickers=tickers,\\n        signals_by_ticker=signals_by_ticker,\\n        current_prices=current_prices,\\n        max_shares=max_shares,\\n        portfolio=portfolio,\\n        model_name=state[\\\"metadata\\\"][\\\"model_name\\\"],\\n        model_provider=state[\\\"metadata\\\"][\\\"model_provider\\\"],\\n    )\\n\\n    # Create the portfolio management message\\n    message = HumanMessage(\\n        content=json.dumps({ticker: decision.model_dump() for ticker, decision in result.decisions.items()}),\\n        name=\\\"portfolio_management\\\",\\n    )\\n\\n    # Print the decision if the flag is set\\n    if state[\\\"metadata\\\"][\\\"show_reasoning\\\"]:\\n        show_agent_reasoning({ticker: decision.model_dump() for ticker, decision in result.decisions.items()}, \\\"Portfolio Management Agent\\\")\\n\\n    progress.update_status(\\\"portfolio_management_agent\\\", None, \\\"Done\\\")\\n\\n    return {\\n        \\\"messages\\\": state[\\\"messages\\\"] + [message],\\n        \\\"data\\\": state[\\\"data\\\"],\\n    }\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 24"
+            },
+            {
+              "name": "end_line: 88"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"portfolio_manager.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"generate_trading_decision\""
+            },
+            {
+              "name": "parameters",
+              "children": [
+                {
+                  "name": "parameters[0]"
+                },
+                {
+                  "name": "parameters[1]"
+                },
+                {
+                  "name": "parameters[2]"
+                },
+                {
+                  "name": "parameters[3]"
+                },
+                {
+                  "name": "parameters[4]"
+                },
+                {
+                  "name": "parameters[5]"
+                },
+                {
+                  "name": "parameters[6]"
+                }
+              ]
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"Attempts to get a decision from the LLM with retry logic\""
+            },
+            {
+              "name": "body: \"def generate_trading_decision(\\n    tickers: list[str],\\n    signals_by_ticker: dict[str, dict],\\n    current_prices: dict[str, float],\\n    max_shares: dict[str, int],\\n    portfolio: dict[str, float],\\n    model_name: str,\\n    model_provider: str,\\n) -> PortfolioManagerOutput:\\n    \\\"\\\"\\\"Attempts to get a decision from the LLM with retry logic\\\"\\\"\\\"\\n    # Create the prompt template\\n    template = ChatPromptTemplate.from_messages(\\n        [\\n            (\\n              \\\"system\\\",\\n              \\\"\\\"\\\"You are a portfolio manager making final trading decisions based on multiple tickers.\\n\\n              Trading Rules:\\n              - For long positions:\\n                * Only buy if you have available cash\\n                * Only sell if you currently hold long shares of that ticker\\n                * Sell quantity must be ≤ current long position shares\\n                * Buy quantity must be ≤ max_shares for that ticker\\n              \\n              - For short positions:\\n                * Only short if you have available margin (position value × margin requirement)\\n                * Only cover if you currently have short shares of that ticker\\n                * Cover quantity must be ≤ current short position shares\\n                * Short quantity must respect margin requirements\\n              \\n              - The max_shares values are pre-calculated to respect position limits\\n              - Consider both long and short opportunities based on signals\\n              - Maintain appropriate risk management with both long and short exposure\\n\\n              Available Actions:\\n              - \\\"buy\\\": Open or add to long position\\n              - \\\"sell\\\": Close or reduce long position\\n              - \\\"short\\\": Open or add to short position\\n              - \\\"cover\\\": Close or reduce short position\\n              - \\\"hold\\\": No action\\n\\n              Inputs:\\n              - signals_by_ticker: dictionary of ticker → signals\\n              - max_shares: maximum shares allowed per ticker\\n              - portfolio_cash: current cash in portfolio\\n              - portfolio_positions: current positions (both long and short)\\n              - current_prices: current prices for each ticker\\n              - margin_requirement: current margin requirement for short positions (e.g., 0.5 means 50%)\\n              - total_margin_used: total margin currently in use\\n              \\\"\\\"\\\",\\n            ),\\n            (\\n              \\\"human\\\",\\n              \\\"\\\"\\\"Based on the team's analysis, make your trading decisions for each ticker.\\n\\n              Here are the signals by ticker:\\n              {signals_by_ticker}\\n\\n              Current Prices:\\n              {current_prices}\\n\\n              Maximum Shares Allowed For Purchases:\\n              {max_shares}\\n\\n              Portfolio Cash: {portfolio_cash}\\n              Current Positions: {portfolio_positions}\\n              Current Margin Requirement: {margin_requirement}\\n              Total Margin Used: {total_margin_used}\\n\\n              Output strictly in JSON with the following structure:\\n              {{\\n                \\\"decisions\\\": {{\\n                  \\\"TICKER1\\\": {{\\n                    \\\"action\\\": \\\"buy/sell/short/cover/hold\\\",\\n                    \\\"quantity\\\": integer,\\n                    \\\"confidence\\\": float between 0 and 100,\\n                    \\\"reasoning\\\": \\\"string\\\"\\n                  }},\\n                  \\\"TICKER2\\\": {{\\n                    ...\\n                  }},\\n                  ...\\n                }}\\n              }}\\n              \\\"\\\"\\\",\\n            ),\\n        ]\\n    )\\n\\n    # Generate the prompt\\n    prompt = template.invoke(\\n        {\\n            \\\"signals_by_ticker\\\": json.dumps(signals_by_ticker, indent=2),\\n            \\\"current_prices\\\": json.dumps(current_prices, indent=2),\\n            \\\"max_shares\\\": json.dumps(max_shares, indent=2),\\n            \\\"portfolio_cash\\\": f\\\"{portfolio.get('cash', 0):.2f}\\\",\\n            \\\"portfolio_positions\\\": json.dumps(portfolio.get('positions', {}), indent=2),\\n            \\\"margin_requirement\\\": f\\\"{portfolio.get('margin_requirement', 0):.2f}\\\",\\n            \\\"total_margin_used\\\": f\\\"{portfolio.get('margin_used', 0):.2f}\\\",\\n        }\\n    )\\n\\n    # Create default factory for PortfolioManagerOutput\\n    def create_default_portfolio_output():\\n        return PortfolioManagerOutput(decisions={ticker: PortfolioDecision(action=\\\"hold\\\", quantity=0, confidence=0.0, reasoning=\\\"Error in portfolio management, defaulting to hold\\\") for ticker in tickers})\\n\\n    return call_llm(prompt=prompt, model_name=model_name, model_provider=model_provider, pydantic_model=PortfolioManagerOutput, agent_name=\\\"portfolio_management_agent\\\", default_factory=create_default_portfolio_output)\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 91"
+            },
+            {
+              "name": "end_line: 197"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"portfolio_manager.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"create_default_portfolio_output\""
+            },
+            {
+              "name": "parameters",
+              "children": []
+            },
+            {
+              "name": "return_type"
+            },
+            {
+              "name": "class_name"
+            },
+            {
+              "name": "belongs_to_class: false"
+            },
+            {
+              "name": "docstring_or_comment: \"\""
+            },
+            {
+              "name": "body: \"def create_default_portfolio_output():\\n        return PortfolioManagerOutput(decisions={ticker: PortfolioDecision(action=\\\"hold\\\", quantity=0, confidence=0.0, reasoning=\\\"Error in portfolio management, defaulting to hold\\\") for ticker in tickers})\""
+            },
+            {
+              "name": "access_specifier: \"public\""
+            },
+            {
+              "name": "start_line: 194"
+            },
+            {
+              "name": "end_line: 195"
+            },
+            {
+              "name": "language: \"Python\""
+            },
+            {
+              "name": "file_path: \"portfolio_manager.py\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

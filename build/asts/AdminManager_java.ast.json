@@ -1,0 +1,332 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"editAdmin\""
+            },
+            {
+              "name": "parameters: \"(Stringnumber,AdministratornewAdmin)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 34"
+            },
+            {
+              "name": "end_line: 36"
+            },
+            {
+              "name": "body_start: 34"
+            },
+            {
+              "name": "body_end: 36"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   dbAdministrator . editAdministrator ( number ,   newAdmin ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"AdminManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"searchAdminByNumber\""
+            },
+            {
+              "name": "parameters: \"(Stringnumber)\""
+            },
+            {
+              "name": "return_type: \"Administrator\""
+            },
+            {
+              "name": "start_line: 46"
+            },
+            {
+              "name": "end_line: 48"
+            },
+            {
+              "name": "body_start: 46"
+            },
+            {
+              "name": "body_end: 48"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   dbAdministrator . getAdministratorByNumber ( number ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"AdminManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"enterAdmin\""
+            },
+            {
+              "name": "parameters: \"(AdministratornewAdmin)\""
+            },
+            {
+              "name": "return_type: \"boolean\""
+            },
+            {
+              "name": "start_line: 59"
+            },
+            {
+              "name": "end_line: 61"
+            },
+            {
+              "name": "body_start: 59"
+            },
+            {
+              "name": "body_end: 61"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   dbAdministrator . enterAdministrator ( newAdmin ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"AdminManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[3]",
+          "children": [
+            {
+              "name": "function_name: \"deleteAdministrator\""
+            },
+            {
+              "name": "parameters: \"(Stringnumber)\""
+            },
+            {
+              "name": "return_type: \"String\""
+            },
+            {
+              "name": "start_line: 71"
+            },
+            {
+              "name": "end_line: 80"
+            },
+            {
+              "name": "body_start: 71"
+            },
+            {
+              "name": "body_end: 80"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     Collection < Administrator >   Administrators   =   dbAdministrator . getAdministrators ( ) ; \\n     if   ( Administrators . size ( )   >   1 )   { \\n       if   ( dbAdministrator . deleteAdministrator ( number ) ) \\n         return   \\\"ok\\\" ; \\n       else \\n         return   \\\"error\\\" ; \\n     }   else \\n       return   \\\"unique\\\" ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"AdminManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[4]",
+          "children": [
+            {
+              "name": "function_name: \"getAdministratorByLogin\""
+            },
+            {
+              "name": "parameters: \"(Stringlogin)\""
+            },
+            {
+              "name": "return_type: \"Administrator\""
+            },
+            {
+              "name": "start_line: 90"
+            },
+            {
+              "name": "end_line: 92"
+            },
+            {
+              "name": "body_start: 90"
+            },
+            {
+              "name": "body_end: 92"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   dbAdministrator . getAdministratorByLogin ( login ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"AdminManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[5]",
+          "children": [
+            {
+              "name": "function_name: \"getAdministratorByName\""
+            },
+            {
+              "name": "parameters: \"(StringnameAmm,StringsurnameAmm)\""
+            },
+            {
+              "name": "return_type: \"Collection<Administrator>\""
+            },
+            {
+              "name": "start_line: 104"
+            },
+            {
+              "name": "end_line: 107"
+            },
+            {
+              "name": "body_start: 105"
+            },
+            {
+              "name": "body_end: 107"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   dbAdministrator . getAdministratorByName ( nameAmm ,   surnameAmm ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"AdminManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[6]",
+          "children": [
+            {
+              "name": "function_name: \"getAdministrators\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"Collection<Administrator>\""
+            },
+            {
+              "name": "start_line: 115"
+            },
+            {
+              "name": "end_line: 117"
+            },
+            {
+              "name": "body_start: 115"
+            },
+            {
+              "name": "body_end: 117"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n     return   dbAdministrator . getAdministrators ( ) ; \\n   }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"AdminManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

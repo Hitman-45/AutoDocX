@@ -1,0 +1,146 @@
+import ASTViewer from '@site/scripts/AstViewer';
+
+# File: binary_tree_operations.js
+
+> Below is the AST visualization for this file.
+
+<ASTViewer file="binary_tree_operations_js.ast.json" />
+
+## `constructor()`
+
+      **Class:** TreeNode  
+      **Access:** public  
+      **Return:** void  
+      **Language:** JavaScript  
+      **Start Line:** 4  
+      **End Line:** 8  
+      
+      
+      
+      ```javascript
+        constructor(val = 0, left = null, right = null) {
+    this.val = val;
+    this.left = left;
+    this.right = right;
+  }
+      ```
+      
+## `countNodes()`
+
+      **Class:** None  
+      **Access:** public  
+      **Return:** void  
+      **Language:** JavaScript  
+      **Start Line:** 11  
+      **End Line:** 14  
+      
+      
+      
+      ```javascript
+      function countNodes(root) {
+  if (!root) return 0;
+  return 1 + countNodes(root.left) + countNodes(root.right);
+}
+      ```
+      
+## `constructor()`
+
+      **Class:** BinarySearchTree  
+      **Access:** public  
+      **Return:** void  
+      **Language:** JavaScript  
+      **Start Line:** 17  
+      **End Line:** 19  
+      
+      
+      
+      ```javascript
+        constructor() {
+    this.root = null;
+  }
+      ```
+      
+## `insert()`
+
+      **Class:** BinarySearchTree  
+      **Access:** public  
+      **Return:** void  
+      **Language:** JavaScript  
+      **Start Line:** 21  
+      **End Line:** 44  
+      
+      
+      
+      ```javascript
+        insert(val) {
+    const node = new TreeNode(val);
+    if (!this.root) {
+      this.root = node;
+      return this;
+    }
+    let cur = this.root;
+    while (true) {
+      if (val &lt; cur.val) {
+        if (!cur.left) {
+          cur.left = node;
+          break;
+        }
+        cur = cur.left;
+      } else {
+        if (!cur.right) {
+          cur.right = node;
+          break;
+        }
+        cur = cur.right;
+      }
+    }
+    return this;
+  }
+      ```
+      
+## `search()`
+
+      **Class:** BinarySearchTree  
+      **Access:** public  
+      **Return:** void  
+      **Language:** JavaScript  
+      **Start Line:** 46  
+      **End Line:** 53  
+      
+      
+      
+      ```javascript
+        search(val) {
+    let cur = this.root;
+    while (cur) {
+      if (val === cur.val) return true;
+      cur = val &lt; cur.val ? cur.left : cur.right;
+    }
+    return false;
+  }
+      ```
+      
+## `inorder()`
+
+      **Class:** BinarySearchTree  
+      **Access:** public  
+      **Return:** void  
+      **Language:** JavaScript  
+      **Start Line:** 55  
+      **End Line:** 64  
+      
+      
+      
+      ```javascript
+        inorder() {
+    const result = [];
+    (function traverse(node) {
+      if (!node) return;
+      traverse(node.left);
+      result.push(node.val);
+      traverse(node.right);
+    })(this.root);
+    return result;
+  }
+      ```
+      

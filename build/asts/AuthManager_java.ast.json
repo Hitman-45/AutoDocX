@@ -1,0 +1,148 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "functions",
+      "children": [
+        {
+          "name": "functions[0]",
+          "children": [
+            {
+              "name": "function_name: \"createSession\""
+            },
+            {
+              "name": "parameters: \"(Stringusername)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 7"
+            },
+            {
+              "name": "end_line: 10"
+            },
+            {
+              "name": "body_start: 7"
+            },
+            {
+              "name": "body_end: 10"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n         System . out . println ( \\\"Session created for \\\"   +   username ) ; \\n         activeSessions ++ ; \\n     }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"AuthManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[1]",
+          "children": [
+            {
+              "name": "function_name: \"destroySession\""
+            },
+            {
+              "name": "parameters: \"(Stringusername)\""
+            },
+            {
+              "name": "return_type: \"void\""
+            },
+            {
+              "name": "start_line: 12"
+            },
+            {
+              "name": "end_line: 15"
+            },
+            {
+              "name": "body_start: 12"
+            },
+            {
+              "name": "body_end: 15"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n         System . out . println ( \\\"Session destroyed for \\\"   +   username ) ; \\n         activeSessions -- ; \\n     }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"AuthManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        },
+        {
+          "name": "functions[2]",
+          "children": [
+            {
+              "name": "function_name: \"getActiveSessions\""
+            },
+            {
+              "name": "parameters: \"()\""
+            },
+            {
+              "name": "return_type: \"int\""
+            },
+            {
+              "name": "start_line: 17"
+            },
+            {
+              "name": "end_line: 19"
+            },
+            {
+              "name": "body_start: 17"
+            },
+            {
+              "name": "body_end: 19"
+            },
+            {
+              "name": "modifiers",
+              "children": [
+                {
+                  "name": "modifiers[0]"
+                }
+              ]
+            },
+            {
+              "name": "body: \"{ \\n         return   activeSessions ; \\n     }\""
+            },
+            {
+              "name": "language: \"Java\""
+            },
+            {
+              "name": "file_path: \"AuthManager.java\""
+            },
+            {
+              "name": "folder: \".\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
