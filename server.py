@@ -7,8 +7,8 @@ import os
 app = FastAPI()
 
 # === Config your paths ===
-LLAMA_CLI_PATH = r"C:\Users\Manan\Desktop\AutoDocX\llama.cpp\build\bin\Release\llama-cli.exe"
-MODEL_PATH = r"C:\Users\Manan\Desktop\AutoDocX\models\deepseek-coder-1.3b-instruct.Q4_K_M.gguf"
+LLAMA_CLI_PATH = r"C:\Users\Manan\Desktop\AutoDocX\deploy_model\llama.cpp\build\bin\Release\llama-cli.exe"
+MODEL_PATH = r"C:\Users\Manan\Desktop\AutoDocX\deploy_model\models\deepseek-coder-1.3b-instruct.Q4_K_M.gguf"
 CONTEXT_SIZE = 2048
 BATCH_SIZE = 16
 # You must explain:
