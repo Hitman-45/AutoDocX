@@ -65,6 +65,7 @@ function activate(context) {
             vscode.window.showErrorMessage("No folder or workspace opened.");
             return;
         }
+        
         const rootPath = workspaceFolders[0].uri.fsPath;
         vscode.window.showInformationMessage(`Analyzing repo at: ${rootPath}`);
         vscode.window.showInformationMessage(`${__dirname}`);
@@ -74,6 +75,7 @@ function activate(context) {
         const pythonScript = path.resolve(__dirname, '..', 'main.py');
         outputChannel.appendLine(`Running: python ${pythonScript} --source_folder ${rootPath}`);
         const pythonProcess = (0, child_process_1.spawn)('python', [pythonScript, '--source_folder', rootPath]);
+        const batFile = path.resolve(__dirname, '..','AutoDocX_tool', 'run.bat');
         pythonProcess.stdout.on('data', (data) => {
             outputChannel.append(data.toString());
         });
@@ -82,6 +84,16 @@ function activate(context) {
         });
         pythonProcess.on('close', (code) => {
             if (code === 0) {
+                (0, child_process_1.exec)(`"${batFile}"`, (error, stdout, stderr) => {
+                    if (error) {
+                        outputChannel.appendLine(`❌ Error: ${error.message}`);
+                        return;
+                    }
+                    if (stderr) {
+                        outputChannel.appendLine(`⚠️ Stderr: ${stderr}`);
+                    }
+                    outputChannel.appendLine(`✅ Output: ${stdout}`);
+                });
                 outputChannel.appendLine('✅ Python script finished successfully.');
                 vscode.env.openExternal(vscode.Uri.parse('http://localhost:3000'));
                 outputChannel.append('Redirecting to http://localhost:3000');

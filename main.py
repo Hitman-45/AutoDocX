@@ -298,6 +298,28 @@ if __name__ == "__main__":
     print("Output from JS:")
     print(result.stdout)
 
+    command = ["node", f"{current_dir}\AutoDocX_tool\generateLLMdocsnew.js"]
+    # C:\Users\Manan\Desktop\Object_Deection_DL\AutoDocX\AutoDocX_tool\generateLLMdocsnew.js
+    result = subprocess.run(command)
+    print("Running command:", ' '.join(command))
+    print("Output from JS:")
+    print(result.stdout)
+
+    docusaurus_dir = os.path.join(current_dir, "AutoDocX_tool/")
+
+# # Run `npx docusaurus start` from that directory
+#     command = ["npx", "docusaurus", "start"]
+
+#     print("Running command:", ' '.join(command), "in", docusaurus_dir)
+
+#     result = subprocess.run(command, capture_output=True, text=True, cwd=docusaurus_dir)
+
+#     print("Output from JS:")
+#     print(result.stdout)
+#     print("Errors:")
+#     print(result.stderr)
+
+
     if result.stderr:
         print("Error from JS:")
         print(result.stderr)
