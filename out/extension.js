@@ -53,7 +53,7 @@ function activate(context) {
     // 	return;
     // 	}
     // const rootPath = workspaceFolders[0].uri.fsPath;
-    // vscode.window.showInformationMessage(`Analyzing repo at: ${rootPath}`);
+    // vscode.window.showInformationMessage(Analyzing repo at: ${rootPath});
     let openWebsiteCmd1 = vscode.window.registerWebviewViewProvider('myWebsiteView', {
         resolveWebviewView() {
             vscode.env.openExternal(vscode.Uri.parse('http://localhost:3000'));
@@ -65,46 +65,41 @@ function activate(context) {
             vscode.window.showErrorMessage("No folder or workspace opened.");
             return;
         }
-        
         const rootPath = workspaceFolders[0].uri.fsPath;
-        vscode.window.showInformationMessage(`Analyzing repo at: ${rootPath}`);
-        vscode.window.showInformationMessage(`${__dirname}`);
+        vscode.window.showInformationMessage(Analyzing, repo, at, $, { rootPath });
+        vscode.window.showInformationMessage($, { __dirname });
         const outputChannel = vscode.window.createOutputChannel('AutoDocX Logs');
         outputChannel.show(true); // show the panel when script runs
         // const pythonScript = 'C:\\Users\\havis\\autodocx\\main.py';
         const pythonScript = path.resolve(__dirname, '..', 'main.py');
-        outputChannel.appendLine(`Running: python ${pythonScript} --source_folder ${rootPath}`);
+        outputChannel.appendLine(Running, python, $, { pythonScript }--, source_folder, $, { rootPath });
         const pythonProcess = (0, child_process_1.spawn)('python', [pythonScript, '--source_folder', rootPath]);
-        const batFile = path.resolve(__dirname, '..','AutoDocX_tool', 'run.bat');
         pythonProcess.stdout.on('data', (data) => {
             outputChannel.append(data.toString());
         });
         pythonProcess.stderr.on('data', (data) => {
-            outputChannel.appendLine(`[stderr] ${data.toString()}`);
+            outputChannel.appendLine([stderr], $, { data, : .toString() });
         });
         pythonProcess.on('close', (code) => {
             if (code === 0) {
-                (0, child_process_1.exec)(`"${batFile}"`, (error, stdout, stderr) => {
-                    if (error) {
-                        outputChannel.appendLine(`❌ Error: ${error.message}`);
-                        return;
-                    }
-                    if (stderr) {
-                        outputChannel.appendLine(`⚠️ Stderr: ${stderr}`);
-                    }
-                    outputChannel.appendLine(`✅ Output: ${stdout}`);
-                });
                 outputChannel.appendLine('✅ Python script finished successfully.');
                 vscode.env.openExternal(vscode.Uri.parse('http://localhost:3000'));
                 outputChannel.append('Redirecting to http://localhost:3000');
             }
             else {
-                outputChannel.appendLine(`❌ Python script exited with code ${code}`);
+                outputChannel.appendLine(Python, script, exited);
+                with (code)
+                    $;
+                {
+                    code;
+                }
             }
         });
     });
-    context.subscriptions.push(openWebsiteCmd2);
 }
+;
+;
+context.subscriptions.push(openWebsiteCmd2);
 // This method is called when your extension is deactivated
 function deactivate() { }
 //# sourceMappingURL=extension.js.map

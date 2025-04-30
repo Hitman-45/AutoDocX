@@ -12,9 +12,6 @@ import argparse
 import subprocess
 
 
-
-
-
 Config.set_library_file("/usr/lib/llvm-18/lib/libclang.so.1")
 
 
@@ -270,21 +267,14 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extract functions from a code repository.")
     parser.add_argument("--source_folder", type=str, required=True, help="Path to the source code repository")
     args = parser.parse_args()
-    # source_folder = input("Enter the source folder path: ").strip()
-    # source_folder = r"C:\Users\havis\AutoDocX_tool\AutoDocX_tool\eANCI" 
 
     source_folder = args.source_folder
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    print(current_dir)
     output_file = rf"{current_dir}\AutoDocX_tool\static\functions.json"
-
-    print(f"Outtput file: {output_file} ...")
-    # output_file = args.output
 
     print(f"Scanning repository: {source_folder} ...")
 
-    # time.sleep(3)
-
+    # Step 1: Extract functions
     result = parse_repo(source_folder)
 
     with open(output_file, "w", encoding="utf-8") as f:
@@ -292,34 +282,51 @@ if __name__ == "__main__":
 
     print(f"Done! Extracted {len(result)} functions. Saved to {output_file}")
 
-    command = ["node", f"{current_dir}\AutoDocX_tool\scripts\generateDocs.js"]
-    result = subprocess.run(command, capture_output=True, text=True)
-    print("Running command:", ' '.join(command))
-    print("Output from JS:")
+    #     Step 4: Start Docusaurus only after above steps are done
+    # docusaurus_dir = os.path.join(current_dir, "AutoDocX_tool")
+    run_bat = os.path.join(current_dir, "AutoDocX_tool", "run.bat")
+
+    command = [run_bat, source_folder]
+
+    result = subprocess.run(command, capture_output=True, text=True, shell=True, cwd=os.path.dirname(run_bat))
+
+    print("Output:")
     print(result.stdout)
-
-    command = ["node", f"{current_dir}\AutoDocX_tool\generateLLMdocsnew.js"]
-    # C:\Users\Manan\Desktop\Object_Deection_DL\AutoDocX\AutoDocX_tool\generateLLMdocsnew.js
-    result = subprocess.run(command)
-    print("Running command:", ' '.join(command))
-    print("Output from JS:")
-    print(result.stdout)
-
-    docusaurus_dir = os.path.join(current_dir, "AutoDocX_tool/")
-
-# # Run `npx docusaurus start` from that directory
-#     command = ["npx", "docusaurus", "start"]
-
-#     print("Running command:", ' '.join(command), "in", docusaurus_dir)
-
-#     result = subprocess.run(command, capture_output=True, text=True, cwd=docusaurus_dir)
-
-#     print("Output from JS:")
-#     print(result.stdout)
-#     print("Errors:")
-#     print(result.stderr)
+    print("Errors:")
+    print(result.stderr)
 
 
-    if result.stderr:
-        print("Error from JS:")
-        print(result.stderr)
+    # print("🚀 Launching Docusaurus dev server...")
+
+    # # Non-blocking launch
+    # subprocess.Popen([docusaurus_executable, "start"], cwd=docusaurus_dir, shell=True)
+    # print("✅ Docusaurus is starting in the background. Visit http://localhost:3000")
+
+
+    # # Step 2: Run first JS script
+    # command1 = ["node", f"{current_dir}\\AutoDocX_tool\\generateLLMdocsnew.js"]
+    # print("Running command:", ' '.join(command1))
+    # result = subprocess.run(command1, input=source_folder, capture_output=True, text=True, encoding='utf-8')
+    # print("Output from JS:")
+    # print(result.stdout)
+    # print("Errors:")
+    # print(result.stderr)
+
+    # # Step 3: Run second JS script
+    # command2 = ["node", f"{current_dir}\\AutoDocX_tool\\scripts\\generateDocs.js"]
+    # print("Running command:", ' '.join(command2))
+    # result = subprocess.run(command2, capture_output=True, text=True)
+    # print("Output from JS:")
+    # print(result.stdout)
+    # print("Errors:")
+    # print(result.stderr)
+
+    # Step 4: Start Docusaurus only after above steps are done
+    # docusaurus_dir = os.path.join(current_dir, "AutoDocX_tool")
+    # docusaurus_executable = os.path.join(docusaurus_dir, "node_modules", ".bin", "docusaurus.cmd")
+
+    # print("🚀 Launching Docusaurus dev server...")
+
+    # # Non-blocking launch
+    # subprocess.Popen([docusaurus_executable, "start"], cwd=docusaurus_dir, shell=True)
+    # print("✅ Docusaurus is starting in the background. Visit http://localhost:3000")
