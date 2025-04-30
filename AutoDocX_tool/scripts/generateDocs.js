@@ -1,22 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-// Clear old docs and asts
-const docsDir = path.join(__dirname, "..", "docs");
-const astsDir = path.join(__dirname, "..", "static", "asts");
-
-const clearDirectory = dir => {
-  if (fs.existsSync(dir)) {
-    fs.rmSync(dir, { recursive: true, force: true });
-  }
-  fs.mkdirSync(dir, { recursive: true });
-};
-
-clearDirectory(docsDir);
-clearDirectory(astsDir);
-
 const raw = fs.readFileSync(path.join(__dirname, "..", "static", "functions.json"), "utf-8");
-console.log(__dirname);
 const data = JSON.parse(raw);
 
 const escapeHTML = str =>
@@ -35,7 +20,7 @@ for (const fn of data) {
 }
 
 for (const [folder, files] of Object.entries(grouped)) {
-  const dirPath = path.join(__dirname, "..", "docs", folder);
+  const dirPath = path.join("docs", folder);
   fs.mkdirSync(dirPath, { recursive: true });
 
   for (const [file, functions] of Object.entries(files)) {
@@ -64,7 +49,7 @@ for (const [folder, files] of Object.entries(grouped)) {
     };
 
     // Generate AST tree and write to public/asts
-    const astOutputDir = path.join(__dirname, "..", "static", "asts");
+    const astOutputDir = path.join("static", "asts");
     fs.mkdirSync(astOutputDir, { recursive: true });
 
     const tree = transformToTree({ functions }); // wrap all function data
@@ -75,6 +60,54 @@ for (const [folder, files] of Object.entries(grouped)) {
     console.log(`✅ AST will be saved: ${astFilePath}`);
     const astViewerComponent = `<ASTViewer file="${astFileName}" />`;
     console.log(`✅ AST saved: ${astFilePath}`);
+
+
+    const baseFileName = path.basename(file, path.extname(file));
+
+    // Sanitize the file name to replace any slashes with underscores
+    const safeFileName = baseFileName.replace(/[\\/]/g, "_") + "_documentation.md";
+    
+// Full path to summary
+// Path to summary folder
+const summaryDir = path.join(__dirname, "..", "generated_newdocs");
+
+
+// Try finding a matching summary file
+let summaryFilePath = null;
+
+const summaryCandidates = fs.readdirSync(summaryDir);
+for (const candidate of summaryCandidates) {
+  if (candidate.startsWith(safeFileName)) {
+    summaryFilePath = path.join(summaryDir, candidate);
+    break;
+  }
+}
+
+let codeSummarySection = "";
+
+if (summaryFilePath && fs.existsSync(summaryFilePath)) {
+  const summaryContent = fs.readFileSync(summaryFilePath, "utf-8");
+  // Regular expression to extract the content from "Class Name" to "[END OF TEXT]"
+  const regex = /(\*\*Class Name:\*\*.*)/s;
+  const match = summaryContent.match(regex);
+
+  if (match) {
+    const extractedContent = match[1].trim();
+
+  codeSummarySection = `
+---
+
+### 🧠 Code Summarization
+
+${extractedContent}
+
+---
+`;} else {
+  console.warn("⚠️ No relevant content found between **Class Name** and [END OF TEXT]");
+}
+} else {
+  console.warn(`⚠️ No summary found for: ${safeFileName}`);
+}
 
     const content = [
       `import ASTViewer from '@site/scripts/AstViewer';`,
@@ -106,6 +139,7 @@ for (const [folder, files] of Object.entries(grouped)) {
       \`\`\`
       `;
       }),
+      codeSummarySection, 
     ].join("\n");
 
     fs.writeFileSync(mdPath, content, "utf-8");

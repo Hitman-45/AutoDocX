@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Endpoint to FastAPI server
-const apiUrl = 'https://6355-14-139-176-131.ngrok-free.app/generate'; 
+const apiUrl = 'https://8dac-14-139-176-131.ngrok-free.app/generate'; 
 
 async function sendToLLM(code, filePath) {
   const requestBody = {
@@ -16,16 +16,16 @@ async function sendToLLM(code, filePath) {
     const documentation = response.data.documentation;
     
     // Save documentation to a file
-    const outputDir = path.join(__dirname, 'generated_docs');
+    const outputDir = path.join(__dirname, 'generated_newdocs');
     if (!fs.existsSync(outputDir)) {
       fs.mkdirSync(outputDir);
     }
 
     const outputFilePath = path.join(outputDir, `${path.basename(filePath, path.extname(filePath))}_documentation.md`);
     fs.writeFileSync(outputFilePath, documentation);
-    console.log(`📝 Documentation saved to ${outputFilePath}`);
+    console.log(`Documentation saved to ${outputFilePath}`);
   } catch (error) {
-    console.error(`❌ Error generating documentation for ${filePath}: ${error.response ? error.response.data : error.message}`);
+    console.error(`Error generating documentation for ${filePath}: ${error.response ? error.response.data : error.message}`);
   }
 }
 
@@ -46,24 +46,15 @@ function readFilesRecursively(dir) {
   });
 }
 
-// const readline = require('readline');
+// ✅ Get directory from command-line argument
+const inputPath = process.argv[2];
 
-// // Create an interface for interactive input
-// const rl = readline.createInterface({
-//   input: process.stdin,
-//   output: process.stdout
-// });
+if (!inputPath) {
+  console.error("❌ Error: Please provide a path to the source code folder as a command-line argument.");
+  process.exit(1);
+}
 
-// // Prompt the user to enter the path
-// rl.question('Enter your path: ', (inputPath) => {
-//   console.log("Input received:", inputPath);
-//   const codeDirectory = path.join(__dirname, inputPath); // Define your code directory path
-//   readFilesRecursively(codeDirectory); // Start processing files
-//   // Close the readline interface after the input
-//   rl.close();
-// });
-
-const codeDirectory = path.join(__dirname, "code"); // Define your code directory path
-readFilesRecursively(codeDirectory); // Start processi
+console.log("✅ Input received:", inputPath);
+readFilesRecursively(inputPath); 
 
 

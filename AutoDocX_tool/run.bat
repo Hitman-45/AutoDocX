@@ -1,26 +1,19 @@
 @echo off
-echo Activating virtual environment...
-call venv\Scripts\activate.bat
-
-echo Installing Python dependencies...
-pip install -r requirements.txt
-
-echo Running Python script...
-python main.py
-
-echo Moving functions.json to static directory...
-move functions.json static\functions.json
+cd /d %~dp0
 
 echo Deleting docs content...
 del /q docs\*
-del /f static\functions.json
-del /q generated_new_docs\*
+del /q generated_newdocs\*
 
-echo Generating Docusaurus docs...
+set INPUT_PATH=%1
+
+echo Received input: %INPUT_PATH%
+
+echo Running: node generateLLMdocsnew.js %INPUT_PATH%
+node generateLLMdocsnew.js "%INPUT_PATH%"
+
+echo Running: node scripts\generateDocs.js
 node scripts\generateDocs.js
-
-echo Contacing LLM API to generate docs,Please enter your earleir input again...
-node generateLLMdocsnew.js
 
 echo Starting Docusaurus site...
 npx docusaurus start --port 3001
