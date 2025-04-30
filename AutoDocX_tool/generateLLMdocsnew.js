@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Endpoint to FastAPI server
-const apiUrl = 'https://8dac-14-139-176-131.ngrok-free.app/generate'; 
+const apiUrl = 'https://a4e8-14-139-176-131.ngrok-free.app/generate'; 
 
 async function sendToLLM(code, filePath) {
   const requestBody = {

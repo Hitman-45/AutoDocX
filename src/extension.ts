@@ -41,8 +41,8 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 
 		const rootPath = workspaceFolders[0].uri.fsPath;
-		vscode.window.showInformationMessage(Analyzing repo at: ${rootPath});
-		vscode.window.showInformationMessage(${__dirname});
+		vscode.window.showInformationMessage(`Analyzing repo at: ${rootPath}`);
+		vscode.window.showInformationMessage(`${__dirname}`);
 
 
 		
@@ -52,7 +52,7 @@ export function activate(context: vscode.ExtensionContext) {
 		// const pythonScript = 'C:\\Users\\havis\\autodocx\\main.py';
 		const pythonScript = path.resolve(__dirname, '..', 'main.py');
 	
-		outputChannel.appendLine(Running: python ${pythonScript} --source_folder ${rootPath});
+		outputChannel.appendLine('Running: python ${pythonScript} --source_folder ${rootPath}');
 	
 		const pythonProcess = spawn('python', [pythonScript, '--source_folder', rootPath]);
 	
@@ -61,7 +61,7 @@ export function activate(context: vscode.ExtensionContext) {
 		});
 	
 		pythonProcess.stderr.on('data', (data) => {
-			outputChannel.appendLine([stderr] ${data.toString()});
+			outputChannel.appendLine(`[stderr]: ${data.toString()}`);
 		});
 	
 		pythonProcess.on('close', (code) => {
@@ -70,7 +70,7 @@ export function activate(context: vscode.ExtensionContext) {
 				vscode.env.openExternal(vscode.Uri.parse('http://localhost:3000'));
 				outputChannel.append('Redirecting to http://localhost:3000')
 			} else {
-				outputChannel.appendLine(❌ Python script exited with code ${code});
+				outputChannel.appendLine(`Python script exited with code ${code}`);
 			}
 		});
 	});
